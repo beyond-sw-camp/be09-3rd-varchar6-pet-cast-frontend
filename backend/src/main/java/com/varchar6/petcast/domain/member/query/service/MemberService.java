@@ -5,7 +5,7 @@ import com.varchar6.petcast.domain.member.query.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service(value="queryMemberService")
 public class MemberService {
     private final MemberMapper memberMapper;
 
