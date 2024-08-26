@@ -1,4 +1,4 @@
-# pet-cast
+# Pet-Cast
 ### Service for matching who want to take a event for their family!
 ![제목을-입력해주세요_-001 (2)](https://github.com/user-attachments/assets/1f8491a3-89b5-43a3-8a50-3e769303c46f)
 
