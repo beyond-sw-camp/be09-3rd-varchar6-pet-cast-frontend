@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.varchar6.petcast.domain.member.query.mapper.MemberMapper">
+    <resultMap id="memberResultMap" type="com.varchar6.petcast.domain.member.query.dto.MemberDTO">
+        <id property="memberId" column="MEMBER_ID"/>
+        <result property="nickname" column="NICKNAME"/>
+        <result property="createdAt" column="CREATED_AT"/>
+    </resultMap>
+    <select id="selectMemberByMemberId" resultMap="memberResultMap" parameterType="_int">
+        SELECT
+               A.MEMBER_ID
+             , A.NICKNAME
+             , A.CREATED_AT
+          FROM TBL_MEMBER A
+         WHERE A.MEMBER_ID = #{ memberId }
+    </select>
+</mapper>
