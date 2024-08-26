@@ -8,7 +8,7 @@
 
 
 
-# 🛍️ 반려동물 이벤트 업체 매칭 서비스 PET CAST 🛍️
+# :feet: 반려동물 이벤트 업체 매칭 서비스 PET CAST :feet:
 
 
 🥤 팀원 소개
@@ -38,8 +38,7 @@
 
 🎯
 
-🔧 기술 스택 <br>
- <br> [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=깃허브아이디&layout=compact)](https://github.com/깃허브아이디/github-readme-stats)
+🔧 기술 스택 
 
   
   
