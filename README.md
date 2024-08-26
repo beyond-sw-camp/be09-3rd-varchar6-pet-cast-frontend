@@ -1,7 +1,7 @@
 # pet-cast
 Service for matching who want to take a event for their family!
-🛒 백엔드 프로젝트: PET CAST 🛒
-![제목을-입력해주세요_-001](https://github.com/user-attachments/assets/1ec12ba2-52ee-4c97-8373-8bad7474fbc9)
+![제목을-입력해주세요_-001 (2)](https://github.com/user-attachments/assets/1f8491a3-89b5-43a3-8a50-3e769303c46f)
+
 
 
 한화시스템 BEYOND SW캠프 / 🍑 TEAM VARCHAR(6) 🍑
