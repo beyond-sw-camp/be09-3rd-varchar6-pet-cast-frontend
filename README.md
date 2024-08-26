@@ -8,7 +8,7 @@
 
 <br>
 
-# :feet: 반려동물 이벤트 업체 매칭 서비스 PET CAST :feet:
+# :feet: 반려동물 이벤트 업체 매칭 서비스_PET CAST :feet:
 
 
 🥤 팀원 소개
