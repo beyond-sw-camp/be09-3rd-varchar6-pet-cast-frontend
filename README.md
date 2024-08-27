@@ -61,7 +61,8 @@
 
 ## 📙 요구사항 명세서
 
-![스크린샷_26-8-2024_18315_](https://github.com/user-attachments/assets/7cc459ca-95da-483e-8c9b-a580d5402a28)
+![요구사항 명세서](https://github.com/user-attachments/assets/8c39167c-b241-4118-bcaa-59d730ec8614)
+
 
 
 <br>
