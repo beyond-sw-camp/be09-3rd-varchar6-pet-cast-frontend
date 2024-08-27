@@ -5,9 +5,11 @@ import com.varchar6.petcast.domain.member.command.dto.mapper.MemberMapper;
 import com.varchar6.petcast.domain.member.command.dto.request.MemberRequestDTO;
 import com.varchar6.petcast.domain.member.command.dto.response.MemberResponseDTO;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service(value="commandMemberService")
 public class MemberService {
     private final MemberRepository memberRepository;
