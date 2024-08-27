@@ -1,8 +1,8 @@
-package com.varchar6.petcast.domain.member.command.dto.mapper;
+package com.varchar6.petcast.domain.member.command.application.dto.mapper;
 
 import com.varchar6.petcast.domain.member.command.domain.aggregate.Member;
-import com.varchar6.petcast.domain.member.command.dto.request.MemberRequestDTO;
-import com.varchar6.petcast.domain.member.command.dto.response.MemberResponseDTO;
+import com.varchar6.petcast.domain.member.command.application.dto.request.MemberRequestDTO;
+import com.varchar6.petcast.domain.member.command.application.dto.response.MemberResponseDTO;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;

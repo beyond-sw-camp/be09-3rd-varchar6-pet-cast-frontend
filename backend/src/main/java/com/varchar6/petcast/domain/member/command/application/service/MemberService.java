@@ -1,9 +1,9 @@
 package com.varchar6.petcast.domain.member.command.application.service;
 
 import com.varchar6.petcast.domain.member.command.domain.repository.MemberRepository;
-import com.varchar6.petcast.domain.member.command.dto.mapper.MemberMapper;
-import com.varchar6.petcast.domain.member.command.dto.request.MemberRequestDTO;
-import com.varchar6.petcast.domain.member.command.dto.response.MemberResponseDTO;
+import com.varchar6.petcast.domain.member.command.application.dto.mapper.MemberMapper;
+import com.varchar6.petcast.domain.member.command.application.dto.request.MemberRequestDTO;
+import com.varchar6.petcast.domain.member.command.application.dto.response.MemberResponseDTO;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
