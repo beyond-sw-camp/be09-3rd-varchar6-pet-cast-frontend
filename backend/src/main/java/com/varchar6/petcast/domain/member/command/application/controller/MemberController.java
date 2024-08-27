@@ -6,14 +6,8 @@ import com.varchar6.petcast.domain.member.command.application.dto.request.Member
 import com.varchar6.petcast.domain.member.command.application.dto.response.MemberResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.net.URI;
-import java.util.HashMap;
-import java.util.Map;
-
 
 @RestController(value = "commandMemberController")
 @RequestMapping("/api/v1/member")
