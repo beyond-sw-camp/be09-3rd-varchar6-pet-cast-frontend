@@ -53,8 +53,11 @@
 🛠 사용 tools
    
 
+<br>
+## 🗓️ 프로젝트 계획 (WBS) <br>
 
-🗓️ 프로젝트 계획 (WBS)
+![image](https://github.com/user-attachments/assets/caa05a40-a9d3-4747-95d4-78103b10d6aa)
+
 
 
 <br>
