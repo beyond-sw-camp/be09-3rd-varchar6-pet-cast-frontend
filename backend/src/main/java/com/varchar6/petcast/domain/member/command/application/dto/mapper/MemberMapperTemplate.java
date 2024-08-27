@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-@Component(value="customMemberMapper")
-public class MemberMapper {
+@Component
+public class MemberMapperTemplate {
     private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(FORMAT);
 
