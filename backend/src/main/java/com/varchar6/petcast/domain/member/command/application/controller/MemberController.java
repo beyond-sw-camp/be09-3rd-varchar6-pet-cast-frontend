@@ -1,16 +1,19 @@
 package com.varchar6.petcast.domain.member.command.application.controller;
 
+import com.varchar6.petcast.common.response.ResponseMessage;
 import com.varchar6.petcast.domain.member.command.application.service.MemberService;
 import com.varchar6.petcast.domain.member.command.application.dto.request.MemberRequestDTO;
 import com.varchar6.petcast.domain.member.command.application.dto.response.MemberResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController(value = "commandMemberController")
 @RequestMapping("/api/v1/member")
@@ -23,12 +26,18 @@ public class MemberController {
     }
 
     @PostMapping
-    public ResponseEntity<MemberResponseDTO> register(@RequestBody MemberRequestDTO memberRequestDTO) {
-        URI uri = linkTo(methodOn(MemberController.class)
-                .register(memberRequestDTO))
-                .slash("{id}").toUri();
-        return ResponseEntity.created(uri)
-                        .body(memberService.registerMember(memberRequestDTO));
+    public ResponseEntity<?> register(@RequestBody MemberRequestDTO memberRequestDTO) {
+        MemberResponseDTO memberResponseDTO= memberService.registerMember(memberRequestDTO);
+
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.CREATED)
+                                .message("message")
+                                .result(memberResponseDTO)
+                                .build()
+                );
 
     }
 
