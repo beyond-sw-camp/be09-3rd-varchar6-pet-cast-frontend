@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -18,6 +20,11 @@ class NoticeServiceTests {
 
     private static NoticeWriteRequestDTO noticeWriteRequestDTO = new NoticeWriteRequestDTO();
     private static NoticeUpdateRequestDTO noticeUpdateRequestDTO = new NoticeUpdateRequestDTO();
+
+    @Test
+    public void 모든_공지_조회_테스트() {
+        noticeService.findAllNoticeList();
+    }
 
     @Test
     @Transactional
@@ -53,5 +60,18 @@ class NoticeServiceTests {
         assertFalse(noticeResponseDTO.isTopFix());
         assertNotEquals(noticeResponseDTO.getCreatedAt(), noticeResponseDTO.getUpdatedAt());
 
+    }
+
+    @Test
+    @Transactional
+    public void 공지_삭제_테스트() {
+        List<NoticeResponseDTO> beforeNoticeResponseDTOList = noticeService.findAllNoticeList();
+        int beforeNoticeCnt = beforeNoticeResponseDTOList.size();
+
+        int targetNoticeId = 4;
+        noticeService.deleteNotice(targetNoticeId);
+        List<NoticeResponseDTO> afterNoticeResponseDTOList = noticeService.findAllNoticeList();
+        int afterNoticeCnt = afterNoticeResponseDTOList.size();
+        assertNotEquals(beforeNoticeCnt, afterNoticeCnt);
     }
 }

@@ -12,6 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service(value = "commandNoticeService")
@@ -24,6 +27,26 @@ public class NoticeService {
     @Autowired
     public NoticeService(NoticeRepository noticeRepository) {
         this.noticeRepository = noticeRepository;
+    }
+
+    public List<NoticeResponseDTO> findAllNoticeList() {
+        return  noticeRepository.findAll().stream()
+                .map(
+                        notice -> {
+                            NoticeResponseDTO noticeResponseDTO = new NoticeResponseDTO();
+
+                            noticeResponseDTO.setId(notice.getId());
+                            noticeResponseDTO.setTitle(notice.getTitle());
+                            noticeResponseDTO.setCreatedAt(notice.getCreatedAt());
+                            noticeResponseDTO.setUpdatedAt(notice.getUpdatedAt());
+                            noticeResponseDTO.setActiveYn(notice.isActiveYn());
+                            noticeResponseDTO.setDescription(notice.getDescription());
+                            noticeResponseDTO.setView(notice.getView());
+                            noticeResponseDTO.setMemberNoticeId(notice.getMemberNoticeId());
+                            noticeResponseDTO.setTopFix(notice.isTopFix());
+                            return noticeResponseDTO;
+                        }
+                ).toList();
     }
 
     @Transactional
@@ -71,6 +94,11 @@ public class NoticeService {
         noticeResponseDTO.setTopFix(foundNotice.isTopFix());
 
         return noticeResponseDTO;
+    }
+
+    @Transactional
+    public void deleteNotice(int noticeId) {
+        noticeRepository.deleteById(noticeId);
     }
 
     private static Notice requestDTOToEntity(NoticeWriteRequestDTO noticeWriteRequestDTO) {
