@@ -1,5 +1,6 @@
 package com.varchar6.petcast.domain.notice.command.application.service;
 
+import com.varchar6.petcast.domain.notice.command.application.dto.request.NoticeUpdateRequestDTO;
 import com.varchar6.petcast.domain.notice.command.application.dto.request.NoticeWriteRequestDTO;
 import com.varchar6.petcast.domain.notice.command.application.dto.response.NoticeResponseDTO;
 import com.varchar6.petcast.domain.notice.command.domain.aggregate.Notice;
@@ -43,9 +44,33 @@ public class NoticeService {
         noticeResponseDTO.setMemberNoticeId(notice.getMemberNoticeId());
         noticeResponseDTO.setTopFix(notice.isTopFix());
 
-        log.debug("Created notice responseDTO: {}", noticeResponseDTO);
         return noticeResponseDTO;
 
+    }
+
+    @Transactional
+    public NoticeResponseDTO updateNotice(NoticeUpdateRequestDTO noticeUpdateRequestDTO) {
+        NoticeResponseDTO noticeResponseDTO = new NoticeResponseDTO();
+
+        Notice foundNotice = noticeRepository.findById(noticeUpdateRequestDTO.getId())
+                .orElseThrow(IllegalAccessError::new);
+
+        foundNotice.setTitle(noticeUpdateRequestDTO.getTitle());
+        foundNotice.setDescription(noticeUpdateRequestDTO.getDescription());
+        foundNotice.setTopFix(noticeUpdateRequestDTO.isTopFix());
+        foundNotice.setUpdatedAt(LocalDateTime.now().format(FORMATTER));
+
+        noticeResponseDTO.setId(foundNotice.getId());
+        noticeResponseDTO.setTitle(foundNotice.getTitle());
+        noticeResponseDTO.setCreatedAt(foundNotice.getCreatedAt());
+        noticeResponseDTO.setUpdatedAt(foundNotice.getUpdatedAt());
+        noticeResponseDTO.setActiveYn(foundNotice.isActiveYn());
+        noticeResponseDTO.setDescription(foundNotice.getDescription());
+        noticeResponseDTO.setView(foundNotice.getView());
+        noticeResponseDTO.setMemberNoticeId(foundNotice.getMemberNoticeId());
+        noticeResponseDTO.setTopFix(foundNotice.isTopFix());
+
+        return noticeResponseDTO;
     }
 
     private static Notice requestDTOToEntity(NoticeWriteRequestDTO noticeWriteRequestDTO) {
@@ -66,5 +91,4 @@ public class NoticeService {
                 .topFix(noticeWriteRequestDTO.isTopFix())
                 .build();
     }
-
 }
