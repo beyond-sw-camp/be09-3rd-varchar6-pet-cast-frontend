@@ -40,5 +40,5 @@ public class Notice {
     private int memberNoticeId;
 
     @Column(name = "top_fix", nullable = false)
-    private String topFix;
+    private boolean topFix;
 }
