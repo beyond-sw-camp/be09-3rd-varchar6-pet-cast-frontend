@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @Service(value="queryNoticeService")
 public class NoticeService {
@@ -18,6 +20,10 @@ public class NoticeService {
 
     public NoticeDTO getNoticeById(int memberId) {
         return noticeMapper.selectNoticeByNoticeId(memberId);
+    }
+
+    public List<NoticeDTO> getAllNotices() {
+        return noticeMapper.selectAllNotice();
     }
 
 }
