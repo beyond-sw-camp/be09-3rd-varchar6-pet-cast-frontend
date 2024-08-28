@@ -67,7 +67,18 @@
 
 ![요구사항 명세서](https://github.com/user-attachments/assets/8c39167c-b241-4118-bcaa-59d730ec8614)
 
+<br>
 
+## 📘 기능 명세서
+![기능명세서1](https://github.com/user-attachments/assets/bc9ae28b-0226-4ca5-a003-86fa3f5461c1)
+![기능명세서2](https://github.com/user-attachments/assets/6b1241ce-2c1b-4650-8f40-ceceb86e388d)
+![기능명세서3](https://github.com/user-attachments/assets/af5b0f54-1611-40a5-ba37-f8b6a41fd0a5)
+![기능명세서4](https://github.com/user-attachments/assets/da51cce7-1330-4424-b844-21ed093816fc)
+![기능명세서5](https://github.com/user-attachments/assets/fba44df2-d332-428e-aba9-11ab8811ae2e)
+![기능명세서6](https://github.com/user-attachments/assets/33fdd135-cc6f-4e8f-82d9-f53c9b113c5f)
+![기능명세서7](https://github.com/user-attachments/assets/a8a47340-a8f1-490c-88ea-a69f5e33ad83)
+![기능명세서8](https://github.com/user-attachments/assets/f1f2b328-e61e-4a93-ac86-adf50be862d5)
+![기능명세서9](https://github.com/user-attachments/assets/27e4e565-7cd4-4e47-98d2-ead99ba9bc0d)
 
 <br>
 
