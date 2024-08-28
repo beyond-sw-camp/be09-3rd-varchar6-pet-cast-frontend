@@ -16,7 +16,7 @@ public class MemberService {
         this.memberMapper = memberMapper;
     }
 
-    public MemberDTO selectMemberById(int memberId) {
+    public MemberDTO getMemberInformationById(int memberId) {
         return memberMapper.selectMemberByMemberId(memberId);
     }
 

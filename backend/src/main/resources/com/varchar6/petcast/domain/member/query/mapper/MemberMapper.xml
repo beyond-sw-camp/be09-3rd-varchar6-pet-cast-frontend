@@ -4,16 +4,32 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.varchar6.petcast.domain.member.query.mapper.MemberMapper">
     <resultMap id="memberResultMap" type="com.varchar6.petcast.domain.member.query.dto.MemberDTO">
-        <id property="memberId" column="MEMBER_ID"/>
+        <id property="id" column="ID"/>
+        <result property="loginId" column="LOGIN_ID"/>
+        <result property="password" column="PASSWORD"/>
+        <result property="name" column="NAME"/>
+        <result property="phone" column="PHONE"/>
         <result property="nickname" column="NICKNAME"/>
+        <result property="image" column="IMAGE"/>
         <result property="createdAt" column="CREATED_AT"/>
+        <result property="updatedAt" column="UPDATED_AT"/>
+        <result property="activeYn" column="ACTIVE_YN"/>
+        <result property="introduction" column="INTRODUCTION"/>
     </resultMap>
     <select id="selectMemberByMemberId" resultMap="memberResultMap" parameterType="_int">
         SELECT
-               A.MEMBER_ID
+               A.ID
+             , A.LOGIN_ID
+             , A.PASSWORD
+             , A.NAME
+             , A.PHONE
              , A.NICKNAME
+             , A.IMAGE
              , A.CREATED_AT
+             , A.UPDATED_AT
+             , A.ACTIVE_YN
+             , A.INTRODUCTION
           FROM TBL_MEMBER A
-         WHERE A.MEMBER_ID = #{ memberId }
+         WHERE A.ID = #{ id }
     </select>
 </mapper>
