@@ -73,6 +73,9 @@
 
 ## 📊 DB 모델링
 ### 논리 모델링 <br>
+![image](https://github.com/user-attachments/assets/e40ab358-7519-4b85-8c63-4c602c2b3210)
+
+
 ### 물리 모델링 <br>
 ![물리 모델링](https://github.com/user-attachments/assets/c4a7814d-34ff-447e-9c72-7890d8a9d3c3)
 
