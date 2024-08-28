@@ -27,7 +27,7 @@ public class MemberController {
                 .ok()
                 .body(
                         ResponseMessage.builder()
-                                .httpStatus(HttpStatus.CREATED)
+                                .httpStatus(HttpStatus.CREATED.value())
                                 .message("message")
                                 .result(memberResponseDTO)
                                 .build()
