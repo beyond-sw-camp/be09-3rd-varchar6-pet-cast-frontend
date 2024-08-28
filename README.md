@@ -72,8 +72,8 @@
 <br>
 
 ## 📊 DB 모델링
-> 논리 모델링
-> 물리 모델링 <br>
+> 논리 모델링 <br>
+### 물리 모델링 <br>
 ![물리 모델링](https://github.com/user-attachments/assets/c4a7814d-34ff-447e-9c72-7890d8a9d3c3)
 
 ERD (Entity-Relationship Diagram)
