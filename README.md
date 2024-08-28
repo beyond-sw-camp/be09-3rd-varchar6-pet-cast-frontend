@@ -70,15 +70,16 @@
 <br>
 
 ## 📘 기능 명세서
-![기능명세서1](https://github.com/user-attachments/assets/bc9ae28b-0226-4ca5-a003-86fa3f5461c1)
-![기능명세서2](https://github.com/user-attachments/assets/6b1241ce-2c1b-4650-8f40-ceceb86e388d)
-![기능명세서3](https://github.com/user-attachments/assets/af5b0f54-1611-40a5-ba37-f8b6a41fd0a5)
-![기능명세서4](https://github.com/user-attachments/assets/da51cce7-1330-4424-b844-21ed093816fc)
-![기능명세서5](https://github.com/user-attachments/assets/fba44df2-d332-428e-aba9-11ab8811ae2e)
-![기능명세서6](https://github.com/user-attachments/assets/33fdd135-cc6f-4e8f-82d9-f53c9b113c5f)
-![기능명세서7](https://github.com/user-attachments/assets/a8a47340-a8f1-490c-88ea-a69f5e33ad83)
-![기능명세서8](https://github.com/user-attachments/assets/f1f2b328-e61e-4a93-ac86-adf50be862d5)
-![기능명세서9](https://github.com/user-attachments/assets/27e4e565-7cd4-4e47-98d2-ead99ba9bc0d)
+![기능1](https://github.com/user-attachments/assets/e827486f-ab2f-4465-b80d-c6140bbd15a2)
+![기능2](https://github.com/user-attachments/assets/28b8c102-832c-475c-bacc-8439d4233f83)
+![기능3](https://github.com/user-attachments/assets/fd2689e2-9815-4e8a-aa3d-cae14fdecfed)
+![기능4](https://github.com/user-attachments/assets/6e23a1b6-42d3-48bb-8cce-d501145c7d5e)
+![기능5](https://github.com/user-attachments/assets/61cec108-f8a8-4319-ba95-92e254bd282c)
+![기능6](https://github.com/user-attachments/assets/c52a3cc9-373a-4930-a458-f9572d0a748f)
+![기능7](https://github.com/user-attachments/assets/590a597d-0624-4b93-9a89-5b79160bd084)
+![기능8](https://github.com/user-attachments/assets/f30b6f04-2c0b-4e3c-a6b2-d3021d2986a9)
+![기능9](https://github.com/user-attachments/assets/bde84f01-fd84-49f0-8b57-60c182276c2f)
+
 
 <br>
 
