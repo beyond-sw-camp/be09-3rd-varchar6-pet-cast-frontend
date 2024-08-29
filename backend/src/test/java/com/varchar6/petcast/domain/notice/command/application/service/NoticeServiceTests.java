@@ -23,7 +23,9 @@ class NoticeServiceTests {
 
     @Test
     public void 모든_공지_조회_테스트() {
-        noticeService.findAllNoticeList();
+        int expectedNum = 3;
+        List<NoticeResponseDTO> noticeList = noticeService.findAllNoticeList();
+        assertEquals(expectedNum, noticeList.size());
     }
 
     @Test
