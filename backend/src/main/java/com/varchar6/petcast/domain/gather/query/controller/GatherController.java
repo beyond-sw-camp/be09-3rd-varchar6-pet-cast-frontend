@@ -32,5 +32,13 @@ public class GatherController {
         return ResponseEntity.ok(gatherDetail);
     }
 
+    @GetMapping("/invitation/{invitationId}/{userId}")
+    public ResponseEntity<Boolean> findInvitationPageById(@PathVariable("invitationId") int invitationId,
+                                                          @PathVariable("userId") int userId){
+        Boolean isAccessTrueGather = gatherService.isAccessTrueGather(invitationId, userId);
+        System.out.println("isAccessTrueGather = " + isAccessTrueGather);
+        return ResponseEntity.ok(isAccessTrueGather);
+    }
+
 
 }

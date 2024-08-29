@@ -45,4 +45,12 @@ public class GatherService {
 
         return gatherDetail;
     }
+
+    public Boolean isAccessTrueGather(int invitationId, int userId) {
+        List<Integer> membersId = gatherMapper.selectGroupMemberMemberById(invitationId, userId);
+        if(membersId.contains(userId)) {
+            return true;
+        }
+        return false;
+    }
 }

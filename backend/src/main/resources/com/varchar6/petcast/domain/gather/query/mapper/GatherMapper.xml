@@ -49,4 +49,16 @@
                           FROM tbl_group_member B
                          WHERE B.gather_group_member_id = #{ gather_id })
     </select>
+
+    <select id="selectGroupMemberMemberById" resultType="_int" parameterType="_int">
+        SELECT
+               A.member_group_member_id
+          FROM tbl_group_member A
+         WHERE A.gather_group_member_id = (SELECT
+                                                  B.gather_invitation_id
+                                             FROM tbl_invitation B
+                                            WHERE B.member_invitation_id = #{ userId }
+                                              AND B.id = #{ invitationId }
+                                              AND B.active_yn = 1);
+    </select>
 </mapper>

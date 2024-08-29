@@ -12,4 +12,6 @@ public interface GatherMapper {
     GatherDTO selectGatherDetailById(int gatherId);
 
     List<String> selectMembersById(int gatherId);
+
+    List<Integer> selectGroupMemberMemberById(int invitationId, int userId);
 }
