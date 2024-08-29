@@ -1,6 +1,7 @@
 package com.varchar6.petcast.domain.gather.query.controller;
 
 import com.varchar6.petcast.domain.gather.query.dto.GatherDTO;
+import com.varchar6.petcast.domain.gather.query.dto.GatherDetailDTO;
 import com.varchar6.petcast.domain.gather.query.service.GatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +20,16 @@ public class GatherController {
         this.gatherService = gatherService;
     }
 
-    @GetMapping("/list")
-    public ResponseEntity<List<GatherDTO>> findAllGather(@RequestParam("userId") int userId){
+    @GetMapping("/list/{userId}")
+    public ResponseEntity<List<GatherDTO>> findAllGather(@PathVariable("userId") int userId){
         List<GatherDTO> gathers = gatherService.findAllGather(userId);
         return ResponseEntity.ok(gathers);
+    }
+
+    @GetMapping("/detail/{gatherId}")
+    public ResponseEntity<GatherDetailDTO> findDetailGather(@PathVariable("gatherId") int gatherId){
+        GatherDetailDTO gatherDetail = gatherService.findDetailGather(gatherId);
+        return ResponseEntity.ok(gatherDetail);
     }
 
 

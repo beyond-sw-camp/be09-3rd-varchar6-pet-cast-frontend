@@ -2,12 +2,14 @@ package com.varchar6.petcast.domain.gather.query.dto;
 
 import lombok.*;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @ToString
 @Builder
-public class GatherDTO {
+public class GatherDetailDTO {
     private int id;
     private String name;
     private String content;
@@ -18,4 +20,6 @@ public class GatherDTO {
     private boolean activeYn;
     private String invitationId;
     private String intitationContent;
+
+    private List<String> members;
 }

@@ -8,4 +8,8 @@ import java.util.List;
 @Mapper
 public interface GatherMapper {
     List<GatherDTO> selectGatherById(int userId);
+
+    GatherDTO selectGatherDetailById(int gatherId);
+
+    List<String> selectMembersById(int gatherId);
 }

@@ -27,4 +27,26 @@
                                                            WHERE C.id = #{ user_id }))
          ORDER BY A.created_at DESC
     </select>
+
+    <select id="selectGatherDetailById" resultMap="gatherResultMap" parameterType="_int">
+        SELECT
+               A.name
+             , A.content
+             , A.count
+             , A.url
+             , A.updated_at
+             , A.created_at
+             , A.active_yn
+          FROM tbl_gather A
+         WHERE A.id = #{ gather_id }
+    </select>
+
+    <select id="selectMembersById" resultType="String" parameterType="_int">
+        SELECT
+               A.name
+          FROM tbl_member A
+         WHERE A.id IN (SELECT B.member_group_member_id
+                          FROM tbl_group_member B
+                         WHERE B.gather_group_member_id = #{ gather_id })
+    </select>
 </mapper>
