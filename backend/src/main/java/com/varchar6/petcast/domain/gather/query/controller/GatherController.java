@@ -20,7 +20,7 @@ public class GatherController {
         this.gatherService = gatherService;
     }
 
-    @GetMapping("/list/{userId}")
+    @GetMapping("/grouplist/{userId}")
     public ResponseEntity<List<GatherDTO>> findAllGather(@PathVariable("userId") int userId){
         List<GatherDTO> gathers = gatherService.findAllGather(userId);
         return ResponseEntity.ok(gathers);
@@ -36,9 +36,13 @@ public class GatherController {
     public ResponseEntity<Boolean> findInvitationPageById(@PathVariable("invitationId") int invitationId,
                                                           @PathVariable("userId") int userId){
         Boolean isAccessTrueGather = gatherService.isAccessTrueGather(invitationId, userId);
-        System.out.println("isAccessTrueGather = " + isAccessTrueGather);
         return ResponseEntity.ok(isAccessTrueGather);
     }
 
+    @GetMapping("groupmemberlist/{gatherId}")
+    public ResponseEntity<List<String>> findGroupMemberById(@PathVariable("gatherId") int gatherId){
+        List<String> groupMembers = gatherService.findGroupMemberById(gatherId);
+        return ResponseEntity.ok(groupMembers);
+    }
 
 }

@@ -2,6 +2,7 @@ package com.varchar6.petcast.domain.gather.query.mapper;
 
 import com.varchar6.petcast.domain.gather.query.dto.GatherDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,5 +14,7 @@ public interface GatherMapper {
 
     List<String> selectMembersById(int gatherId);
 
-    List<Integer> selectGroupMemberMemberById(int invitationId, int userId);
+    List<Integer> selectGroupMembersIdById(@Param("invitation_id")int invitationId, @Param("user_id") int userId);
+
+    List<String> selectGroupMembersNameById(int gatherId);
 }

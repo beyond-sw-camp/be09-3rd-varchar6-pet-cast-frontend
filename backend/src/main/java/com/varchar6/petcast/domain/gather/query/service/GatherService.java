@@ -47,10 +47,16 @@ public class GatherService {
     }
 
     public Boolean isAccessTrueGather(int invitationId, int userId) {
-        List<Integer> membersId = gatherMapper.selectGroupMemberMemberById(invitationId, userId);
-        if(membersId.contains(userId)) {
+        List<Integer> membersId = gatherMapper.selectGroupMembersIdById(invitationId, userId);
+        System.out.println("membersId = " + membersId);
+        if (!membersId.isEmpty() && membersId.contains(userId)) {
             return true;
         }
         return false;
+    }
+
+    public List<String> findGroupMemberById(int gatherId) {
+        List<String> groupMembers = gatherMapper.selectGroupMembersNameById(gatherId);
+        return groupMembers;
     }
 }
