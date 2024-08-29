@@ -16,29 +16,29 @@
     </resultMap>
     <select id="selectNoticeByNoticeId" resultMap="memberResultMap" parameterType="_int">
         SELECT
-          A.ID
-        , A.TITLE
-        , A.CREATED_AT
-        , A.UPDATED_AT
-        , A.ACTIVE_YN
-        , A.DESCRIPTION
-        , A.VIEW
-        , A.MEMBER_NOTICE_ID
-        , A.TOP_FIX
-        FROM TBL_NOTICE A
-        WHERE A.ID = #{ id }
+               A.ID
+             , A.TITLE
+             , A.CREATED_AT
+             , A.UPDATED_AT
+             , A.ACTIVE_YN
+             , A.DESCRIPTION
+             , A.VIEW
+             , A.MEMBER_NOTICE_ID
+             , A.TOP_FIX
+          FROM TBL_NOTICE A
+         WHERE A.ID = #{ id }
     </select>
     <select id="selectAllNotice" resultMap="memberResultMap">
         SELECT
-        A.ID
-        , A.TITLE
-        , A.CREATED_AT
-        , A.UPDATED_AT
-        , A.ACTIVE_YN
-        , A.DESCRIPTION
-        , A.VIEW
-        , A.MEMBER_NOTICE_ID
-        , A.TOP_FIX
-        FROM TBL_NOTICE A
+               A.ID
+             , A.TITLE
+             , A.CREATED_AT
+             , A.UPDATED_AT
+             , A.ACTIVE_YN
+             , A.DESCRIPTION
+             , A.VIEW
+             , A.MEMBER_NOTICE_ID
+             , A.TOP_FIX
+          FROM TBL_NOTICE A
     </select>
 </mapper>
