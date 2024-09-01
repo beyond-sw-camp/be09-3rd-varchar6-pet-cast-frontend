@@ -26,6 +26,16 @@ public class MemberController {
         this.modelMapper = modelMapper;
     }
 
+    @GetMapping("/test")
+    public String getTest() {
+        return "get working";
+    }
+
+    @PostMapping("/test")
+    public String postTest() {
+        return "post working";
+    }
+
     @PostMapping("/sign-up")
     public ResponseEntity<ResponseRegistUserVO> signUp(@RequestBody RequestRegistUserVO newUser){
 

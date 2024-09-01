@@ -1,11 +1,10 @@
-package com.varchar6.petcast.domain.member.query.vo;
+package com.varchar6.petcast.security;
 
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Set;
 
 @Getter
 public class CustomUser implements UserDetails {
