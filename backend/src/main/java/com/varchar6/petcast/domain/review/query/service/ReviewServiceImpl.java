@@ -1,6 +1,5 @@
 package com.varchar6.petcast.domain.review.query.service;
 
-import com.varchar6.petcast.common.response.ResponseMessage;
 import com.varchar6.petcast.domain.review.query.dto.ReviewDTO;
 import com.varchar6.petcast.domain.review.query.mapper.ReviewMapper;
 import java.util.HashMap;
@@ -8,11 +7,7 @@ import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Slf4j
 @Service(value = "queryReviewService")
