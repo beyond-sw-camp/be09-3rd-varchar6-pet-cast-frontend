@@ -8,6 +8,7 @@ import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service(value = "queryReviewService")
@@ -21,6 +22,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
+    @Transactional
     public List<ReviewDTO> findReviewByCompany(Integer companyId, Integer lastReviewId) {
         Map<String, String> params = new HashMap<String, String>();
         params.put("companyId", String.valueOf(companyId));
@@ -31,6 +33,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
+    @Transactional
     public List<ReviewDTO> findEventByCustomer(Integer userId, Integer lastReviewId) {
         Map<String, String> params = new HashMap<String, String>();
         params.put("customerId", String.valueOf(userId));
