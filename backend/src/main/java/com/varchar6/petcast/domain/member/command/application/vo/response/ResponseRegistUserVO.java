@@ -1,4 +1,4 @@
-package com.varchar6.petcast.domain.member.command.application.vo;
+package com.varchar6.petcast.domain.member.command.application.vo.response;
 
 import lombok.Data;
 
