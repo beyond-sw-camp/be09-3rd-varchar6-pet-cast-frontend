@@ -1,4 +1,4 @@
-package com.varchar6.petcast.domain.request;
+package com.varchar6.petcast.domain.request.aggregate;
 
 import com.varchar6.petcast.domain.member.command.domain.aggregate.Member;
 import jakarta.persistence.*;
