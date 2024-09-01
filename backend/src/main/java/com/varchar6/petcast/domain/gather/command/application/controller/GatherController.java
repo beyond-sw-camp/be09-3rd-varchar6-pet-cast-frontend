@@ -24,13 +24,10 @@ public class GatherController {
     @PostMapping("/createGather")
     public ResponseEntity<ResponseCreateGatherDTO> createGather(@RequestBody RequestCreateGatherDTO requestCreateGatherDTO){
 
-        ResponseCreateGatherDTO responseCreateGatherDTO = gatherService.createGather(requestCreateGatherDTO);
+        gatherService.createGather(requestCreateGatherDTO);
 
-        if(responseCreateGatherDTO == null){
-            responseCreateGatherDTO.setMessage("모임 생성 실패!!");
-        }else {
-            responseCreateGatherDTO.setMessage("모임 생성 성공!!");
-        }
+        ResponseCreateGatherDTO responseCreateGatherDTO =
+                ResponseCreateGatherDTO.builder().message("모임 생성 성공!!").build();
 
         return ResponseEntity.status(HttpStatus.OK).body(responseCreateGatherDTO);
     }
@@ -86,7 +83,19 @@ public class GatherController {
             responseInvitationDTO.setMessage("수락 실패!");
         }else{
             responseInvitationDTO.setMessage("수락 성공!");
+        }
 
+        return ResponseEntity.status(HttpStatus.OK).body(responseInvitationDTO);
+    }
+
+    @PutMapping("/refuseInvitation")
+    public ResponseEntity<ResponseInvitationDTO> refuseInvitation(@RequestBody RequestInvitationDTO requestInvitationDTO){
+        ResponseInvitationDTO responseInvitationDTO = gatherService.refuseInvatation(requestInvitationDTO);
+
+        if(responseInvitationDTO == null){
+            responseInvitationDTO.setMessage("거절 실패!");
+        }else{
+            responseInvitationDTO.setMessage("거절 성공!");
         }
 
         return ResponseEntity.status(HttpStatus.OK).body(responseInvitationDTO);

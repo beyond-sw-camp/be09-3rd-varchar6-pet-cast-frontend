@@ -223,4 +223,19 @@ public class GatherServiceImpl implements GatherService {
         }
         return responseInvitationDTO;
     }
+
+    @Override
+    public ResponseInvitationDTO refuseInvatation(RequestInvitationDTO requestInvitationDTO) {
+        Invitation invitation = invitationRepository.findById(requestInvitationDTO
+                .getInvitationId()).orElseThrow(() -> new NoSuchElementException("Invitation not found with id: " + requestInvitationDTO.getInvitationId()));
+
+        invitation.setActiveYn(false);
+        ResponseInvitationDTO responseInvitationDTO = null;
+        try {
+            responseInvitationDTO = modelMapper.map(invitation, ResponseInvitationDTO.class);
+        } catch (Exception e) {
+            log.info("거절 하다 실패!");
+        }
+        return responseInvitationDTO;
+    }
 }

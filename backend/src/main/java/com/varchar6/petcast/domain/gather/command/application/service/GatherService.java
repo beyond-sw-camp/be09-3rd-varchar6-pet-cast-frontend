@@ -13,4 +13,6 @@ public interface GatherService {
     ResponseSendInvitaionDTO sendInvitation(RequestSendInvitationDTO requestInvitationDTO);
 
     ResponseInvitationDTO acceptInvatation(RequestInvitationDTO requestInvitationDTO);
+
+    ResponseInvitationDTO refuseInvatation(RequestInvitationDTO requestInvitationDTO);
 }
