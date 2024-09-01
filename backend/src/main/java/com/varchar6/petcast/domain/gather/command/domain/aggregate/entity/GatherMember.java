@@ -18,5 +18,5 @@ public class GatherMember {
     private GatherRole role = GatherRole.LEADER;
 
     @EmbeddedId
-    private GatherMemberPK gatherMemberPK;
+    private GatherMemberFK gatherMemberPK;
 }

@@ -6,7 +6,7 @@ import com.varchar6.petcast.domain.gather.command.application.dto.request.Reques
 import com.varchar6.petcast.domain.gather.command.domain.aggregate.GatherRole;
 import com.varchar6.petcast.domain.gather.command.domain.aggregate.entity.Gather;
 import com.varchar6.petcast.domain.gather.command.domain.aggregate.entity.GatherMember;
-import com.varchar6.petcast.domain.gather.command.domain.aggregate.entity.GatherMemberPK;
+import com.varchar6.petcast.domain.gather.command.domain.aggregate.entity.GatherMemberFK;
 import com.varchar6.petcast.domain.gather.command.domain.repository.GatherMemberRepository;
 import com.varchar6.petcast.domain.gather.command.domain.repository.GatherRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -62,7 +62,7 @@ public class GatherServiceImpl implements GatherService{
 
         // 모임&회원 중간 테이블 insert 과정
         // 복합키 설정
-        GatherMemberPK gatherMemberPK = GatherMemberPK.builder()
+        GatherMemberFK gatherMemberPK = GatherMemberFK.builder()
                 .memberId(requestCreateGatherDTO.getUserId())
                 .gatherId(newGather.getId())
                 .build();
@@ -85,7 +85,7 @@ public class GatherServiceImpl implements GatherService{
         String currentDate = simpleDateFormat.format(now);
         log.info("current date: {}", currentDate);
         // 모임의 LEADER인지 확인
-        GatherMemberPK gatherMemberPK = GatherMemberPK.builder()
+        GatherMemberFK gatherMemberPK = GatherMemberFK.builder()
                 .memberId(requestUpdateGatherDTO.getUserId())
                 .gatherId(requestUpdateGatherDTO.getGatherId())
                 .build();
@@ -123,7 +123,7 @@ public class GatherServiceImpl implements GatherService{
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         String currentDate = simpleDateFormat.format(now);
 
-        GatherMemberPK gatherMemberPK = GatherMemberPK.builder()
+        GatherMemberFK gatherMemberPK = GatherMemberFK.builder()
                 .memberId(requestDeactiveGatherDTO.getUserId())
                 .gatherId(requestDeactiveGatherDTO.getGatherId())
                 .build();
