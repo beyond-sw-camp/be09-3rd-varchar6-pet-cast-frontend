@@ -13,7 +13,7 @@
         <result property="image" column="IMAGE"/>
         <result property="createdAt" column="CREATED_AT"/>
         <result property="updatedAt" column="UPDATED_AT"/>
-        <result property="activeYn" column="ACTIVE_YN"/>
+        <result property="active" column="ACTIVE"/>
         <result property="introduction" column="INTRODUCTION"/>
     </resultMap>
     <select id="selectMemberByMemberId" resultMap="memberResultMap" parameterType="_int">
@@ -27,7 +27,7 @@
              , A.IMAGE
              , A.CREATED_AT
              , A.UPDATED_AT
-             , A.ACTIVE_YN
+             , A.ACTIVE
              , A.INTRODUCTION
           FROM TBL_MEMBER A
          WHERE A.ID = #{ id }
