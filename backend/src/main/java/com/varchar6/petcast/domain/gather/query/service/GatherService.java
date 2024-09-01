@@ -9,54 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
-public class GatherService {
+public interface GatherService {
 
-    private GatherMapper gatherMapper;
+    public List<GatherDTO> findAllGather(int userId);
 
-    @Autowired
-    public GatherService(GatherMapper gatherMapper) {
-        this.gatherMapper = gatherMapper;
-    }
+    public GatherDetailDTO findDetailGather(int gatherId);
 
-    @Transactional
-    public List<GatherDTO> findAllGather(int userId) {
-        return gatherMapper.selectGatherById(userId);
-    }
+    public Boolean isAccessTrueGather(int invitationId, int userId);
 
-    @Transactional
-    public GatherDetailDTO findDetailGather(int gatherId) {
-
-        GatherDTO gatherInfo = gatherMapper.selectGatherDetailById(gatherId);
-        List<String> memberInfo = gatherMapper.selectMembersById(gatherId);
-
-        GatherDetailDTO gatherDetail = GatherDetailDTO.builder()
-                .id(gatherInfo.getId())
-                .name(gatherInfo.getName())
-                .content(gatherInfo.getContent())
-                .url(gatherInfo.getUrl())
-                .updatedAt(gatherInfo.getUpdatedAt())
-                .createdAt(gatherInfo.getCreatedAt())
-                .activeYn(gatherInfo.isActiveYn())
-                .invitationId(gatherInfo.getInvitationId())
-                .intitationContent(gatherInfo.getIntitationContent())
-                .members(memberInfo)
-                .build();
-
-        return gatherDetail;
-    }
-
-    public Boolean isAccessTrueGather(int invitationId, int userId) {
-        List<Integer> membersId = gatherMapper.selectGroupMembersIdById(invitationId, userId);
-        System.out.println("membersId = " + membersId);
-        if (!membersId.isEmpty() && membersId.contains(userId)) {
-            return true;
-        }
-        return false;
-    }
-
-    public List<String> findGroupMemberById(int gatherId) {
-        List<String> groupMembers = gatherMapper.selectGroupMembersNameById(gatherId);
-        return groupMembers;
-    }
+    public List<String> findGroupMemberById(int gatherId);
 }
