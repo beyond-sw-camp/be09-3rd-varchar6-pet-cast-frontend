@@ -65,7 +65,7 @@ public class WebSecurity {
                         .anyRequest().authenticated()
         )
                 .authenticationManager(authenticationManager)       // authenticationManager 등록
-                .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));    // 세션 비활성화
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));    // 세션 비활성화
         http.addFilter(getAuthenticationFilter(authenticationManager));
         http.addFilterBefore(new JwtFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
 
