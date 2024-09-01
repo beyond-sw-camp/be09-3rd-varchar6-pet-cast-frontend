@@ -1,13 +1,11 @@
 package com.varchar6.petcast.domain.member.command.domain.aggregate;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
 @Entity
+@ToString
 @Table(name = "tbl_member")
 @Builder
 @NoArgsConstructor
@@ -43,8 +41,8 @@ public class Member {
     @Column(name = "updated_at")
     private String updatedAt;
 
-    @Column(name = "active_yn")
-    private boolean activeYn;
+    @Column(name = "active")
+    private boolean active;
 
     @Column(name = "introduction")
     private String introduction;

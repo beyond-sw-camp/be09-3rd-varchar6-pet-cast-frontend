@@ -7,6 +7,9 @@ import com.varchar6.petcast.domain.member.command.application.dto.response.Membe
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -18,31 +21,17 @@ import java.time.format.DateTimeFormatter;
 public class MemberServiceImpl implements MemberService{
 
     private final MemberRepository memberRepository;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
 
     @Autowired
-    public MemberServiceImpl(MemberRepository memberRepository) {
+    public MemberServiceImpl(MemberRepository memberRepository,
+                             BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.memberRepository = memberRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
-
-
-    @Transactional
-    public MemberResponseDTO registerMember(MemberRequestDTO memberRequestDTO) {
-
-//        memberRequestDTO.setUserId(UUID.randomUUID().toString());
-
-        Member newMember = requestDTOToEntity(memberRequestDTO);
-
-        /* 설명. UserId 잘 들어갔는지 확인*/
-        log.info("memberRequestDTO 구조 확인: {}",newMember);
-
-        /* 설명. pwd 암호화 진행*/
-
-        return entityToResponseDTO(memberRepository.save(newMember));
-    }
-
 
     public static Member requestDTOToEntity(MemberRequestDTO memberRequestDTO) {
         return Member.builder()
@@ -60,7 +49,7 @@ public class MemberServiceImpl implements MemberService{
                         LocalDateTime.now()
                                 .format(FORMATTER)
                 )
-                .activeYn(true)
+                .active(true)
                 .introduction(memberRequestDTO.getIntroduction())
                 .build();
     }
@@ -75,8 +64,25 @@ public class MemberServiceImpl implements MemberService{
                 .image(member.getImage())
                 .createdAt(member.getCreatedAt())
                 .updatedAt(member.getUpdatedAt())
-                .activeYn(member.isActiveYn())
+                .active(member.isActive())
                 .introduction(member.getIntroduction())
                 .build();
+    }
+
+    @Override
+    @Transactional
+    public void registMember(MemberRequestDTO memberRequestDTO) {
+
+        memberRequestDTO.setPassword(bCryptPasswordEncoder.encode(memberRequestDTO.getPassword()));
+
+        /* 설명. UserId 잘 들어갔는지 확인 */;
+        log.info("password 암호화 확인: {}" , memberRequestDTO);
+
+        memberRepository.save(requestDTOToEntity(memberRequestDTO));
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return null;
     }
 }

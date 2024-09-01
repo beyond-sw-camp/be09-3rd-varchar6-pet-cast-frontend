@@ -17,7 +17,7 @@ public class MemberDTO {
     private String image;
     private String createdAt;
     private String updatedAt;
-    private boolean activeYn;
+    private boolean active;
     private String introduction;
 
 }
