@@ -18,7 +18,7 @@ import java.time.format.DateTimeFormatter;
 
 @Slf4j
 @Service(value="commandMemberServiceImpl")
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -61,11 +61,6 @@ public class MemberServiceImpl implements MemberService{
                 .active(true)
                 .introduction(memberRequestDTO.getIntroduction())
                 .build();
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
     }
 
     public static MemberResponseDTO entityToResponseDTO(Member member) {
