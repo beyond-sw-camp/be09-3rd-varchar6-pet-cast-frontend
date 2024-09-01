@@ -3,7 +3,6 @@ package com.varchar6.petcast.domain.member.query.controller;
 import com.varchar6.petcast.domain.member.query.dto.MemberDTO;
 import com.varchar6.petcast.domain.member.query.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

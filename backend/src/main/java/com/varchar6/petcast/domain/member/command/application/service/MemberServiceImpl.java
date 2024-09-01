@@ -21,7 +21,7 @@ import java.time.format.DateTimeFormatter;
 public class MemberServiceImpl implements MemberService{
 
     private final MemberRepository memberRepository;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
@@ -31,6 +31,15 @@ public class MemberServiceImpl implements MemberService{
                              BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.memberRepository = memberRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
+
+    @Override
+    @Transactional
+    public MemberResponseDTO registerMember(MemberRequestDTO memberRequestDTO) {
+        log.info("memberRequestDTO.image: {}", memberRequestDTO.getImage());
+        memberRequestDTO.setPassword(bCryptPasswordEncoder.encode(memberRequestDTO.getPassword()));
+
+        return entityToResponseDTO(memberRepository.save(requestDTOToEntity(memberRequestDTO)));
     }
 
     public static Member requestDTOToEntity(MemberRequestDTO memberRequestDTO) {
@@ -54,6 +63,11 @@ public class MemberServiceImpl implements MemberService{
                 .build();
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return null;
+    }
+
     public static MemberResponseDTO entityToResponseDTO(Member member) {
         return MemberResponseDTO.builder()
                 .loginId(member.getLoginId())
@@ -67,22 +81,5 @@ public class MemberServiceImpl implements MemberService{
                 .active(member.isActive())
                 .introduction(member.getIntroduction())
                 .build();
-    }
-
-    @Override
-    @Transactional
-    public MemberResponseDTO registMember(MemberRequestDTO memberRequestDTO) {
-
-        memberRequestDTO.setPassword(bCryptPasswordEncoder.encode(memberRequestDTO.getPassword()));
-
-        /* 설명. UserId 잘 들어갔는지 확인 */;
-        log.info("password 암호화 확인: {}" , memberRequestDTO);
-
-        return entityToResponseDTO(memberRepository.save(requestDTOToEntity(memberRequestDTO)));
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
     }
 }

@@ -3,12 +3,11 @@ package com.varchar6.petcast.domain.member.command.application.controller;
 import com.varchar6.petcast.domain.member.command.application.dto.request.MemberRequestDTO;
 import com.varchar6.petcast.domain.member.command.application.dto.response.MemberResponseDTO;
 import com.varchar6.petcast.domain.member.command.application.service.MemberService;
-import com.varchar6.petcast.domain.member.command.application.vo.RequestRegistUserVO;
-import com.varchar6.petcast.domain.member.command.application.vo.ResponseRegistUserVO;
+import com.varchar6.petcast.domain.member.command.application.vo.request.RequestRegistUserVO;
+import com.varchar6.petcast.domain.member.command.application.vo.response.ResponseRegistUserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +31,7 @@ public class MemberController {
 
         MemberRequestDTO memberRequestDTO = modelMapper.map(newUser, MemberRequestDTO.class);
 
-        MemberResponseDTO memberResponseDTO = memberService.registMember(memberRequestDTO);
+        MemberResponseDTO memberResponseDTO = memberService.registerMember(memberRequestDTO);
 
         ResponseRegistUserVO responseMember = modelMapper.map(memberResponseDTO, ResponseRegistUserVO.class);
 
