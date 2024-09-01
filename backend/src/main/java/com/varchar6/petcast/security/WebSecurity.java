@@ -28,31 +28,29 @@ public class WebSecurity {
     }
 
     @Bean
-    public SecurityFilterChain config(HttpSecurity http) throws Exception {
+    public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 
-         /* 설명. csrf 비활성화 */
+         // csrf 비활성화
         http.csrf((csrf) -> csrf.disable());
 
-        /* 설명. AuthenticationManager 등록을 위한 builder 생성 */
+        // AuthenticationManager 등록을 위한 builder 생성
         AuthenticationManagerBuilder authenticationManagerBuilder =
                 http.getSharedObject(AuthenticationManagerBuilder.class);
 
-        /* 설명. Manager를 사용할 service(우리) + 암호화 방식 설정 */
-        authenticationManagerBuilder.userDetailsService(memberService)
+        // memberService, bCryptPasswordEncoder 등록
+        authenticationManagerBuilder
+                .userDetailsService(memberService)
                 .passwordEncoder(bCryptPasswordEncoder);
 
-        /* 설명. AuthenticationManager 등록 */
         AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
 
-        /* 설명. Request의 권한 지정 */
         http.authorizeHttpRequests((authz) ->
-                authz.requestMatchers(new AntPathRequestMatcher("/api/v1/members/**")).permitAll()
+                authz.requestMatchers(
+                        new AntPathRequestMatcher("/api/**")).permitAll()
                         .anyRequest().authenticated()
         )
-                /* 설명. authenicationManager에 권한 범위 지정 후 등록 */
-                .authenticationManager(authenticationManager)
-                /* 설명. session을 STATELESS로 지정 (연결할 떄마다 권한 인증받고 사용)*/
-                .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                .authenticationManager(authenticationManager)       // authenticationManager 등록
+                .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));    // 세션 비활성화
 
         return http.build();
     }
