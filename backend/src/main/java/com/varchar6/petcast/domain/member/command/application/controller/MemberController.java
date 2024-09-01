@@ -1,10 +1,13 @@
 package com.varchar6.petcast.domain.member.command.application.controller;
 
-import com.varchar6.petcast.common.response.ResponseMessage;
-import com.varchar6.petcast.domain.member.command.application.service.MemberService;
 import com.varchar6.petcast.domain.member.command.application.dto.request.MemberRequestDTO;
-import com.varchar6.petcast.domain.member.command.application.dto.response.MemberResponseDTO;
+import com.varchar6.petcast.domain.member.command.application.service.MemberService;
+import com.varchar6.petcast.domain.member.command.application.service.MemberServiceImpl;
+import com.varchar6.petcast.domain.member.command.application.vo.RequestRegistUserVO;
+import com.varchar6.petcast.domain.member.command.application.vo.ResponseRegistUserVO;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,27 +15,37 @@ import org.springframework.web.bind.annotation.*;
 @RestController(value = "commandMemberController")
 @RequestMapping("/api/v1/member")
 public class MemberController {
-    private final MemberService memberService;
 
+    /* 설명. 의존성 주입 */
+    private final MemberServiceImpl memberService;
+    private ModelMapper modelMapper;
+    private Environment env;
+
+    /* 설명. 매개변수 생성자 */
     @Autowired
-    public MemberController(MemberService memberService) {
+    public MemberController(MemberServiceImpl memberService
+                            , ModelMapper modelMapper
+                            , Environment env) {
         this.memberService = memberService;
+        this.modelMapper = modelMapper;
+        this.env = env;
     }
 
-    @PostMapping
-    public ResponseEntity<?> register(@RequestBody MemberRequestDTO memberRequestDTO) {
-        MemberResponseDTO memberResponseDTO= memberService.registerMember(memberRequestDTO);
+    @GetMapping("/health")
+    public String status(){
+        return "I'm Working in User Service " + env.getProperty("local.server.port");
+    }
 
-        return ResponseEntity
-                .ok()
-                .body(
-                        ResponseMessage.builder()
-                                .httpStatus(HttpStatus.CREATED.value())
-                                .message("message")
-                                .result(memberResponseDTO)
-                                .build()
-                );
+    /* 설명. 회원 가입 - 사용자에게 값을 받음  */
+    @PostMapping("/regist")
+    public ResponseEntity<ResponseRegistUserVO> registMember(@RequestBody RequestRegistUserVO newUser){
 
+        MemberRequestDTO memberRequestDTO = modelMapper.map(newUser, MemberRequestDTO.class);
+
+        MemberService.registMember(memberRequestDTO);
+
+        /* 설명. FIX: 상태값 확인 -> 향후 Repos로부터 온 DTO에 담긴 값을 VO로 변환해서 Front로 전달할 예정*/
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }

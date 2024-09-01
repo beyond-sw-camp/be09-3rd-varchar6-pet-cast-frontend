@@ -1,5 +1,6 @@
 package com.varchar6.petcast.domain.member.query.service;
 
+import com.varchar6.petcast.domain.member.command.application.service.MemberServiceImpl;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,7 @@ class MemberServiceTests {
     @Autowired
     private com.varchar6.petcast.domain.member.query.service.MemberService queryMemberService;
     @Autowired
-    private com.varchar6.petcast.domain.member.command.application.service.MemberService commandMemberService;
+    private MemberServiceImpl commandMemberService;
 
     private MemberRequestDTO memberRequestDTO = new MemberRequestDTO();
 
