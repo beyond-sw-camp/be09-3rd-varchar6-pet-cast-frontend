@@ -1,6 +1,7 @@
 package com.varchar6.petcast.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.varchar6.petcast.domain.member.query.service.MemberAuthenticationService;
 import com.varchar6.petcast.domain.member.query.service.MemberService;
 import com.varchar6.petcast.domain.member.query.vo.LoginRequestVO;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,13 +20,13 @@ import java.util.ArrayList;
 
 @Slf4j
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
-    private final MemberService memberService;
+    private final MemberAuthenticationService memberAuthenticationService;
     private final Environment environment;
 
-    public AuthenticationFilter(AuthenticationManager authenticationManager, MemberService memberService, Environment environment) {
+    public AuthenticationFilter(AuthenticationManager authenticationManager, MemberAuthenticationService memberAuthenticationService, Environment environment) {
         super(authenticationManager);
         this.environment = environment;
-        this.memberService = memberService;
+        this.memberAuthenticationService = memberAuthenticationService;
     }
 
     @Override

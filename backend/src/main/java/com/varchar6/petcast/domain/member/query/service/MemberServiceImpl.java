@@ -21,9 +21,4 @@ public class MemberServiceImpl implements MemberService {
     public MemberDTO getMemberInformationById(int memberId) {
         return memberMapper.selectMemberByMemberId(memberId);
     }
-
-    @Override
-    public UserDetails loadUserByUsername(String loginId) throws UsernameNotFoundException {
-        return null;
-    }
 }

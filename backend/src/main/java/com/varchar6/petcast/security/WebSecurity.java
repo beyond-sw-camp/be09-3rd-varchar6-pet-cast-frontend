@@ -1,6 +1,6 @@
 package com.varchar6.petcast.security;
 
-import com.varchar6.petcast.domain.member.query.service.MemberService;
+import com.varchar6.petcast.domain.member.query.service.MemberAuthenticationService;
 import jakarta.servlet.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -20,15 +20,15 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class WebSecurity {
 
-    private final MemberService memberService;
+    private final MemberAuthenticationService memberAuthenticationService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final Environment environment;
 
     @Autowired
-    public WebSecurity(MemberService memberService,
+    public WebSecurity(MemberAuthenticationService memberAuthenticationService,
                        BCryptPasswordEncoder bCryptPasswordEncoder,
                        Environment environment) {
-        this.memberService = memberService;
+        this.memberAuthenticationService = memberAuthenticationService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.environment = environment;
     }
@@ -45,7 +45,7 @@ public class WebSecurity {
 
         // memberService, bCryptPasswordEncoder 등록
         authenticationManagerBuilder
-                .userDetailsService(memberService)
+                .userDetailsService(memberAuthenticationService)
                 .passwordEncoder(bCryptPasswordEncoder);
 
         AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
@@ -64,6 +64,6 @@ public class WebSecurity {
     }
 
     private Filter getAuthenticationFilter(AuthenticationManager authenticationManager) {
-        return new AuthenticationFilter(authenticationManager, memberService, environment);
+        return new AuthenticationFilter(authenticationManager, memberAuthenticationService, environment);
     }
 }
