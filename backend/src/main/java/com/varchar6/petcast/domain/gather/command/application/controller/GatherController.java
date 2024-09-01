@@ -1,11 +1,12 @@
 package com.varchar6.petcast.domain.gather.command.application.controller;
 
 import com.varchar6.petcast.domain.gather.command.application.dto.request.RequestCreateGatherDTO;
+import com.varchar6.petcast.domain.gather.command.application.dto.request.RequestDeactiveGatherDTO;
 import com.varchar6.petcast.domain.gather.command.application.dto.request.RequestUpdateGatherInfoDTO;
+import com.varchar6.petcast.domain.gather.command.application.dto.response.ResponseDeactiveGatherDTO;
 import com.varchar6.petcast.domain.gather.command.application.dto.response.ResponseCreateGatherDTO;
 import com.varchar6.petcast.domain.gather.command.application.dto.response.ResponseUpdateGatherInfoDTO;
 import com.varchar6.petcast.domain.gather.command.application.service.GatherService;
-import com.varchar6.petcast.domain.gather.command.domain.aggregate.entity.GatherMember;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,4 +47,15 @@ public class GatherController {
         return ResponseEntity.status(HttpStatus.OK).body(responseUpdateGatherInfoDTO);
     }
 
+    @PutMapping("/deactiveGather")
+    public ResponseEntity<ResponseDeactiveGatherDTO> deactiveGather(@RequestBody RequestDeactiveGatherDTO requestDeactiveGatherDTO){
+
+        gatherService.deactiveGather(requestDeactiveGatherDTO);
+
+        ResponseDeactiveGatherDTO responseDeactiveGatherDTO = ResponseDeactiveGatherDTO.builder()
+                .message("모임 비활성화 시작~~")
+                .build();
+
+        return ResponseEntity.status(HttpStatus.OK).body(responseDeactiveGatherDTO);
+    }
 }

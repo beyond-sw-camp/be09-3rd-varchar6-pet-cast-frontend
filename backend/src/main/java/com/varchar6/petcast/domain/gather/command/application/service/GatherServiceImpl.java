@@ -1,6 +1,7 @@
 package com.varchar6.petcast.domain.gather.command.application.service;
 
 import com.varchar6.petcast.domain.gather.command.application.dto.request.RequestCreateGatherDTO;
+import com.varchar6.petcast.domain.gather.command.application.dto.request.RequestDeactiveGatherDTO;
 import com.varchar6.petcast.domain.gather.command.application.dto.request.RequestUpdateGatherInfoDTO;
 import com.varchar6.petcast.domain.gather.command.domain.aggregate.GatherRole;
 import com.varchar6.petcast.domain.gather.command.domain.aggregate.entity.Gather;
@@ -104,7 +105,7 @@ public class GatherServiceImpl implements GatherService{
                     .url(requestUpdateGatherDTO.getUrl())
                     .updatedAt(currentDate)
                     .createdAt(existGather.getCreatedAt())
-                    .active(requestUpdateGatherDTO.isActiveYn())
+                    .active(true)
                     .invitationId(requestUpdateGatherDTO.getInvitationId())
                     .invitationContent(requestUpdateGatherDTO.getInvitationContent())
                     .build();
@@ -114,5 +115,36 @@ public class GatherServiceImpl implements GatherService{
             log.info("정보 저장 성공!");
         }
 
+    }
+
+    @Override
+    public void deactiveGather(RequestDeactiveGatherDTO requestDeactiveGatherDTO) {
+        java.util.Date now = new java.util.Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        String currentDate = simpleDateFormat.format(now);
+
+        GatherMemberPK gatherMemberPK = GatherMemberPK.builder()
+                .memberId(requestDeactiveGatherDTO.getUserId())
+                .gatherId(requestDeactiveGatherDTO.getGatherId())
+                .build();
+
+        GatherMember checkMemberRole = gatherMemberRepository.findById(gatherMemberPK).orElseThrow(() -> new NoSuchElementException("GatherMember not found with id: " + gatherMemberPK));
+
+        if(checkMemberRole.getRole() == GatherRole.LEADER){
+            Gather currentGather = gatherRepository.findById(requestDeactiveGatherDTO.getUserId()).orElseThrow();
+
+            Gather deactiveGather = Gather.builder()
+                    .name(currentGather.getName())
+                    .content(currentGather.getContent())
+                    .number(currentGather.getNumber())
+                    .url(currentGather.getUrl())
+                    .updatedAt(currentDate)
+                    .createdAt(currentGather.getCreatedAt())
+                    .active(false)
+                    .invitationId(currentGather.getInvitationId())
+                    .invitationContent(currentGather.getInvitationContent())
+                    .build();
+            gatherRepository.save(deactiveGather);
+        }
     }
 }
