@@ -1,11 +1,7 @@
 package com.varchar6.petcast.domain.gather.command.application.controller;
 
-import com.varchar6.petcast.domain.gather.command.application.dto.request.RequestCreateGatherDTO;
-import com.varchar6.petcast.domain.gather.command.application.dto.request.RequestDeactiveGatherDTO;
-import com.varchar6.petcast.domain.gather.command.application.dto.request.RequestUpdateGatherInfoDTO;
-import com.varchar6.petcast.domain.gather.command.application.dto.response.ResponseDeactiveGatherDTO;
-import com.varchar6.petcast.domain.gather.command.application.dto.response.ResponseCreateGatherDTO;
-import com.varchar6.petcast.domain.gather.command.application.dto.response.ResponseUpdateGatherInfoDTO;
+import com.varchar6.petcast.domain.gather.command.application.dto.request.*;
+import com.varchar6.petcast.domain.gather.command.application.dto.response.*;
 import com.varchar6.petcast.domain.gather.command.application.service.GatherService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +24,13 @@ public class GatherController {
     @PostMapping("/createGather")
     public ResponseEntity<ResponseCreateGatherDTO> createGather(@RequestBody RequestCreateGatherDTO requestCreateGatherDTO){
 
-        gatherService.createGather(requestCreateGatherDTO);
+        ResponseCreateGatherDTO responseCreateGatherDTO = gatherService.createGather(requestCreateGatherDTO);
 
-        ResponseCreateGatherDTO responseCreateGatherDTO = ResponseCreateGatherDTO.builder()
-                .message("모임 생성 성공!!").build();
+        if(responseCreateGatherDTO == null){
+            responseCreateGatherDTO.setMessage("모임 생성 실패!!");
+        }else {
+            responseCreateGatherDTO.setMessage("모임 생성 성공!!");
+        }
 
         return ResponseEntity.status(HttpStatus.OK).body(responseCreateGatherDTO);
     }
@@ -39,10 +38,13 @@ public class GatherController {
     @PutMapping("/updateGatherInfo")
     public ResponseEntity<ResponseUpdateGatherInfoDTO> updateGatherInfo(@RequestBody RequestUpdateGatherInfoDTO requestUpdateGatherDTO){
 
-        gatherService.updateGatherInfo(requestUpdateGatherDTO);
+        ResponseUpdateGatherInfoDTO responseUpdateGatherInfoDTO = gatherService.updateGatherInfo(requestUpdateGatherDTO);
 
-        ResponseUpdateGatherInfoDTO responseUpdateGatherInfoDTO = ResponseUpdateGatherInfoDTO.builder()
-                .message("모임 수정 성공!").build();
+        if(responseUpdateGatherInfoDTO == null){
+            responseUpdateGatherInfoDTO.setMessage("모임 정보 수정 실패!");
+        }else{
+            responseUpdateGatherInfoDTO.setMessage("모임 정보 수정 성공!");
+        }
 
         return ResponseEntity.status(HttpStatus.OK).body(responseUpdateGatherInfoDTO);
     }
@@ -50,13 +52,46 @@ public class GatherController {
     @PutMapping("/deactiveGather")
     public ResponseEntity<ResponseDeactiveGatherDTO> deactiveGather(@RequestBody RequestDeactiveGatherDTO requestDeactiveGatherDTO){
 
-        gatherService.deactiveGather(requestDeactiveGatherDTO);
+        ResponseDeactiveGatherDTO responseDeactiveGatherDTO = gatherService.deactiveGather(requestDeactiveGatherDTO);
 
-        ResponseDeactiveGatherDTO responseDeactiveGatherDTO = ResponseDeactiveGatherDTO.builder()
-                .message("모임 비활성화 시작~~")
-                .build();
+        if(responseDeactiveGatherDTO == null){
+            responseDeactiveGatherDTO.setMessage("모임 비활성화 실패!");
+        }else{
+            responseDeactiveGatherDTO.setMessage("모임 비활성화 성공!");
+        }
 
         return ResponseEntity.status(HttpStatus.OK).body(responseDeactiveGatherDTO);
     }
+
+    @PostMapping("/sendInvitation")
+    public ResponseEntity<ResponseSendInvitaionDTO> sendInvitation(@RequestBody RequestSendInvitationDTO requestInvitationDTO) {
+
+        ResponseSendInvitaionDTO responseSendInvitaionDTO = gatherService.sendInvitation(requestInvitationDTO);
+
+        if(responseSendInvitaionDTO == null){
+            responseSendInvitaionDTO.setMessage("초대장 전송 실패~");
+        }else{
+            responseSendInvitaionDTO.setMessage("초대장 전송 성공~");
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(responseSendInvitaionDTO);
+    }
+
+    @PutMapping("/acceptInvitation")
+    public ResponseEntity<ResponseInvitationDTO> acceptInvitation(@RequestBody RequestInvitationDTO requestInvitationDTO){
+
+        ResponseInvitationDTO responseInvitationDTO = gatherService.acceptInvatation(requestInvitationDTO);
+
+        if(responseInvitationDTO == null){
+            responseInvitationDTO.setMessage("수락 실패!");
+        }else{
+            responseInvitationDTO.setMessage("수락 성공!");
+
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(responseInvitationDTO);
+    }
+
+
 
 }

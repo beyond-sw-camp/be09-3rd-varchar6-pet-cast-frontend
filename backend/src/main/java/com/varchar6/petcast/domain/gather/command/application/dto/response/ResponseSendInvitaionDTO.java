@@ -8,7 +8,7 @@ import lombok.*;
 @Getter
 @Builder
 @ToString
-public class ResponseSendDTO {
+public class ResponseSendInvitaionDTO {
     private int userId;
     private int gatherId;
     private String invitationId;

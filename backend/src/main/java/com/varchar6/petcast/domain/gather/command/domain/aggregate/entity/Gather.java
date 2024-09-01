@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 @Builder
 @ToString
 public class Gather {

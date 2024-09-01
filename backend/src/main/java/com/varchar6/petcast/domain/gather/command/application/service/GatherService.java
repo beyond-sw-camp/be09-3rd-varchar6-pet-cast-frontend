@@ -1,13 +1,16 @@
 package com.varchar6.petcast.domain.gather.command.application.service;
 
-import com.varchar6.petcast.domain.gather.command.application.dto.request.RequestCreateGatherDTO;
-import com.varchar6.petcast.domain.gather.command.application.dto.request.RequestDeactiveGatherDTO;
-import com.varchar6.petcast.domain.gather.command.application.dto.request.RequestUpdateGatherInfoDTO;
+import com.varchar6.petcast.domain.gather.command.application.dto.request.*;
+import com.varchar6.petcast.domain.gather.command.application.dto.response.*;
 
 public interface GatherService {
     void createGather(RequestCreateGatherDTO createGatherDTO);
 
-    void updateGatherInfo(RequestUpdateGatherInfoDTO requestUpdateGatherDTO);
+    ResponseUpdateGatherInfoDTO updateGatherInfo(RequestUpdateGatherInfoDTO requestUpdateGatherDTO);
 
-    void deactiveGather(RequestDeactiveGatherDTO requestDeactiveGatherDTO);
+    ResponseDeactiveGatherDTO deactiveGather(RequestDeactiveGatherDTO requestDeactiveGatherDTO);
+
+    ResponseSendInvitaionDTO sendInvitation(RequestSendInvitationDTO requestInvitationDTO);
+
+    ResponseInvitationDTO acceptInvatation(RequestInvitationDTO requestInvitationDTO);
 }
