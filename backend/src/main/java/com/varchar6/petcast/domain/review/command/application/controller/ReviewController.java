@@ -8,6 +8,7 @@ import com.varchar6.petcast.domain.review.command.application.service.ReviewServ
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,9 +32,14 @@ public class ReviewController {
     @PostMapping("")
     private ResponseEntity<ResponseMessage> createReview(@RequestBody ReviewCreateRequestDTO reviewCreateRequestDTO){
 
-        reviewService.insertReview(reviewCreateRequestDTO);
+        int result = reviewService.insertReview(reviewCreateRequestDTO);
 
-        return ResponseEntity.ok(new ResponseMessage(201, "리뷰 생성 성공", null));
+
+        if(result == 1)
+            return ResponseEntity.ok(new ResponseMessage(201, "리뷰 생성 성공", null));
+        else
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new ResponseMessage(500, "리뷰 생성 실패", null));
     }
 
     @PutMapping("")
@@ -47,9 +53,13 @@ public class ReviewController {
     @DeleteMapping("")
     private ResponseEntity<ResponseMessage> deleteReview(@RequestBody Map<String, Integer> request){
         int id = request.get("id");
-        reviewService.deleteReview(id);
+        int result = reviewService.deleteReview(id);
 
-        return ResponseEntity.ok(new ResponseMessage(201, "리뷰 삭제 성공", null));
+        if(result == 1)
+            return ResponseEntity.ok(new ResponseMessage(201, "리뷰 삭제 성공", null));
+        else
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new ResponseMessage(500, "리뷰 삭제 실패", null));
     }
 
 }
