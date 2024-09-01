@@ -46,7 +46,7 @@ public class WebSecurity {
 
         /* 설명. Request의 권한 지정 */
         http.authorizeHttpRequests((authz) ->
-                authz.requestMatchers(new AntPathRequestMatcher("/api/v1/member/**")).permitAll()
+                authz.requestMatchers(new AntPathRequestMatcher("/api/v1/members/**")).permitAll()
                         .anyRequest().authenticated()
         )
                 /* 설명. authenicationManager에 권한 범위 지정 후 등록 */
