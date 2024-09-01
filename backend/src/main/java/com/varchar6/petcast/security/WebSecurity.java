@@ -1,6 +1,5 @@
 package com.varchar6.petcast.security;
 
-import com.netflix.discovery.converters.Auto;
 import com.varchar6.petcast.domain.member.command.application.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -18,8 +17,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class WebSecurity {
 
-    private MemberService memberService;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final MemberService memberService;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public WebSecurity(MemberService memberService,
@@ -37,6 +36,7 @@ public class WebSecurity {
         /* 설명. AuthenticationManager 등록을 위한 builder 생성 */
         AuthenticationManagerBuilder authenticationManagerBuilder =
                 http.getSharedObject(AuthenticationManagerBuilder.class);
+
         /* 설명. Manager를 사용할 service(우리) + 암호화 방식 설정 */
         authenticationManagerBuilder.userDetailsService(memberService)
                 .passwordEncoder(bCryptPasswordEncoder);
