@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 public class MemberController {
 
     private final MemberService memberService;
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     @Autowired
     public MemberController(MemberService memberService, ModelMapper modelMapper) {
@@ -27,15 +27,15 @@ public class MemberController {
         this.modelMapper = modelMapper;
     }
 
-    @PostMapping("/regist")
-    public ResponseEntity<ResponseRegistUserVO> registMember(@RequestBody RequestRegistUserVO newUser){
+    @PostMapping("/sign-up")
+    public ResponseEntity<ResponseRegistUserVO> signUp(@RequestBody RequestRegistUserVO newUser){
 
         MemberRequestDTO memberRequestDTO = modelMapper.map(newUser, MemberRequestDTO.class);
 
         MemberResponseDTO memberResponseDTO = memberService.registMember(memberRequestDTO);
 
-        ResponseRegistUserVO reponseMember = modelMapper.map(memberResponseDTO, ResponseRegistUserVO.class);
+        ResponseRegistUserVO responseMember = modelMapper.map(memberResponseDTO, ResponseRegistUserVO.class);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(reponseMember);
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseMember);
     }
 }
