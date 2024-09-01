@@ -1,10 +1,9 @@
 package com.varchar6.petcast.domain.gather.command.domain.aggregate.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.text.SimpleDateFormat;
 
 @Entity
 @Table(name = "tbl_gather")
@@ -12,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Getter
 @Builder
+@ToString
 public class Gather {
 
     @Id
@@ -34,11 +34,11 @@ public class Gather {
     @Column(name = "updated_at", nullable = false)
     private String updatedAt;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at")
     private String createdAt;
 
     @Column(name = "active_yn", nullable = false)
-    private boolean active;
+    private boolean active = true;
 
     @Column(name = "invitation_id", nullable = false)
     private String invitationId;

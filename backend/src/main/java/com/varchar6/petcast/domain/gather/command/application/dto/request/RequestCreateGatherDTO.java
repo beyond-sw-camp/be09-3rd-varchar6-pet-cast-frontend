@@ -4,19 +4,18 @@ import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
 @Getter
+@Builder
 @ToString
-public class RequestCreateGatherVO {
+public class RequestCreateGatherDTO {
     private String name;
     private String content;
     private int number;
     private String url;
-    private String updatedAt;
-    private String createdAt;
     private boolean active;
     private String invitationId;
     private String invitationContent;
-
 
     private int userId;
 }
