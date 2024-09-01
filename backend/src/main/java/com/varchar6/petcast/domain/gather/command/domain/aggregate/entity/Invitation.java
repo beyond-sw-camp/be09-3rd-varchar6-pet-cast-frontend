@@ -24,6 +24,9 @@ public class Invitation {
     @Column(name = "created_at")
     private String createdAt;
 
-    @EmbeddedId
-    private GatherMemberFK gatherMemberFK;
+    @Column(name = "member_invitation_id")
+    private int userId;
+
+    @Column(name = "gather_invitation_id")
+    private int gatherId;
 }

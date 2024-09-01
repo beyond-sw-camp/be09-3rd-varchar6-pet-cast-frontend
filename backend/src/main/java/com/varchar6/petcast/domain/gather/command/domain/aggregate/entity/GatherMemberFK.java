@@ -2,8 +2,10 @@ package com.varchar6.petcast.domain.gather.command.domain.aggregate.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
@@ -12,13 +14,14 @@ import java.util.Objects;
 @Embeddable
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 @Builder
 public class GatherMemberFK implements Serializable {
 
-    @Column(name = "member_group_member_id")
+    @Column(name = "member_group_member_id", nullable = false)
     private int memberId;
 
-    @Column(name = "gather_group_member_id")
+    @Column(name = "gather_group_member_id", nullable = false)
     private int gatherId;
 
     @Override

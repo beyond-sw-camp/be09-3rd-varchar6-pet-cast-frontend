@@ -73,7 +73,7 @@ public class GatherServiceImpl implements GatherService {
 
         GatherMember newGatherMember = GatherMember.builder()
                 .role(GatherRole.LEADER)
-                .gatherMemberPK(gatherMemberPK)
+                .gatherMemberFK(gatherMemberPK)
                 .build();
         try {
             gatherMemberRepository.save(newGatherMember);
@@ -120,6 +120,7 @@ public class GatherServiceImpl implements GatherService {
     }
 
     @Override
+    @Transactional
     public ResponseDeactiveGatherDTO deactiveGather(RequestDeactiveGatherDTO requestDeactiveGatherDTO) {
         java.util.Date now = new java.util.Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -148,6 +149,7 @@ public class GatherServiceImpl implements GatherService {
     }
 
     @Override
+    @Transactional
     public ResponseSendInvitaionDTO sendInvitation(RequestSendInvitationDTO requestInvitationDTO) {
 
         // 1. 해당 모임의 모임장인지 확인
@@ -181,7 +183,8 @@ public class GatherServiceImpl implements GatherService {
             Invitation invitation = Invitation.builder()
                     .activeYn(true)
                     .createdAt(currentDate)
-                    .gatherMemberFK(gatherMemberFK)
+                    .userId(gatherMemberFK.getMemberId())
+                    .gatherId(gatherMemberFK.getGatherId())
                     .build();
             try {
                 invitationRepository.save(invitation);
@@ -199,7 +202,7 @@ public class GatherServiceImpl implements GatherService {
                         .invitationId(requestInvitationDTO.getInvitationId())
                         .invitationContent(requestInvitationDTO.getInvitationContent())
                         .build();
-            }catch (Exception e){
+            } catch (Exception e) {
                 log.info("return 만들다 실패");
             }
             return responseSendInvitaionDTO;
@@ -209,6 +212,7 @@ public class GatherServiceImpl implements GatherService {
     }
 
     @Override
+    @Transactional
     public ResponseInvitationDTO acceptInvatation(RequestInvitationDTO requestInvitationDTO) {
 
         Invitation invitation = invitationRepository.findById(requestInvitationDTO
@@ -225,6 +229,7 @@ public class GatherServiceImpl implements GatherService {
     }
 
     @Override
+    @Transactional
     public ResponseInvitationDTO refuseInvatation(RequestInvitationDTO requestInvitationDTO) {
         Invitation invitation = invitationRepository.findById(requestInvitationDTO
                 .getInvitationId()).orElseThrow(() -> new NoSuchElementException("Invitation not found with id: " + requestInvitationDTO.getInvitationId()));
@@ -237,5 +242,34 @@ public class GatherServiceImpl implements GatherService {
             log.info("거절 하다 실패!");
         }
         return responseInvitationDTO;
+    }
+
+    @Override
+    @Transactional
+    public void deleteMember(RequestDeleteMemberDTO requestDeleteMemberDTO) {
+        GatherMemberFK gatherMemberFK = GatherMemberFK.builder()
+                .gatherId(requestDeleteMemberDTO.getGatherId())
+                .memberId(requestDeleteMemberDTO.getUserId())
+                .build();
+        GatherMember foundGather = gatherMemberRepository.findById(gatherMemberFK)
+                .orElseThrow(() -> new NoSuchElementException("해당 모임이 없습니다."));
+
+        if (foundGather.getRole() == GatherRole.LEADER) {
+            // tbl_group_member 상태 변경
+            gatherMemberFK = GatherMemberFK.builder()
+                    .gatherId(requestDeleteMemberDTO.getGatherId())
+                    .memberId(requestDeleteMemberDTO.getMemberId())
+                    .build();
+
+            foundGather = gatherMemberRepository.findById(gatherMemberFK)
+                    .orElseThrow(() -> new NoSuchElementException("해당 고객이 없습니다."));
+            foundGather.setRole(GatherRole.NO_MEMBER);
+
+            try {
+                GatherMember deleteMember = modelMapper.map(foundGather, GatherMember.class);
+            }catch (Exception e){
+                log.info("매핑 실패!");
+            }
+        }
     }
 }

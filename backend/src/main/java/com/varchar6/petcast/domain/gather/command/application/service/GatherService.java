@@ -15,4 +15,6 @@ public interface GatherService {
     ResponseInvitationDTO acceptInvatation(RequestInvitationDTO requestInvitationDTO);
 
     ResponseInvitationDTO refuseInvatation(RequestInvitationDTO requestInvitationDTO);
+
+    void deleteMember(RequestDeleteMemberDTO requestDeleteMemberDTO);
 }

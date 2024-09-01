@@ -9,6 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 @Builder
 @ToString
 public class GatherMember {
@@ -18,5 +19,5 @@ public class GatherMember {
     private GatherRole role = GatherRole.LEADER;
 
     @EmbeddedId
-    private GatherMemberFK gatherMemberPK;
+    private GatherMemberFK gatherMemberFK;
 }

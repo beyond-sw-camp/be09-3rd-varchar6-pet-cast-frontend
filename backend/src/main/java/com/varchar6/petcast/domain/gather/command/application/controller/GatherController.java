@@ -101,6 +101,15 @@ public class GatherController {
         return ResponseEntity.status(HttpStatus.OK).body(responseInvitationDTO);
     }
 
+    @DeleteMapping("/deleteMember")
+    public ResponseEntity<ResponseDeleteMemberDTO> deleteMember(@RequestBody RequestDeleteMemberDTO requestDeleteMemberDTO){
+        gatherService.deleteMember(requestDeleteMemberDTO);
 
+        ResponseDeleteMemberDTO responseDeleteMemberDTO = ResponseDeleteMemberDTO.builder()
+                .message("삭제 성공~")
+                .build();
+
+        return ResponseEntity.status(HttpStatus.OK).body(responseDeleteMemberDTO);
+    }
 
 }
