@@ -30,11 +30,7 @@ public class EventServiceImpl implements EventService{
         params.put("companyId", String.valueOf(companyId));
         params.put("lastEventId", String.valueOf(lastEventId));
 
-        List<EventDTO> eventDTOS = eventMapper.selectEventByCompanyId(params);
-        log.info("dkdasdasdas" + eventDTOS.toString());
-        eventDTOS.forEach(eventDTO -> {log.info("이벤트 id : "+ eventDTOS.get(0).getId());});
-
-        return eventDTOS;
+        return eventMapper.selectEventByCompanyId(params);
     }
 
     @Override
@@ -43,12 +39,14 @@ public class EventServiceImpl implements EventService{
         Map<String, String> params = new HashMap<String, String>();
         params.put("customerId", String.valueOf(customerId));
         params.put("lastEventId", String.valueOf(lastEventId));
+
         return eventMapper.selectEventByCustomerId(params);
     }
 
     @Override
     @Transactional
     public EventDTO findEvent(Integer eventId) {
+
         return eventMapper.selectEventById(eventId);
     }
 }
