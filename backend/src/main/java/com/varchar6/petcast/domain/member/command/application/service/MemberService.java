@@ -5,5 +5,5 @@ import com.varchar6.petcast.domain.member.command.application.dto.response.Membe
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface MemberService extends UserDetailsService {
-    void registMember(MemberRequestDTO memberRequestDTO);
+    MemberResponseDTO registMember(MemberRequestDTO memberRequestDTO);
 }

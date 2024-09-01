@@ -2,7 +2,6 @@ package com.varchar6.petcast.security;
 
 import com.netflix.discovery.converters.Auto;
 import com.varchar6.petcast.domain.member.command.application.service.MemberService;
-import com.varchar6.petcast.domain.member.command.domain.aggregate.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

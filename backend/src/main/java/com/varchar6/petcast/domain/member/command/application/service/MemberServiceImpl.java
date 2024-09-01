@@ -71,14 +71,14 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     @Transactional
-    public void registMember(MemberRequestDTO memberRequestDTO) {
+    public MemberResponseDTO registMember(MemberRequestDTO memberRequestDTO) {
 
         memberRequestDTO.setPassword(bCryptPasswordEncoder.encode(memberRequestDTO.getPassword()));
 
         /* 설명. UserId 잘 들어갔는지 확인 */;
         log.info("password 암호화 확인: {}" , memberRequestDTO);
 
-        memberRepository.save(requestDTOToEntity(memberRequestDTO));
+        return entityToResponseDTO(memberRepository.save(requestDTOToEntity(memberRequestDTO)));
     }
 
     @Override

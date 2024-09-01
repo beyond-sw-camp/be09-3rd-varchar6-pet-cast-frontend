@@ -1,6 +1,7 @@
 package com.varchar6.petcast.domain.member.command.application.controller;
 
 import com.varchar6.petcast.domain.member.command.application.dto.request.MemberRequestDTO;
+import com.varchar6.petcast.domain.member.command.application.dto.response.MemberResponseDTO;
 import com.varchar6.petcast.domain.member.command.application.service.MemberService;
 import com.varchar6.petcast.domain.member.command.application.vo.RequestRegistUserVO;
 import com.varchar6.petcast.domain.member.command.application.vo.ResponseRegistUserVO;
@@ -30,8 +31,6 @@ public class MemberController {
         this.env = env;
     }
 
-
-
     @GetMapping("/health")
     public String status(){
         return "I'm Working in User Service " + env.getProperty("local.server.port");
@@ -43,31 +42,10 @@ public class MemberController {
 
         MemberRequestDTO memberRequestDTO = modelMapper.map(newUser, MemberRequestDTO.class);
 
-        memberService.registMember(memberRequestDTO);
+        MemberResponseDTO memberResponseDTO = memberService.registMember(memberRequestDTO);
 
-        /* 설명. FIX: 상태값 확인 -> 향후 Repos로부터 온 DTO에 담긴 값을 VO로 변환해서 Front로 전달할 예정*/
-        return ResponseEntity.status(HttpStatus.OK).build();
+        ResponseRegistUserVO reponseMember = modelMapper.map(memberResponseDTO, ResponseRegistUserVO.class);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(reponseMember);
     }
-
-
-
-//    @PostMapping("/regist")
-//    public ResponseEntity<?> register(@RequestBody RequestRegistUserVO newUserVO) {
-//
-//        MemberRequestDTO memberRequestDTO = modelMapper.map(newUserVO, MemberRequestDTO.class);
-//
-//        MemberResponseDTO memberResponseDTO = memberService.registMember(memberRequestDTO);
-//
-//        return ResponseEntity
-//                .ok()
-//                .body(
-//                        ResponseMessage.builder()
-//                                .httpStatus(HttpStatus.CREATED.value())
-//                                .message("message")
-//                                .result(memberResponseDTO)
-//                                .build()
-//                );
-//
-//    }
-
 }
