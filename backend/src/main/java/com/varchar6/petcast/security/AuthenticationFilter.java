@@ -1,13 +1,11 @@
 package com.varchar6.petcast.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.varchar6.petcast.domain.member.query.service.MemberAuthenticationService;
 import com.varchar6.petcast.domain.member.query.vo.LoginRequestVO;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +21,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Slf4j
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
@@ -54,11 +51,11 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
             HttpServletResponse response,
             FilterChain chain,
             Authentication authResult
-    ) throws IOException, ServletException {
+    ) {
         Claims claims = Jwts.claims().setSubject(((CustomUser) authResult.getPrincipal()).getUsername());
         claims.put("authorities", authResult.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
-                .collect(Collectors.toList()));
+                .toList());
 
         String token = Jwts.builder()
                 .setClaims(claims)
