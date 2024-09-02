@@ -25,7 +25,7 @@ class NoticeServiceTests {
     @Test
     public void 모든_공지_조회() {
         List<NoticeDTO> noticeResponseDTOList = noticeService.getAllNotices();
-        assertEquals(3, noticeResponseDTOList.size());
+        assertEquals(10, noticeResponseDTOList.size());
     }
 
 }

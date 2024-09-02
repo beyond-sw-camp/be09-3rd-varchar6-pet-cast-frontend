@@ -11,7 +11,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class NoticeUpdateRequestDTO {
     private int id;
-    private String title;
-    private String description;
-    private boolean topFix;
+    private boolean fixed;
 }
