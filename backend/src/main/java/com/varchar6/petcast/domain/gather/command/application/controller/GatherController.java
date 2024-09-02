@@ -24,7 +24,6 @@ public class GatherController {
 
     @PostMapping("/createGather")
     public ResponseEntity<ResponseMessage> createGather(@RequestBody RequestCreateGatherDTO requestCreateGatherDTO){
-
         gatherService.createGather(requestCreateGatherDTO);
 
         return ResponseEntity.ok(
@@ -36,86 +35,102 @@ public class GatherController {
     }
 
     @PutMapping("/updateGatherInfo")
-    public ResponseEntity<ResponseUpdateGatherInfoDTO> updateGatherInfo(@RequestBody RequestUpdateGatherInfoDTO requestUpdateGatherDTO){
-
+    public ResponseEntity<ResponseMessage> updateGatherInfo(@RequestBody RequestUpdateGatherInfoDTO requestUpdateGatherDTO){
         ResponseUpdateGatherInfoDTO responseUpdateGatherInfoDTO = gatherService.updateGatherInfo(requestUpdateGatherDTO);
+
         ResponseMessage responseMessage = ResponseMessage.builder()
                 .httpStatus(HttpStatus.OK.value())
                 .result(responseUpdateGatherInfoDTO)
                 .build();
+
         if(responseUpdateGatherInfoDTO == null){
             responseMessage.setMessage("모임 정보 수정 실패!");
         }else{
             responseMessage.setMessage("모임 정보 수정 성공!");
         }
 
-        return ResponseEntity.ok()
+        return ResponseEntity.ok(responseMessage);
     }
 
     @PutMapping("/deactiveGather")
-    public ResponseEntity<ResponseDeactiveGatherDTO> deactiveGather(@RequestBody RequestDeactiveGatherDTO requestDeactiveGatherDTO){
-
+    public ResponseEntity<ResponseMessage> deactiveGather(@RequestBody RequestDeactiveGatherDTO requestDeactiveGatherDTO){
         ResponseDeactiveGatherDTO responseDeactiveGatherDTO = gatherService.deactiveGather(requestDeactiveGatherDTO);
 
+        ResponseMessage responseMessage = ResponseMessage.builder()
+                .httpStatus(HttpStatus.OK.value())
+                .result(responseDeactiveGatherDTO)
+                .build();
+
         if(responseDeactiveGatherDTO == null){
-            responseDeactiveGatherDTO.setMessage("모임 비활성화 실패!");
+            responseMessage.setMessage("모임 비활성화 실패!");
         }else{
-            responseDeactiveGatherDTO.setMessage("모임 비활성화 성공!");
+            responseMessage.setMessage("모임 비활성화 성공!");
         }
 
-        return ResponseEntity.status(HttpStatus.OK).body(responseDeactiveGatherDTO);
+        return ResponseEntity.ok(responseMessage);
     }
 
     @PostMapping("/sendInvitation")
-    public ResponseEntity<ResponseSendInvitaionDTO> sendInvitation(@RequestBody RequestSendInvitationDTO requestInvitationDTO) {
-
+    public ResponseEntity<ResponseMessage> sendInvitation(@RequestBody RequestSendInvitationDTO requestInvitationDTO) {
         ResponseSendInvitaionDTO responseSendInvitaionDTO = gatherService.sendInvitation(requestInvitationDTO);
 
+        ResponseMessage responseMessage = ResponseMessage.builder()
+                .httpStatus(HttpStatus.OK.value())
+                .result(responseSendInvitaionDTO)
+                .build();
+
         if(responseSendInvitaionDTO == null){
-            responseSendInvitaionDTO.setMessage("초대장 전송 실패~");
+            responseMessage.setMessage("초대장 전송 실패~");
         }else{
-            responseSendInvitaionDTO.setMessage("초대장 전송 성공~");
+            responseMessage.setMessage("초대장 전송 성공~");
         }
 
-        return ResponseEntity.status(HttpStatus.OK).body(responseSendInvitaionDTO);
+        return ResponseEntity.ok(responseMessage);
     }
 
     @PutMapping("/acceptInvitation")
-    public ResponseEntity<ResponseInvitationDTO> acceptInvitation(@RequestBody RequestInvitationDTO requestInvitationDTO){
-
+    public ResponseEntity<ResponseMessage> acceptInvitation(@RequestBody RequestInvitationDTO requestInvitationDTO){
         ResponseInvitationDTO responseInvitationDTO = gatherService.acceptInvatation(requestInvitationDTO);
 
+        ResponseMessage responseMessage = ResponseMessage.builder()
+                .httpStatus(HttpStatus.OK.value())
+                .result(responseInvitationDTO)
+                .build();
+
         if(responseInvitationDTO == null){
-            responseInvitationDTO.setMessage("수락 실패!");
+            responseMessage.setMessage("수락 실패!");
         }else{
-            responseInvitationDTO.setMessage("수락 성공!");
+            responseMessage.setMessage("수락 성공!");
         }
 
-        return ResponseEntity.status(HttpStatus.OK).body(responseInvitationDTO);
+        return ResponseEntity.ok(responseMessage);
     }
 
     @PutMapping("/refuseInvitation")
-    public ResponseEntity<ResponseInvitationDTO> refuseInvitation(@RequestBody RequestInvitationDTO requestInvitationDTO){
+    public ResponseEntity<ResponseMessage> refuseInvitation(@RequestBody RequestInvitationDTO requestInvitationDTO){
         ResponseInvitationDTO responseInvitationDTO = gatherService.refuseInvatation(requestInvitationDTO);
 
+        ResponseMessage responseMessage = ResponseMessage.builder()
+                .httpStatus(HttpStatus.OK.value())
+                .result(responseInvitationDTO)
+                .build();
+
         if(responseInvitationDTO == null){
-            responseInvitationDTO.setMessage("거절 실패!");
+            responseMessage.setMessage("거절 실패!");
         }else{
-            responseInvitationDTO.setMessage("거절 성공!");
+            responseMessage.setMessage("거절 성공!");
         }
 
-        return ResponseEntity.status(HttpStatus.OK).body(responseInvitationDTO);
+        return ResponseEntity.ok(responseMessage);
     }
 
     @DeleteMapping("/deleteMember")
-    public ResponseEntity<ResponseDeleteMemberDTO> deleteMember(@RequestBody RequestDeleteMemberDTO requestDeleteMemberDTO){
+    public ResponseEntity<ResponseMessage> deleteMember(@RequestBody RequestDeleteMemberDTO requestDeleteMemberDTO){
         gatherService.deleteMember(requestDeleteMemberDTO);
 
-        ResponseDeleteMemberDTO responseDeleteMemberDTO = ResponseDeleteMemberDTO.builder()
-                .message("삭제 성공~")
-                .build();
-
-        return ResponseEntity.status(HttpStatus.OK).body(responseDeleteMemberDTO);
+        return ResponseEntity.ok(
+                ResponseMessage.builder().message("삭제 성공~").build()
+        );
     }
 
 }
