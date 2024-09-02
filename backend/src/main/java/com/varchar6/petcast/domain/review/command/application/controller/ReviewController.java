@@ -64,6 +64,7 @@ public class ReviewController {
     @DeleteMapping("")
     private ResponseEntity<ResponseMessage> deleteReview(@RequestBody Map<String, Integer> request){
         int id = request.get("id");
+        reviewService.deleteReview(id);
 
         return ResponseEntity
             .ok()
@@ -74,7 +75,6 @@ public class ReviewController {
                     .result(null)
                     .build()
             );
- 
     }
 
 }
