@@ -102,8 +102,8 @@ public class EstimateServiceImpl implements EstimateService {
                 .created_at(LocalDateTime.now().format(FORMATTER))
                 .updated_at(LocalDateTime.now().format(FORMATTER))
                 .active(true)
-                .proposal(estimateRequestDTO.getProposal())
-                .companyInfo(estimateRequestDTO.getCompanyInfo())
+//                .proposal(estimateRequestDTO.getProposal())
+//                .companyInfo(estimateRequestDTO.getCompanyInfo())
                 .build();
     }
 
