@@ -1,13 +1,12 @@
 package com.varchar6.petcast.domain.member.query.dto;
 
-import lombok.AllArgsConstructor;
+import com.varchar6.petcast.domain.member.query.vo.RoleVO;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
-public class MemberDTO {
+public class MemberLoginDTO {
     private int id;
     private String loginId;
     private String password;
@@ -19,5 +18,5 @@ public class MemberDTO {
     private String updatedAt;
     private boolean active;
     private String introduction;
-
+    private List<RoleVO> roleVOS;
 }
