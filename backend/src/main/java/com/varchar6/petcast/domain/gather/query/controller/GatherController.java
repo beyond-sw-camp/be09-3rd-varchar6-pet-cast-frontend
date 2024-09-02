@@ -48,9 +48,11 @@ public class GatherController {
         return ResponseEntity.ok(responseMessage);
     }
 
-    @GetMapping("/invitation/{invitationId}/{userId}")
-    public ResponseEntity<ResponseMessage> findInvitationPageById(@PathVariable("invitationId") int invitationId,
-                                                          @PathVariable("userId") int userId){
+    @GetMapping("/invitation")
+//    public ResponseEntity<ResponseMessage> findInvitationPageById(@PathVariable("invitationId") int invitationId,
+//                                                          @PathVariable("userId") int userId){
+    public ResponseEntity<ResponseMessage> findInvitationPageById(@RequestParam("invitationId") int invitationId,
+                                                                  @RequestParam("userId") int userId){
         Boolean isAccessTrueGather = gatherService.isAccessTrueGather(invitationId, userId);
 
         ResponseMessage responseMessage = ResponseMessage.builder()
