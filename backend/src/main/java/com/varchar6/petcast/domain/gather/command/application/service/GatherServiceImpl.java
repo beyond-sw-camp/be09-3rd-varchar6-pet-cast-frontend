@@ -60,9 +60,8 @@ public class GatherServiceImpl implements GatherService {
         try {
             newGather = gatherRepository.save(gather);
         } catch (Exception e) {
-            log.info("새로운 모임 insert 실패!!");
+            log.error("새로운 모임 insert 실패!!");
         }
-        log.info("모임 테이블 성공~");
 
         // 모임&회원 중간 테이블 insert 과정
         // 복합키 설정
@@ -78,11 +77,8 @@ public class GatherServiceImpl implements GatherService {
         try {
             gatherMemberRepository.save(newGatherMember);
         } catch (Exception e) {
-            log.info("모임&회원 중간 테이블 insert 실패!!");
+            log.error("모임&회원 중간 테이블 insert 실패!!");
         }
-
-        log.info("모임회원 중간 테이블 성공~");
-
     }
 
     @Override
@@ -91,7 +87,7 @@ public class GatherServiceImpl implements GatherService {
         java.util.Date now = new java.util.Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         String currentDate = simpleDateFormat.format(now);
-        log.info("current date: {}", currentDate);
+
         // 모임의 LEADER인지 확인
         GatherMemberFK gatherMemberPK = GatherMemberFK.builder()
                 .memberId(requestUpdateGatherDTO.getUserId())
@@ -100,7 +96,6 @@ public class GatherServiceImpl implements GatherService {
 
         // 역할 검사
         GatherMember checkMemberRole = gatherMemberRepository.findById(gatherMemberPK).orElseThrow(() -> new NoSuchElementException("GatherMember not found with id: " + gatherMemberPK));
-
 
         // 모임 수정
         ResponseUpdateGatherInfoDTO responseUpdateGatherInfoDTO = null;
@@ -113,7 +108,7 @@ public class GatherServiceImpl implements GatherService {
             try {
                 responseUpdateGatherInfoDTO = modelMapper.map(updateGather, ResponseUpdateGatherInfoDTO.class);
             } catch (Exception e) {
-                log.info("모임 정보 수정 중에 에러 발생!!");
+                log.error("모임 정보 수정 중에 에러 발생!!");
             }
         }
         return responseUpdateGatherInfoDTO;
@@ -141,7 +136,7 @@ public class GatherServiceImpl implements GatherService {
             try {
                 responseDeactiveGatherDTO = modelMapper.map(currentGather, ResponseDeactiveGatherDTO.class);
             } catch (Exception e) {
-                log.info("비활성화 업데이트 중 에러 발생!!");
+                log.error("비활성화 업데이트 중 에러 발생!!");
             }
 
         }
@@ -172,14 +167,14 @@ public class GatherServiceImpl implements GatherService {
             existGather.setInvitationId(requestInvitationDTO.getInvitationId());
             existGather.setInvitationContent(requestInvitationDTO.getInvitationContent());
             existGather.setUpdatedAt(currentDate);
+
             try {
                 modelMapper.map(existGather, Gather.class);
             } catch (Exception e) {
-                log.info("헤당 모임에 정보 넣다가 에러 발생!!");
+                log.error("헤당 모임에 정보 넣다가 에러 발생!!");
             }
 
             // 2-2. 초대장 테이블에 insert
-
             Invitation invitation = Invitation.builder()
                     .activeYn(true)
                     .createdAt(currentDate)
@@ -189,11 +184,16 @@ public class GatherServiceImpl implements GatherService {
             try {
                 invitationRepository.save(invitation);
             } catch (Exception e) {
-                log.info("초대장 정보 저장 중에 에러 발생!!");
+                log.error("초대장 정보 저장 중에 에러 발생!!");
             }
 
             // 3. 문자 전송~
-            log.info("문자 전송~?");
+
+
+
+
+
+
             ResponseSendInvitaionDTO responseSendInvitaionDTO = null;
             try {
                 responseSendInvitaionDTO = ResponseSendInvitaionDTO.builder()
@@ -203,7 +203,7 @@ public class GatherServiceImpl implements GatherService {
                         .invitationContent(requestInvitationDTO.getInvitationContent())
                         .build();
             } catch (Exception e) {
-                log.info("return 만들다 실패");
+                log.error("return 만들다 실패");
             }
             return responseSendInvitaionDTO;
         }
@@ -223,7 +223,7 @@ public class GatherServiceImpl implements GatherService {
         try {
             responseInvitationDTO = modelMapper.map(invitation, ResponseInvitationDTO.class);
         } catch (Exception e) {
-            log.info("수락 하다 실패!");
+            log.error("수락 하다 실패!");
         }
         return responseInvitationDTO;
     }
@@ -239,7 +239,7 @@ public class GatherServiceImpl implements GatherService {
         try {
             responseInvitationDTO = modelMapper.map(invitation, ResponseInvitationDTO.class);
         } catch (Exception e) {
-            log.info("거절 하다 실패!");
+            log.error("거절 하다 실패!");
         }
         return responseInvitationDTO;
     }
@@ -269,7 +269,7 @@ public class GatherServiceImpl implements GatherService {
             try {
                 GatherMember deleteMember = modelMapper.map(foundGather, GatherMember.class);
             }catch (Exception e){
-                log.info("매핑 실패!");
+                log.error("매핑 실패!");
             }
         }
     }
