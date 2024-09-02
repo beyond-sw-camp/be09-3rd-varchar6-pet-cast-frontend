@@ -4,6 +4,7 @@ import com.varchar6.petcast.domain.report.command.application.dto.request.Report
 import com.varchar6.petcast.domain.report.command.domain.aggregate.Report;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,16 +17,15 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class ReportServiceTests {
 
+    private final ModelMapper modelMapper;
     private final ReportService reportService;
     private static ReportCreateRequestDTO reportCreateRequestDTO = new ReportCreateRequestDTO();
-    private final ModelMapper modelMapper;
-    private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
 
     @Autowired
-    public ReportServiceTests(ReportService reportService, ModelMapper modelMapper) {
-        this.reportService = reportService;
+    public ReportServiceTests(ModelMapper modelMapper, ReportService reportService) {
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         this.modelMapper = modelMapper;
+        this.reportService = reportService;
     }
 
     @Test
@@ -35,9 +35,8 @@ class ReportServiceTests {
         reportCreateRequestDTO.setReporterId(4);
         reportCreateRequestDTO.setRespondentId(10);
 
-        Report report = modelMapper.map(reportCreateRequestDTO, Report.class);
-        report.setCreatedAt(LocalDateTime.now().format(FORMATTER));
+        int result = reportService.insertReport(reportCreateRequestDTO);
 
-        assertEquals("뭐가 문제이죠?",report.getReason());
+        assertEquals(1,result);
     }
 }
