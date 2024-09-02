@@ -57,13 +57,6 @@ public class QnaServiceImpl implements QnaService{
     public QnaResponseDTO updateQna(QnaUpdateRequestDTO qnaUpdateRequestDTO) {
         Qna qna = qnaRepository.findById(qnaUpdateRequestDTO.getId()).orElse(null);
 
-//        CompanyDTO companyDTO = companyClient.getCompanyById(qnaUpdateRequestDTO.getCompanyId());
-//
-//        // 데이터 검증: Company의 memberId와 answererId 비교
-//        if (!companyDTO.getMemberId().equals(qnaUpdateRequestDTO.getAnswererId())) {
-//            throw new IllegalArgumentException("검증 실패: Company의 memberId와 AnswererId가 일치하지 않습니다.");
-//        }
-
         qna = modelMapper.map(qnaUpdateRequestDTO, Qna.class);
         qna.setAnsweredAt(LocalDateTime.now().format(FORMATTER));
         qna.setAnswered(true);
