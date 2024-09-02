@@ -5,7 +5,10 @@ import com.varchar6.petcast.domain.event.command.application.dto.request.EventSe
 import com.varchar6.petcast.domain.event.command.application.dto.request.EventUpdateRequestDTO;
 import com.varchar6.petcast.domain.event.command.application.dto.response.EventResponseDTO;
 import com.varchar6.petcast.domain.event.command.domain.aggregate.Event;
+import com.varchar6.petcast.domain.event.command.domain.aggregate.EventCategory;
+import com.varchar6.petcast.domain.event.command.domain.repository.EventCategoryRepository;
 import com.varchar6.petcast.domain.event.command.domain.repository.EventRepository;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -19,12 +22,14 @@ public class EventServiceImpl implements EventService {
 
     private final EventRepository eventRepository;
     private final ModelMapper modelMapper;
+    private final EventCategoryRepository eventCategoryRepository;
 
     @Autowired
-    public EventServiceImpl(EventRepository eventRepository, ModelMapper modelMapper) {
+    public EventServiceImpl(EventRepository eventRepository, ModelMapper modelMapper, EventCategoryRepository eventCategoryRepository) {
         this.eventRepository = eventRepository;
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         this.modelMapper = modelMapper;
+        this.eventCategoryRepository = eventCategoryRepository;
     }
 
     @Override
@@ -41,7 +46,12 @@ public class EventServiceImpl implements EventService {
     @Transactional
     public void insertEvent(EventCreateRequestDTO eventCreateRequestDTO) {
         Event event = modelMapper.map(eventCreateRequestDTO, Event.class);
-        eventRepository.save(event);
+
+        Event savedEvent = eventRepository.save(event);
+
+        // 저장된 Event의 ID와 categorys를 사용하여 EventCategory 저장
+        saveEventCategories(savedEvent.getId(), eventCreateRequestDTO.getCategoryIds());
+
     }
 
     @Override
@@ -52,6 +62,16 @@ public class EventServiceImpl implements EventService {
         EventResponseDTO responseDTO = modelMapper.map(event, EventResponseDTO.class);
 
         return responseDTO;
+    }
+
+    private void saveEventCategories(Integer eventId, List<Integer> categoryIds) {
+        // EventCategory를 저장하는 로직 구현
+        for (Integer categoryId : categoryIds) {
+            EventCategory eventCategory = new EventCategory();
+            eventCategory.setEventId(eventId);
+            eventCategory.setCategoryId(categoryId);
+            eventCategoryRepository.save(eventCategory);
+        }
     }
 
 }

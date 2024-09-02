@@ -1,6 +1,7 @@
 package com.varchar6.petcast.domain.event.command.application.dto.request;
 
 import com.varchar6.petcast.domain.event.command.domain.aggregate.EventStatus;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,5 +18,6 @@ public class EventCreateRequestDTO {
     private String image;
     private Integer companyId;
     private Integer memberId;
+    private List<Integer> categoryIds;
 
 }
