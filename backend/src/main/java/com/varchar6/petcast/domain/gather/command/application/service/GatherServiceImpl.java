@@ -52,7 +52,7 @@ public class GatherServiceImpl implements GatherService {
                 .url(requestCreateGatherDTO.getUrl())
                 .updatedAt(currentDate)
                 .createdAt(currentDate)
-                .active(requestCreateGatherDTO.isActive())
+                .active(true)
                 .invitationId(requestCreateGatherDTO.getInvitationId())
                 .invitationContent(requestCreateGatherDTO.getInvitationContent())
                 .build();
@@ -105,7 +105,7 @@ public class GatherServiceImpl implements GatherService {
         // 모임 수정
         ResponseUpdateGatherInfoDTO responseUpdateGatherInfoDTO = null;
         if (checkMemberRole.getRole() == GatherRole.LEADER) {
-            Gather updateGather = gatherRepository.findById(requestUpdateGatherDTO.getUserId()).orElseThrow();
+            Gather updateGather = gatherRepository.findById(requestUpdateGatherDTO.getGatherId()).orElseThrow();
             updateGather.setName(requestUpdateGatherDTO.getName());
             updateGather.setContent(requestUpdateGatherDTO.getContent());
             updateGather.setNumber(requestUpdateGatherDTO.getNumber());
@@ -134,7 +134,7 @@ public class GatherServiceImpl implements GatherService {
         GatherMember checkMemberRole = gatherMemberRepository.findById(gatherMemberPK).orElseThrow(() -> new NoSuchElementException("GatherMember not found with id: " + gatherMemberPK));
         ResponseDeactiveGatherDTO responseDeactiveGatherDTO = null;
         if (checkMemberRole.getRole() == GatherRole.LEADER) {
-            Gather currentGather = gatherRepository.findById(requestDeactiveGatherDTO.getUserId()).orElseThrow();
+            Gather currentGather = gatherRepository.findById(requestDeactiveGatherDTO.getGatherId()).orElseThrow();
             currentGather.setActive(false);
             currentGather.setUpdatedAt(currentDate);
 
@@ -260,10 +260,11 @@ public class GatherServiceImpl implements GatherService {
                     .gatherId(requestDeleteMemberDTO.getGatherId())
                     .memberId(requestDeleteMemberDTO.getMemberId())
                     .build();
-
-            foundGather = gatherMemberRepository.findById(gatherMemberFK)
-                    .orElseThrow(() -> new NoSuchElementException("해당 고객이 없습니다."));
-            foundGather.setRole(GatherRole.NO_MEMBER);
+            // 삭제
+            gatherMemberRepository.deleteById(gatherMemberFK);
+//            foundGather = gatherMemberRepository.findById(gatherMemberFK)
+//                    .orElseThrow(() -> new NoSuchElementException("해당 고객이 없습니다."));
+//            foundGather.setRole(GatherRole.NO_MEMBER);
 
             try {
                 GatherMember deleteMember = modelMapper.map(foundGather, GatherMember.class);
