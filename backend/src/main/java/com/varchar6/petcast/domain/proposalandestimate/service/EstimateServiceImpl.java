@@ -15,8 +15,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import static com.varchar6.petcast.domain.proposalandestimate.service.ProposalServiceImpl.FORMATTER;
-
 @Service
 @Slf4j
 public class EstimateServiceImpl implements EstimateService {
@@ -44,7 +42,9 @@ public class EstimateServiceImpl implements EstimateService {
     @Override
     public List<EstimateResponseDTO> findAllEstimatesByCompanyId(int companyId) {
         List<Estimate> estimates = estimateMapper.findAllEstimatesByCompanyId(companyId);
-        return estimates.stream().map(this::entityToResponseDTO).toList();
+        return estimates.stream()
+                        .map(this::entityToResponseDTO)
+                        .toList();
     }
 
     // 견적서 상세 조회
@@ -61,17 +61,18 @@ public class EstimateServiceImpl implements EstimateService {
     @Transactional
     public EstimateResponseDTO createEstimate(EstimateRequestDTO estimateRequestDTO) {
         Estimate estimate = estimateDTOToEntity(estimateRequestDTO);
-        estimate = estimateRepository.save(estimate);
-        return entityToResponseDTO(estimate);
+        return estimateRepository.save(estimate);
     }
 
     // 견적서 삭제
     @Transactional
     public void deleteEstimate(int estimateId) {
+        estimateRepository.deleteById(estimateId);
+
         if (!estimateRepository.existsById(estimateId)) {
             throw new IllegalArgumentException("해당 " + estimateId + " 번 견적서를 찾을 수 없습니다.");
         }
-        estimateRepository.save(estimateId);
+        return estimateRepository.save(estimateId);
     }
 
     // 견적서 수락
@@ -88,7 +89,7 @@ public class EstimateServiceImpl implements EstimateService {
     @Transactional
     public EstimateResponseDTO rejectEstimate(int estimateId) {
         Estimate estimate = estimateRepository.findById(estimateId)
-                .orElseThrow(() -> new IllegalArgumentException("해당 " + estimateId + " 번 견적서를 찾을 수 없습니다.));
+                .orElseThrow(() -> new IllegalArgumentException("해당 " + estimateId + " 번 견적서를 찾을 수 없습니다."));
         estimate.reject();
         estimateRepository.save(estimate);
         return entityToResponseDTO(estimate);
@@ -118,4 +119,4 @@ public class EstimateServiceImpl implements EstimateService {
     }
 }
 
-}
+

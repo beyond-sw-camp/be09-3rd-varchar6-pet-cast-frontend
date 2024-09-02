@@ -2,6 +2,7 @@ package com.varchar6.petcast.domain.request.aggregate;
 
 import com.varchar6.petcast.domain.member.command.domain.aggregate.Member;
 import jakarta.persistence.*;
+import jdk.jfr.Category;
 import lombok.*;
 
 @Entity
@@ -51,5 +52,6 @@ public class Request {
     @ManyToOne
     @JoinColumn(name = "member_request_id")
     private Member member;
+
 
 }

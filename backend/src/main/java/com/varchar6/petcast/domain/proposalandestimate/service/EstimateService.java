@@ -1,5 +1,6 @@
 package com.varchar6.petcast.domain.proposalandestimate.service;
 
+import com.varchar6.petcast.domain.proposalandestimate.dto.EstimateRequestDTO;
 import com.varchar6.petcast.domain.proposalandestimate.dto.EstimateResponseDTO;
 
 import java.util.List;
@@ -13,4 +14,12 @@ public interface EstimateService {
 
     // 견적서 상세 조회
     EstimateResponseDTO findEstimateById(int estimateId);
+
+    EstimateResponseDTO createEstimate(EstimateRequestDTO estimateRequestDTO);
+
+    void deleteEstimate(int estimateId);
+
+    EstimateResponseDTO acceptEstimate(int estimateId);
+
+    EstimateResponseDTO rejectEstimate(int estimateId);
 }

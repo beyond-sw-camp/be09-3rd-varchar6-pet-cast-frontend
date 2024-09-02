@@ -63,9 +63,11 @@ public class ProposalServiceImpl implements ProposalService{
         return entityToResponseDTO(proposal);
     }
 
-    // 기획서 삭제s
+    // 기획서 삭제
     @Transactional
     public void deleteProposal(int proposalId) {
+        proposalRepository.deleteById(proposalId);
+
         if (!proposalRepository.existsById(proposalId)) {
             throw new IllegalArgumentException("해당 " + proposalId + " 번 기획서를 찾을 수 없습니다.");
         }

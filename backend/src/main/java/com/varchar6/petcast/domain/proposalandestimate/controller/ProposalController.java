@@ -3,7 +3,6 @@ package com.varchar6.petcast.domain.proposalandestimate.controller;
 import com.varchar6.petcast.domain.proposalandestimate.dto.ProposalRequestDTO;
 import com.varchar6.petcast.domain.proposalandestimate.dto.ProposalResponseDTO;
 import com.varchar6.petcast.domain.proposalandestimate.service.ProposalService;
-import com.varchar6.petcast.domain.request.dto.RequestResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
