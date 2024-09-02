@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController(value = "queryGatherController")
-@RequestMapping("/api/v1/gather/query")
+@RequestMapping("/api/v1/gather")
 public class GatherController {
 
     private final GatherService gatherService;

@@ -12,6 +12,4 @@ public class ResponseDeleteMemberDTO {
     private int userId;
     private int gatherId;
     private int memberId;
-
-    private String message;
 }

@@ -16,6 +16,4 @@ public class ResponseUpdateGatherInfoDTO {
     private boolean activeYn;
     private String invitationId;
     private String invitationContent;
-
-    private String message;
 }

@@ -11,6 +11,4 @@ import lombok.*;
 public class ResponseInvitationDTO {
     private int userId;
     private int invitationId;
-
-    private String message;
 }

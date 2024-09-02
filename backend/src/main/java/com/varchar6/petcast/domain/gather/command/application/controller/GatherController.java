@@ -1,5 +1,6 @@
 package com.varchar6.petcast.domain.gather.command.application.controller;
 
+import com.varchar6.petcast.common.response.ResponseMessage;
 import com.varchar6.petcast.domain.gather.command.application.dto.request.*;
 import com.varchar6.petcast.domain.gather.command.application.dto.response.*;
 import com.varchar6.petcast.domain.gather.command.application.service.GatherService;
@@ -10,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController(value="commandGatherController")
-@RequestMapping("/api/v1/gather/command")
+@RequestMapping("/api/v1/gather")
 @Slf4j
 public class GatherController {
 
@@ -22,28 +23,33 @@ public class GatherController {
     }
 
     @PostMapping("/createGather")
-    public ResponseEntity<ResponseCreateGatherDTO> createGather(@RequestBody RequestCreateGatherDTO requestCreateGatherDTO){
+    public ResponseEntity<ResponseMessage> createGather(@RequestBody RequestCreateGatherDTO requestCreateGatherDTO){
 
         gatherService.createGather(requestCreateGatherDTO);
 
-        ResponseCreateGatherDTO responseCreateGatherDTO =
-                ResponseCreateGatherDTO.builder().message("모임 생성 성공!!").build();
-
-        return ResponseEntity.status(HttpStatus.OK).body(responseCreateGatherDTO);
+        return ResponseEntity.ok(
+                ResponseMessage.builder()
+                        .httpStatus(HttpStatus.CREATED.value())
+                        .message("모임 생성 성공!")
+                        .build()
+        );
     }
 
     @PutMapping("/updateGatherInfo")
     public ResponseEntity<ResponseUpdateGatherInfoDTO> updateGatherInfo(@RequestBody RequestUpdateGatherInfoDTO requestUpdateGatherDTO){
 
         ResponseUpdateGatherInfoDTO responseUpdateGatherInfoDTO = gatherService.updateGatherInfo(requestUpdateGatherDTO);
-
+        ResponseMessage responseMessage = ResponseMessage.builder()
+                .httpStatus(HttpStatus.OK.value())
+                .result(responseUpdateGatherInfoDTO)
+                .build();
         if(responseUpdateGatherInfoDTO == null){
-            responseUpdateGatherInfoDTO.setMessage("모임 정보 수정 실패!");
+            responseMessage.setMessage("모임 정보 수정 실패!");
         }else{
-            responseUpdateGatherInfoDTO.setMessage("모임 정보 수정 성공!");
+            responseMessage.setMessage("모임 정보 수정 성공!");
         }
 
-        return ResponseEntity.status(HttpStatus.OK).body(responseUpdateGatherInfoDTO);
+        return ResponseEntity.ok()
     }
 
     @PutMapping("/deactiveGather")

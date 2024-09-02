@@ -13,6 +13,4 @@ public class ResponseSendInvitaionDTO {
     private int gatherId;
     private String invitationId;
     private String invitationContent;
-
-    private String message;
 }

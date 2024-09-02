@@ -17,6 +17,4 @@ public class ResponseCreateGatherDTO {
     private String invitationId;
     private String invitationContent;
     private int userId;
-
-    private String message;
 }

@@ -11,6 +11,4 @@ import lombok.*;
 public class ResponseDeactiveGatherDTO {
     private int userId;
     private int gatherId;
-
-    private String message;
 }
