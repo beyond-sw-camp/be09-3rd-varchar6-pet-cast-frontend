@@ -13,7 +13,7 @@ public class GatherDetailDTO {
     private int id;
     private String name;
     private String content;
-    private int count;
+    private int number;
     private String url;
     private String updatedAt;
     private String createdAt;

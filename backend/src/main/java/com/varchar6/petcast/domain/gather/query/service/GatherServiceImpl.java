@@ -3,14 +3,16 @@ package com.varchar6.petcast.domain.gather.query.service;
 import com.varchar6.petcast.domain.gather.query.dto.GatherDTO;
 import com.varchar6.petcast.domain.gather.query.dto.GatherDetailDTO;
 import com.varchar6.petcast.domain.gather.query.mapper.GatherMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Service(value="queryGatherServiceImpl")
-public class GatherServiceImpl implements GatherService{
+@Slf4j
+@Service(value = "queryGatherServiceImpl")
+public class GatherServiceImpl implements GatherService {
 
     private GatherMapper gatherMapper;
 
@@ -20,12 +22,11 @@ public class GatherServiceImpl implements GatherService{
     }
 
     public List<String> findAllGather(int userId) {
-        List<GatherDTO> result =  gatherMapper.selectGatherById(userId);
-        List<String> listOfNames = new ArrayList<>();
-        for(int i=0;i<result.size();i++){
-            listOfNames.add(result.get(i).getName());
-        }
-        return listOfNames;
+
+        return gatherMapper.selectGatherById(userId).stream()
+                .map(GatherDTO::getName)
+                .collect(Collectors.toList());
+
     }
 
     public GatherDetailDTO findDetailGather(int gatherId) {
@@ -34,10 +35,11 @@ public class GatherServiceImpl implements GatherService{
         List<String> memberInfo = gatherMapper.selectMembersById(gatherId);
 
         GatherDetailDTO gatherDetail = GatherDetailDTO.builder()
-                .id(gatherInfo.getId())
+                .id(gatherId)
                 .name(gatherInfo.getName())
                 .content(gatherInfo.getContent())
                 .url(gatherInfo.getUrl())
+                .number(gatherInfo.getNumber())
                 .updatedAt(gatherInfo.getUpdatedAt())
                 .createdAt(gatherInfo.getCreatedAt())
                 .active(gatherInfo.isActive())
