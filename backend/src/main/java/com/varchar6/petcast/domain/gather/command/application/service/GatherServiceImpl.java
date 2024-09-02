@@ -39,10 +39,7 @@ public class GatherServiceImpl implements GatherService {
     @Override
     @Transactional
     public void createGather(RequestCreateGatherDTO requestCreateGatherDTO) {
-
-        java.util.Date now = new java.util.Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        String currentDate = simpleDateFormat.format(now);
+        String currentDate = getNow();
 
         // 모임 테이블 insert 과정
         Gather gather = Gather.builder()
@@ -81,12 +78,17 @@ public class GatherServiceImpl implements GatherService {
         }
     }
 
-    @Override
-    @Transactional
-    public ResponseUpdateGatherInfoDTO updateGatherInfo(RequestUpdateGatherInfoDTO requestUpdateGatherDTO) {
+    private static String getNow() {
         java.util.Date now = new java.util.Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         String currentDate = simpleDateFormat.format(now);
+        return currentDate;
+    }
+
+    @Override
+    @Transactional
+    public ResponseUpdateGatherInfoDTO updateGatherInfo(RequestUpdateGatherInfoDTO requestUpdateGatherDTO) {
+        String currentDate = getNow();
 
         // 모임의 LEADER인지 확인
         GatherMemberFK gatherMemberPK = GatherMemberFK.builder()
@@ -117,9 +119,7 @@ public class GatherServiceImpl implements GatherService {
     @Override
     @Transactional
     public ResponseDeactiveGatherDTO deactiveGather(RequestDeactiveGatherDTO requestDeactiveGatherDTO) {
-        java.util.Date now = new java.util.Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        String currentDate = simpleDateFormat.format(now);
+        String currentDate = getNow();
 
         GatherMemberFK gatherMemberPK = GatherMemberFK.builder()
                 .memberId(requestDeactiveGatherDTO.getUserId())
@@ -156,10 +156,9 @@ public class GatherServiceImpl implements GatherService {
         GatherMember checkMemberRole = gatherMemberRepository.findById(gatherMemberFK).orElseThrow(() -> new NoSuchElementException("GatherMember not found with id: " + gatherMemberFK));
 
         // 2. insert
+        ResponseSendInvitaionDTO responseSendInvitaionDTO = null;
         if (checkMemberRole.getRole() == GatherRole.LEADER) {
-            java.util.Date now = new java.util.Date();
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-            String currentDate = simpleDateFormat.format(now);
+            String currentDate = getNow();
 
             // 2-1. 모임에 초대장 내용 update
             Gather existGather = gatherRepository.findById(requestInvitationDTO.getGatherId())
@@ -194,7 +193,6 @@ public class GatherServiceImpl implements GatherService {
 
 
 
-            ResponseSendInvitaionDTO responseSendInvitaionDTO = null;
             try {
                 responseSendInvitaionDTO = ResponseSendInvitaionDTO.builder()
                         .userId(requestInvitationDTO.getUserId())
@@ -205,16 +203,13 @@ public class GatherServiceImpl implements GatherService {
             } catch (Exception e) {
                 log.error("return 만들다 실패");
             }
-            return responseSendInvitaionDTO;
         }
-
-        return null;
+        return responseSendInvitaionDTO;
     }
 
     @Override
     @Transactional
     public ResponseInvitationDTO acceptInvatation(RequestInvitationDTO requestInvitationDTO) {
-
         Invitation invitation = invitationRepository.findById(requestInvitationDTO
                 .getInvitationId()).orElseThrow(() -> new NoSuchElementException("Invitation not found with id: " + requestInvitationDTO.getInvitationId()));
 
@@ -225,6 +220,7 @@ public class GatherServiceImpl implements GatherService {
         } catch (Exception e) {
             log.error("수락 하다 실패!");
         }
+
         return responseInvitationDTO;
     }
 
@@ -241,6 +237,7 @@ public class GatherServiceImpl implements GatherService {
         } catch (Exception e) {
             log.error("거절 하다 실패!");
         }
+
         return responseInvitationDTO;
     }
 
@@ -260,12 +257,9 @@ public class GatherServiceImpl implements GatherService {
                     .gatherId(requestDeleteMemberDTO.getGatherId())
                     .memberId(requestDeleteMemberDTO.getMemberId())
                     .build();
+
             // 삭제
             gatherMemberRepository.deleteById(gatherMemberFK);
-//            foundGather = gatherMemberRepository.findById(gatherMemberFK)
-//                    .orElseThrow(() -> new NoSuchElementException("해당 고객이 없습니다."));
-//            foundGather.setRole(GatherRole.NO_MEMBER);
-
             try {
                 GatherMember deleteMember = modelMapper.map(foundGather, GatherMember.class);
             }catch (Exception e){
