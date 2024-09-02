@@ -35,6 +35,14 @@ public class Request {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    public void accept() {
+        this.status = Status.CONFIRMED;
+    }
+
+    public void reject() {
+        this.status = Status.REJECTED;
+    }
+
     @Column(name = "created_at")
     private String created_at;
 
