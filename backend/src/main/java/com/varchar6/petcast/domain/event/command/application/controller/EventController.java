@@ -8,6 +8,7 @@ import com.varchar6.petcast.domain.event.command.application.dto.response.EventR
 import com.varchar6.petcast.domain.event.command.application.service.EventService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController(value = "commandEventController")
-@RequestMapping("/api/v1/event")
+@RequestMapping("/api/v1/events")
 public class EventController {
 
     private final EventService eventService;
@@ -32,7 +33,15 @@ public class EventController {
 
         eventService.insertEvent(eventCreateRequestDTO);
 
-        return ResponseEntity.ok(new ResponseMessage(201, "이벤트 생성 성공", null));
+        return ResponseEntity
+            .ok()
+            .body(
+                ResponseMessage.builder()
+                    .httpStatus(HttpStatus.CREATED.value())
+                    .message("이벤트 생성 성공")
+                    .result(null)
+                    .build()
+            );
     }
 
     @PutMapping("")
@@ -40,8 +49,15 @@ public class EventController {
 
         EventResponseDTO eventResponseDTO = eventService.updateEvent(eventUpdateRequestDTO);
 
-        return ResponseEntity.ok(new ResponseMessage(201, "이벤트 수정 성공"
-            , eventResponseDTO));
+        return ResponseEntity
+            .ok()
+            .body(
+                ResponseMessage.builder()
+                    .httpStatus(HttpStatus.CREATED.value())
+                    .message("이벤트 수정 성공")
+                    .result(eventResponseDTO)
+                    .build()
+            );
     }
 
     @PutMapping("/status")
@@ -49,8 +65,15 @@ public class EventController {
 
         EventResponseDTO eventResponseDTO = eventService.setEventStatus(eventSetStatusRequestDTO);
 
-        return ResponseEntity.ok(new ResponseMessage(201, "이벤트 수정 성공"
-            , eventResponseDTO));
+        return ResponseEntity
+            .ok()
+            .body(
+                ResponseMessage.builder()
+                    .httpStatus(HttpStatus.CREATED.value())
+                    .message("이벤트 수정 성공")
+                    .result(eventResponseDTO)
+                    .build()
+            );
     }
 
 

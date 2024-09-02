@@ -7,6 +7,7 @@ import com.varchar6.petcast.domain.event.query.service.EventService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController(value = "queryEventController")
-@RequestMapping("/api/v1/event")
+@RequestMapping("/api/v1/events")
 public class EventController {
 
     EventService eventService;
@@ -28,24 +29,39 @@ public class EventController {
         this.eventService = eventService;
     }
 
-    @GetMapping("/company/{companyId}")
+    @GetMapping("/companies/{companyId}")
     private ResponseEntity<ResponseMessage> findEventByCompany(@PathVariable Integer companyId,
         @RequestParam Integer lastEventId){
 
         List<EventDTO> responseEvents = eventService.findEventByCompany(companyId, lastEventId);
 
-        return ResponseEntity.ok(new ResponseMessage(200, "이벤트 조회 성공"
-            , responseEvents));
+        return ResponseEntity
+            .ok()
+            .body(
+                ResponseMessage.builder()
+                    .httpStatus(HttpStatus.OK.value())
+                    .message("업체가 수행한 이벤트 조회 성공")
+                    .result(responseEvents)
+                    .build()
+            );
+
     }
 
-    @GetMapping("/user/{userId}")
+    @GetMapping("/users/{userId}")
     private ResponseEntity<ResponseMessage> findEventByCustomer(@PathVariable Integer userId,
         @RequestParam Integer lastEventId){
 
         List<EventDTO> responseEvents = eventService.findEventByCustomer(userId, lastEventId);
 
-        return ResponseEntity.ok(new ResponseMessage(200, "이벤트 조회 성공"
-            , responseEvents));
+        return ResponseEntity
+            .ok()
+            .body(
+                ResponseMessage.builder()
+                    .httpStatus(HttpStatus.OK.value())
+                    .message("고객이 요청한 이벤트 조회 성공")
+                    .result(responseEvents)
+                    .build()
+            );
     }
 
     @GetMapping("/{eventId}")
@@ -53,8 +69,15 @@ public class EventController {
 
         EventDTO responseEvent = eventService.findEvent(eventId);
 
-        return ResponseEntity.ok(new ResponseMessage(200, "이벤트 조회 성공"
-            , responseEvent));
+        return ResponseEntity
+            .ok()
+            .body(
+                ResponseMessage.builder()
+                    .httpStatus(HttpStatus.OK.value())
+                    .message("이벤트 조회 성공")
+                    .result(responseEvent)
+                    .build()
+            );
     }
 
 
