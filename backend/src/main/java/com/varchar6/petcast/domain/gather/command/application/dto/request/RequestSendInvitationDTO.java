@@ -11,6 +11,4 @@ import lombok.*;
 public class RequestSendInvitationDTO {
     private int userId;
     private int gatherId;
-    private String invitationId;
-    private String invitationContent;
 }
