@@ -29,18 +29,11 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     @Transactional
-    public int insertReview(ReviewCreateRequestDTO reviewCreateRequestDTO) {
-        int result =0;
+    public void insertReview(ReviewCreateRequestDTO reviewCreateRequestDTO) {
+
         Review review = modelMapper.map(reviewCreateRequestDTO, Review.class);
 
-        try {
-            reviewRepository.save(review);
-            result++;
-        } catch (Exception e) {
-            log.info("리뷰 생성 실패");
-        }
-
-        return result;
+        reviewRepository.save(review);
     }
 
     @Override
@@ -62,16 +55,8 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     @Transactional
-    public int deleteReview(int id) {
-        int result = 0;
+    public void deleteReview(int id) {
 
-        try {
-            reviewRepository.deleteById(id);
-            result++;
-        } catch (Exception e) {
-            log.info("리뷰 삭제 실패");
-        }
-
-        return result;
+        reviewRepository.deleteById(id);
     }
 }

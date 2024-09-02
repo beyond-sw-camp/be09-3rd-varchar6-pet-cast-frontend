@@ -32,14 +32,17 @@ public class ReviewController {
     @PostMapping("")
     private ResponseEntity<ResponseMessage> createReview(@RequestBody ReviewCreateRequestDTO reviewCreateRequestDTO){
 
-        int result = reviewService.insertReview(reviewCreateRequestDTO);
+        reviewService.insertReview(reviewCreateRequestDTO);
 
-
-        if(result == 1)
-            return ResponseEntity.ok(new ResponseMessage(201, "리뷰 생성 성공", null));
-        else
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(new ResponseMessage(500, "리뷰 생성 실패", null));
+        return ResponseEntity
+            .ok()
+            .body(
+                ResponseMessage.builder()
+                    .httpStatus(HttpStatus.CREATED.value())
+                    .message("리뷰 생성 성공")
+                    .result(null)
+                    .build()
+            );
     }
 
     @PutMapping("")
@@ -47,19 +50,31 @@ public class ReviewController {
 
         ReviewResponseDTO responseDTO = reviewService.updateReview(reviewUpdateRequestDTO);
 
-        return ResponseEntity.ok(new ResponseMessage(201, "리뷰 수정 성공", responseDTO));
+        return ResponseEntity
+            .ok()
+            .body(
+                ResponseMessage.builder()
+                    .httpStatus(HttpStatus.CREATED.value())
+                    .message("리뷰 수정 성공")
+                    .result(responseDTO)
+                    .build()
+            );
     }
 
     @DeleteMapping("")
     private ResponseEntity<ResponseMessage> deleteReview(@RequestBody Map<String, Integer> request){
         int id = request.get("id");
-        int result = reviewService.deleteReview(id);
 
-        if(result == 1)
-            return ResponseEntity.ok(new ResponseMessage(201, "리뷰 삭제 성공", null));
-        else
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(new ResponseMessage(500, "리뷰 삭제 실패", null));
+        return ResponseEntity
+            .ok()
+            .body(
+                ResponseMessage.builder()
+                    .httpStatus(HttpStatus.OK.value())
+                    .message("리뷰 삭제 성공")
+                    .result(null)
+                    .build()
+            );
+ 
     }
 
 }
