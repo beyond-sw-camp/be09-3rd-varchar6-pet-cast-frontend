@@ -30,16 +30,16 @@ public class QnaController {
 
         List<QnaDTO> responseQnas = qnaService.getQnaByCompanyId(companyId);
 
-        return ResponseEntity.ok(new ResponseMessage(200, "이벤트 조회 성공"
+        return ResponseEntity.ok(new ResponseMessage(200, "Q&A 조회 성공"
                 , responseQnas));
     }
 
     @GetMapping("/questioner/{questionerId}")
-    private ResponseEntity<ResponseMessage> findEventByCustomer(@PathVariable Integer questionerId){
+    private ResponseEntity<ResponseMessage> getQnaByQuestionerId(@PathVariable Integer questionerId){
 
         List<QnaDTO> responseQnas = qnaService.getQnaByQuestionerId(questionerId);
 
-        return ResponseEntity.ok(new ResponseMessage(200, "이벤트 조회 성공"
+        return ResponseEntity.ok(new ResponseMessage(200, "Q&A 조회 성공"
                 , responseQnas));
     }
 
@@ -48,7 +48,7 @@ public class QnaController {
 
         QnaDTO responseQna = qnaService.getQnaById(QnaId);
 
-        return ResponseEntity.ok(new ResponseMessage(200, "이벤트 조회 성공"
+        return ResponseEntity.ok(new ResponseMessage(200, "Q&A 조회 성공"
                 , responseQna));
     }
 }

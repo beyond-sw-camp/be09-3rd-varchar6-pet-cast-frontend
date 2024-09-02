@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class QnaSetActiveRequestDTO {
+public class QnaDeleteAnswerRequestDTO {
     private String companyId;
     private int id;
     /* 설명. answererId를 통해서 companyId의 memberId에 속한지 알 수 있다.*/

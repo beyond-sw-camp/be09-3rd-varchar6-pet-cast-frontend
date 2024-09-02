@@ -1,7 +1,7 @@
 package com.varchar6.petcast.domain.qna.command.application.service;
 
 import com.varchar6.petcast.domain.qna.command.application.dto.request.QnaCreateRequestDTO;
-import com.varchar6.petcast.domain.qna.command.application.dto.request.QnaSetActiveRequestDTO;
+import com.varchar6.petcast.domain.qna.command.application.dto.request.QnaDeleteAnswerRequestDTO;
 import com.varchar6.petcast.domain.qna.command.application.dto.request.QnaUpdateRequestDTO;
 import com.varchar6.petcast.domain.qna.command.application.dto.response.QnaResponseDTO;
 import com.varchar6.petcast.domain.qna.command.domain.aggregate.Qna;
@@ -57,11 +57,6 @@ public class QnaServiceImpl implements QnaService{
     public QnaResponseDTO updateQna(QnaUpdateRequestDTO qnaUpdateRequestDTO) {
         Qna qna = qnaRepository.findById(qnaUpdateRequestDTO.getId()).orElse(null);
 
-        /* 설명.
-         * answererId와 tbl_company의 Id == companyId 조회해서 해당하는 memberId조회
-         * 가져오는 법을 까먹었다. 그냥 모르는 거 였다
-        * */
-
 //        CompanyDTO companyDTO = companyClient.getCompanyById(qnaUpdateRequestDTO.getCompanyId());
 //
 //        // 데이터 검증: Company의 memberId와 answererId 비교
@@ -80,11 +75,11 @@ public class QnaServiceImpl implements QnaService{
 
     @Override
     @Transactional
-    public QnaResponseDTO setQnaActive(QnaSetActiveRequestDTO qnaSetActiveRequestDTO) {
-        Qna qna = qnaRepository.findById(qnaSetActiveRequestDTO.getId()).orElse(null);
+    public QnaResponseDTO deleteQnaAnswer(QnaDeleteAnswerRequestDTO qnaDeleteAnswerRequestDTO) {
+        Qna qna = qnaRepository.findById(qnaDeleteAnswerRequestDTO.getId()).orElse(null);
 
         /* 설명. 답변자 아이디와 db의 아이디와 비교 */
-        if (qna != null && qna.getAnswererId() != qnaSetActiveRequestDTO.getAnswererId()) {
+        if (qna != null && qna.getAnswererId() != qnaDeleteAnswerRequestDTO.getAnswererId()) {
             throw new IllegalArgumentException("검증 실패: 업체에 등록된 아이디와 일치하지 않습니다.");
         }
 
@@ -94,4 +89,19 @@ public class QnaServiceImpl implements QnaService{
 
         return qnaResponseDTO;
     }
+
+    @Override
+    public int setQnaActive(int id) {
+        int result = 0;
+
+        try {
+            qnaRepository.deleteById(id);
+            result++;
+        } catch (Exception e) {
+            log.info("리뷰 삭제 실패");
+        }
+
+        return result;
+    }
+
 }

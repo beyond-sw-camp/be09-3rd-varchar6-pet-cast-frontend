@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.varchar6.petCast.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.varchar6.petCast.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/petCast.iml" filepath="$PROJECT_DIR$/.idea/petCast.iml" />
     </modules>
   </component>

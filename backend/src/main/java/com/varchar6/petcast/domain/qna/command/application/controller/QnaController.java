@@ -2,7 +2,7 @@ package com.varchar6.petcast.domain.qna.command.application.controller;
 
 import com.varchar6.petcast.common.response.ResponseMessage;
 import com.varchar6.petcast.domain.qna.command.application.dto.request.QnaCreateRequestDTO;
-import com.varchar6.petcast.domain.qna.command.application.dto.request.QnaSetActiveRequestDTO;
+import com.varchar6.petcast.domain.qna.command.application.dto.request.QnaDeleteAnswerRequestDTO;
 import com.varchar6.petcast.domain.qna.command.application.dto.request.QnaUpdateRequestDTO;
 import com.varchar6.petcast.domain.qna.command.application.dto.response.QnaResponseDTO;
 import com.varchar6.petcast.domain.qna.command.application.service.QnaService;
@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @Slf4j
 @RestController(value = "commandQnaController")
@@ -45,10 +47,21 @@ public class QnaController {
                 , qnaResponseDTO));
     }
 
-    @PutMapping("/active")
-    private ResponseEntity<ResponseMessage> setQnaActive(@RequestBody QnaSetActiveRequestDTO qnaSetActiveRequestDTO){
+    @DeleteMapping("")
+    private ResponseEntity<ResponseMessage> setQnaActive(@RequestBody Map<String, Integer> request){
+        int id = request.get("id");
+        int result = qnaService.setQnaActive(id);
 
-        QnaResponseDTO qnaResponseDTO = qnaService.setQnaActive(qnaSetActiveRequestDTO);
+        if(result == 1)
+            return ResponseEntity.ok(new ResponseMessage(201, "Q&A 삭제 성공", null));
+        else
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseMessage(500, "Q&A 삭제 실패", null));
+    }
+    @PutMapping("/answer")
+    private ResponseEntity<ResponseMessage> deleteQnaAnswer(@RequestBody QnaDeleteAnswerRequestDTO qnaDeleteAnswerRequestDTO){
+
+        QnaResponseDTO qnaResponseDTO = qnaService.deleteQnaAnswer(qnaDeleteAnswerRequestDTO);
 
         return ResponseEntity.ok(new ResponseMessage(201, "Q&A 수정 성공"
                 , qnaResponseDTO));

@@ -1,7 +1,6 @@
 package com.varchar6.petcast.domain.qna.query.service;
 
 import com.varchar6.petcast.domain.qna.query.dto.QnaDTO;
-import com.varchar6.petcast.domain.report.query.dto.ReportDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -43,4 +42,5 @@ class QnaServiceTests {
 
         assertEquals(qnaDTO.getId(), targetId);
     }
+
 }
