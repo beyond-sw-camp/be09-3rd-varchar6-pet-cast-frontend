@@ -1,7 +1,5 @@
 package com.varchar6.petcast.domain.report.command.application.service;
 
-import com.varchar6.petcast.domain.qna.command.domain.aggregate.Qna;
-import com.varchar6.petcast.domain.qna.command.domain.repository.QnaRepository;
 import com.varchar6.petcast.domain.report.command.application.dto.request.ReportCreateRequestDTO;
 import com.varchar6.petcast.domain.report.command.domain.aggregate.Report;
 import com.varchar6.petcast.domain.report.command.domain.repository.ReportRepository;
