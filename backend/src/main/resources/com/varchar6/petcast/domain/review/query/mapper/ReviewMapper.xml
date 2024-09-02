@@ -23,7 +23,8 @@
       JOIN TBL_EVENT B ON (A.EVENT_ID = B.ID)
      WHERE B.MEMBER_ID = #{ customerId }
        AND A.ID &lt; #{ lastReviewId }
-     limit 10
+     ORDER BY A.ID DESC
+     LIMIT 10
   </select>
 
   <select id="selectReviewByCompanyId" resultMap="ReviewResultMap" parameterType="map">
@@ -37,6 +38,7 @@
       JOIN TBL_EVENT B ON (A.EVENT_ID = B.ID)
      WHERE B.COMPANY_ID = #{ companyId }
        AND A.ID &lt; #{ lastReviewId }
-     limit 10
+     ORDER BY A.ID DESC
+     LIMIT 10
   </select>
 </mapper>

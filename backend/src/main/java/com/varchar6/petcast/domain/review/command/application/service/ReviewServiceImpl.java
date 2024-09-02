@@ -41,12 +41,19 @@ public class ReviewServiceImpl implements ReviewService {
     public ReviewResponseDTO updateReview(ReviewUpdateRequestDTO reviewUpdateRequestDTO) {
         Review review = reviewRepository.findById(reviewUpdateRequestDTO.getId()).orElse(null);
 
-        if(!"".equals(reviewUpdateRequestDTO.getComment()))
+        if (review == null)
+            throw new IllegalArgumentException("Review not found with id: " + reviewUpdateRequestDTO.getId());
+
+        if (reviewUpdateRequestDTO.getComment() != null && !reviewUpdateRequestDTO.getComment().isEmpty())
             review.setComment(reviewUpdateRequestDTO.getComment());
-        else if (!"".equals(reviewUpdateRequestDTO.getTitle()))
+
+        if (reviewUpdateRequestDTO.getTitle() != null && !reviewUpdateRequestDTO.getTitle().isEmpty())
             review.setTitle(reviewUpdateRequestDTO.getTitle());
-        else if (reviewUpdateRequestDTO.getScore() != null)
+
+        if (reviewUpdateRequestDTO.getScore() != null)
             review.setScore(reviewUpdateRequestDTO.getScore());
+
+        reviewRepository.save(review);
 
         ReviewResponseDTO responseDTO = modelMapper.map(review, ReviewResponseDTO.class);
 

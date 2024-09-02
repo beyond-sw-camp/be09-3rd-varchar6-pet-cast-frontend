@@ -25,6 +25,10 @@ public class ReviewServiceImpl implements ReviewService {
     @Transactional
     public List<ReviewDTO> findReviewByCompany(Integer companyId, Integer lastReviewId) {
         Map<String, String> params = new HashMap<String, String>();
+
+        if(lastReviewId == null || lastReviewId == 0)
+            lastReviewId = Integer.MAX_VALUE;
+
         params.put("companyId", String.valueOf(companyId));
         params.put("lastReviewId", String.valueOf(lastReviewId));
 
@@ -36,6 +40,10 @@ public class ReviewServiceImpl implements ReviewService {
     @Transactional
     public List<ReviewDTO> findEventByCustomer(Integer userId, Integer lastReviewId) {
         Map<String, String> params = new HashMap<String, String>();
+
+        if(lastReviewId == null || lastReviewId == 0)
+            lastReviewId = Integer.MAX_VALUE;
+
         params.put("customerId", String.valueOf(userId));
         params.put("lastReviewId", String.valueOf(lastReviewId));
 
