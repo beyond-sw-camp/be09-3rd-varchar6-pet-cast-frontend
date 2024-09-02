@@ -6,6 +6,7 @@ import com.varchar6.petcast.domain.gather.query.mapper.GatherMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service(value="queryGatherServiceImpl")
@@ -18,8 +19,13 @@ public class GatherServiceImpl implements GatherService{
         this.gatherMapper = gatherMapper;
     }
 
-    public List<GatherDTO> findAllGather(int userId) {
-        return gatherMapper.selectGatherById(userId);
+    public List<String> findAllGather(int userId) {
+        List<GatherDTO> result =  gatherMapper.selectGatherById(userId);
+        List<String> listOfNames = new ArrayList<>();
+        for(int i=0;i<result.size();i++){
+            listOfNames.add(result.get(i).getName());
+        }
+        return listOfNames;
     }
 
     public GatherDetailDTO findDetailGather(int gatherId) {
@@ -34,9 +40,7 @@ public class GatherServiceImpl implements GatherService{
                 .url(gatherInfo.getUrl())
                 .updatedAt(gatherInfo.getUpdatedAt())
                 .createdAt(gatherInfo.getCreatedAt())
-                .activeYn(gatherInfo.isActiveYn())
-                .invitationId(gatherInfo.getInvitationId())
-                .intitationContent(gatherInfo.getIntitationContent())
+                .active(gatherInfo.isActive())
                 .members(memberInfo)
                 .build();
 

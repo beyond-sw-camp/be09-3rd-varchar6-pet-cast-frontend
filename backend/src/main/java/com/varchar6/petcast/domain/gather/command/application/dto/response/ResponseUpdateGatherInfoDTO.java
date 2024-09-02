@@ -13,7 +13,5 @@ public class ResponseUpdateGatherInfoDTO {
     private String content;
     private int number;
     private String url;
-    private boolean activeYn;
-    private String invitationId;
-    private String invitationContent;
+    private boolean active;
 }

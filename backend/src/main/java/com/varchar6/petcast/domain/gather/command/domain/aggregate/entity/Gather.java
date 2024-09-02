@@ -26,7 +26,7 @@ public class Gather {
     @Column(name = "content")
     private String content;
 
-    @Column(name = "count", nullable = false)
+    @Column(name = "number", nullable = false)
     private int number;
 
     @Column(name = "url")
@@ -38,12 +38,6 @@ public class Gather {
     @Column(name = "created_at")
     private String createdAt;
 
-    @Column(name = "active_yn", nullable = false)
+    @Column(name = "active", nullable = false)
     private boolean active = true;
-
-    @Column(name = "invitation_id", nullable = false)
-    private String invitationId;
-
-    @Column(name = "invitation_content")
-    private String invitationContent;
 }

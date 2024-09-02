@@ -18,10 +18,10 @@ import java.util.Objects;
 @Builder
 public class GatherMemberFK implements Serializable {
 
-    @Column(name = "member_group_member_id", nullable = false)
+    @Column(name = "member_id", nullable = false)
     private int memberId;
 
-    @Column(name = "gather_group_member_id", nullable = false)
+    @Column(name = "group_id", nullable = false)
     private int gatherId;
 
     @Override

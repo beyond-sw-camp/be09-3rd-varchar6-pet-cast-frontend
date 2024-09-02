@@ -14,8 +14,6 @@ public class RequestCreateGatherDTO {
     private int number;
     private String url;
     private boolean active;
-    private String invitationId;
-    private String invitationContent;
 
     private int userId;
 }

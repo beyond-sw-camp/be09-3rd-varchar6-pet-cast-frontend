@@ -50,8 +50,6 @@ public class GatherServiceImpl implements GatherService {
                 .updatedAt(currentDate)
                 .createdAt(currentDate)
                 .active(true)
-                .invitationId(requestCreateGatherDTO.getInvitationId())
-                .invitationContent(requestCreateGatherDTO.getInvitationContent())
                 .build();
         Gather newGather = null;
         try {
@@ -78,26 +76,20 @@ public class GatherServiceImpl implements GatherService {
         }
     }
 
-    private static String getNow() {
-        java.util.Date now = new java.util.Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        String currentDate = simpleDateFormat.format(now);
-        return currentDate;
-    }
-
     @Override
     @Transactional
     public ResponseUpdateGatherInfoDTO updateGatherInfo(RequestUpdateGatherInfoDTO requestUpdateGatherDTO) {
         String currentDate = getNow();
 
         // 모임의 LEADER인지 확인
-        GatherMemberFK gatherMemberPK = GatherMemberFK.builder()
+        GatherMemberFK gatherMemberFK = GatherMemberFK.builder()
                 .memberId(requestUpdateGatherDTO.getUserId())
                 .gatherId(requestUpdateGatherDTO.getGatherId())
                 .build();
 
         // 역할 검사
-        GatherMember checkMemberRole = gatherMemberRepository.findById(gatherMemberPK).orElseThrow(() -> new NoSuchElementException("GatherMember not found with id: " + gatherMemberPK));
+        GatherMember checkMemberRole = gatherMemberRepository.findById(gatherMemberFK)
+                .orElseThrow(() -> new NoSuchElementException(new NoSuchElementException("GatherMember not found with id: " + gatherMemberFK)));
 
         // 모임 수정
         ResponseUpdateGatherInfoDTO responseUpdateGatherInfoDTO = null;
@@ -163,8 +155,6 @@ public class GatherServiceImpl implements GatherService {
             // 2-1. 모임에 초대장 내용 update
             Gather existGather = gatherRepository.findById(requestInvitationDTO.getGatherId())
                     .orElseThrow(() -> new NoSuchElementException("GatherMember not found with id: " + gatherMemberFK));
-            existGather.setInvitationId(requestInvitationDTO.getInvitationId());
-            existGather.setInvitationContent(requestInvitationDTO.getInvitationContent());
             existGather.setUpdatedAt(currentDate);
 
             try {
@@ -175,7 +165,7 @@ public class GatherServiceImpl implements GatherService {
 
             // 2-2. 초대장 테이블에 insert
             Invitation invitation = Invitation.builder()
-                    .activeYn(true)
+                    .active(true)
                     .createdAt(currentDate)
                     .userId(gatherMemberFK.getMemberId())
                     .gatherId(gatherMemberFK.getGatherId())
@@ -197,8 +187,6 @@ public class GatherServiceImpl implements GatherService {
                 responseSendInvitaionDTO = ResponseSendInvitaionDTO.builder()
                         .userId(requestInvitationDTO.getUserId())
                         .gatherId(requestInvitationDTO.getGatherId())
-                        .invitationId(requestInvitationDTO.getInvitationId())
-                        .invitationContent(requestInvitationDTO.getInvitationContent())
                         .build();
             } catch (Exception e) {
                 log.error("return 만들다 실패");
@@ -213,7 +201,7 @@ public class GatherServiceImpl implements GatherService {
         Invitation invitation = invitationRepository.findById(requestInvitationDTO
                 .getInvitationId()).orElseThrow(() -> new NoSuchElementException("Invitation not found with id: " + requestInvitationDTO.getInvitationId()));
 
-        invitation.setActiveYn(true);
+        invitation.setActive(true);
         ResponseInvitationDTO responseInvitationDTO = null;
         try {
             responseInvitationDTO = modelMapper.map(invitation, ResponseInvitationDTO.class);
@@ -230,7 +218,7 @@ public class GatherServiceImpl implements GatherService {
         Invitation invitation = invitationRepository.findById(requestInvitationDTO
                 .getInvitationId()).orElseThrow(() -> new NoSuchElementException("Invitation not found with id: " + requestInvitationDTO.getInvitationId()));
 
-        invitation.setActiveYn(false);
+        invitation.setActive(false);
         ResponseInvitationDTO responseInvitationDTO = null;
         try {
             responseInvitationDTO = modelMapper.map(invitation, ResponseInvitationDTO.class);
@@ -252,6 +240,7 @@ public class GatherServiceImpl implements GatherService {
                 .orElseThrow(() -> new NoSuchElementException("해당 모임이 없습니다."));
 
         if (foundGather.getRole() == GatherRole.LEADER) {
+
             // tbl_group_member 상태 변경
             gatherMemberFK = GatherMemberFK.builder()
                     .gatherId(requestDeleteMemberDTO.getGatherId())
@@ -261,10 +250,16 @@ public class GatherServiceImpl implements GatherService {
             // 삭제
             gatherMemberRepository.deleteById(gatherMemberFK);
             try {
-                GatherMember deleteMember = modelMapper.map(foundGather, GatherMember.class);
+                modelMapper.map(foundGather, GatherMember.class);
             }catch (Exception e){
                 log.error("매핑 실패!");
             }
         }
+    }
+
+    private static String getNow() {
+        java.util.Date now = new java.util.Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        return simpleDateFormat.format(now);
     }
 }

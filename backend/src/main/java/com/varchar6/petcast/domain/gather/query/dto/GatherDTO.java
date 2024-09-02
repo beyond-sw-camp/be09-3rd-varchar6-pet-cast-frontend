@@ -15,7 +15,5 @@ public class GatherDTO {
     private String url;
     private String updatedAt;
     private String createdAt;
-    private boolean activeYn;
-    private String invitationId;
-    private String intitationContent;
+    private boolean active;
 }

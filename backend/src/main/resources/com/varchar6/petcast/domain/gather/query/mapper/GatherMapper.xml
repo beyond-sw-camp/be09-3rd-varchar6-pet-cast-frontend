@@ -20,11 +20,9 @@
         SELECT
                A.name
           FROM tbl_gather A
-         WHERE A.id = (SELECT B.gather_group_member_id
-                         FROM tbl_group_member B
-                        WHERE B.member_group_member_id = (SELECT C.id
-                                                            FROM tbl_member C
-                                                           WHERE C.id = #{ user_id }))
+         WHERE A.id IN (SELECT B.group_id
+                          FROM tbl_group_member B
+                         WHERE B.member_id = #{ user_id })
          ORDER BY A.created_at DESC
     </select>
 
@@ -32,11 +30,11 @@
         SELECT
                A.name
              , A.content
-             , A.count
+             , A.number
              , A.url
              , A.updated_at
              , A.created_at
-             , A.active_yn
+             , A.active
           FROM tbl_gather A
          WHERE A.id = #{ gather_id }
     </select>
@@ -45,21 +43,21 @@
         SELECT
                A.name
           FROM tbl_member A
-         WHERE A.id IN (SELECT B.member_group_member_id
+         WHERE A.id IN (SELECT B.member_id
                           FROM tbl_group_member B
-                         WHERE B.gather_group_member_id = #{ gather_id })
+                         WHERE B.group_id = #{ gather_id })
     </select>
 
     <select id="selectGroupMembersIdById" resultType="_int" parameterType="map">
         SELECT
-               A.member_group_member_id
+               A.member_id
           FROM tbl_group_member A
-         WHERE A.gather_group_member_id = (SELECT
-                                                  B.gather_invitation_id
+         WHERE A.group_id = (SELECT
+                                                  B.id
                                              FROM tbl_invitation B
-                                            WHERE B.member_invitation_id = #{ user_id }
+                                            WHERE B.member_id = #{ user_id }
                                               AND B.id = #{ invitation_id }
-                                              AND B.active_yn = 1)
+                                              AND B.active = 1)
     </select>
 
     <select id="selectGroupMembersNameById" resultType="String" parameterType="_int">
@@ -67,8 +65,8 @@
                A.name
           FROM tbl_member A
          WHERE A.id IN (SELECT
-                               B.member_group_member_id
+                               B.member_id
                           FROM tbl_group_member B
-                         WHERE B.gather_group_member_id = #{ gather_id })
+                         WHERE B.group_id = #{ gather_id })
     </select>
 </mapper>

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface GatherService {
 
-    public List<GatherDTO> findAllGather(int userId);
+    public List<String> findAllGather(int userId);
 
     public GatherDetailDTO findDetailGather(int gatherId);
 

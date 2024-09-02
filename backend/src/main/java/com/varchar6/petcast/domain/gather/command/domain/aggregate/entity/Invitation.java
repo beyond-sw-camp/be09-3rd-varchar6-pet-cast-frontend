@@ -18,15 +18,15 @@ public class Invitation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "active_yn")
-    private boolean activeYn;
+    @Column(name = "active")
+    private boolean active;
 
     @Column(name = "created_at")
     private String createdAt;
 
-    @Column(name = "member_invitation_id")
+    @Column(name = "member_id")
     private int userId;
 
-    @Column(name = "gather_invitation_id")
+    @Column(name = "gather_id")
     private int gatherId;
 }

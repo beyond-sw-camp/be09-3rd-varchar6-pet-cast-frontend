@@ -14,7 +14,7 @@ import lombok.*;
 @ToString
 public class GatherMember {
 
-    @Column(name = "role", nullable = false)
+    @Column(name = "group_role", nullable = false)
     @Enumerated(EnumType.STRING)
     private GatherRole role = GatherRole.LEADER;
 

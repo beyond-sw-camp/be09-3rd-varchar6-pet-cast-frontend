@@ -24,7 +24,7 @@ public class GatherController {
 
     @GetMapping("/grouplist/{userId}")
     public ResponseEntity<ResponseMessage> findAllGather(@PathVariable("userId") int userId){
-        List<GatherDTO> gathers = gatherService.findAllGather(userId);
+        List<String> gathers = gatherService.findAllGather(userId);
 
         ResponseMessage responseMessage = ResponseMessage.builder()
                 .httpStatus(HttpStatus.OK.value())
