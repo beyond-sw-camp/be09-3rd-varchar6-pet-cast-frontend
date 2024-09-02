@@ -1,5 +1,6 @@
 package com.varchar6.petcast.domain.member.command.application.controller;
 
+import com.varchar6.petcast.common.response.ResponseMessage;
 import com.varchar6.petcast.domain.member.command.application.dto.request.MemberRequestDTO;
 import com.varchar6.petcast.domain.member.command.application.dto.response.MemberResponseDTO;
 import com.varchar6.petcast.domain.member.command.application.service.MemberService;
@@ -37,7 +38,7 @@ public class MemberController {
     }
 
     @PostMapping("/sign-up")
-    public ResponseEntity<ResponseRegistUserVO> signUp(@RequestBody RequestRegistUserVO newUser){
+    public ResponseEntity<ResponseMessage> signUp(@RequestBody RequestRegistUserVO newUser){
 
         MemberRequestDTO memberRequestDTO = modelMapper.map(newUser, MemberRequestDTO.class);
 
@@ -45,6 +46,14 @@ public class MemberController {
 
         ResponseRegistUserVO responseMember = modelMapper.map(memberResponseDTO, ResponseRegistUserVO.class);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(responseMember);
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.CREATED.value())
+                                .message("Login completed")
+                                .result(responseMember)
+                                .build()
+                );
     }
 }
