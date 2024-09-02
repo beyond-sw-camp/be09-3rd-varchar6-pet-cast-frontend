@@ -57,11 +57,11 @@ public class WebSecurity {
 
         http.authorizeHttpRequests(authz ->
                 authz
-                        .requestMatchers(new AntPathRequestMatcher("/api/v1/**")).permitAll()     // for dev
+                        .requestMatchers(new AntPathRequestMatcher("/api/v1/**")).hasRole(Role.CUSTOMER.getType())     // for dev
                         .requestMatchers(new AntPathRequestMatcher("/login")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/api/v1/members/sign-up")).permitAll()
-                        .requestMatchers(new AntPathRequestMatcher("/api/v1/notice", "POST")).hasRole(Role.ADMIN.getType())
-                        .requestMatchers(new AntPathRequestMatcher("/api/v1/**")).hasRole(Role.CUSTOMER.getType())
+//                        .requestMatchers(new AntPathRequestMatcher("/api/v1/notice", "POST")).hasRole(Role.ADMIN.getType())
+//                        .requestMatchers(new AntPathRequestMatcher("/api/v1/**")).hasRole(Role.CUSTOMER.getType())
                         .anyRequest().authenticated()
         )
                 .authenticationManager(authenticationManager)       // authenticationManager 등록
