@@ -39,17 +39,17 @@ class RequestServiceTests {
         RequestResponseDTO request = requestService.findRequestById(requestId);
         assertEquals(requestId, request);
     }
-    @Test
-    @Transactional
-    public void 요청서_작성_테스트() {
-        RequestRequestDTO.setContent("요청서 작성 테스트");
-        RequestRequestDTO.setCost(50000);
-        RequestRequestDTO.setLocation("수원");
-        RequestRequestDTO.setTime();
-        private String createdAt;
-        private String updatedAt;
-        private boolean active;
-    }
+//    @Test
+//    @Transactional
+//    public void 요청서_작성_테스트() {
+//        RequestRequestDTO.setContent("요청서 작성 테스트");
+//        RequestRequestDTO.setCost(50000);
+//        RequestRequestDTO.setLocation("수원");
+//        RequestRequestDTO.setTime();
+//        private String createdAt;
+//        private String updatedAt;
+//        private boolean active;
+//    }
 
     @Test
     @Transactional

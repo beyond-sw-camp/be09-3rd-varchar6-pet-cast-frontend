@@ -1,7 +1,7 @@
 package com.varchar6.petcast.domain.proposalandestimate.service;
 
+
 import com.varchar6.petcast.domain.proposalandestimate.aggregate.Estimate;
-import com.varchar6.petcast.domain.proposalandestimate.aggregate.EstimateStatus;
 import com.varchar6.petcast.domain.proposalandestimate.dto.EstimateRequestDTO;
 import com.varchar6.petcast.domain.proposalandestimate.dto.EstimateResponseDTO;
 import com.varchar6.petcast.domain.proposalandestimate.repository.EstimateMapper;
@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
+import static com.varchar6.petcast.domain.proposalandestimate.aggregate.EstimateStatus.SENT;
 
 @Service
 @Slf4j
@@ -34,17 +36,24 @@ public class EstimateServiceImpl implements EstimateService {
     // 고객 견적서 목록 조회
     @Override
     public List<EstimateResponseDTO> findAllEstimatesByMemberId(int memberId) {
-        List<Estimate> estimates = estimateMapper.findAllEstimatesByMemberId(memberId);
-        return estimates.stream().map(this::entityToResponseDTO).toList();
+//        List<Estimate> estimates = estimateMapper.findAllEstimatesByMemberId(memberId);
+        return estimateRepository.findAll().stream().map(Estimate -> {
+            EstimateResponseDTO estimateResponseDTO = new EstimateResponseDTO();
+
+            estimateResponseDTO.setCost(Estimate.getCost());
+//            estimateResponseDTO.setStatus(Estimate.getStatus());
+            estimateResponseDTO.setCreated_at(Estimate.getCreated_at());
+            estimateResponseDTO.setUpdated_at(Estimate.getUpdated_at());
+            estimateResponseDTO.setActive(Estimate.isActive());
+        }).toList();
     }
 
     // 업체 견적서 목록 조회
     @Override
     public List<EstimateResponseDTO> findAllEstimatesByCompanyId(int companyId) {
-        List<Estimate> estimates = estimateMapper.findAllEstimatesByCompanyId(companyId);
-        return estimates.stream()
-                        .map(this::entityToResponseDTO)
-                        .toList();
+//        List<Estimate> estimates = estimateMapper.findAllEstimatesByCompanyId(companyId);
+
+        return estimateMapper.findAllEstimatesByCompanyId(companyId);
     }
 
     // 견적서 상세 조회
@@ -60,8 +69,16 @@ public class EstimateServiceImpl implements EstimateService {
     // 견적서 작성
     @Transactional
     public EstimateResponseDTO createEstimate(EstimateRequestDTO estimateRequestDTO) {
-        Estimate estimate = estimateDTOToEntity(estimateRequestDTO);
-        return estimateRepository.save(estimate);
+        EstimateResponseDTO estimateResponseDTO = new EstimateResponseDTO();
+//        Estimate estimate = estimateDTOToEntity(estimateRequestDTO);
+        estimateResponseDTO.setCost(Estimate.getCost);
+        estimateResponseDTO.setStatus(Estimate.getStatus);
+//        private String created_at;
+//        private String updated_at;
+//        private boolean active;
+//        private int proposal;
+//        private int companyInfo;
+//        return estimateRepository.save(estimate);
     }
 
     // 견적서 삭제
@@ -98,12 +115,12 @@ public class EstimateServiceImpl implements EstimateService {
     private Estimate estimateDTOToEntity(EstimateRequestDTO estimateRequestDTO) {
         return Estimate.builder()
                 .cost(estimateRequestDTO.getCost())
-                .status(EstimateStatus.SENT)
+                .status(SENT)
                 .created_at(LocalDateTime.now().format(FORMATTER))
                 .updated_at(LocalDateTime.now().format(FORMATTER))
                 .active(true)
-//                .proposal(estimateRequestDTO.getProposal())
-//                .companyInfo(estimateRequestDTO.getCompanyInfo())
+                .proposal_id(estimateRequestDTO.getProposal_id())
+                .companyInfo(estimateRequestDTO.getCompanyInfo())
                 .build();
     }
 
@@ -112,9 +129,11 @@ public class EstimateServiceImpl implements EstimateService {
                 .id(estimate.getId())
                 .cost(estimate.getCost())
                 .status(estimate.getStatus())
-                .created_at(LocalDateTime.now().format(FORMATTER))
-                .updated_at(LocalDateTime.now().format(FORMATTER))
+                .created_at(estimate.getCreated_at())
+                .updated_at(estimate.getUpdated_at())
                 .active(estimate.isActive())
+                .proposal(estimate.getProposal_id())
+                .companyInfo(estimate.getCompanyInfo())
                 .build();
     }
 }

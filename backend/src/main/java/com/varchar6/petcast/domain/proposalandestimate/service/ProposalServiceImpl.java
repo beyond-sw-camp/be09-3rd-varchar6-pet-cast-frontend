@@ -2,6 +2,7 @@ package com.varchar6.petcast.domain.proposalandestimate.service;
 
 import com.varchar6.petcast.domain.proposalandestimate.aggregate.Proposal;
 import com.varchar6.petcast.domain.proposalandestimate.aggregate.ProposalStatus;
+import com.varchar6.petcast.domain.proposalandestimate.dto.EstimateResponseDTO;
 import com.varchar6.petcast.domain.proposalandestimate.dto.ProposalRequestDTO;
 import com.varchar6.petcast.domain.proposalandestimate.dto.ProposalResponseDTO;
 import com.varchar6.petcast.domain.proposalandestimate.repository.ProposalMapper;
@@ -30,6 +31,7 @@ public class ProposalServiceImpl implements ProposalService{
         this.proposalMapper = proposalMapper;
         this.proposalRepository = proposalRepository;
     }
+
 
     // 고객 기획서 목록 조회
     @Override

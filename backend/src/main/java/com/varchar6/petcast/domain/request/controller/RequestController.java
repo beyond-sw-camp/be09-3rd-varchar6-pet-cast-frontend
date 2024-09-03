@@ -1,6 +1,7 @@
 package com.varchar6.petcast.domain.request.controller;
 
 
+import com.varchar6.petcast.common.response.ResponseMessage;
 import com.varchar6.petcast.domain.member.command.domain.aggregate.Member;
 import com.varchar6.petcast.domain.request.dto.RequestRequestDTO;
 import com.varchar6.petcast.domain.request.dto.RequestResponseDTO;
@@ -25,32 +26,55 @@ public class RequestController {
         this.requestMapper = requestMapper;
     }
 
+
     // 고객 요청서 목록 조회
     @GetMapping("/list/{memberId}")
-    public ResponseEntity<List<RequestResponseDTO>> getRequestsByCustomer(@PathVariable int memberId) {
+    public ResponseEntity<ResponseMessage> findRequestsByCustomer(@PathVariable int memberId) {
         List<RequestResponseDTO> requests = requestService.findAllRequestsByMemberId(memberId);
-        return ResponseEntity.ok(requests);
+        return ResponseEntity.ok()
+                             .body(ResponseMessage.builder()
+                                                     .httpStatus(HttpStatus.OK.value())
+                                                     .message("고객이 작성한 요청서 목록 조회 성공")
+                                                     .result(requests)
+                                                     .build());
     }
 
     // 업체 요청서 목록 조회
     @GetMapping("/list/{companyId}")
-    public ResponseEntity<List<RequestResponseDTO>> getRequestsForCompany(@PathVariable int companyId) {
+    public ResponseEntity<ResponseMessage> findRequestsForCompany(@PathVariable int companyId) {
         List<RequestResponseDTO> requests = requestService.findAllRequestsByCompanyId(companyId);
-        return ResponseEntity.ok(requests);
+        return ResponseEntity.ok()
+                             .body(ResponseMessage.builder()
+                                                  .httpStatus(HttpStatus.OK.value())
+                                                  .message("업체가 받은 요청서 목록 조회 성공")
+                                                  .result(requests)
+                                                  .build());
     }
 
     // 요청서 상세 조회
     @GetMapping("/list/{requestId}")
-    public ResponseEntity<RequestResponseDTO> getRequestById(@PathVariable int requestId) {
+    public ResponseEntity<ResponseMessage> getRequestById(@PathVariable int requestId) {
         RequestResponseDTO request = requestService.findRequestById(requestId);
-        return ResponseEntity.ok(request);
+        return ResponseEntity.ok()
+                .body(ResponseMessage.builder()
+                        .httpStatus(HttpStatus.OK.value())
+                        .message("요청서 상세 조회 성공")
+                        .result(request)
+                        .build());
     }
 
     // 요청서 작성
     @PostMapping
-    public ResponseEntity<RequestResponseDTO> createRequest(@RequestBody RequestRequestDTO requestRequestDTO) {
-        RequestResponseDTO createdRequest = requestService.createRequest(requestRequestDTO);
-        return new ResponseEntity<>(createdRequest, HttpStatus.CREATED);
+    public ResponseEntity<ResponseMessage> createRequest(@RequestBody RequestRequestDTO requestRequestDTO) {
+        requestService.createRequest(requestRequestDTO);
+        return ResponseEntity
+                .ok()
+                .body(
+                        RequestResponseDTO.builder()
+                                .status(HttpStatus.CREATED.value())
+                                .message("이벤트 생성 성공")
+                                .result(null)
+                                .build());
     }
 
     // 요청서 삭제

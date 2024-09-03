@@ -42,8 +42,7 @@ public class Proposal {
     @Column(name = "active")
     private boolean active;
 
-    @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
+    @Column(name = "member_id")
+    private int member_id;
 
 }

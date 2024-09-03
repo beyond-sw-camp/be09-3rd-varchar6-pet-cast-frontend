@@ -44,7 +44,7 @@
             r.status,
             r.created_at,
             r.updated_at,
-            r.active_yn,
+            r.active,
             r.company_info_request_id,
             r.member_request_id,
             GROUP_CONCAT(c.name SEPARATOR ', ')

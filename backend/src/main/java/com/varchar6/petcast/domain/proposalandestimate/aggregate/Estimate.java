@@ -42,11 +42,9 @@ public class Estimate {
     @Column(name = "active")
     private boolean active;
 
-//    @ManyToOne
-//    @JoinColumn(name = "company_id")
-//    private CompanyInfo companyInfo;
+    @Column(name = "company_id")
+    private int companyInfo;
 
-//    @ManyToOne
-//    @JoinColumn(name = "proposal_id")
-//    private Proposal proposal;
+    @Column(name = "proposal_id")
+    private int proposal_id;
 }

@@ -52,14 +52,12 @@ public class Request {
     @Column(name = "active")
     private boolean active;
 
-    @ManyToOne
-    @JoinColumn(name = "company_info_request_id")
-    private CompanyInfo companyInfo;
+//    @ManyToOne
+//    @JoinColumn(name = "company_info_request_id")
+//    private CompanyInfo companyInfo;
 
-
-    @ManyToOne
-    @JoinColumn(name = "member_request_id")
-    private Member member;
+    @Column(name = "member_request_id")
+    private int member_id;
 
 
 }

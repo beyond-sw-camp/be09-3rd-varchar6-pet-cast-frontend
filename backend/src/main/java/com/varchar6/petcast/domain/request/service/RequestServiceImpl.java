@@ -1,6 +1,7 @@
 package com.varchar6.petcast.domain.request.service;
 
 import com.varchar6.petcast.domain.request.aggregate.Request;
+import com.varchar6.petcast.domain.request.dto.RequestDTO;
 import com.varchar6.petcast.domain.request.dto.RequestRequestDTO;
 import com.varchar6.petcast.domain.request.dto.RequestResponseDTO;
 import com.varchar6.petcast.domain.request.repository.RequestMapper;
@@ -51,60 +52,23 @@ public class RequestServiceImpl implements RequestService {
 
     // 요청서 상세 조회
     @Override
-    public RequestResponseDTO findRequestById(int requestId) {
-        Request request = requestMapper.findRequestById(requestId);
-        if (request == null) {
+    public RequestDTO findRequestById(int requestId) {
+        if (requestId == null) {
             throw new IllegalArgumentException("해당 " + requestId + " 번 요청서를 찾을 수 없습니다.");
         }
-        return entityToResponseDTO(request);
+        return requestMapper.findRequestById(requestId);
     }
 
-    private RequestResponseDTO entityToResponseDTO(Request request) {
-        return RequestResponseDTO.builder()
-                .id(request.getId())
-                .content(request.getContent())
-                .cost(request.getCost())
-                .location(request.getLocation())
-                .time(request.getTime())
-                .createdAt(LocalDateTime.now()
-                        .format(FORMATTER))
-                .updatedAt(LocalDateTime.now()
-                        .format(FORMATTER))
-                .active(true)
-                .build();
-    }
 
     // 요청서 작성
     @Transactional
     public RequestResponseDTO createRequest(RequestRequestDTO requestRequestDTO) {
-        Request request = requestDTOToEntity(requestRequestDTO);
-        request = requestRepository.save(request);
+        requestRequestDTO.setContent(Request.getContent);
+    }
+//        Request request = requestDTOToEntity(requestRequestDTO);
+//        request = requestRepository.save(request);
         return entityToResponseDTO(request);
     }
-
-    private Request requestDTOToEntity(RequestRequestDTO requestRequestDTO) {
-        return Request.builder()
-                .content(requestRequestDTO.getContent())
-                .cost(requestRequestDTO.getCost())
-                .location(requestRequestDTO.getLocation())
-                .time(requestRequestDTO.getTime())
-                .created_at(LocalDateTime.now().format(FORMATTER))
-                .updated_at(LocalDateTime.now().format(FORMATTER))
-                .active(true)
-                .build();
-    }
-
-//    private RequestResponseDTO entityToResponseDTO(Request request) {
-//        return RequestResponseDTO.builder()
-//                .id(request.getId())
-//                .content(request.getContent())
-//                .cost(request.getCost())
-//                .location(request.getLocation())
-//                .time(request.getTime())
-//                .createdAt(LocalDateTime.now().format(FORMATTER))
-//                .updatedAt(LocalDateTime.now().format(FORMATTER))
-//                .active(request.isActive())
-//                .build();
 
     // 요청서 삭제
     @Transactional
@@ -136,4 +100,30 @@ public class RequestServiceImpl implements RequestService {
         request = requestRepository.save(request);  // 상태 업데이트 저장
         return entityToResponseDTO(request);
     }
+
+    private Request requestDTOToEntity(RequestRequestDTO requestRequestDTO) {
+        return Request.builder()
+                .content(requestRequestDTO.getContent())
+                .cost(requestRequestDTO.getCost())
+                .location(requestRequestDTO.getLocation())
+                .time(requestRequestDTO.getTime())
+                .created_at(LocalDateTime.now().format(FORMATTER))
+                .updated_at(LocalDateTime.now().format(FORMATTER))
+                .active(true)
+                .build();
+    }
+
+    private RequestResponseDTO entityToResponseDTO(Request request) {
+        return RequestResponseDTO.builder()
+                .id(request.getId())
+                .content(request.getContent())
+                .cost(request.getCost())
+                .location(request.getLocation())
+                .time(request.getTime())
+                .createdAt(request.getCreated_at())
+                .updatedAt(request.getUpdated_at())
+                .active(request.isActive())
+                .build();
+
+
 }

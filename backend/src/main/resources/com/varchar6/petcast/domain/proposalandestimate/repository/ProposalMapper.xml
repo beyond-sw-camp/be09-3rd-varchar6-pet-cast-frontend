@@ -46,7 +46,7 @@
             p.updated_at AS proposal_updated_at,
             p.status AS proposal_status,
             p.cost AS proposal_cost,
-            p.active_yn AS proposal_active_yn,
+            p.active AS proposal_active,
             GROUP_CONCAT(c.name SEPARATOR ', ') AS categories,
             COUNT(e.id) AS estimate_id
         FROM

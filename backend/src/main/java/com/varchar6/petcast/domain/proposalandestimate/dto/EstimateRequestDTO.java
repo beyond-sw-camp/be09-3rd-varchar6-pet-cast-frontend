@@ -13,6 +13,6 @@ public class EstimateRequestDTO {
     private String created_at;
     private String updated_at;
     private boolean active;
-    private int proposal;
+    private int proposal_id;
     private int companyInfo;
 }
