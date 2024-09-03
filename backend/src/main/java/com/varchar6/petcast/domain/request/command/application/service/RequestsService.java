@@ -16,11 +16,5 @@ public interface RequestsService {
     void acceptRequest(int requestId);
 
     // 요청서 거절
-    CreateRequestsResponseDTO rejectRequest(int requestId);
-
-    List<CreateRequestsResponseDTO> findAllRequestsByMemberId(int memberId);
-
-    List<CreateRequestsResponseDTO> findAllRequestsByCompanyId(int companyId);
-
-    CreateRequestsResponseDTO findRequestById(int requestId);
+    void rejectRequest(int requestId);
 }

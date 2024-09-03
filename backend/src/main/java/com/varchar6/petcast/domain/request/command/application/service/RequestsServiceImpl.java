@@ -93,38 +93,18 @@ public class RequestsServiceImpl implements RequestsService {
 
     // 요청서 거절
     @Transactional
-    public RequestResponseDTO rejectRequest(int requestId) {
-        Request request = requestRepository.findById(requestId)
+    public void rejectRequest(int requestId) {
+        Requests request = requestsRepository.findById(requestId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 " + requestId + " 번 요청서를 찾을 수 없습니다."));
 
-        request.reject();  // 상태 변경
-        request = requestRepository.save(request);  // 상태 업데이트 저장
-        return entityToResponseDTO(request);
-    }
+        request.setStatus(RequestsStatus.REJECTED); // 상태 변경
 
-    private Request requestDTOToEntity(CreateRequestsRequestDTO requestsRequestDTO) {
-        return Request.builder()
-                .content(requestRequestDTO.getContent())
-                .cost(requestRequestDTO.getCost())
-                .location(requestRequestDTO.getLocation())
-                .time(requestRequestDTO.getTime())
-                .created_at(LocalDateTime.now().format(FORMATTER))
-                .updated_at(LocalDateTime.now().format(FORMATTER))
-                .active(true)
-                .build();
-    }
+        try {
+            request = requestsRepository.save(request);  // 상태 업데이트 저장
+        }catch (Exception e) {
+            log.warn("[Service] 요청서 거절 실패!");
+        }
 
-    private RequestResponseDTO entityToResponseDTO(Request request) {
-        return RequestResponseDTO.builder()
-                .id(request.getId())
-                .content(request.getContent())
-                .cost(request.getCost())
-                .location(request.getLocation())
-                .time(request.getTime())
-                .createdAt(request.getCreated_at())
-                .updatedAt(request.getUpdated_at())
-                .active(request.isActive())
-                .build();
     }
 
 }

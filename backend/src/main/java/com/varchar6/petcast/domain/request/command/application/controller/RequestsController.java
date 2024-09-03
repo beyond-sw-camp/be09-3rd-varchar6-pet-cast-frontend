@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController(value="commandRequestController")
+@RestController(value = "commandRequestController")
 @RequestMapping("/api/v1/requests")
 public class RequestsController {
     private final RequestsService requestsService;
@@ -31,11 +31,11 @@ public class RequestsController {
             message = "요청서 작성 실패!";
         }
         return ResponseEntity.ok(
-                        ResponseMessage.builder()
-                                .httpStatus(HttpStatus.CREATED.value())
-                                .message(message)
-                                .build()
-                );
+                ResponseMessage.builder()
+                        .httpStatus(HttpStatus.CREATED.value())
+                        .message(message)
+                        .build()
+        );
     }
 
     // 요청서 삭제
@@ -45,7 +45,7 @@ public class RequestsController {
         String message = "요청서 삭제 성공!";
         try {
             requestsService.deleteRequest(requestId, memberId);
-        } catch (Exception e){
+        } catch (Exception e) {
             message = "요청서 삭제 실패!";
         }
         return ResponseEntity.ok(
@@ -63,7 +63,7 @@ public class RequestsController {
         String message = "요청서 수락 성공!";
         try {
             requestsService.acceptRequest(requestId);
-        } catch (Exception e){
+        } catch (Exception e) {
             message = "요청서 수락 실패!";
         }
         return ResponseEntity.ok(
@@ -77,10 +77,18 @@ public class RequestsController {
     // 요청서 거절
     @PutMapping("/list/reject/{requestId}")
     public ResponseEntity<ResponseMessage> rejectRequest(@PathVariable int requestId,
-                                                                   @RequestAttribute("memberId") int memberId) {
+                                                         @RequestAttribute("memberId") int memberId) {
         String message = "요청서 거절 성공!";
 
-        CreateRequestsResponseDTO updatedRequest = requestsService.rejectRequest(requestId);
-        return ResponseEntity.ok(updatedRequest);
+        try {
+            requestsService.rejectRequest(requestId);
+        } catch (Exception e) {
+            message = "요청서 거절 실패!";
+        }
+        return ResponseEntity.ok(ResponseMessage.builder()
+                .httpStatus(HttpStatus.NO_CONTENT.value())
+                .message(message)
+                .build()
+        );
     }
 }
