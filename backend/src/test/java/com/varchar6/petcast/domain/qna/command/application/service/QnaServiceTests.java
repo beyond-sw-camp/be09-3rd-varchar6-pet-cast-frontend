@@ -54,7 +54,6 @@ class QnaServiceTests {
     public void 답변_작성_테스트(){
         qnaUpdateRequestDTO.setId(23);
         qnaUpdateRequestDTO.setAnswer("저희도 모릅니다");
-        qnaUpdateRequestDTO.setCompanyId(8);
         qnaUpdateRequestDTO.setAnswererId(3);
 
         QnaResponseDTO qnaResponseDTO = qnaService.updateQna(qnaUpdateRequestDTO);

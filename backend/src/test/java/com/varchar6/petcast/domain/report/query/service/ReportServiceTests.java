@@ -19,7 +19,7 @@ class ReportServiceTests {
     public void 신고_목록_조회(){
 
         List<ReportDTO> reportResponseDTOList = reportService.getAllReports();
-        assertEquals(21, reportResponseDTOList.size());
+        assertEquals(22, reportResponseDTOList.size());
 
     }
 
