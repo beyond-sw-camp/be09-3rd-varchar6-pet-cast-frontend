@@ -2,7 +2,6 @@ package com.varchar6.petcast.domain.member.query.service;
 
 import com.varchar6.petcast.domain.member.query.dto.MemberDTO;
 import com.varchar6.petcast.domain.member.query.mapper.MemberMapper;
-import com.varchar6.petcast.domain.member.query.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,9 +25,10 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Boolean checkDoubleByLoginId(String loginId) {
-        MemberVO memberVO = memberMapper.checkDoubleByLoginId(loginId);
 
-        if (memberVO == null || memberVO.getLoginId() == null) {
+        MemberDTO memberDTO = memberMapper.checkDoubleByLoginId(loginId);
+
+        if (memberDTO == null || memberDTO.getLoginId() == null) {
             return true;
         }
 
@@ -38,9 +38,9 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public Boolean checkDoubleByNickName(String nickName) {
 
-        MemberVO memberVO = memberMapper.checkDoubleByNickName(nickName);
+        MemberDTO memberDTO = memberMapper.checkDoubleByNickName(nickName);
 
-        if(memberVO == null || memberVO.getNickname() == null) {return true;}
+        if(memberDTO == null || memberDTO.getNickname() == null) {return true;}
 
         return false;
     }
@@ -50,9 +50,9 @@ public class MemberServiceImpl implements MemberService {
         Map<String, String> params = new HashMap<>();
         params.put("name", name);
         params.put("phone", phone);
-        MemberVO memberVO = memberMapper.searchLoginIdByNameAndPhone(params);
+        MemberDTO memberDTO = memberMapper.searchLoginIdByNameAndPhone(params);
 
-        return memberVO.getLoginId();
+        return memberDTO.getLoginId();
     }
 
     @Override
@@ -61,11 +61,11 @@ public class MemberServiceImpl implements MemberService {
         resultMap.put("loginId", loginId);
         resultMap.put("phone", phone);
 
-        MemberVO memberVO = memberMapper.checkIdAndPhone(resultMap);
+        MemberDTO memberDTO = memberMapper.checkIdAndPhone(resultMap);
 
         Map<String,Object> response = new HashMap<>();
 
-        if(memberVO != null) {
+        if(memberDTO != null) {
             response.put("canResetPassword", true);
         } else{
             response.put("canResetPassword", false);
@@ -77,10 +77,10 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public String checkPasswordByIdAndPassword(int id) {
 
-        MemberVO memberVO = memberMapper.checkPasswordByIdAndPassword(id);
+        MemberDTO memberDTO = memberMapper.checkPasswordByIdAndPassword(id);
 
-        if(memberVO != null) {
-            return memberVO.getPassword();
+        if(memberDTO != null) {
+            return memberDTO.getPassword();
         } else{
             return null;
         }

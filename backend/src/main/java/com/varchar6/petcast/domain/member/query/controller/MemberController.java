@@ -6,9 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -72,18 +72,16 @@ public class MemberController {
     public ResponseEntity<ResponseMessage> checkPasswordByIdAndPassword(@PathVariable("id") int id,
                                                                 @PathVariable("password") String password){
 
-        String result = memberService.checkPasswordByIdAndPassword(id);
+        String answer = memberService.checkPasswordByIdAndPassword(id);
 
         return ResponseEntity
                 .ok()
                 .body(
                         ResponseMessage.builder()
-                                .httpStatus(HttpStatus.CREATED.value())
+                                .httpStatus(HttpStatus.OK.value())
                                 .message("비밀번호 체크 성공")
-                                .result(result)
+                                .result(answer)
                                 .build()
                 );
     }
-
-
 }

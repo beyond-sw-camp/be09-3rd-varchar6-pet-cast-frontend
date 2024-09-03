@@ -15,7 +15,6 @@ import com.varchar6.petcast.domain.member.command.application.vo.request.Request
 import com.varchar6.petcast.domain.member.command.application.vo.response.MemberUpdateResponseVO;
 import com.varchar6.petcast.domain.member.command.application.vo.response.ResponseRegistUserVO;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.Response;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -85,7 +84,7 @@ public class MemberController {
     }
 
     @PutMapping("/update-member-status")
-    public ResponseEntity<MemberUpdateResponseVO> updateMemberStatus(@RequestBody MemberUpdateRequestVO updateStatus) {
+    public ResponseEntity<ResponseMessage> updateMemberStatus(@RequestBody MemberUpdateRequestVO updateStatus) {
 
         MemberUpdateRequestDTO memberUpdateRequestDTO
                 = modelMapper.map(updateStatus, MemberUpdateRequestDTO.class);
@@ -94,11 +93,17 @@ public class MemberController {
 
         MemberUpdateResponseVO responseMember = modelMapper.map(memberUpdateResponseDTO, MemberUpdateResponseVO.class);
 
-        return ResponseEntity.ok().body(responseMember);
+        return ResponseEntity
+                .ok()
+                .body(ResponseMessage.builder()
+                        .httpStatus(HttpStatus.OK.value())
+                        .message("회원 비활성화 성공")
+                        .result(responseMember)
+                        .build());
     }
 
     @PutMapping("/update-password")
-    public ResponseEntity<MemberUpdateResponseVO> updateMemberPassword(@RequestBody MemberUpdateRequestVO updateMember) {
+    public ResponseEntity<ResponseMessage> updateMemberPassword(@RequestBody MemberUpdateRequestVO updateMember) {
 
         MemberUpdateRequestDTO memberUpdateRequestDTO = modelMapper.map(updateMember, MemberUpdateRequestDTO.class);
 
@@ -106,7 +111,13 @@ public class MemberController {
 
         MemberUpdateResponseVO responseMember = modelMapper.map(memberUpdateResponseDTO, MemberUpdateResponseVO.class);
 
-        return ResponseEntity.ok().body(responseMember);
+        return ResponseEntity
+                .ok()
+                .body(ResponseMessage.builder()
+                        .httpStatus(HttpStatus.CREATED.value())
+                        .message("회원 암호 변경 성공")
+                        .result(responseMember)
+                        .build());
     }
 
     @PostMapping("/regist-member-profile")

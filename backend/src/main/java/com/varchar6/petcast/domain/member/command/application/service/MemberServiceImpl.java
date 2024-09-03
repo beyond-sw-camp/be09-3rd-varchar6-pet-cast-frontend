@@ -174,6 +174,7 @@ public class MemberServiceImpl implements MemberService {
         Member member = memberRepository.findById(profileUpdateRequestDTO.getMemberId()).orElseThrow();
         if(member != null){
             member.setNickname(profileUpdateRequestDTO.getNickname());
+            member.setUpdatedAt(LocalDateTime.now().format(FORMATTER));
             memberRepository.save(member);
         } else{
             return false;
@@ -182,6 +183,7 @@ public class MemberServiceImpl implements MemberService {
         Pet pet = petRepository.findById(profileUpdateRequestDTO.getPetId()).orElseThrow();
         if(pet != null){
             pet.setAge(profileUpdateRequestDTO.getAge());
+            pet.setUpdatedAt(LocalDateTime.now().format(FORMATTER));
             petRepository.save(pet);
         } else{
             return false;

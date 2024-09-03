@@ -2,6 +2,7 @@ package com.varchar6.petcast.domain.member.query.service;
 
 import com.varchar6.petcast.domain.member.query.dto.MemberDTO;
 
+import java.util.List;
 import java.util.Map;
 
 public interface MemberService {
