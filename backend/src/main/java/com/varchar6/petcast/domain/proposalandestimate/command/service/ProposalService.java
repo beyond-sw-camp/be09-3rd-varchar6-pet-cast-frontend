@@ -1,4 +1,4 @@
-package com.varchar6.petcast.domain.proposalandestimate.service;
+package com.varchar6.petcast.domain.proposalandestimate.command.service;
 
 import com.varchar6.petcast.domain.proposalandestimate.dto.ProposalRequestDTO;
 import com.varchar6.petcast.domain.proposalandestimate.dto.ProposalResponseDTO;

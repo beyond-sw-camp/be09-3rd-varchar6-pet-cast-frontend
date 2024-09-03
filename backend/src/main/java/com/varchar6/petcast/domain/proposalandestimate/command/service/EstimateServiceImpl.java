@@ -1,11 +1,9 @@
-package com.varchar6.petcast.domain.proposalandestimate.service;
+package com.varchar6.petcast.domain.proposalandestimate.command.service;
 
 
-import com.varchar6.petcast.domain.proposalandestimate.aggregate.Estimate;
-import com.varchar6.petcast.domain.proposalandestimate.dto.EstimateRequestDTO;
-import com.varchar6.petcast.domain.proposalandestimate.dto.EstimateResponseDTO;
-import com.varchar6.petcast.domain.proposalandestimate.repository.EstimateMapper;
-import com.varchar6.petcast.domain.proposalandestimate.repository.EstimateRepository;
+import com.varchar6.petcast.domain.proposalandestimate.command.domain.aggregate.Estimates;
+import com.varchar6.petcast.domain.proposalandestimate.command.application.dto.EstimateRequestDTO;
+import com.varchar6.petcast.domain.proposalandestimate.query.mapper.EstimateMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +13,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import static com.varchar6.petcast.domain.proposalandestimate.aggregate.EstimateStatus.SENT;
+import static com.varchar6.petcast.domain.proposalandestimate.command.domain.aggregate.EstimatesStatus.SENT;
 
 @Service
 @Slf4j
@@ -59,11 +57,11 @@ public class EstimateServiceImpl implements EstimateService {
     // 견적서 상세 조회
     @Override
     public EstimateResponseDTO findEstimateById(int estimateId) {
-        Estimate estimate = estimateMapper.findEstimateById(estimateId);
-        if (estimate == null) {
+        Estimates estimates = estimateMapper.findEstimateById(estimateId);
+        if (estimates == null) {
             throw new IllegalArgumentException("해당 " + estimateId + " 번 견적서를 찾을 수 없습니다.");
         }
-        return entityToResponseDTO(estimate);
+        return entityToResponseDTO(estimates);
     }
 
     // 견적서 작성
@@ -71,8 +69,8 @@ public class EstimateServiceImpl implements EstimateService {
     public EstimateResponseDTO createEstimate(EstimateRequestDTO estimateRequestDTO) {
         EstimateResponseDTO estimateResponseDTO = new EstimateResponseDTO();
 //        Estimate estimate = estimateDTOToEntity(estimateRequestDTO);
-        estimateResponseDTO.setCost(Estimate.getCost);
-        estimateResponseDTO.setStatus(Estimate.getStatus);
+        estimateResponseDTO.setCost(Estimates.getCost);
+        estimateResponseDTO.setStatus(Estimates.getStatus);
 //        private String created_at;
 //        private String updated_at;
 //        private boolean active;
@@ -95,25 +93,25 @@ public class EstimateServiceImpl implements EstimateService {
     // 견적서 수락
     @Transactional
     public EstimateResponseDTO acceptEstimate(int estimateId) {
-        Estimate estimate = estimateRepository.findById(estimateId)
+        Estimates estimates = estimateRepository.findById(estimateId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 " + estimateId + " 번 견적서를 찾을 수 없습니다."));
-        estimate.accept();
-        estimateRepository.save(estimate);
-        return entityToResponseDTO(estimate);
+        estimates.accept();
+        estimateRepository.save(estimates);
+        return entityToResponseDTO(estimates);
     }
 
     // 견적서 거절
     @Transactional
     public EstimateResponseDTO rejectEstimate(int estimateId) {
-        Estimate estimate = estimateRepository.findById(estimateId)
+        Estimates estimates = estimateRepository.findById(estimateId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 " + estimateId + " 번 견적서를 찾을 수 없습니다."));
-        estimate.reject();
-        estimateRepository.save(estimate);
-        return entityToResponseDTO(estimate);
+        estimates.reject();
+        estimateRepository.save(estimates);
+        return entityToResponseDTO(estimates);
     }
 
-    private Estimate estimateDTOToEntity(EstimateRequestDTO estimateRequestDTO) {
-        return Estimate.builder()
+    private Estimates estimateDTOToEntity(EstimateRequestDTO estimateRequestDTO) {
+        return Estimates.builder()
                 .cost(estimateRequestDTO.getCost())
                 .status(SENT)
                 .created_at(LocalDateTime.now().format(FORMATTER))
@@ -124,16 +122,16 @@ public class EstimateServiceImpl implements EstimateService {
                 .build();
     }
 
-    private EstimateResponseDTO entityToResponseDTO(Estimate estimate) {
+    private EstimateResponseDTO entityToResponseDTO(Estimates estimates) {
         return EstimateResponseDTO.builder()
-                .id(estimate.getId())
-                .cost(estimate.getCost())
-                .status(estimate.getStatus())
-                .created_at(estimate.getCreated_at())
-                .updated_at(estimate.getUpdated_at())
-                .active(estimate.isActive())
-                .proposal(estimate.getProposal_id())
-                .companyInfo(estimate.getCompanyInfo())
+                .id(estimates.getId())
+                .cost(estimates.getCost())
+                .status(estimates.getStatus())
+                .created_at(estimates.getCreated_at())
+                .updated_at(estimates.getUpdated_at())
+                .active(estimates.isActive())
+                .proposal(estimates.getProposal_id())
+                .companyInfo(estimates.getCompanyInfo())
                 .build();
     }
 }

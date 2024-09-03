@@ -2,7 +2,7 @@ package com.varchar6.petcast.domain.request.query.controller;
 
 
 import com.varchar6.petcast.common.response.ResponseMessage;
-import com.varchar6.petcast.domain.request.dto.RequestResponseDTO;
+import com.varchar6.petcast.domain.request.command.application.dto.RequestsResponseDTO;
 import com.varchar6.petcast.domain.request.query.mapper.RequestsMapper;
 import com.varchar6.petcast.domain.request.command.application.service.RequestsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class RequestsController {
     // 고객 요청서 목록 조회
     @GetMapping("/list/{memberId}")
     public ResponseEntity<ResponseMessage> findRequestsByCustomer(@PathVariable int memberId) {
-        List<RequestResponseDTO> requests = requestsService.findAllRequestsByMemberId(memberId);
+        List<RequestsResponseDTO> requests = requestsService.findAllRequestsByMemberId(memberId);
         return ResponseEntity.ok()
                              .body(ResponseMessage.builder()
                                                      .httpStatus(HttpStatus.OK.value())
@@ -40,7 +40,7 @@ public class RequestsController {
     // 업체 요청서 목록 조회
     @GetMapping("/list/{companyId}")
     public ResponseEntity<ResponseMessage> findRequestsForCompany(@PathVariable int companyId) {
-        List<RequestResponseDTO> requests = requestsService.findAllRequestsByCompanyId(companyId);
+        List<RequestsResponseDTO> requests = requestsService.findAllRequestsByCompanyId(companyId);
         return ResponseEntity.ok()
                              .body(ResponseMessage.builder()
                                                   .httpStatus(HttpStatus.OK.value())
@@ -52,7 +52,7 @@ public class RequestsController {
     // 요청서 상세 조회
     @GetMapping("/list/{requestId}")
     public ResponseEntity<ResponseMessage> getRequestById(@PathVariable int requestId) {
-        RequestResponseDTO request = requestsService.findRequestById(requestId);
+        RequestsResponseDTO request = requestsService.findRequestById(requestId);
         return ResponseEntity.ok()
                 .body(ResponseMessage.builder()
                         .httpStatus(HttpStatus.OK.value())

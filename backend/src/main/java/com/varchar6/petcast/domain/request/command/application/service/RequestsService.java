@@ -19,4 +19,10 @@ public interface RequestsService {
 
     // 요청서 거절
     RequestsResponseDTO rejectRequest(int requestId);
+
+    List<RequestsResponseDTO> findAllRequestsByMemberId(int memberId);
+
+    List<RequestsResponseDTO> findAllRequestsByCompanyId(int companyId);
+
+    RequestsResponseDTO findRequestById(int requestId);
 }

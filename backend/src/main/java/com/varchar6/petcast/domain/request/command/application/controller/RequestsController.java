@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/requests")
 public class RequestsController {
     private final RequestsService requestsService;
-    private RequestsMapper requestsMapper;
 
     @Autowired
     public RequestsController(RequestsService requestsService) {
@@ -27,11 +26,11 @@ public class RequestsController {
     // 요청서 작성
     @PostMapping
     public ResponseEntity<ResponseMessage> createRequest(@RequestBody RequestsRequestDTO requestsRequestDTO) {
-        RequestsResponseDTO requestsResponseDTO = requestsService.createRequest(requestRequestDTO);
+        RequestsResponseDTO requestsResponseDTO = requestsService.createRequest(requestsRequestDTO);
         return ResponseEntity
                 .ok()
                 .body(
-                        RequestResponseDTO.builder()
+                        RequestsResponseDTO.builder()
                                 .status(HttpStatus.CREATED.value())
                                 .message("이벤트 생성 성공")
                                 .result(null)
@@ -47,15 +46,15 @@ public class RequestsController {
 
     // 요청서 수락
     @PutMapping("/list/{requestId}/accept")
-    public ResponseEntity<RequestResponseDTO> acceptRequest(@PathVariable int requestId) {
-        RequestResponseDTO updatedRequest = requestsService.acceptRequest(requestId);
+    public ResponseEntity<RequestsResponseDTO> acceptRequest(@PathVariable int requestId) {
+        RequestsResponseDTO updatedRequest = requestsService.acceptRequest(requestId);
         return ResponseEntity.ok(updatedRequest);
     }
 
     // 요청서 거절
     @PutMapping("/list/{requestId}/reject")
-    public ResponseEntity<RequestResponseDTO> rejectRequest(@PathVariable int requestId) {
-        RequestResponseDTO updatedRequest = requestsService.rejectRequest(requestId);
+    public ResponseEntity<RequestsResponseDTO> rejectRequest(@PathVariable int requestId) {
+        RequestsResponseDTO updatedRequest = requestsService.rejectRequest(requestId);
         return ResponseEntity.ok(updatedRequest);
     }
 }

@@ -1,4 +1,4 @@
-package com.varchar6.petcast.domain.proposalandestimate.aggregate;
+package com.varchar6.petcast.domain.proposalandestimate.command.domain.aggregate;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,40 +11,33 @@ import org.springframework.data.annotation.Id;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Estimate {
+public class Estimates {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "cost")
-    private int cost;
+    @Column(name = "expected_cost")
+    private int expectedCost;
 
+    @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private EstimateStatus status;
-
-    public void accept() {
-        this.status = EstimateStatus.CONFIRMED;
-    }
-
-    public void reject() {
-        this.status = EstimateStatus.REJECTED;
-    }
+    private EstimatesStatus status;
 
 
     @Column(name = "created_at")
-    private String created_at;
+    private String createdAt;
 
     @Column(name = "updated_at")
-    private String updated_at;
+    private String updatedAt;
 
     @Column(name = "active")
     private boolean active;
 
     @Column(name = "company_id")
-    private int companyInfo;
+    private int companyId;
 
     @Column(name = "proposal_id")
-    private int proposal_id;
+    private int proposalId;
 }

@@ -1,12 +1,11 @@
-package com.varchar6.petcast.domain.proposalandestimate.service;
+package com.varchar6.petcast.domain.proposalandestimate.command.service;
 
-import com.varchar6.petcast.domain.proposalandestimate.aggregate.Proposal;
-import com.varchar6.petcast.domain.proposalandestimate.aggregate.ProposalStatus;
-import com.varchar6.petcast.domain.proposalandestimate.dto.EstimateResponseDTO;
+import com.varchar6.petcast.domain.proposalandestimate.command.domain.aggregate.Proposals;
+import com.varchar6.petcast.domain.proposalandestimate.command.domain.aggregate.ProposalsStatus;
 import com.varchar6.petcast.domain.proposalandestimate.dto.ProposalRequestDTO;
 import com.varchar6.petcast.domain.proposalandestimate.dto.ProposalResponseDTO;
-import com.varchar6.petcast.domain.proposalandestimate.repository.ProposalMapper;
-import com.varchar6.petcast.domain.proposalandestimate.repository.ProposalRepository;
+import com.varchar6.petcast.domain.proposalandestimate.query.mapper.ProposalMapper;
+import com.varchar6.petcast.domain.proposalandestimate.command.domain.repository.ProposalRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,33 +35,33 @@ public class ProposalServiceImpl implements ProposalService{
     // 고객 기획서 목록 조회
     @Override
     public List<ProposalResponseDTO> findAllProposalsByMemberId(int memberId) {
-        List<Proposal> proposals = proposalMapper.findAllProposalsByMemberId(memberId);
+        List<Proposals> proposals = proposalMapper.findAllProposalsByMemberId(memberId);
         return proposals.stream().map(this::entityToResponseDTO).toList();
     }
 
     // 업체 기획서 목록 조회
     @Override
     public List<ProposalResponseDTO> findAllProposalsByCompanyId(int companyId) {
-        List<Proposal> proposals = proposalMapper.findAllProposalsByCompanyId(companyId);
+        List<Proposals> proposals = proposalMapper.findAllProposalsByCompanyId(companyId);
         return proposals.stream().map(this::entityToResponseDTO).toList();
     }
 
     // 기획서 상세 조회
     @Override
     public ProposalResponseDTO findProposalById(int proposalId) {
-        Proposal proposal = proposalMapper.findProposalById(proposalId);
-        if (proposal == null) {
+        Proposals proposals = proposalMapper.findProposalById(proposalId);
+        if (proposals == null) {
             throw new IllegalArgumentException("해당 " + proposalId + " 번 기획서를 찾을 수 없습니다.");
         }
-        return entityToResponseDTO(proposal);
+        return entityToResponseDTO(proposals);
     }
 
     // 기획서 작성
     @Transactional
     public ProposalResponseDTO createProposal(ProposalRequestDTO proposalRequestDTO) {
-        Proposal proposal = proposalDTOToEntity(proposalRequestDTO);
-        proposal = proposalRepository.save(proposal);
-        return entityToResponseDTO(proposal);
+        Proposals proposals = proposalDTOToEntity(proposalRequestDTO);
+        proposals = proposalRepository.save(proposals);
+        return entityToResponseDTO(proposals);
     }
 
     // 기획서 삭제
@@ -76,30 +75,30 @@ public class ProposalServiceImpl implements ProposalService{
         proposalRepository.save(proposalId);
     }
 
-    private Proposal proposalDTOToEntity(ProposalRequestDTO proposalRequestDTO) {
-        return Proposal.builder()
+    private Proposals proposalDTOToEntity(ProposalRequestDTO proposalRequestDTO) {
+        return Proposals.builder()
                 .content(proposalRequestDTO.getContent())
                 .location(proposalRequestDTO.getLocation())
                 .time(proposalRequestDTO.getTime())
                 .cost(proposalRequestDTO.getCost())
                 .created_at(LocalDateTime.now().format(FORMATTER))
                 .updated_at(LocalDateTime.now().format(FORMATTER))
-                .status(ProposalStatus.SENT)
+                .status(ProposalsStatus.SENT)
                 .active(true)
                 .build();
     }
 
-    private ProposalResponseDTO entityToResponseDTO(Proposal proposal) {
+    private ProposalResponseDTO entityToResponseDTO(Proposals proposals) {
         return ProposalResponseDTO.builder()
-                .id(proposal.getId())
-                .location(proposal.getLocation())
-                .time(proposal.getTime())
-                .content(proposal.getContent())
+                .id(proposals.getId())
+                .location(proposals.getLocation())
+                .time(proposals.getTime())
+                .content(proposals.getContent())
                 .created_at(LocalDateTime.now().format(FORMATTER))
                 .updated_at(LocalDateTime.now().format(FORMATTER))
-                .status(proposal.getStatus())
-                .cost(proposal.getCost())
-                .active(proposal.isActive())
+                .status(proposals.getStatus())
+                .cost(proposals.getCost())
+                .active(proposals.isActive())
                 .build();
     }
 }

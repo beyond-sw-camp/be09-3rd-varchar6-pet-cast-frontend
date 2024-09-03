@@ -1,6 +1,5 @@
-package com.varchar6.petcast.domain.proposalandestimate.aggregate;
+package com.varchar6.petcast.domain.proposalandestimate.command.domain.aggregate;
 
-import com.varchar6.petcast.domain.member.command.domain.aggregate.Member;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.Id;
@@ -12,7 +11,7 @@ import org.springframework.data.annotation.Id;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Proposal {
+public class Proposals {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -31,7 +30,7 @@ public class Proposal {
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private ProposalStatus status;
+    private ProposalsStatus status;
 
     @Column(name = "created_at")
     private String created_at;
