@@ -15,7 +15,7 @@ class MemberServiceTests {
     MemberRequestDTO memberRequestDTO = new MemberRequestDTO();
 
     @Autowired
-    private MemberService memberService;
+    private MemberServiceImpl memberService;
 
     @Test
     @Transactional
