@@ -21,10 +21,9 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public List<CategoryDTO> getCategories(String companyId) {
-        List<CategoryDTO> categoryList = companyMapper.findCategoriesByCompanyId(companyId);
-        log.debug("categoryList: {}", categoryList);
-
-        return List.of();
+    public List<String> getCategories(String companyId) {
+        return companyMapper.findCategoriesByCompanyId(companyId).stream()
+                .map(CategoryDTO::getName)
+                .toList();
     }
 }
