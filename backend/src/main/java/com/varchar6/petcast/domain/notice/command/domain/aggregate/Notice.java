@@ -19,24 +19,24 @@ public class Notice {
     @Column(name = "title", nullable = false)
     private String title;
 
+    @Column(name = "content", nullable = false)
+    private String content;
+
     @Column(name = "created_at", nullable = false)
     private String createdAt;
 
     @Column(name = "updated_at", nullable = false)
     private String updatedAt;
 
-    @Column(name = "active_yn", nullable = false)
-    private boolean activeYn;
-
-    @Column(name = "description", nullable = false)
-    private String description;
+    @Column(name = "active", nullable = false)
+    private boolean active;
 
     @Column(name = "view", nullable = false)
     private int view;
 
-    @Column(name = "member_notice_id")
-    private int memberNoticeId;
+    @Column(name = "member_id")
+    private int memberId;
 
-    @Column(name = "top_fix", nullable = false)
-    private boolean topFix;
+    @Column(name = "fixed", nullable = false)
+    private boolean fixed;
 }
