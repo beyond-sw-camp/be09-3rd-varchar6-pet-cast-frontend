@@ -5,7 +5,6 @@ import lombok.Data;
 @Data
 public class MemberUpdateResponseVO {
 
-    private int id;
     private String loginId;
     private String password;
     private String name;
@@ -14,6 +13,6 @@ public class MemberUpdateResponseVO {
     private String image;
     private String createdAt;
     private String updatedAt;
-    private Boolean active;
+    private boolean active;
     private String introduction;
 }

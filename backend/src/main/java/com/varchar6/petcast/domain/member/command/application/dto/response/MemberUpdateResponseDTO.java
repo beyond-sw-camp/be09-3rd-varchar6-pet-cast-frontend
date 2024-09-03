@@ -1,11 +1,14 @@
-package com.varchar6.petcast.domain.member.command.application.vo.response;
+package com.varchar6.petcast.domain.member.command.application.dto.response;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
-public class MemberDeleteResponseVO {
+@Getter
+@ToString
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class MemberUpdateResponseDTO {
 
-    private int id;
     private String loginId;
     private String password;
     private String name;
@@ -14,6 +17,6 @@ public class MemberDeleteResponseVO {
     private String image;
     private String createdAt;
     private String updatedAt;
-    private Boolean active;
+    private boolean active;
     private String introduction;
 }

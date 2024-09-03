@@ -4,14 +4,13 @@ import com.varchar6.petcast.domain.member.command.application.dto.request.Member
 import com.varchar6.petcast.domain.member.command.application.dto.request.MemberRequestDTO;
 import com.varchar6.petcast.domain.member.command.application.dto.request.MemberUpdateRequestDTO;
 import com.varchar6.petcast.domain.member.command.application.dto.response.MemberResponseDTO;
+import com.varchar6.petcast.domain.member.command.application.dto.response.MemberUpdateResponseDTO;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface MemberService {
     MemberResponseDTO registerMember(MemberRequestDTO memberRequestDTO);
 
-    MemberResponseDTO updateMemberStatus(MemberUpdateRequestDTO memberUpdateRequestDTO);
+    MemberUpdateResponseDTO updateMemberStatus(MemberUpdateRequestDTO memberUpdateRequestDTO);
 
-    MemberResponseDTO updateMemberPwd(MemberUpdateRequestDTO memberUpdateRequestDTO);
-
-    MemberResponseDTO deleteMember(MemberDeleteRequestDTO memberDeleteRequestDTO);
+    MemberUpdateResponseDTO updateMemberPwd(MemberUpdateRequestDTO memberUpdateRequestDTO);
 }
