@@ -1,11 +1,12 @@
 package com.varchar6.petcast.domain.proposalandestimate.command.service;
 
+import com.varchar6.petcast.domain.member.command.application.dto.response.MemberResponseDTO;
+import com.varchar6.petcast.domain.member.command.domain.aggregate.Member;
+import com.varchar6.petcast.domain.proposalandestimate.command.application.dto.ProposalsRequestDTO;
+import com.varchar6.petcast.domain.proposalandestimate.command.application.dto.ProposalsResponseDTO;
 import com.varchar6.petcast.domain.proposalandestimate.command.domain.aggregate.Proposals;
 import com.varchar6.petcast.domain.proposalandestimate.command.domain.aggregate.ProposalsStatus;
-import com.varchar6.petcast.domain.proposalandestimate.dto.ProposalRequestDTO;
-import com.varchar6.petcast.domain.proposalandestimate.dto.ProposalResponseDTO;
-import com.varchar6.petcast.domain.proposalandestimate.query.mapper.ProposalMapper;
-import com.varchar6.petcast.domain.proposalandestimate.command.domain.repository.ProposalRepository;
+import com.varchar6.petcast.domain.proposalandestimate.command.domain.repository.ProposalsRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,88 +18,61 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class ProposalServiceImpl implements ProposalService{
+public class ProposalServiceImpl implements ProposalsService{
 
-    private final ProposalMapper proposalMapper;
-    private final ProposalRepository proposalRepository;
+    private final ProposalsRepository proposalRepository;
 
     private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
 
     @Autowired
-    public ProposalServiceImpl(ProposalMapper proposalMapper, ProposalRepository proposalRepository) {
-        this.proposalMapper = proposalMapper;
-        this.proposalRepository = proposalRepository;
+    public ProposalServiceImpl(ProposalsRepository proposalsRepository) {
+        this.proposalRepository = proposalsRepository;
     }
 
-
-    // 고객 기획서 목록 조회
-    @Override
-    public List<ProposalResponseDTO> findAllProposalsByMemberId(int memberId) {
-        List<Proposals> proposals = proposalMapper.findAllProposalsByMemberId(memberId);
-        return proposals.stream().map(this::entityToResponseDTO).toList();
-    }
-
-    // 업체 기획서 목록 조회
-    @Override
-    public List<ProposalResponseDTO> findAllProposalsByCompanyId(int companyId) {
-        List<Proposals> proposals = proposalMapper.findAllProposalsByCompanyId(companyId);
-        return proposals.stream().map(this::entityToResponseDTO).toList();
-    }
-
-    // 기획서 상세 조회
-    @Override
-    public ProposalResponseDTO findProposalById(int proposalId) {
-        Proposals proposals = proposalMapper.findProposalById(proposalId);
-        if (proposals == null) {
-            throw new IllegalArgumentException("해당 " + proposalId + " 번 기획서를 찾을 수 없습니다.");
-        }
-        return entityToResponseDTO(proposals);
-    }
 
     // 기획서 작성
     @Transactional
-    public ProposalResponseDTO createProposal(ProposalRequestDTO proposalRequestDTO) {
-        Proposals proposals = proposalDTOToEntity(proposalRequestDTO);
-        proposals = proposalRepository.save(proposals);
+    public ProposalsResponseDTO createProposal(ProposalsRequestDTO proposalRequestDTO) {
+        Proposals proposals = Proposals.builder()
+                .hopeLocation(proposalRequestDTO.getHopeLocation())
+                .hopeTime(proposalRequestDTO.getHopeTime())
+                .hopeCost(proposalRequestDTO.getHopeCost())
+                .content(proposalRequestDTO.getContent())
+                .createdAt(proposalRequestDTO.getCreatedAt())
+                .updatedAt(proposalRequestDTO.getUpdatedAt())
+                .status(proposalRequestDTO.getStatus())
+                .active(proposalRequestDTO.isActive())
+                .member_id(proposalRequestDTO.getMemberId())
+                .build();
+
+        ProposalsResponseDTO.builder()
+                .content(proposals.getContent())
+                .hopeLocation(proposals.getHopeLocation())
+                .hopeTime(proposals.getHopeTime())
+                .hopeCost(proposals.getHopeCost())
+                .build();
+
         return entityToResponseDTO(proposals);
     }
 
     // 기획서 삭제
     @Transactional
     public void deleteProposal(int proposalId) {
-        proposalRepository.deleteById(proposalId);
+        ProposalsRepository.deleteById(proposalId);
 
-        if (!proposalRepository.existsById(proposalId)) {
+        if (!proposalsRepository.existsById(proposalId)) {
             throw new IllegalArgumentException("해당 " + proposalId + " 번 기획서를 찾을 수 없습니다.");
         }
-        proposalRepository.save(proposalId);
+        proposalsRepository.save(proposalId);
     }
 
-    private Proposals proposalDTOToEntity(ProposalRequestDTO proposalRequestDTO) {
-        return Proposals.builder()
-                .content(proposalRequestDTO.getContent())
-                .location(proposalRequestDTO.getLocation())
-                .time(proposalRequestDTO.getTime())
-                .cost(proposalRequestDTO.getCost())
-                .created_at(LocalDateTime.now().format(FORMATTER))
-                .updated_at(LocalDateTime.now().format(FORMATTER))
-                .status(ProposalsStatus.SENT)
-                .active(true)
-                .build();
-    }
-
-    private ProposalResponseDTO entityToResponseDTO(Proposals proposals) {
-        return ProposalResponseDTO.builder()
-                .id(proposals.getId())
-                .location(proposals.getLocation())
-                .time(proposals.getTime())
+    public static ProposalsResponseDTO entityToResponseDTO(Proposals proposals) {
+        return ProposalsResponseDTO.builder()
                 .content(proposals.getContent())
-                .created_at(LocalDateTime.now().format(FORMATTER))
-                .updated_at(LocalDateTime.now().format(FORMATTER))
-                .status(proposals.getStatus())
-                .cost(proposals.getCost())
-                .active(proposals.isActive())
+                .hopeLocation(proposals.getHopeLocation())
+                .hopeTime(proposals.getHopeTime())
+                .hopeCost(proposals.getHopeCost())
                 .build();
     }
 }

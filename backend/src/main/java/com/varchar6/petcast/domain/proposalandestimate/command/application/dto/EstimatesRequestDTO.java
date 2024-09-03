@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class EstimateRequestDTO {
+public class EstimatesRequestDTO {
     private int id;
     private int expectedCost;
     private EstimatesStatus status;

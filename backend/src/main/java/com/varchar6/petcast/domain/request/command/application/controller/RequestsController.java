@@ -4,8 +4,7 @@ package com.varchar6.petcast.domain.request.command.application.controller;
 import com.varchar6.petcast.common.response.ResponseMessage;
 import com.varchar6.petcast.domain.request.command.application.dto.RequestsRequestDTO;
 import com.varchar6.petcast.domain.request.command.application.dto.RequestsResponseDTO;
-import com.varchar6.petcast.domain.request.dto.RequestRequestDTO;
-import com.varchar6.petcast.domain.request.dto.RequestResponseDTO;
+
 import com.varchar6.petcast.domain.request.query.mapper.RequestsMapper;
 import com.varchar6.petcast.domain.request.command.application.service.RequestsService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -4,7 +4,7 @@ import com.varchar6.petcast.domain.proposalandestimate.command.domain.aggregate.
 
 import java.util.List;
 
-public interface ProposalMapper {
+public interface ProposalsMapper {
     List<Proposals> findAllProposalsByMemberId(int memberId);
 
     List<Proposals> findAllProposalsByCompanyId(int companyId);

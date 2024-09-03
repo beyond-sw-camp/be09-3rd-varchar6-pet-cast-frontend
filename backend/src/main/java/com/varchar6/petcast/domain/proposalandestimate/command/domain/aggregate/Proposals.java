@@ -12,6 +12,7 @@ import org.springframework.data.annotation.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Proposals {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -19,24 +20,24 @@ public class Proposals {
     @Column(name = "content")
     private String content;
 
-    @Column(name = "cost")
-    private int cost;
+    @Column(name = "hope_cost")
+    private int hopeCost;
 
-    @Column(name = "location")
-    private String location;
+    @Column(name = "hope_location")
+    private String hopeLocation;
 
-    @Column(name = "time")
-    private String time;
+    @Column(name = "hope_time")
+    private String hopeTime;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private ProposalsStatus status;
 
     @Column(name = "created_at")
-    private String created_at;
+    private String createdAt;
 
     @Column(name = "updated_at")
-    private String updated_at;
+    private String updatedAt;
 
     @Column(name = "active")
     private boolean active;
