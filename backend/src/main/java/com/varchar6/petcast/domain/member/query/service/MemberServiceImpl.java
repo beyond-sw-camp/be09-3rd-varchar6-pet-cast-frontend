@@ -5,8 +5,6 @@ import com.varchar6.petcast.domain.member.query.mapper.MemberMapper;
 import com.varchar6.petcast.domain.member.query.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -76,5 +74,15 @@ public class MemberServiceImpl implements MemberService {
         return response;
     }
 
+    @Override
+    public String checkPasswordByIdAndPassword(int id) {
 
+        MemberVO memberVO = memberMapper.checkPasswordByIdAndPassword(id);
+
+        if(memberVO != null) {
+            return memberVO.getPassword();
+        } else{
+            return null;
+        }
+    }
 }

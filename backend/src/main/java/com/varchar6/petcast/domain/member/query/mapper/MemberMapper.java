@@ -20,4 +20,6 @@ public interface MemberMapper {
     MemberVO searchLoginIdByNameAndPhone(Map<String, String> params);
 
     MemberVO checkIdAndPhone(Map<String, Object> resultMap);
+
+    MemberVO checkPasswordByIdAndPassword(int id);
 }

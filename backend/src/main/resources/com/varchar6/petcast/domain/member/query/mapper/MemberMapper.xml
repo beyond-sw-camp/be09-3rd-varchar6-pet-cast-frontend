@@ -158,4 +158,21 @@
          WHERE A.LOGIN_ID = #{ loginId }
            AND A.PHONE = #{ phone }
     </select>
+
+    <select id="checkPasswordByIdAndPassword" resultMap="memberSelectResultMap" parameterType="_int">
+        SELECT
+              A.ID
+             , A.LOGIN_ID
+             , A.PASSWORD
+             , A.NAME
+             , A.PHONE
+             , A.NICKNAME
+             , A.IMAGE
+             , A.CREATED_AT
+             , A.UPDATED_AT
+             , A.ACTIVE
+             , A.INTRODUCTION
+          FROM TBL_MEMBER A
+         WHERE A.ID = #{ id }
+    </select>
 </mapper>
