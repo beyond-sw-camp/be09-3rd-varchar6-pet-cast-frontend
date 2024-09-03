@@ -1,73 +1,54 @@
-package com.varchar6.petcast.domain.request.service;
+package com.varchar6.petcast.domain.request.command.application.service;
 
-import com.varchar6.petcast.domain.request.aggregate.Request;
-import com.varchar6.petcast.domain.request.dto.RequestDTO;
-import com.varchar6.petcast.domain.request.dto.RequestRequestDTO;
-import com.varchar6.petcast.domain.request.dto.RequestResponseDTO;
-import com.varchar6.petcast.domain.request.repository.RequestMapper;
-import com.varchar6.petcast.domain.request.repository.RequestRepository;
-import lombok.extern.slf4j.Slf4j;
+import com.varchar6.petcast.domain.request.command.application.dto.RequestsRequestDTO;
+import com.varchar6.petcast.domain.request.command.application.dto.RequestsResponseDTO;
+import com.varchar6.petcast.domain.request.command.domain.aggregate.Requests;
+import com.varchar6.petcast.domain.request.command.domain.repository.RequestsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
-@Slf4j
 @Service
-public class RequestServiceImpl implements RequestService {
-
-    private final RequestRepository requestRepository;
-    private final RequestMapper requestMapper;
+public class RequestsServiceImpl implements RequestsService{
+    private final RequestsRepository requestsRepository;
 
     private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
 
     @Autowired
-    public RequestServiceImpl(RequestRepository requestRepository,
-                              RequestMapper requestMapper) {
-        this.requestRepository = requestRepository;
-        this.requestMapper = requestMapper;
+    public RequestsServiceImpl(RequestsRepository requestsRepository) {
+        this.requestsRepository = requestsRepository;
     }
-
-    // 고객 요청서 목록 조회
-    @Override
-    public List<RequestResponseDTO> findAllRequestsByMemberId(int memberId) {
-        List<Request> requests = requestMapper.findAllRequestsByMemberId(memberId);
-        return requests.stream()
-                .map(this::entityToResponseDTO)
-                .toList();
-    }
-
-    // 업체 요청서 목록 조회
-    @Override
-    public List<RequestResponseDTO> findAllRequestsByCompanyId(int companyId) {
-        List<Request> requests = requestMapper.findAllRequestsByCompanyId(companyId);
-        return requests.stream()
-                .map(this::entityToResponseDTO)
-                .toList();
-    }
-
-    // 요청서 상세 조회
-    @Override
-    public RequestDTO findRequestById(int requestId) {
-        if (requestId == null) {
-            throw new IllegalArgumentException("해당 " + requestId + " 번 요청서를 찾을 수 없습니다.");
-        }
-        return requestMapper.findRequestById(requestId);
-    }
-
 
     // 요청서 작성
     @Transactional
-    public RequestResponseDTO createRequest(RequestRequestDTO requestRequestDTO) {
-        requestRequestDTO.setContent(Request.getContent);
-    }
-//        Request request = requestDTOToEntity(requestRequestDTO);
-//        request = requestRepository.save(request);
-        return entityToResponseDTO(request);
+    public RequestsResponseDTO createRequest(RequestsRequestDTO requestsRequestDTO) {
+
+        Requests requests = Requests.builder()
+            .content(requestsRequestDTO.getContent())
+            .hopeCost(requestsRequestDTO.getHopeCost())
+            .hopeLocation(requestsRequestDTO.getHopeLocation())
+            .hopeTime(requestsRequestDTO.getHopeTime())
+            .createdAt(LocalDateTime.now().format(FORMATTER))
+            .updatedAt(LocalDateTime.now().format(FORMATTER))
+            .active(true)
+            .companyId(requestsRequestDTO.getCompanyId())
+            .memberId(requestsRequestDTO.getMemberId())
+            .build();
+
+
+        RequestsResponseDTO.builder()
+                .id(requests.getId())
+                .content(requests.getContent())
+                .hopeCost(requests.getHopeCost())
+                .hopeLocation(requests.getHopeLocation())
+                .hopeTime(requests.getHopeTime())
+                .build();
+
+        return entityToResponseDTO(requests);
     }
 
     // 요청서 삭제
@@ -101,7 +82,7 @@ public class RequestServiceImpl implements RequestService {
         return entityToResponseDTO(request);
     }
 
-    private Request requestDTOToEntity(RequestRequestDTO requestRequestDTO) {
+    private Request requestDTOToEntity(RequestsRequestDTO requestsRequestDTO) {
         return Request.builder()
                 .content(requestRequestDTO.getContent())
                 .cost(requestRequestDTO.getCost())
@@ -124,6 +105,6 @@ public class RequestServiceImpl implements RequestService {
                 .updatedAt(request.getUpdated_at())
                 .active(request.isActive())
                 .build();
-
+    }
 
 }

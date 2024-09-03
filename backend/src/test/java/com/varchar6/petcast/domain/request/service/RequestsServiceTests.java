@@ -1,6 +1,6 @@
 package com.varchar6.petcast.domain.request.service;
 
-import com.varchar6.petcast.domain.notice.command.application.dto.response.NoticeResponseDTO;
+import com.varchar6.petcast.domain.request.command.application.service.RequestsService;
 import com.varchar6.petcast.domain.request.dto.RequestRequestDTO;
 import com.varchar6.petcast.domain.request.dto.RequestResponseDTO;
 import org.junit.jupiter.api.Test;
@@ -12,10 +12,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
-class RequestServiceTests {
+class RequestsServiceTests {
 
     @Autowired
-    RequestService requestService;
+    RequestsService requestsService;
 
     private static RequestRequestDTO requestRequestDTO;
     private static RequestResponseDTO requestResponseDTO;
@@ -24,19 +24,19 @@ class RequestServiceTests {
     @Test
     public void 고객_요청서_목록_조회_테스트() {
         int memberId = 1;
-        List<RequestResponseDTO> requestList = requestService.findAllRequestsByMemberId(memberId);
+        List<RequestResponseDTO> requestList = requestsService.findAllRequestsByMemberId(memberId);
         assertEquals(memberId, requestList.size());
     }
     @Test
     public void 업체_요청서_목록_조회_테스트() {
         int companyId = 1;
-        List<RequestResponseDTO> requestList = requestService.findAllRequestsByCompanyId(companyId);
+        List<RequestResponseDTO> requestList = requestsService.findAllRequestsByCompanyId(companyId);
         assertEquals(companyId, requestList.size());
     }
     @Test
     public void 요청서_상세_조회_테스트() {
         int requestId = 1;
-        RequestResponseDTO request = requestService.findRequestById(requestId);
+        RequestResponseDTO request = requestsService.findRequestById(requestId);
         assertEquals(requestId, request);
     }
 //    @Test

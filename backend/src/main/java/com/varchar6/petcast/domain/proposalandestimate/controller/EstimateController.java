@@ -16,8 +16,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/estimate")
 public class EstimateController {
-
-
     private final EstimateService estimateService;
 
     private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
