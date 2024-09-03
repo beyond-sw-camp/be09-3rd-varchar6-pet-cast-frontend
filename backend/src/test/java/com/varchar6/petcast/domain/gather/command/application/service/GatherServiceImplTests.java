@@ -62,7 +62,6 @@ class GatherServiceImplTests {
         );
     }
 
-
     private static Stream<Arguments> providerSource2() {
         return Stream.of(
                 Arguments.of(new RequestUpdateGatherInfoDTO(
@@ -148,7 +147,6 @@ class GatherServiceImplTests {
         );
     }
 
-
     @DisplayName("초대장 전송")
     @ParameterizedTest
     @MethodSource("providerSource4")
@@ -157,7 +155,6 @@ class GatherServiceImplTests {
                 () -> gatherService.sendInvitation(requestSendInvitationDTO)
         );
     }
-
 
     private static Stream<Arguments> providerSource5() {
         return Stream.of(
@@ -202,7 +199,6 @@ class GatherServiceImplTests {
         );
     }
 
-
     @DisplayName("초대장 거절")
     @ParameterizedTest
     @MethodSource("providerSource6")
@@ -216,18 +212,18 @@ class GatherServiceImplTests {
         return Stream.of(
                 Arguments.of(new RequestDeleteMemberDTO(
                         1,
-                        1,
-                        8
+                        8,
+                        1
                 )),
                 Arguments.of(new RequestDeleteMemberDTO(
-                        2,
-                        2,
+                        3,
+                        4,
                         2
                 )),
                 Arguments.of(new RequestDeleteMemberDTO(
-                        7,
                         5,
-                        4
+                        14,
+                        6
                 ))
         );
     }
@@ -239,8 +235,5 @@ class GatherServiceImplTests {
         assertDoesNotThrow(
                 () -> gatherService.deleteMember(requestDeleteMemberDTO)
         );
-
     }
-
-
 }
