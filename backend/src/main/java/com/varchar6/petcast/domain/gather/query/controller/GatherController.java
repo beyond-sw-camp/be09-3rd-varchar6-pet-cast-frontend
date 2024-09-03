@@ -22,9 +22,9 @@ public class GatherController {
         this.gatherService = gatherService;
     }
 
-    @GetMapping("/grouplist/{userId}")
-    public ResponseEntity<ResponseMessage> findAllGather(@PathVariable("userId") int userId){
-        List<String> gathers = gatherService.findAllGather(userId);
+    @GetMapping("/grouplist")
+    public ResponseEntity<ResponseMessage> findAllGather(@RequestAttribute("memberId") int memberId){
+        List<String> gathers = gatherService.findAllGather(memberId);
 
         ResponseMessage responseMessage = ResponseMessage.builder()
                 .httpStatus(HttpStatus.OK.value())
@@ -49,11 +49,9 @@ public class GatherController {
     }
 
     @GetMapping("/invitation")
-//    public ResponseEntity<ResponseMessage> findInvitationPageById(@PathVariable("invitationId") int invitationId,
-//                                                          @PathVariable("userId") int userId){
     public ResponseEntity<ResponseMessage> findInvitationPageById(@RequestParam("invitationId") int invitationId,
-                                                                  @RequestParam("userId") int userId){
-        Boolean isAccessTrueGather = gatherService.isAccessTrueGather(invitationId, userId);
+                                                                  @RequestAttribute("memberId") int memberId){
+        Boolean isAccessTrueGather = gatherService.isAccessTrueGather(invitationId, memberId);
 
         ResponseMessage responseMessage = ResponseMessage.builder()
                 .httpStatus(HttpStatus.OK.value())
