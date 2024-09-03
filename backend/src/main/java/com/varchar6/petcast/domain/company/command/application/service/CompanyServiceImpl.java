@@ -32,7 +32,6 @@ public class CompanyServiceImpl implements CompanyService {
         );
     }
 
-
     private Company toEntity(CompanyEnrollRequestDTO companyEnrollRequestDTO) {
         return Company.builder()
                 .name(companyEnrollRequestDTO.getName())
