@@ -3,14 +3,19 @@ package com.varchar6.petcast.domain.member.command.application.controller;
 import com.varchar6.petcast.common.response.ResponseMessage;
 import com.varchar6.petcast.domain.member.command.application.dto.request.MemberRequestDTO;
 import com.varchar6.petcast.domain.member.command.application.dto.request.MemberUpdateRequestDTO;
+import com.varchar6.petcast.domain.member.command.application.dto.request.ProfileRequestDTO;
+import com.varchar6.petcast.domain.member.command.application.dto.request.ProfileUpdateRequestDTO;
 import com.varchar6.petcast.domain.member.command.application.dto.response.MemberResponseDTO;
 import com.varchar6.petcast.domain.member.command.application.dto.response.MemberUpdateResponseDTO;
 import com.varchar6.petcast.domain.member.command.application.service.MemberService;
 import com.varchar6.petcast.domain.member.command.application.vo.request.MemberUpdateRequestVO;
+import com.varchar6.petcast.domain.member.command.application.vo.request.ProfileRegistRequestVO;
+import com.varchar6.petcast.domain.member.command.application.vo.request.ProfileUpdateRequestVO;
 import com.varchar6.petcast.domain.member.command.application.vo.request.RequestRegistUserVO;
 import com.varchar6.petcast.domain.member.command.application.vo.response.MemberUpdateResponseVO;
 import com.varchar6.petcast.domain.member.command.application.vo.response.ResponseRegistUserVO;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.coyote.Response;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -60,7 +65,7 @@ public class MemberController {
     }
 
     @PostMapping("/sign-up")
-    public ResponseEntity<ResponseMessage> signUp(@RequestBody RequestRegistUserVO newUser){
+    public ResponseEntity<ResponseMessage> signUp(@RequestBody RequestRegistUserVO newUser) {
 
         MemberRequestDTO memberRequestDTO = modelMapper.map(newUser, MemberRequestDTO.class);
 
@@ -80,7 +85,7 @@ public class MemberController {
     }
 
     @PutMapping("/update-member-status")
-    public ResponseEntity<MemberUpdateResponseVO> updateMemberStatus(@RequestBody MemberUpdateRequestVO updateStatus){
+    public ResponseEntity<MemberUpdateResponseVO> updateMemberStatus(@RequestBody MemberUpdateRequestVO updateStatus) {
 
         MemberUpdateRequestDTO memberUpdateRequestDTO
                 = modelMapper.map(updateStatus, MemberUpdateRequestDTO.class);
@@ -93,7 +98,7 @@ public class MemberController {
     }
 
     @PutMapping("/update-password")
-    public ResponseEntity<MemberUpdateResponseVO> updateMemberPassword(@RequestBody MemberUpdateRequestVO updateMember){
+    public ResponseEntity<MemberUpdateResponseVO> updateMemberPassword(@RequestBody MemberUpdateRequestVO updateMember) {
 
         MemberUpdateRequestDTO memberUpdateRequestDTO = modelMapper.map(updateMember, MemberUpdateRequestDTO.class);
 
@@ -104,4 +109,36 @@ public class MemberController {
         return ResponseEntity.ok().body(responseMember);
     }
 
+    @PostMapping("/regist-member-profile")
+    public ResponseEntity<ResponseMessage> registMemberProfile(@RequestBody ProfileRegistRequestVO newProfile) {
+
+        ProfileRequestDTO profileRequestDTO = modelMapper.map(newProfile, ProfileRequestDTO.class);
+
+        Boolean answer = memberService.registMemberProfile(profileRequestDTO);
+
+        return ResponseEntity
+                .ok()
+                .body(ResponseMessage.builder()
+                        .httpStatus(HttpStatus.CREATED.value())
+                        .message("고객 프로필 생성 성공")
+                        .result(answer)
+                        .build());
+    }
+
+    @PutMapping("/update-member-profile")
+    public ResponseEntity<ResponseMessage> updateMemberProfile(@RequestBody ProfileUpdateRequestVO updateProfile) {
+
+        ProfileUpdateRequestDTO profileUpdateRequestDTO = modelMapper.map(updateProfile, ProfileUpdateRequestDTO.class);
+
+        Boolean answer = memberService.updateMemberProfile(profileUpdateRequestDTO);
+
+
+        return ResponseEntity
+                .ok()
+                .body(ResponseMessage.builder()
+                        .httpStatus(HttpStatus.OK.value())
+                        .message("고객 프로필 수정 성공")
+                        .result(answer)
+                        .build());
+    }
 }

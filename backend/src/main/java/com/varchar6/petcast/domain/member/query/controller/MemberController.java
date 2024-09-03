@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -58,13 +59,30 @@ public class MemberController {
         return ResponseEntity.ok().body(memberLoginId);
     }
 
-    @GetMapping("/pwd-change-possible/{loginId}/{phone}")
+    @GetMapping("/password-change-possible/{loginId}/{phone}")
     public ResponseEntity<Map<String, Object>> checkIdAndPhone(@PathVariable("loginId") String loginId,
                                                                @PathVariable("phone") String phone) {
 
         Map<String, Object> result = memberService.checkIdAndPhone(loginId, phone);
 
         return ResponseEntity.ok().body(result);
+    }
+
+    @GetMapping("/password-check/{id}/{password}")
+    public ResponseEntity<ResponseMessage> checkPasswordByIdAndPassword(@PathVariable("id") int id,
+                                                                @PathVariable("password") String password){
+
+        String result = memberService.checkPasswordByIdAndPassword(id);
+
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.CREATED.value())
+                                .message("비밀번호 체크 성공")
+                                .result(result)
+                                .build()
+                );
     }
 
 
