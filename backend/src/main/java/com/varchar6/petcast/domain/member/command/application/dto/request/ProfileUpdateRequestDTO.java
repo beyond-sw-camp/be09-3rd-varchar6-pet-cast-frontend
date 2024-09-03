@@ -11,7 +11,6 @@ public class ProfileUpdateRequestDTO {
 
     private int memberId;
     private String nickname;
-
     private int petId;
     private int age;
 

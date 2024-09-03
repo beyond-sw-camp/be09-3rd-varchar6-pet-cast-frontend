@@ -132,7 +132,6 @@ public class MemberController {
 
         Boolean answer = memberService.updateMemberProfile(profileUpdateRequestDTO);
 
-
         return ResponseEntity
                 .ok()
                 .body(ResponseMessage.builder()

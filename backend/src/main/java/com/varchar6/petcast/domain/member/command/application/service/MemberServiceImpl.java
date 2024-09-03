@@ -170,8 +170,8 @@ public class MemberServiceImpl implements MemberService {
     @Override
     @Transactional
     public Boolean updateMemberProfile(ProfileUpdateRequestDTO profileUpdateRequestDTO) {
-        Member member = memberRepository.findById(profileUpdateRequestDTO.getMemberId()).orElseThrow();
 
+        Member member = memberRepository.findById(profileUpdateRequestDTO.getMemberId()).orElseThrow();
         if(member != null){
             member.setNickname(profileUpdateRequestDTO.getNickname());
             memberRepository.save(member);
@@ -183,8 +183,7 @@ public class MemberServiceImpl implements MemberService {
         if(pet != null){
             pet.setAge(profileUpdateRequestDTO.getAge());
             petRepository.save(pet);
-        }
-        else{
+        } else{
             return false;
         }
 
