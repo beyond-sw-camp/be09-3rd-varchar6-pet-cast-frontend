@@ -15,9 +15,4 @@ public interface EstimatesService {
 
     EstimatesResponseDTO rejectEstimate(int estimateId);
 
-    List<EstimatesResponseDTO> findAllEstimatesByMemberId(int memberId);
-
-    List<EstimatesResponseDTO> findAllEstimatesByCompanyId(int companyId);
-
-    EstimatesResponseDTO findEstimateById(int estimateId);
 }

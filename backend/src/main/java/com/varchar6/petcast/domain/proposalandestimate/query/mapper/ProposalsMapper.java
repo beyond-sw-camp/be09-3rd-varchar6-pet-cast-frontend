@@ -1,6 +1,7 @@
 package com.varchar6.petcast.domain.proposalandestimate.query.mapper;
 
 import com.varchar6.petcast.domain.proposalandestimate.command.domain.aggregate.Proposals;
+import com.varchar6.petcast.domain.proposalandestimate.query.dto.ProposalResponseDTO;
 
 import java.util.List;
 
@@ -9,5 +10,5 @@ public interface ProposalsMapper {
 
     List<Proposals> findAllProposalsByCompanyId(int companyId);
 
-    Proposals findProposalById(int proposalId);
+    ProposalResponseDTO findProposalById( int proposalId);
 }

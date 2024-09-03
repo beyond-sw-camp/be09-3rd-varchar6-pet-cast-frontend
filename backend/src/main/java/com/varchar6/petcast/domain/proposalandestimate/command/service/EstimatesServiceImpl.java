@@ -81,21 +81,6 @@ public class EstimatesServiceImpl implements EstimatesService {
         return entityToResponseDTO(estimates);
     }
 
-    @Override
-    public List<EstimatesResponseDTO> findAllEstimatesByMemberId(int memberId) {
-        return List.of();
-    }
-
-    @Override
-    public List<EstimatesResponseDTO> findAllEstimatesByCompanyId(int companyId) {
-        return List.of();
-    }
-
-    @Override
-    public EstimatesResponseDTO findEstimateById(int estimateId) {
-        return null;
-    }
-
     private EstimatesResponseDTO entityToResponseDTO(Estimates estimates) {
         return EstimatesResponseDTO.builder()
                 .expectedCost(estimates.getExpectedCost())
