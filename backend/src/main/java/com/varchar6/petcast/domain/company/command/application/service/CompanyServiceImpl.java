@@ -4,7 +4,9 @@ import com.varchar6.petcast.domain.company.command.application.dto.request.Compa
 import com.varchar6.petcast.domain.company.command.application.dto.response.CompanyResponseDTO;
 import com.varchar6.petcast.domain.company.command.domain.aggregate.Company;
 import com.varchar6.petcast.domain.company.command.domain.repository.CompanyRepository;
+import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,9 +34,21 @@ public class CompanyServiceImpl implements CompanyService {
         );
     }
 
+    @Override
     @Transactional
-    public boolean deleteCompanyById(int companyId) {
-        companyRepository
+    public void deleteCompanyById(int companyId) {
+
+        try {
+            companyRepository.deleteById(companyId);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    @Transactional
+    public void deleteCategoriesByCompanyId(int companyId) {
+
 
     }
 

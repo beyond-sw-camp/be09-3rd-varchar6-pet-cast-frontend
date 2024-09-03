@@ -6,6 +6,7 @@ import com.varchar6.petcast.domain.company.command.application.controller.vo.res
 import com.varchar6.petcast.domain.company.command.application.dto.request.CompanyEnrollRequestDTO;
 import com.varchar6.petcast.domain.company.command.application.dto.response.CompanyResponseDTO;
 import com.varchar6.petcast.domain.company.command.application.service.CompanyService;
+import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -65,10 +66,16 @@ public class CompanyController {
 
     @DeleteMapping("{companyId}")
     public ResponseEntity<ResponseMessage> deleteCompany(
-            @PathVariable int companyId,
-            @RequestAttribute("memberId") int memberId
+            @PathVariable int companyId
     ) {
-
-        boolean isDeleted = companyService.deleteCompanyById(companyId);
+        companyService.deleteCompanyById(companyId);
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.CREATED.value())
+                                .message("deleted company successfully")
+                                .build()
+                );
     }
 }

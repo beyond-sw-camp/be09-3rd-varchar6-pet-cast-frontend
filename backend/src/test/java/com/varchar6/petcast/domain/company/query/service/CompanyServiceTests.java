@@ -16,5 +16,6 @@ class CompanyServiceTests {
         System.out.println(categoryResponseDTO);
     }
 
-
+    @Test
+    public void
 }

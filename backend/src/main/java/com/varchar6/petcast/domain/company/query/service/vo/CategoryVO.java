@@ -1,4 +1,4 @@
-package com.varchar6.petcast.domain.company.query.dto;
+package com.varchar6.petcast.domain.company.query.service.vo;
 
 import lombok.*;
 
@@ -7,6 +7,6 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoryDTO {
+public class CategoryVO {
     private String name;
 }
