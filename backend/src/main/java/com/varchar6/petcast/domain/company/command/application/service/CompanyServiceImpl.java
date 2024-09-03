@@ -3,6 +3,7 @@ package com.varchar6.petcast.domain.company.command.application.service;
 import com.varchar6.petcast.domain.company.command.application.dto.request.CompanyEnrollRequestDTO;
 import com.varchar6.petcast.domain.company.command.application.dto.response.CompanyResponseDTO;
 import com.varchar6.petcast.domain.company.command.domain.aggregate.Company;
+import com.varchar6.petcast.domain.company.command.domain.repository.CategoryRepository;
 import com.varchar6.petcast.domain.company.command.domain.repository.CompanyRepository;
 import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,9 @@ public class CompanyServiceImpl implements CompanyService {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
 
     @Autowired
-    public CompanyServiceImpl(CompanyRepository companyRepository) {
+    public CompanyServiceImpl(
+            CompanyRepository companyRepository
+    ) {
         this.companyRepository = companyRepository;
     }
 
@@ -37,20 +40,17 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     @Transactional
     public void deleteCompanyById(int companyId) {
-
-        try {
-            companyRepository.deleteById(companyId);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        Company company = companyRepository.findByCompanyId(companyId)
+                .orElseThrow();
+        companyRepository.delete(company);
     }
 
-    @Override
-    @Transactional
-    public void deleteCategoriesByCompanyId(int companyId) {
-
-
-    }
+//    @Override
+//    @Transactional
+//    public void deleteCategoriesByCompanyId(int companyId) {
+//        categoryRepository.deleteByCompanyId(companyId);
+//
+//    }
 
     private Company toEntity(CompanyEnrollRequestDTO companyEnrollRequestDTO) {
         return Company.builder()

@@ -9,5 +9,5 @@ public interface CompanyService {
 
     void deleteCompanyById(int companyId);
 
-    void deleteCategoriesByCompanyId(int companyId);
+//    void deleteCategoriesByCompanyId(int companyId);
 }
