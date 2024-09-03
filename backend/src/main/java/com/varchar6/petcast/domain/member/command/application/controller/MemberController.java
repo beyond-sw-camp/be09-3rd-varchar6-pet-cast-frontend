@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController(value = "commandMemberController")
 @RequestMapping("/api/v1/members")
 @Slf4j
@@ -28,13 +30,29 @@ public class MemberController {
     }
 
     @GetMapping("/test")
-    public String getTest() {
-        return "get working";
+    public String getTest(
+            @RequestAttribute("memberId") int memberId,
+            @RequestAttribute("memberLoginId") String memberLoginId,
+            @RequestAttribute("memberPhone") String memberPhone,
+            @RequestAttribute("memberNickname") String memberNickname,
+            @RequestAttribute("image") String image,
+            @RequestAttribute("created") String created,
+            @RequestAttribute("updated") String updated,
+            @RequestAttribute("active") boolean active,
+            @RequestAttribute("introduction") String introduction,
+            @RequestAttribute("authorities") List<String> authorities) {
+        log.debug("memberId: {}", memberId);
+        log.debug("memberLoginId: {}", memberLoginId);
+        log.debug("created: {}", created);
+        log.debug("active: {}", active);
+        log.debug("authorities: {}", authorities);
+
+        return "GET working";
     }
 
     @PostMapping("/test")
     public String postTest() {
-        return "post working";
+        return "POST working";
     }
 
     @PostMapping("/sign-up")
