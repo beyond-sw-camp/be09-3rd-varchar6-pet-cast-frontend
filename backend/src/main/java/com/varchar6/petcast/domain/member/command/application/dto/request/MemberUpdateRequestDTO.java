@@ -4,14 +4,23 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class MemberRequestDTO {
+public class MemberUpdateRequestDTO {
+
+//    private int id;
+//    private String password;
+    private int id;
     private String loginId;
     private String password;
     private String name;
     private String phone;
     private String nickname;
     private String image;
+    private String createdAt;
+    private String updatedAt;
+    private Boolean active;
     private String introduction;
+
 }

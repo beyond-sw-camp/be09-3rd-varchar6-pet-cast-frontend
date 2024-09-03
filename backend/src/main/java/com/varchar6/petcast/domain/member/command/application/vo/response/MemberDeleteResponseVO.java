@@ -1,13 +1,9 @@
-package com.varchar6.petcast.domain.member.command.application.dto.response;
+package com.varchar6.petcast.domain.member.command.application.vo.response;
 
-import lombok.*;
+import lombok.Data;
 
-@Getter
-@ToString
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class MemberResponseDTO {
+@Data
+public class MemberDeleteResponseVO {
 
     private int id;
     private String loginId;
@@ -18,6 +14,6 @@ public class MemberResponseDTO {
     private String image;
     private String createdAt;
     private String updatedAt;
-    private boolean active;
+    private Boolean active;
     private String introduction;
 }
