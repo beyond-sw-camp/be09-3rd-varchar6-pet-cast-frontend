@@ -29,7 +29,7 @@ public class Event {
 
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
-    private String status = EventsStatus.READY.getStatus();
+    private EventsStatus status = EventsStatus.READY;
 
     @Column(name = "company_id", nullable = false)
     private int companyId;

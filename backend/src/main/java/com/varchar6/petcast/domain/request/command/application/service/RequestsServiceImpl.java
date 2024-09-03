@@ -1,6 +1,7 @@
 package com.varchar6.petcast.domain.request.command.application.service;
 
 import com.varchar6.petcast.domain.request.command.application.dto.request.CreateRequestsRequestDTO;
+import com.varchar6.petcast.domain.request.command.domain.aggregate.EventsStatus;
 import com.varchar6.petcast.domain.request.command.domain.aggregate.RequestsStatus;
 import com.varchar6.petcast.domain.request.command.domain.aggregate.entity.Event;
 import com.varchar6.petcast.domain.request.command.domain.aggregate.entity.Requests;
@@ -61,8 +62,11 @@ public class RequestsServiceImpl implements RequestsService {
                 () -> (new NoSuchElementException("해당 요청서가 없습니다."))
         );
         findRequests.setActive(false);
-
-        requestsRepository.save(findRequests);
+        try {
+            requestsRepository.save(findRequests);
+        }catch (Exception e){
+            log.warn("비활성화 DB에 업데이트 실패!");
+        }
     }
 
     // 요청서 수락
@@ -81,6 +85,7 @@ public class RequestsServiceImpl implements RequestsService {
         Event newEvent = Event.builder()
                 .title(request.getMemberId()+"님의 "+request.getCompanyId()+"기업 요청서")
                 .content(request.getContent())
+                .status(EventsStatus.READY)
                 .companyId(request.getCompanyId())
                 .memberId(request.getMemberId())
                 .build();
