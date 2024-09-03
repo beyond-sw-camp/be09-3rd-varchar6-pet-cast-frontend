@@ -40,4 +40,13 @@ public class Estimates {
 
     @Column(name = "proposal_id")
     private int proposalId;
+
+    // 견적서 승인
+    public void accept() {
+        this.status = EstimatesStatus.CONFIRMED;
+    }
+    // 견적서 거절
+    public void reject() {
+        this.status = EstimatesStatus.REJECTED;
+    }
 }

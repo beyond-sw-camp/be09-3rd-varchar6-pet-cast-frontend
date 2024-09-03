@@ -12,8 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
-import static com.varchar6.petcast.domain.member.command.application.service.MemberServiceImpl.entityToResponseDTO;
 
 @Service
 @Slf4j
@@ -53,33 +53,47 @@ public class EstimatesServiceImpl implements EstimatesService {
     // 견적서 삭제
 
     @Transactional
-    public void deleteEstimates(int estimateId) {
-        estimatesRepository.deleteById(estimateId);
-
-        if (!estimatesRepository.existsById(estimateId)) {
-            throw new IllegalArgumentException("해당 " + estimateId + " 번 견적서를 찾을 수 없습니다.");
+    public void deleteEstimate(int estimateId) {
+        if(estimatesRepository.existsById(estimateId)) {
+            estimatesRepository.deleteById(estimateId);
+        } else {
+            throw new IllegalArgumentException("해당 견적서를 찾을 수 없습니다.");
         }
-        return estimatesRepository.save(estimateId);
     }
+
     // 견적서 수락
-
     @Transactional
-    public EstimatesResponseDTO acceptEstimates(int estimateId) {
-        Estimates estimates = estimatesRepository.findById(estimateId)
-                .orElseThrow(() -> new IllegalArgumentException("해당 " + estimateId + " 번 견적서를 찾을 수 없습니다."));
+    public EstimatesResponseDTO acceptEstimate(int estimateId) {
+        Estimates estimates = estimatesRepository.findById(estimateId).orElseThrow(IllegalArgumentException::new);
+
         estimates.accept();
-        estimatesRepository.save(estimates);
+        estimates = estimatesRepository.save(estimates);
         return entityToResponseDTO(estimates);
     }
-    // 견적서 거절
 
+    // 견적서 거절
     @Transactional
-    public EstimatesResponseDTO rejectEstimates(int estimateId) {
-        Estimates estimates = estimatesRepository.findById(estimateId)
-                .orElseThrow(() -> new IllegalArgumentException("해당 " + estimateId + " 번 견적서를 찾을 수 없습니다."));
+    public EstimatesResponseDTO rejectEstimate(int estimateId) {
+        Estimates estimates = estimatesRepository.findById(estimateId).orElseThrow(IllegalArgumentException::new);
+
         estimates.reject();
-        estimatesRepository.save(estimates);
+        estimates = estimatesRepository.save(estimates);
         return entityToResponseDTO(estimates);
+    }
+
+    @Override
+    public List<EstimatesResponseDTO> findAllEstimatesByMemberId(int memberId) {
+        return List.of();
+    }
+
+    @Override
+    public List<EstimatesResponseDTO> findAllEstimatesByCompanyId(int companyId) {
+        return List.of();
+    }
+
+    @Override
+    public EstimatesResponseDTO findEstimateById(int estimateId) {
+        return null;
     }
 
     private EstimatesResponseDTO entityToResponseDTO(Estimates estimates) {

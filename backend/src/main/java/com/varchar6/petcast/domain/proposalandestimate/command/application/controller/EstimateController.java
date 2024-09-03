@@ -1,5 +1,6 @@
 package com.varchar6.petcast.domain.proposalandestimate.command.application.controller;
 
+import com.varchar6.petcast.common.response.ResponseMessage;
 import com.varchar6.petcast.domain.proposalandestimate.command.application.dto.EstimatesRequestDTO;
 import com.varchar6.petcast.domain.proposalandestimate.command.application.dto.EstimatesResponseDTO;
 import com.varchar6.petcast.domain.proposalandestimate.command.service.EstimatesService;
@@ -40,15 +41,25 @@ public class EstimateController {
 
     // 견적서 수락
     @PutMapping("/list/{estimateId}/accept")
-    public ResponseEntity<EstimatesResponseDTO> acceptEstimate(@PathVariable int estimateId) {
-        EstimatesResponseDTO updateEstimate = estimatesService.acceptEstimate(estimateId);
-        return ResponseEntity.ok(updateEstimate);
+    public ResponseEntity<ResponseMessage> acceptEstimate(@PathVariable int estimateId) {
+        estimatesService.acceptEstimate(estimateId);
+        return ResponseEntity.ok()
+                .body(ResponseMessage.builder()
+                        .httpStatus(HttpStatus.ACCEPTED.value())
+                        .message("견적서 수락!")
+                        .result(null)
+                        .build());
     }
 
     // 견적서 거절
     @PutMapping("/list/{estimateId}/reject")
-    public ResponseEntity<EstimatesResponseDTO> rejectEstimate(@PathVariable int estimateId) {
-        EstimatesResponseDTO updateEstimate = estimatesService.rejectEstimate(estimateId);
-        return ResponseEntity.ok(updateEstimate);
+    public ResponseEntity<ResponseMessage> rejectEstimate(@PathVariable int estimateId) {
+        estimatesService.rejectEstimate(estimateId);
+        return ResponseEntity.ok()
+                .body(ResponseMessage.builder()
+                        .httpStatus(HttpStatus.NOT_ACCEPTABLE.value())
+                        .message("견적서 거절!")
+                        .result(null)
+                        .build());
     }
 }
