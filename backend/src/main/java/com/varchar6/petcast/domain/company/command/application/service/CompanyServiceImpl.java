@@ -4,6 +4,7 @@ import com.varchar6.petcast.domain.company.command.application.dto.request.Compa
 import com.varchar6.petcast.domain.company.command.application.dto.response.CompanyResponseDTO;
 import com.varchar6.petcast.domain.company.command.domain.aggregate.Company;
 import com.varchar6.petcast.domain.company.command.domain.repository.CompanyRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +18,7 @@ public class CompanyServiceImpl implements CompanyService {
     private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
 
+    @Autowired
     public CompanyServiceImpl(CompanyRepository companyRepository) {
         this.companyRepository = companyRepository;
     }

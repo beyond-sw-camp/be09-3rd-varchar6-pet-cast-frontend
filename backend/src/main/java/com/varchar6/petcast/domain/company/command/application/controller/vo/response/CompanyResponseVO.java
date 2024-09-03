@@ -1,12 +1,15 @@
-package com.varchar6.petcast.domain.company.command.application.dto.response;
+package com.varchar6.petcast.domain.company.command.application.controller.vo.response;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-@ToString
-@Setter
 @Getter
+@Setter
+@ToString
 @NoArgsConstructor
-public class CompanyResponseDTO {
+public class CompanyResponseVO {
     private int id;
     private String name;
     private String address;
@@ -19,5 +22,4 @@ public class CompanyResponseDTO {
     private String updatedAt;
     private boolean active;
     private boolean approved;
-    private int memberId;
 }
