@@ -14,7 +14,7 @@ public interface MemberService {
 
     String searchLoginIdByNameAndPhone(String name, String phone);
 
-    Map<String, Object> checkIdAndPhone(String loginId, String phone);
-
     String checkPasswordByIdAndPassword(int id);
+
+    int checkIdAndPhone(String loginId, String phone);
 }

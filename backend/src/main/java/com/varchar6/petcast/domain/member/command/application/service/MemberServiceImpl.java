@@ -5,10 +5,7 @@ import com.varchar6.petcast.domain.member.command.application.dto.request.Profil
 import com.varchar6.petcast.domain.member.command.application.dto.request.ProfileUpdateRequestDTO;
 import com.varchar6.petcast.domain.member.command.application.dto.response.MemberResponseDTO;
 import com.varchar6.petcast.domain.member.command.application.dto.response.MemberUpdateResponseDTO;
-import com.varchar6.petcast.domain.member.command.domain.aggregate.Member;
-import com.varchar6.petcast.domain.member.command.domain.aggregate.Pet;
-import com.varchar6.petcast.domain.member.command.domain.aggregate.RoleMember;
-import com.varchar6.petcast.domain.member.command.domain.aggregate.RoleType;
+import com.varchar6.petcast.domain.member.command.domain.aggregate.*;
 import com.varchar6.petcast.domain.member.command.domain.repository.MemberRepository;
 import com.varchar6.petcast.domain.member.command.application.dto.request.MemberRequestDTO;
 import com.varchar6.petcast.domain.member.command.domain.repository.PetRepository;
@@ -157,9 +154,6 @@ public class MemberServiceImpl implements MemberService {
                     .active(true)
                     .memberId(profileRequestDTO.getMemberId())
                     .build();
-
-            log.info("pet 값: {} ", pet.toString());
-
             petRepository.save(pet);
             return true;
         }

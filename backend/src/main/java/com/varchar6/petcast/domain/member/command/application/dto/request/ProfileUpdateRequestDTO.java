@@ -1,5 +1,6 @@
 package com.varchar6.petcast.domain.member.command.application.dto.request;
 
+import com.varchar6.petcast.domain.member.command.domain.aggregate.Gender;
 import lombok.*;
 
 @Getter
@@ -13,5 +14,6 @@ public class ProfileUpdateRequestDTO {
     private String nickname;
     private int petId;
     private int age;
+    private String gender;
 
 }

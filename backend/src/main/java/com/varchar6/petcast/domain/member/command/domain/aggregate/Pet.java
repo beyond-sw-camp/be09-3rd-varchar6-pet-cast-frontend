@@ -26,7 +26,7 @@ public class Pet {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "gender", nullable = false)
-    private Gender gender;
+    private Gender gender = Gender.OTHERS;
 
     @Column(name = "image")
     private String image;

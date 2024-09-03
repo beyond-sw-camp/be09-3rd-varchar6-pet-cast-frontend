@@ -52,26 +52,11 @@ public class MemberServiceImpl implements MemberService {
         params.put("phone", phone);
         MemberDTO memberDTO = memberMapper.searchLoginIdByNameAndPhone(params);
 
-        return memberDTO.getLoginId();
-    }
-
-    @Override
-    public Map<String, Object> checkIdAndPhone(String loginId, String phone) {
-        Map<String,Object> resultMap = new HashMap<>();
-        resultMap.put("loginId", loginId);
-        resultMap.put("phone", phone);
-
-        MemberDTO memberDTO = memberMapper.checkIdAndPhone(resultMap);
-
-        Map<String,Object> response = new HashMap<>();
-
-        if(memberDTO != null) {
-            response.put("canResetPassword", true);
-        } else{
-            response.put("canResetPassword", false);
+        if(memberDTO != null && memberDTO.getLoginId() != null) {
+            return memberDTO.getLoginId();
+        } else {
+            return null;
         }
-
-        return response;
     }
 
     @Override
@@ -84,5 +69,21 @@ public class MemberServiceImpl implements MemberService {
         } else{
             return null;
         }
+    }
+
+    @Override
+    public int checkIdAndPhone(String loginId, String phone) {
+
+        Map<String,Object> resultMap = new HashMap<>();
+        resultMap.put("loginId", loginId);
+        resultMap.put("phone", phone);
+
+        MemberDTO memberDTO = memberMapper.checkIdAndPhone(resultMap);
+
+        if(memberDTO != null && memberDTO.getId() != 0){
+            return memberDTO.getId();
+        }
+
+        return 0;
     }
 }
