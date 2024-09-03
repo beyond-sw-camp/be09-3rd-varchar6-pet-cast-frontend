@@ -5,6 +5,7 @@ import com.varchar6.petcast.domain.notice.query.dto.NoticeDTO;
 import com.varchar6.petcast.domain.notice.query.service.NoticeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,8 +30,16 @@ public class NoticeController {
     private ResponseEntity<ResponseMessage> getAllNotices(){
         List<NoticeDTO> responseNotices = noticeService.getAllNotices();
 
-        return ResponseEntity.ok(new ResponseMessage(200, "공지 조회 성공"
-                , responseNotices));
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.OK.value())
+                                .message("모든 공지 조회 성공")
+                                .result(responseNotices)
+                                .build()
+                );
+
     }
 
     @GetMapping("/{NoticeId}")
@@ -38,7 +47,14 @@ public class NoticeController {
 
         NoticeDTO responseNotice = noticeService.getNoticeById(NoticeId);
 
-        return ResponseEntity.ok(new ResponseMessage(200, "이벤트 조회 성공"
-                , responseNotice));
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.OK.value())
+                                .message("공지 ID로 조회 성공")
+                                .result(responseNotice)
+                                .build()
+                );
     }
 }

@@ -31,11 +31,15 @@ public class QnaController {
 
         int result = qnaService.insertQna(qnaCreateRequestDTO);
 
-        if(result == 1)
-            return ResponseEntity.ok(new ResponseMessage(201, "Q&A 생성 성공", null));
-        else
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ResponseMessage(500, "Q&A 생성 실패", null));
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.CREATED.value())
+                                .message("Q&A 생성 성공")
+                                .result(true)
+                                .build()
+                );
     }
 
     @PutMapping("")
@@ -43,8 +47,15 @@ public class QnaController {
 
         QnaResponseDTO qnaResponseDTO = qnaService.updateQna(qnaUpdateRequestDTO);
 
-        return ResponseEntity.ok(new ResponseMessage(201, "Q&A 수정 성공"
-                , qnaResponseDTO));
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.CREATED.value())
+                                .message("Q&A 수정 성공")
+                                .result(true)
+                                .build()
+                );
     }
 
     @DeleteMapping("")
@@ -52,18 +63,29 @@ public class QnaController {
         int id = request.get("id");
         int result = qnaService.setQnaActive(id);
 
-        if(result == 1)
-            return ResponseEntity.ok(new ResponseMessage(201, "Q&A 삭제 성공", null));
-        else
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ResponseMessage(500, "Q&A 삭제 실패", null));
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.CREATED.value())
+                                .message("Q&A 삭제 성공")
+                                .result(true)
+                                .build()
+                );
     }
     @PutMapping("/answer")
     private ResponseEntity<ResponseMessage> deleteQnaAnswer(@RequestBody QnaDeleteAnswerRequestDTO qnaDeleteAnswerRequestDTO){
 
         QnaResponseDTO qnaResponseDTO = qnaService.deleteQnaAnswer(qnaDeleteAnswerRequestDTO);
 
-        return ResponseEntity.ok(new ResponseMessage(201, "Q&A 수정 성공"
-                , qnaResponseDTO));
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.CREATED.value())
+                                .message("Q&A 수정 성공")
+                                .result(true)
+                                .build()
+                );
     }
 }

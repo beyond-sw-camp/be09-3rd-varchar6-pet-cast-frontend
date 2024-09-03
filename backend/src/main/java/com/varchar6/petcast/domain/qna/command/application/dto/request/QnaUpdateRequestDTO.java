@@ -12,6 +12,5 @@ import lombok.Setter;
 public class QnaUpdateRequestDTO {
     private int id;
     private String answer;
-    private Integer companyId;
     private Integer answererId;
 }

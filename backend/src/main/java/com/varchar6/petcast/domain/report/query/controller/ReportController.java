@@ -5,6 +5,7 @@ import com.varchar6.petcast.domain.report.query.dto.ReportDTO;
 import com.varchar6.petcast.domain.report.query.service.ReportService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,8 +30,15 @@ public class ReportController {
     private ResponseEntity<ResponseMessage> getAllReports(){
         List<ReportDTO> responseReports = reportService.getAllReports();
 
-        return ResponseEntity.ok(new ResponseMessage(200, "신고 조회 성공"
-                , responseReports));
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.OK.value())
+                                .message("모든 신고 조회 성공")
+                                .result(responseReports)
+                                .build()
+                );
     }
 
 
@@ -38,16 +46,31 @@ public class ReportController {
     private ResponseEntity<ResponseMessage> getReportByReporterId(@PathVariable Integer reporterId){
         List<ReportDTO> responseReports = reportService.getReportByReporterId(reporterId);
 
-        return ResponseEntity.ok(new ResponseMessage(200, "신고 조회 성공"
-                , responseReports));
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.OK.value())
+                                .message("신고자 신고 조회 성공")
+                                .result(responseReports)
+                                .build()
+                );
+
     }
 
     @GetMapping("/respondent/{respondentId}")
     private ResponseEntity<ResponseMessage> getReportByRespondentId(@PathVariable Integer respondentId){
         List<ReportDTO> responseReports = reportService.getReportByRespondentId(respondentId);
 
-        return ResponseEntity.ok(new ResponseMessage(200, "신고 조회 성공"
-                , responseReports));
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.OK.value())
+                                .message("피신고자 신고 조회 성공")
+                                .result(responseReports)
+                                .build()
+                );
     }
 
 

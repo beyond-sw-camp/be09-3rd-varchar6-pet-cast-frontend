@@ -42,6 +42,7 @@ public class QnaServiceImpl implements QnaService{
         qna.setActive(true);
         qna.setAnswered(false);
         qna.setAnswererId(null);
+        qna.setAnswer("");
 
         try {
             qnaRepository.save(qna);

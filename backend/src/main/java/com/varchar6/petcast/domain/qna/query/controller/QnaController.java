@@ -5,6 +5,7 @@ import com.varchar6.petcast.domain.qna.query.dto.QnaDTO;
 import com.varchar6.petcast.domain.qna.query.service.QnaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,8 +31,16 @@ public class QnaController {
 
         List<QnaDTO> responseQnas = qnaService.getQnaByCompanyId(companyId);
 
-        return ResponseEntity.ok(new ResponseMessage(200, "Q&A 조회 성공"
-                , responseQnas));
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.OK.value())
+                                .message("업체에 달린 Q&A 조회 성공")
+                                .result(responseQnas)
+                                .build()
+                );
+
     }
 
     @GetMapping("/questioner/{questionerId}")
@@ -39,8 +48,15 @@ public class QnaController {
 
         List<QnaDTO> responseQnas = qnaService.getQnaByQuestionerId(questionerId);
 
-        return ResponseEntity.ok(new ResponseMessage(200, "Q&A 조회 성공"
-                , responseQnas));
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.OK.value())
+                                .message("고객의 Q&A 조회 성공")
+                                .result(responseQnas)
+                                .build()
+                );
     }
 
     @GetMapping("/{QnaId}")
@@ -48,7 +64,14 @@ public class QnaController {
 
         QnaDTO responseQna = qnaService.getQnaById(QnaId);
 
-        return ResponseEntity.ok(new ResponseMessage(200, "Q&A 조회 성공"
-                , responseQna));
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.OK.value())
+                                .message("Q&A ID로 조회 성공")
+                                .result(responseQna)
+                                .build()
+                );
     }
 }

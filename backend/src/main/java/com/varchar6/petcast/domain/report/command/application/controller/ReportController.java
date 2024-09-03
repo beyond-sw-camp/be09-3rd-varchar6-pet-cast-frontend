@@ -24,12 +24,16 @@ public class ReportController {
     @PostMapping("")
     private ResponseEntity<ResponseMessage> createReport(@RequestBody ReportCreateRequestDTO reportCreateRequestDTO){
 
-        int result = reportService.insertReport(reportCreateRequestDTO);
+        reportService.insertReport(reportCreateRequestDTO);
 
-        if(result == 1)
-            return ResponseEntity.ok(new ResponseMessage(201, "Report 생성 성공", null));
-        else
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ResponseMessage(500, "Report 생성 실패", null));
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.CREATED.value())
+                                .message("신고 생성 성공")
+                                .result(null)
+                                .build()
+                );
     }
 }

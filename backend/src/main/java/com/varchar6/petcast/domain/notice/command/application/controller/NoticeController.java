@@ -29,11 +29,15 @@ public class NoticeController {
 
         int result = noticeService.insertNotice(noticeWriteRequestDTO);
 
-        if(result == 1)
-            return ResponseEntity.ok(new ResponseMessage(201, "Notice 생성 성공", null));
-        else
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ResponseMessage(500, "Notice 생성 실패", null));
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.OK.value())
+                                .message("공지 생성 성공")
+                                .result(true)
+                                .build()
+                );
     }
 
     @PutMapping("")
@@ -41,8 +45,15 @@ public class NoticeController {
 
         NoticeResponseDTO noticeResponseDTO = noticeService.updateNotice(noticeUpdateRequestDTO);
 
-        return ResponseEntity.ok(new ResponseMessage(201, "Notice 수정 성공"
-                , noticeResponseDTO));
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.OK.value())
+                                .message("공지 중요도 수정 성공")
+                                .result(true)
+                                .build()
+                );
     }
 
     @DeleteMapping("")
@@ -50,10 +61,14 @@ public class NoticeController {
         int id = request.get("id");
         int result = noticeService.deleteNotice(id);
 
-        if(result == 1)
-            return ResponseEntity.ok(new ResponseMessage(201, "Notice 삭제 성공", null));
-        else
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ResponseMessage(500, "Notice 삭제 실패", null));
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.OK.value())
+                                .message("공지 삭제 성공")
+                                .result(true)
+                                .build()
+                );
     }
 }

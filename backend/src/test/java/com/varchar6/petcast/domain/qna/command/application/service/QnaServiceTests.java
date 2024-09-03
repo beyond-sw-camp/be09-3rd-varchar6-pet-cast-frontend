@@ -42,7 +42,6 @@ class QnaServiceTests {
         qnaCreateRequestDTO.setTitle("뭐가 문제인건가요??");
         qnaCreateRequestDTO.setContent("흠...");
         qnaCreateRequestDTO.setQuestionerId(8);
-        qnaCreateRequestDTO.setAnswer("");
         qnaCreateRequestDTO.setCompanyId(7);
 
 
