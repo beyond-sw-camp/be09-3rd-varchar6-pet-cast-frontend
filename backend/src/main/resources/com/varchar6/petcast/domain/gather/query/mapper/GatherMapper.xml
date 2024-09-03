@@ -69,4 +69,17 @@
                           FROM tbl_group_member B
                          WHERE B.group_id = #{ gather_id })
     </select>
+
+    <select id="selectMemberRoleById" resultType="object" parameterType="_int">
+        SELECT
+        <if test="selectValue == 'role'">
+            A.group_role
+        </if>
+        <if test="selectValue == 'id'">
+            A.group_member_id
+        </if>
+          FROM tbl_group_member A
+         WHERE A.group_id = #{ gather_id }
+           AND A.member_id = #{ member_id };
+    </select>
 </mapper>

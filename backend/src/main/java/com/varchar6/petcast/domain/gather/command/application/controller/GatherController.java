@@ -25,6 +25,7 @@ public class GatherController {
     @PostMapping("/createGather")
     public ResponseEntity<ResponseMessage> createGather(@RequestBody RequestCreateGatherDTO requestCreateGatherDTO,
                                                         @RequestAttribute("memberId") int memberId){
+        log.debug("check memberId: {}", memberId);
         requestCreateGatherDTO.setUserId(memberId);
         gatherService.createGather(requestCreateGatherDTO);
 
@@ -138,8 +139,8 @@ public class GatherController {
 
     @DeleteMapping("/deleteMember")
     public ResponseEntity<ResponseMessage> deleteMember(@RequestBody RequestDeleteMemberDTO requestDeleteMemberDTO,
-                                                        @RequestAttribute("memberId") int memberId){
-        requestDeleteMemberDTO.setUserId(memberId);
+                                                        @RequestAttribute("memberId") int userId){
+        requestDeleteMemberDTO.setUserId(userId);
         gatherService.deleteMember(requestDeleteMemberDTO);
 
         return ResponseEntity.ok(

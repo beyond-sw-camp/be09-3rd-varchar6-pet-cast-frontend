@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @Mapper
 public interface GatherMapper {
@@ -17,4 +19,6 @@ public interface GatherMapper {
     List<Integer> selectGroupMembersIdById(@Param("invitation_id")int invitationId, @Param("user_id") int userId);
 
     List<String> selectGroupMembersNameById(int gatherId);
+
+    Object selectMemberRoleById(Map<String, Object> params);
 }

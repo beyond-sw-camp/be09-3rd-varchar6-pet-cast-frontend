@@ -14,10 +14,17 @@ import lombok.*;
 @ToString
 public class GatherMember {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     @Column(name = "group_role", nullable = false)
     @Enumerated(EnumType.STRING)
     private GatherRole role = GatherRole.LEADER;
 
-    @EmbeddedId
-    private GatherMemberFK gatherMemberFK;
+    @Column(name = "member_id", nullable = false)
+    private int memberId;
+
+    @Column(name = "group_id", nullable = false)
+    private int gatherId;
 }

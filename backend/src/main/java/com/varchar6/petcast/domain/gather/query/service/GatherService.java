@@ -4,14 +4,17 @@ import com.varchar6.petcast.domain.gather.query.dto.GatherDTO;
 import com.varchar6.petcast.domain.gather.query.dto.GatherDetailDTO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface GatherService {
 
-    public List<String> findAllGather(int userId);
+    List<String> findAllGather(int userId);
 
-    public GatherDetailDTO findDetailGather(int gatherId);
+    GatherDetailDTO findDetailGather(int gatherId);
 
-    public Boolean isAccessTrueGather(int invitationId, int userId);
+    Boolean isAccessTrueGather(int invitationId, int userId);
 
-    public List<String> findGroupMemberById(int gatherId);
+    List<String> findGroupMemberById(int gatherId);
+
+    Object findMemberRoleById(Map<String, Object> params);
 }

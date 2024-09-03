@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -58,7 +60,16 @@ public class GatherServiceImpl implements GatherService {
     }
 
     public List<String> findGroupMemberById(int gatherId) {
-        List<String> groupMembers = gatherMapper.selectGroupMembersNameById(gatherId);
-        return groupMembers;
+        return gatherMapper.selectGroupMembersNameById(gatherId);
+    }
+
+    @Override
+    public Object findMemberRoleById(Map<String, Object> params) {
+
+        if(params.containsKey("id")){
+            return (Integer) gatherMapper.selectMemberRoleById(params);
+        }else {
+            return (String) gatherMapper.selectMemberRoleById(params);
+        }
     }
 }
