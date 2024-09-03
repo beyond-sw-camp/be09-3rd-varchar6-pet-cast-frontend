@@ -41,6 +41,7 @@ public class QnaServiceImpl implements QnaService{
         qna.setCreatedAt(LocalDateTime.now().format(FORMATTER));
         qna.setActive(true);
         qna.setAnswered(false);
+        qna.setAnswererId(null);
 
         try {
             qnaRepository.save(qna);

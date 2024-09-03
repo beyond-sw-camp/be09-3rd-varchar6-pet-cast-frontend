@@ -38,11 +38,11 @@ public class Qna {
     private boolean active;
 
     @Column(name = "company_id")
-    private int companyId;
+    private Integer companyId;
 
     @Column(name = "questioner_id", nullable = false)
-    private int questionerId;
+    private Integer questionerId;
 
     @Column(name = "answerer_id")
-    private int answererId;
+    private Integer answererId;
 }

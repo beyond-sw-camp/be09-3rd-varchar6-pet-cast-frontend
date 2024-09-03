@@ -12,5 +12,7 @@ import lombok.Setter;
 public class QnaCreateRequestDTO {
     private String title;
     private String content;
+    private String answer;
     private Integer questionerId;
+    private Integer companyId;
 }
