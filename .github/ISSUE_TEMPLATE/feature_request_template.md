@@ -1,6 +1,6 @@
 ---
 name: FEATURE_REQUEST_TEMPLATE
-about: 추가 기능 개발에 대한 한 줄 요약
+about: 추가 기능 개발 요청에 대한 한 줄 요약
 title: "[FEAT]"
 labels: ''
 assignees: ''

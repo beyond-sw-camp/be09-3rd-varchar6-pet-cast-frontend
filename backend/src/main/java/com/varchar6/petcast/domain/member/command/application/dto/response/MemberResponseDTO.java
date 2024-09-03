@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
 @Getter
 @Builder
 @AllArgsConstructor
@@ -19,6 +18,6 @@ public class MemberResponseDTO {
     private String image;
     private String createdAt;
     private String updatedAt;
-    private boolean activeYn;
+    private boolean active;
     private String introduction;
 }

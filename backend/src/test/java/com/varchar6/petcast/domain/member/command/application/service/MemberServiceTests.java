@@ -11,26 +11,24 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class MemberServiceTests {
+
+    MemberRequestDTO memberRequestDTO = new MemberRequestDTO();
+
     @Autowired
-    private MemberService memberService;
-
-
+    private MemberServiceImpl memberService;
 
     @Test
     @Transactional
     public void 멤버_생성_확인() {
-        MemberRequestDTO memberRequestDTO =
-                MemberRequestDTO.builder()
-                        .loginId("testId4")
-                        .password("testPw")
-                        .name("testName")
-                        .phone("testPhone")
-                        .nickname("testNickname")
-                        .image("testImage")
-                        .introduction("testIntroduction")
-                        .build();
+        memberRequestDTO.setLoginId("testId4");
+        memberRequestDTO.setPassword("testPw");
+        memberRequestDTO.setName("testName");
+        memberRequestDTO.setPhone("testPhone");
+        memberRequestDTO.setNickname("testNickname");
+        memberRequestDTO.setImage("testImage");
+        memberRequestDTO.setIntroduction("testIntroduction");
         MemberResponseDTO memberResponseDTO = memberService.registerMember(memberRequestDTO);
-        assertNotNull(memberResponseDTO);
+        assertEquals("testId4", memberResponseDTO.getLoginId());
 
     }
 
