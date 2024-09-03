@@ -5,4 +5,6 @@ import com.varchar6.petcast.domain.company.command.application.dto.response.Comp
 
 public interface CompanyService {
     CompanyResponseDTO applyEnroll(CompanyEnrollRequestDTO companyEnrollRequestDTO);
+
+    boolean deleteCompanyById(int companyId);
 }

@@ -62,4 +62,13 @@ public class CompanyController {
                                 .build()
                 );
     }
+
+    @DeleteMapping("{companyId}")
+    public ResponseEntity<ResponseMessage> deleteCompany(
+            @PathVariable int companyId,
+            @RequestAttribute("memberId") int memberId
+    ) {
+
+        boolean isDeleted = companyService.deleteCompanyById(companyId);
+    }
 }

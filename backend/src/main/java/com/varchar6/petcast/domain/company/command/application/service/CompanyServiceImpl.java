@@ -32,6 +32,12 @@ public class CompanyServiceImpl implements CompanyService {
         );
     }
 
+    @Transactional
+    public boolean deleteCompanyById(int companyId) {
+        companyRepository
+
+    }
+
     private Company toEntity(CompanyEnrollRequestDTO companyEnrollRequestDTO) {
         return Company.builder()
                 .name(companyEnrollRequestDTO.getName())
