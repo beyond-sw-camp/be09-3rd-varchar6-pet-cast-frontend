@@ -1,6 +1,6 @@
 package com.varchar6.petcast.domain.request.query.mapper;
 
-import com.varchar6.petcast.domain.request.command.domain.aggregate.Requests;
+import com.varchar6.petcast.domain.request.command.domain.aggregate.entity.Requests;
 
 import java.util.List;
 

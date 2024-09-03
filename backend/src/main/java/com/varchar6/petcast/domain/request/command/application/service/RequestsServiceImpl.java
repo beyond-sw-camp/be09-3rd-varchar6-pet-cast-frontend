@@ -1,74 +1,94 @@
 package com.varchar6.petcast.domain.request.command.application.service;
 
-import com.varchar6.petcast.domain.request.command.application.dto.RequestsRequestDTO;
-import com.varchar6.petcast.domain.request.command.application.dto.RequestsResponseDTO;
-import com.varchar6.petcast.domain.request.command.domain.aggregate.Requests;
+import com.varchar6.petcast.domain.request.command.application.dto.request.CreateRequestsRequestDTO;
+import com.varchar6.petcast.domain.request.command.domain.aggregate.RequestsStatus;
+import com.varchar6.petcast.domain.request.command.domain.aggregate.entity.Event;
+import com.varchar6.petcast.domain.request.command.domain.aggregate.entity.Requests;
+import com.varchar6.petcast.domain.request.command.domain.repository.EventsRepository;
 import com.varchar6.petcast.domain.request.command.domain.repository.RequestsRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.NoSuchElementException;
 
-@Service
-public class RequestsServiceImpl implements RequestsService{
+@Service(value = "comandRequestServiceImpl")
+@Slf4j
+public class RequestsServiceImpl implements RequestsService {
     private final RequestsRepository requestsRepository;
+    private final EventsRepository eventsRepository;
 
     private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
 
     @Autowired
-    public RequestsServiceImpl(RequestsRepository requestsRepository) {
+    public RequestsServiceImpl(RequestsRepository requestsRepository,
+                               EventsRepository eventsRepository) {
         this.requestsRepository = requestsRepository;
+        this.eventsRepository = eventsRepository;
     }
 
     // 요청서 작성
     @Transactional
-    public RequestsResponseDTO createRequest(RequestsRequestDTO requestsRequestDTO) {
-
+    public void createRequest(CreateRequestsRequestDTO createRequestsRequestDTO, int memberId) {
         Requests requests = Requests.builder()
-            .content(requestsRequestDTO.getContent())
-            .hopeCost(requestsRequestDTO.getHopeCost())
-            .hopeLocation(requestsRequestDTO.getHopeLocation())
-            .hopeTime(requestsRequestDTO.getHopeTime())
-            .createdAt(LocalDateTime.now().format(FORMATTER))
-            .updatedAt(LocalDateTime.now().format(FORMATTER))
-            .active(true)
-            .companyId(requestsRequestDTO.getCompanyId())
-            .memberId(requestsRequestDTO.getMemberId())
-            .build();
-
-
-        RequestsResponseDTO.builder()
-                .id(requests.getId())
-                .content(requests.getContent())
-                .hopeCost(requests.getHopeCost())
-                .hopeLocation(requests.getHopeLocation())
-                .hopeTime(requests.getHopeTime())
+                .content(createRequestsRequestDTO.getContent())
+                .hopeCost(createRequestsRequestDTO.getHopeCost())
+                .hopeLocation(createRequestsRequestDTO.getHopeLocation())
+                .hopeTime(createRequestsRequestDTO.getHopeTime())
+                .status(RequestsStatus.SENT)
+                .updatedAt(LocalDateTime.now().format(FORMATTER))
+                .createdAt(LocalDateTime.now().format(FORMATTER))
+                .active(true)
+                .companyId(createRequestsRequestDTO.getCompanyId())
+                .memberId(memberId)
                 .build();
 
-        return entityToResponseDTO(requests);
+        try {
+            requestsRepository.save(requests);
+        } catch (Exception e) {
+            log.warn("[Service] Repository에 넣다가 실패!");
+        }
     }
 
     // 요청서 삭제
     @Transactional
-    public void deleteRequest(int requestId) {
-        if (!requestRepository.existsById(requestId)) {
-            throw new IllegalArgumentException("해당 " + requestId + " 번 요청서를 찾을 수 없습니다.");
-        }
-        requestRepository.deleteById(requestId);
+    public void deleteRequest(int requestId, int memberId) {
+        Requests findRequests = requestsRepository.findById(requestId).orElseThrow(
+                () -> (new NoSuchElementException("해당 요청서가 없습니다."))
+        );
+        findRequests.setActive(false);
+
+        requestsRepository.save(findRequests);
     }
 
     // 요청서 수락
     @Transactional
-    public RequestResponseDTO acceptRequest(int requestId) {
-        Request request = requestRepository.findById(requestId)
+    public void acceptRequest(int requestId) {
+        Requests request = requestsRepository.findById(requestId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 " + requestId + " 번 요청서를 찾을 수 없습니다."));
 
-        request.accept();  // 상태 변경
-        request = requestRepository.save(request);  // 상태 업데이트 저장
-        return entityToResponseDTO(request);
+        request.setStatus(RequestsStatus.CONFIRMED);    // 상태 변경
+        try {
+            requestsRepository.save(request);  // 상태 업데이트 저장
+        }catch (Exception e) {
+            log.warn("[Service] 요청서 수락 실패!");
+        }
+
+        Event newEvent = Event.builder()
+                .title(request.getMemberId()+"님의 "+request.getCompanyId()+"기업 요청서")
+                .content(request.getContent())
+                .companyId(request.getCompanyId())
+                .memberId(request.getMemberId())
+                .build();
+        try {
+            eventsRepository.save(newEvent);
+        }catch (Exception e){
+            log.warn("이벤트 생성 실패!");
+        }
     }
 
     // 요청서 거절
@@ -82,7 +102,7 @@ public class RequestsServiceImpl implements RequestsService{
         return entityToResponseDTO(request);
     }
 
-    private Request requestDTOToEntity(RequestsRequestDTO requestsRequestDTO) {
+    private Request requestDTOToEntity(CreateRequestsRequestDTO requestsRequestDTO) {
         return Request.builder()
                 .content(requestRequestDTO.getContent())
                 .cost(requestRequestDTO.getCost())

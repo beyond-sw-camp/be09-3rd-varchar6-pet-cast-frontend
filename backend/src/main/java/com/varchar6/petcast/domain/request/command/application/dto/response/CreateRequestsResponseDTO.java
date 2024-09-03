@@ -1,4 +1,4 @@
-package com.varchar6.petcast.domain.request.command.application.dto;
+package com.varchar6.petcast.domain.request.command.application.dto.response;
 
 
 import lombok.Builder;
@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class RequestsResponseDTO {
+public class CreateRequestsResponseDTO {
     private int id;
     private String content;
     private int hopeCost;

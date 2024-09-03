@@ -1,28 +1,26 @@
 package com.varchar6.petcast.domain.request.command.application.service;
 
-import com.varchar6.petcast.domain.request.command.application.dto.RequestsRequestDTO;
-import com.varchar6.petcast.domain.request.command.application.dto.RequestsResponseDTO;
-import com.varchar6.petcast.domain.request.dto.RequestRequestDTO;
-import com.varchar6.petcast.domain.request.dto.RequestResponseDTO;
+import com.varchar6.petcast.domain.request.command.application.dto.request.CreateRequestsRequestDTO;
+import com.varchar6.petcast.domain.request.command.application.dto.response.CreateRequestsResponseDTO;
 
 import java.util.List;
 
 public interface RequestsService {
     // 요청서 작성
-    RequestsResponseDTO createRequest(RequestsRequestDTO requestRequestDTO);
+    void createRequest(CreateRequestsRequestDTO createRequestsRequestDTO, int memberId);
 
     //  요청서 삭제
-    void deleteRequest(int requestId);
+    void deleteRequest(int requestId, int memberId);
 
     // 요청서 수락
-    RequestsResponseDTO acceptRequest(int requestId);
+    void acceptRequest(int requestId);
 
     // 요청서 거절
-    RequestsResponseDTO rejectRequest(int requestId);
+    CreateRequestsResponseDTO rejectRequest(int requestId);
 
-    List<RequestsResponseDTO> findAllRequestsByMemberId(int memberId);
+    List<CreateRequestsResponseDTO> findAllRequestsByMemberId(int memberId);
 
-    List<RequestsResponseDTO> findAllRequestsByCompanyId(int companyId);
+    List<CreateRequestsResponseDTO> findAllRequestsByCompanyId(int companyId);
 
-    RequestsResponseDTO findRequestById(int requestId);
+    CreateRequestsResponseDTO findRequestById(int requestId);
 }

@@ -1,14 +1,14 @@
 package com.varchar6.petcast.domain.request.command.domain.aggregate;
 
-public enum Status {
-      SENT("SENT", 0)
-    , REJECTED("REJECTED", 1)
-    , CONFIRMED("CONFIRMED", 2)
+public enum EventsStatus {
+      READY("SENT", 0)
+    , INPROGRESSING("REJECTED", 1)
+    , DONE("CONFIRMED", 2)
     ;
       private final String status;
       private final int index;
 
-      Status(String status, int index) {
+      EventsStatus(String status, int index) {
           this.status = status;
           this.index = index;
       }
