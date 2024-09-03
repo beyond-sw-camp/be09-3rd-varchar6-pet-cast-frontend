@@ -134,7 +134,7 @@ class GatherServiceImplTests {
         return Stream.of(
                 Arguments.of(new RequestSendInvitationDTO(
                         4,
-                        13
+                        11
                 )),
                 Arguments.of(new RequestSendInvitationDTO(
                         5,
