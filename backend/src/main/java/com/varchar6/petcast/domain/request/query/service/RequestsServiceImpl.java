@@ -33,11 +33,7 @@ public class RequestsServiceImpl implements RequestsService{
 
     @Override
     public List<CompanyAndRequestDTO> findAllRequestsByCompanyId(int companyId) {
-        log.warn("시작2");
-        List<CompanyAndRequestDTO> a = requestsMapper.selectAllRequestsByCompanyId(companyId).stream().toList();
-        log.warn("쿼리 결과: {}", a);
-        return a;
-//        return requestsMapper.selectAllRequestsByCompanyId(companyId).stream().toList();
+        return requestsMapper.selectAllRequestsByCompanyId(companyId).stream().toList();
     }
 
     @Override

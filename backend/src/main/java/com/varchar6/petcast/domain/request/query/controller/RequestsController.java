@@ -68,9 +68,7 @@ public class RequestsController {
         String message = "업체가 받은 요청서 목록 조회 성공!";
         List<CompanyAndRequestDTO> companyAndRequestDTO = null;
         try{
-            log.info("시작");
             companyAndRequestDTO = requestsService.findAllRequestsByCompanyId(companyId);
-            log.info("{}", companyAndRequestDTO);
         }catch (Exception e){
             message = "업체가 받은 요청서 목록 조회 실패!";
         }
