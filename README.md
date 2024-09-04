@@ -1,4 +1,4 @@
-<img width="1237" alt="스크린샷 2024-09-05 오전 5 10 59" src="https://github.com/user-attachments/assets/a80fa883-e631-43f8-890a-37a4a4d7dc84"><h1> :feet: 반려동물 이벤트 업체 매칭 서비스_PET CAST :feet: </h1> <br> 
+<h1> :feet: 반려동물 이벤트 업체 매칭 서비스_PET CAST :feet: </h1> <br> 
 
 ![제목을-입력해주세요_-001 (2)](https://github.com/user-attachments/assets/1f8491a3-89b5-43a3-8a50-3e769303c46f)
 	
@@ -67,21 +67,17 @@
 <br>
 
 ## 📙 요구사항 명세서
+https://docs.google.com/spreadsheets/d/1uxs1YQeDMAhOQqUH84lzAan0NFmG4b5YkxJqN8Zu3rc/edit?gid=0#gid=0
 
-![요구사항 명세서](https://github.com/user-attachments/assets/8c39167c-b241-4118-bcaa-59d730ec8614)
+<img width="850" alt="스크린샷 2024-09-05 오전 5 23 28" src="https://github.com/user-attachments/assets/f87a4901-4963-4f73-ae5f-13ab82ae5bc6">
 
 <br>
 
 ## 📘 기능 명세서
-![기능1](https://github.com/user-attachments/assets/e827486f-ab2f-4465-b80d-c6140bbd15a2)
-![기능2](https://github.com/user-attachments/assets/28b8c102-832c-475c-bacc-8439d4233f83)
-![기능3](https://github.com/user-attachments/assets/fd2689e2-9815-4e8a-aa3d-cae14fdecfed)
-![기능4](https://github.com/user-attachments/assets/6e23a1b6-42d3-48bb-8cce-d501145c7d5e)
-![기능5](https://github.com/user-attachments/assets/61cec108-f8a8-4319-ba95-92e254bd282c)
-![기능6](https://github.com/user-attachments/assets/c52a3cc9-373a-4930-a458-f9572d0a748f)
-![기능7](https://github.com/user-attachments/assets/590a597d-0624-4b93-9a89-5b79160bd084)
-![기능8](https://github.com/user-attachments/assets/f30b6f04-2c0b-4e3c-a6b2-d3021d2986a9)
-![기능9](https://github.com/user-attachments/assets/bde84f01-fd84-49f0-8b57-60c182276c2f)
+https://docs.google.com/spreadsheets/d/1uxs1YQeDMAhOQqUH84lzAan0NFmG4b5YkxJqN8Zu3rc/edit?gid=628887481#gid=628887481
+
+<img width="850" alt="스크린샷 2024-09-05 오전 5 26 43" src="https://github.com/user-attachments/assets/fc0c2e2e-8e0f-483d-867f-2af18756a5fa">
+
 
 <br>
 
@@ -106,6 +102,11 @@
 
 
 <br>
+
+## 🗿네트워크 아키텍쳐
+<img width="850" alt="스크린샷 2024-09-05 오전 5 20 43" src="https://github.com/user-attachments/assets/f00aaff0-b6b1-44d5-9e51-a22c88a90202">
+
+
 📗 테이블 명세서
 
 
