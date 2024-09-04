@@ -6,6 +6,7 @@ import com.varchar6.petcast.domain.report.command.domain.repository.ReportReposi
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,7 +40,8 @@ public class ReportServiceImpl implements ReportService{
             reportRepository.save(report);
             result++;
         }catch(Exception e){
-            throw new IllegalArgumentException("신고 입력 실패");
+            throw new RuntimeException("신고 입력 실패") {
+            };
         }
 
         return result;

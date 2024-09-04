@@ -10,6 +10,7 @@ import com.varchar6.petcast.domain.qna.command.domain.repository.QnaRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,7 +49,7 @@ public class QnaServiceImpl implements QnaService{
             qnaRepository.save(qna);
             result++;
         }catch(Exception e){
-            throw new IllegalArgumentException("qna 입력 실패");
+            throw new RuntimeException("qna 입력 실패");
         }
 
         return result;
@@ -93,7 +94,7 @@ public class QnaServiceImpl implements QnaService{
             qnaRepository.deleteById(id);
             result++;
         } catch (Exception e) {
-            throw new IllegalArgumentException("qna 삭제 실패");
+            throw new RuntimeException("qna 삭제 실패");
         }
 
         return result;
