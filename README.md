@@ -11,9 +11,6 @@
 
 ### 🎯 팀원 소개
 					
-🦥 기우석 	🐬 방동호 	🐰 송의혁 	🐻‍❄️ 용길한 	🐱 이효진 	🐹 정준서 
-
-
 | <img src="https://github.com/3-Minutes-Query/choleeTest/assets/102345450/1046b24a-5d40-4dc1-a747-cb65f20dc764" height=100/>| <img src="https://github.com/3-Minutes-Query/choleeTest/assets/102345450/535b423b-f9c6-4c9a-8052-d1484c7145fb" height=100/> | <img src="https://github.com/3-Minutes-Query/choleeTest/assets/102345450/1046b24a-5d40-4dc1-a747-cb65f20dc764" height=100/> | <img src="https://github.com/3-Minutes-Query/choleeTest/assets/102345450/3679e77e-3678-4f16-a927-04b2c9f2309d" height=100/> | <img src="https://github.com/3-Minutes-Query/choleeTest/assets/102345450/e5de118d-7587-416b-bd9b-d965db443df1" height=100/> | <img src="https://github.com/3-Minutes-Query/choleeTest/assets/102345450/589d04ac-c48f-4491-a2f4-6f372ad95138" height=100/> |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 |                            기우석                            |                            방동호                            |                            송의혁                            |                            용길한                            |                            이효진                            |                            정준서                            |
@@ -49,17 +46,17 @@
 
 
 
-🔧 기술 스택 
+## 🔧 기술 스택 
 
   
   
-🛠 사용 tools
+## 🛠 사용 tools
    
 
 <br>
 
 ## 🗓️ 프로젝트 계획 (WBS) <br>
-
+<br>
 ![image](https://github.com/user-attachments/assets/caa05a40-a9d3-4747-95d4-78103b10d6aa)
 
 
@@ -67,51 +64,55 @@
 <br>
 
 ## 📙 요구사항 명세서
-https://docs.google.com/spreadsheets/d/1uxs1YQeDMAhOQqUH84lzAan0NFmG4b5YkxJqN8Zu3rc/edit?gid=0#gid=0
-
-<img width="850" alt="스크린샷 2024-09-05 오전 5 23 28" src="https://github.com/user-attachments/assets/f87a4901-4963-4f73-ae5f-13ab82ae5bc6">
+https://docs.google.com/spreadsheets/d/1QcbQHmhLQ76bXKGVnVfurkTbIlVpPk1o3f3c-3LNoeU/edit?gid=1027017419#gid=1027017419
+<br>
+<img width="950" alt="스크린샷 2024-09-05 오전 5 33 09" src="https://github.com/user-attachments/assets/ef722a9a-b74d-4494-81b0-899cca9fe3a2">
 
 <br>
 
 ## 📘 기능 명세서
 https://docs.google.com/spreadsheets/d/1uxs1YQeDMAhOQqUH84lzAan0NFmG4b5YkxJqN8Zu3rc/edit?gid=628887481#gid=628887481
-
-<img width="850" alt="스크린샷 2024-09-05 오전 5 26 43" src="https://github.com/user-attachments/assets/fc0c2e2e-8e0f-483d-867f-2af18756a5fa">
+<br>
+<img width="950" alt="스크린샷 2024-09-05 오전 5 26 43" src="https://github.com/user-attachments/assets/fc0c2e2e-8e0f-483d-867f-2af18756a5fa">
 
 
 <br>
 
 ## 📋 DDD
 ### Bounded Context
-<img width="850" alt="스크린샷 2024-09-05 오전 5 10 59" src="https://github.com/user-attachments/assets/0b510570-b882-4cb2-a45b-3cac792c7b6e">
+<img width="950" alt="스크린샷 2024-09-05 오전 5 10 59" src="https://github.com/user-attachments/assets/0b510570-b882-4cb2-a45b-3cac792c7b6e">
 
 
 ### Context map
-<img width="850" alt="스크린샷 2024-09-05 오전 5 11 27" src="https://github.com/user-attachments/assets/7721d913-d921-4d2f-bfd3-efe4989a1f55">
+<img width="950" alt="스크린샷 2024-09-05 오전 5 11 27" src="https://github.com/user-attachments/assets/7721d913-d921-4d2f-bfd3-efe4989a1f55">
 
 
 <br>
 
 ## 📊 DB 모델링
 ### 논리 모델링 <br>
-![image](https://github.com/user-attachments/assets/e40ab358-7519-4b85-8c63-4c602c2b3210)
+<img width="950" alt="스크린샷 2024-09-05 오전 5 28 56" src="https://github.com/user-attachments/assets/3ae17069-73d1-403e-838b-80bfa79e1ef2">
+
 
 
 ### 물리 모델링 <br>
-![물리 모델링](https://github.com/user-attachments/assets/c4a7814d-34ff-447e-9c72-7890d8a9d3c3)
+<img width="950" alt="스크린샷 2024-09-05 오전 5 29 05" src="https://github.com/user-attachments/assets/19f64d3e-3454-427e-bd52-6d0402e4b2cd">
+
 
 
 <br>
 
 ## 🗿네트워크 아키텍쳐
-<img width="850" alt="스크린샷 2024-09-05 오전 5 20 43" src="https://github.com/user-attachments/assets/f00aaff0-b6b1-44d5-9e51-a22c88a90202">
+<img width="950" alt="스크린샷 2024-09-05 오전 5 20 43" src="https://github.com/user-attachments/assets/f00aaff0-b6b1-44d5-9e51-a22c88a90202">
 
+<br>
 
-📗 테이블 명세서
+## 📗 단위 테이블 결과 보고서
+https://docs.google.com/spreadsheets/d/1QcbQHmhLQ76bXKGVnVfurkTbIlVpPk1o3f3c-3LNoeU/edit?gid=0#gid=0
+<img width="950" alt="스크린샷 2024-09-05 오전 5 33 09" src="https://github.com/user-attachments/assets/2d00466e-498a-4c5d-9547-b3ac5e2caf59">
 
+<br>
 
-
-📝 API 명세서
-
-
+## 📝 테스트 계획서 및 결과 보고서
+<img width="950" alt="스크린샷 2024-09-05 오전 5 35 09" src="https://github.com/user-attachments/assets/a65b9fbb-a93f-4122-a463-af2cff8e6854">
 
