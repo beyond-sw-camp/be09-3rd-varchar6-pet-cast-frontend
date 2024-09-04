@@ -48,29 +48,48 @@
 
 ## 🔧 기술 스택 
 
-  
-  
+| 백엔드              | 배지                                                                 |
+|-------------------|----------------------------------------------------------------------|
+| **Java**          | ![Java](https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white)   |
+| **Spring Boot**   | ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)   |
+| **Spring JPA**    | ![JPA](https://img.shields.io/badge/JPA-6DB33F?style=for-the-badge&logo=spring&logoColor=white)   |
+| **MyBatis**       | ![MyBatis](https://img.shields.io/badge/MyBatis-B5E7A0?style=for-the-badge&logo=java&logoColor=white)   |
+| **Spring Security**| ![Spring Security](https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=spring-security&logoColor=white)   |
+| **Gradle**        | ![Gradle](https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white)   |
+| **Hibernate**     | ![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=hibernate&logoColor=white)   |
+| **JWT**           | ![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=json-web-tokens&logoColor=white)   |
+
+| 데이터베이스(DB)              | 배지                                                                 |
+|-------------------|----------------------------------------------------------------------|
+| **MariaDB**        | ![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)   |
+
 ## 🛠 사용 tools
-   
+
+| 사용 tools          | 배지                                                                 |
+|-------------------|----------------------------------------------------------------------|
+| **DA#**           | ![DA#](https://img.shields.io/badge/DA%23-007ACC?style=for-the-badge&logo=data&logoColor=white)   |
+| **GitHub**        | ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)   |
+| **IntelliJ IDEA** | ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJ-000000?style=for-the-badge&logo=intellij-idea&logoColor=white)   |
 
 <br>
 
 ## 🗓️ 프로젝트 계획 (WBS) <br>
-<br>
-![image](https://github.com/user-attachments/assets/caa05a40-a9d3-4747-95d4-78103b10d6aa)
+[[🔗 WBS Link]]https://docs.google.com/spreadsheets/d/1QcbQHmhLQ76bXKGVnVfurkTbIlVpPk1o3f3c-3LNoeU/edit?gid=1027017419#gid=1027017419
+<img width="1387" alt="스크린샷 2024-09-05 오전 8 48 36" src="https://github.com/user-attachments/assets/84b6c901-c651-4785-8dba-8baa57b39121">
+
 
 
 
 <br>
 
 ## 📙 요구사항 명세서
-[[🔗요구사항 명세서]](https://docs.google.com/spreadsheets/d/1QcbQHmhLQ76bXKGVnVfurkTbIlVpPk1o3f3c-3LNoeU/edit?gid=1027017419#gid=1027017419/)
+[[🔗요구사항 명세서 Link]](https://docs.google.com/spreadsheets/d/1QcbQHmhLQ76bXKGVnVfurkTbIlVpPk1o3f3c-3LNoeU/edit?gid=1027017419#gid=1027017419/)
 <br>
 <img width="950" alt="스크린샷 2024-09-05 오전 5 33 09" src="https://github.com/user-attachments/assets/ef722a9a-b74d-4494-81b0-899cca9fe3a2">
 
 
 ## 📘 기능 명세서
-[[🔗기능 명세서]](https://docs.google.com/spreadsheets/d/1uxs1YQeDMAhOQqUH84lzAan0NFmG4b5YkxJqN8Zu3rc/edit?gid=628887481#gid=628887481/)
+[[🔗기능 명세서 Link]](https://docs.google.com/spreadsheets/d/1uxs1YQeDMAhOQqUH84lzAan0NFmG4b5YkxJqN8Zu3rc/edit?gid=628887481#gid=628887481/)
 <br>
 <img width="950" alt="스크린샷 2024-09-05 오전 5 26 43" src="https://github.com/user-attachments/assets/fc0c2e2e-8e0f-483d-867f-2af18756a5fa">
 
@@ -103,12 +122,12 @@
 <br>
 
 ## 📗 단위 테이블 결과 보고서
-[[🔗단위 테이블 결과 link]](https://docs.google.com/spreadsheets/d/1QcbQHmhLQ76bXKGVnVfurkTbIlVpPk1o3f3c-3LNoeU/edit?gid=0#gid=0/)
+[[🔗단위 테이블 결과 Link]](https://docs.google.com/spreadsheets/d/1QcbQHmhLQ76bXKGVnVfurkTbIlVpPk1o3f3c-3LNoeU/edit?gid=0#gid=0/)
 <img width="950" alt="스크린샷 2024-09-05 오전 5 33 09" src="https://github.com/user-attachments/assets/2d00466e-498a-4c5d-9547-b3ac5e2caf59">
 
 <br>
 
 ## 📝 테스트 계획서 및 결과 보고서
-[[🔗테스트 계획서 및 결과 link]](https://docs.google.com/spreadsheets/d/1QcbQHmhLQ76bXKGVnVfurkTbIlVpPk1o3f3c-3LNoeU/edit?gid=1418811021#gid=1418811021/)
+[[🔗테스트 계획서 및 결과 Link]](https://docs.google.com/spreadsheets/d/1QcbQHmhLQ76bXKGVnVfurkTbIlVpPk1o3f3c-3LNoeU/edit?gid=1418811021#gid=1418811021/)
 <img width="950" alt="스크린샷 2024-09-05 오전 5 35 09" src="https://github.com/user-attachments/assets/a65b9fbb-a93f-4122-a463-af2cff8e6854">
 
