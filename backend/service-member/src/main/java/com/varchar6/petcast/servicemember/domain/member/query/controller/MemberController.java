@@ -2,6 +2,7 @@ package com.varchar6.petcast.servicemember.domain.member.query.controller;
 
 import com.varchar6.petcast.servicemember.common.response.ResponseMessage;
 import com.varchar6.petcast.servicemember.domain.member.query.service.MemberService;
+import com.varchar6.petcast.servicemember.domain.member.query.vo.MemberVO;
 import com.varchar6.petcast.servicemember.domain.member.query.vo.RoleVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,49 +45,55 @@ public class MemberController {
     }
 
     @PostMapping("/id-check")
-    public ResponseEntity<ResponseMessage> checkDoubleByLoginId(@RequestBody String loginId){
+    public ResponseEntity<ResponseMessage> checkDoubleByLoginId(@RequestBody MemberVO memberVO){
+
+        String loginId = memberVO.getLoginId();
 
         Boolean answer = memberService.checkDoubleByLoginId(loginId);
 
         return ResponseEntity.ok()
-                .body(
-                        ResponseMessage.builder()
-                                .httpStatus(HttpStatus.OK.value())
-                                .message("아이디 중복 체크 성공")
-                                .result(answer)
-                                .build()
-                );
+            .body(
+                ResponseMessage.builder()
+                    .httpStatus(HttpStatus.OK.value())
+                    .message("아이디 중복 체크 성공")
+                    .result(answer)
+                    .build()
+            );
     }
 
     @PostMapping("/nickname-check")
-    public ResponseEntity<ResponseMessage> checkDoubleByNickName(@RequestBody String nickName){
+    public ResponseEntity<ResponseMessage> checkDoubleByNickName(@RequestBody MemberVO memberVO){
+
+        String nickName = memberVO.getNickname();
 
         Boolean answer = memberService.checkDoubleByNickName(nickName);
 
         return ResponseEntity.ok()
-                .body(
-                        ResponseMessage.builder()
-                                .httpStatus(HttpStatus.OK.value())
-                                .message("닉네임 중복 체크 성공")
-                                .result(answer)
-                                .build()
-                );
+            .body(
+                ResponseMessage.builder()
+                    .httpStatus(HttpStatus.OK.value())
+                    .message("닉네임 중복 체크 성공")
+                    .result(answer)
+                    .build()
+            );
     }
 
     @GetMapping("/search-loginId")
-    public ResponseEntity<ResponseMessage> searchLoginIdByNameAndPhone(@RequestAttribute("memberName") String name,
-                                                                      @RequestAttribute("memberPhone") String phone){
+    public ResponseEntity<ResponseMessage> searchLoginIdByNameAndPhone(@RequestBody MemberVO memberVO){
+
+        String name = memberVO.getName();
+        String phone = memberVO.getPhone();
 
         String memberLoginId = memberService.searchLoginIdByNameAndPhone(name, phone);
 
         return ResponseEntity.ok()
-                .body(
-                        ResponseMessage.builder()
-                                .httpStatus(HttpStatus.OK.value())
-                                .message("이름, 전화번호로 로그인 아이디 찾기 성공")
-                                .result(memberLoginId)
-                                .build()
-                );
+            .body(
+                ResponseMessage.builder()
+                    .httpStatus(HttpStatus.OK.value())
+                    .message("이름, 전화번호로 로그인 아이디 찾기 성공")
+                    .result(memberLoginId)
+                    .build()
+            );
     }
 
     @GetMapping("/password-change-possible")
@@ -116,23 +123,23 @@ public class MemberController {
     }
 
     @PostMapping("/password-check")
-    public ResponseEntity<ResponseMessage> checkPasswordByIdAndPassword(@RequestBody Map<String, String> request,
-                                                                        @RequestAttribute("memberId") int id){
+    public ResponseEntity<ResponseMessage> checkPasswordByIdAndPassword(@RequestBody MemberVO memberVO,
+        @RequestAttribute("memberId") int id){
 
-        String password = request.get("password");
+        String password = memberVO.getPassword();
         String answer = memberService.checkPasswordByIdAndPassword(id);
 
         log.info(answer);
 
         return ResponseEntity
-                .ok()
-                .body(
-                        ResponseMessage.builder()
-                                .httpStatus(HttpStatus.OK.value())
-                                .message("비밀번호 체크 성공")
-                                .result(passwordEncoder.matches(password,answer))
-                                .build()
-                );
+            .ok()
+            .body(
+                ResponseMessage.builder()
+                    .httpStatus(HttpStatus.OK.value())
+                    .message("비밀번호 체크 성공")
+                    .result(passwordEncoder.matches(password,answer))
+                    .build()
+            );
     }
 
     @GetMapping("/search-member-role")

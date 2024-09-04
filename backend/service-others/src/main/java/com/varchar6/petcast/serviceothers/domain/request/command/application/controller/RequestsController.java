@@ -21,7 +21,7 @@ public class RequestsController {
     }
 
     // 요청서 작성
-    @PostMapping("/request")
+    @PostMapping("")
     public ResponseEntity<ResponseMessage> createRequest(@RequestBody CreateRequestsRequestDTO createRequestsRequestDTO,
                                                          @RequestAttribute("memberId") int memberId) {
         String message = "요청서 작성 성공!";

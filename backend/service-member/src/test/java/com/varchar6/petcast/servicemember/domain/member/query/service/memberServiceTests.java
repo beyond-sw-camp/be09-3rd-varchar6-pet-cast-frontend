@@ -1,7 +1,7 @@
 
-package com.varchar6.petcast.domain.member.query.service;
+package com.varchar6.petcast.servicemember.domain.member.query.service;
 
-import com.varchar6.petcast.domain.member.query.vo.RoleVO;
+import com.varchar6.petcast.servicemember.domain.member.query.vo.RoleVO;
 import io.jsonwebtoken.lang.Assert;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
