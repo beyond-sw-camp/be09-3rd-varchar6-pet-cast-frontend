@@ -1,7 +1,10 @@
 package com.varchar6.petcast.servicegateway.filter;
 
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
@@ -18,11 +21,13 @@ import reactor.core.publisher.Mono;
 @Component
 public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<AuthorizationHeaderFilter.Config> {
 
+    private final Environment environment;
     Environment env;
 
-    public AuthorizationHeaderFilter(Environment env) {
+    public AuthorizationHeaderFilter(Environment env, Environment environment) {
         super(Config.class);
         this.env = env;
+        this.environment = environment;
     }
 
     public static class Config {
@@ -45,7 +50,52 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
                 return onError(exchange, "Invalid JWT token", HttpStatus.UNAUTHORIZED);
             }
 
-            return chain.filter(exchange);
+            // JWT에서 사용자 정보 추출
+            Claims claims = getClaims(jwt);
+
+            if (claims == null) {
+                return onError(exchange, "Invalid JWT claims", HttpStatus.UNAUTHORIZED);
+            }
+
+            // 필요한 정보 추출
+            String memberId = claims.get("memberId", String.class);
+            String memberLoginId = claims.get("memberLoginId", String.class);
+            String memberName = claims.get("memberName", String.class);
+            String memberPhone = claims.get("memberPhone", String.class);
+            String memberNickname = claims.get("memberNickname", String.class);
+            String image = claims.get("image", String.class);
+            String created = claims.get("created", String.class);
+            String updated = claims.get("updated", String.class);
+            String active = claims.get("active", String.class);
+            String introduction = claims.get("introduction", String.class);
+            List<String> authorities = claims.get("authorities", List.class);
+
+            String authoritiesHeader = authorities.stream().collect(Collectors.joining(","));
+            // 기존 헤더에 값 추가
+            HttpHeaders headers = new HttpHeaders();
+            headers.addAll(request.getHeaders()); // 기존 헤더 복사
+            headers.add("X-Member-Id", memberId);
+            headers.add("X-Member-Login-Id", memberLoginId);
+            headers.add("X-Member-Name", memberName);
+            headers.add("X-Member-Phone", memberPhone);
+            headers.add("X-Member-Nickname", memberNickname);
+            headers.add("X-image", image);
+            headers.add("X-created", created);
+            headers.add("X-updated", updated);
+            headers.add("X-active", active);
+            headers.add("X-introduction", introduction);
+            headers.add("X-authorities", authoritiesHeader);
+
+            ServerHttpRequest modifiedRequest = request.mutate().headers(httpHeaders -> {
+                httpHeaders.addAll(headers);
+            }).build();
+
+            ServerWebExchange modifiedExchange = exchange.mutate().request(modifiedRequest).build();
+
+
+            return chain.filter(modifiedExchange);
+
+
         };
     }
 
@@ -75,5 +125,17 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
         }
 
         return returnValue;
+    }
+
+    private Claims getClaims(String jwt) {
+        try {
+            return Jwts.parser()
+                .setSigningKey(environment.getProperty("token.secret"))
+                .parseClaimsJws(jwt)
+                .getBody();
+        } catch (Exception e) {
+            log.error("Could not parse claims from JWT: {}", e.getMessage());
+            return null;
+        }
     }
 }
