@@ -1,4 +1,4 @@
-<h1> :feet: 반려동물 이벤트 업체 매칭 서비스_PET CAST :feet: </h1> <br> 
+<img width="1237" alt="스크린샷 2024-09-05 오전 5 10 59" src="https://github.com/user-attachments/assets/a80fa883-e631-43f8-890a-37a4a4d7dc84"><h1> :feet: 반려동물 이벤트 업체 매칭 서비스_PET CAST :feet: </h1> <br> 
 
 ![제목을-입력해주세요_-001 (2)](https://github.com/user-attachments/assets/1f8491a3-89b5-43a3-8a50-3e769303c46f)
 	
@@ -23,12 +23,13 @@
 
 
 ## 🌟 프로젝트 배경
+<img width="450" alt="스크린샷 2024-09-05 오전 4 51 01" src="https://github.com/user-attachments/assets/6149e669-f73b-444d-92ce-deba4e16c0d7" height=300> <img width="450" alt="스크린샷 2024-09-05 오전 4 53 22" src="https://github.com/user-attachments/assets/659a4026-130b-4c9d-8253-879f36873498" height=300>
 
 최근 1인 가구 증가와 함께 반려동물을 가족처럼 여기는 사람들이 늘어나면서 반려동물 시장은 급성장하고 있습니다. <br> 
 반려동물을 가족처럼 여기는 시대인 만큼 강아지 케이크 등 펫 푸드 시장도 커지며 반려동물들의 기념일 또한 챙기는 사례가 늘어나고 있습니다. <br>
 하지만 반려동물의 기념일을 챙기기 위해 이벤트를 준비하는 건 만만치 않습니다. 이럴 때 필요한 전문가에게 맡겨 보세요! <br> 우리 아이 맞춤형 이벤트로써 우리 반려동물이 좋아하는 것들로 이벤트를 만들어 드립니다. <br>
-#### 동물친구들을 좋아하는 우리 반려동물에겐 다른 반려동물도 같이 참여할 수 있는 이벤트도 가능합니다. <br>
-#### 우리 아이는 내가 잘 알지~! 직접 이벤트 개최를 위한 장소 대관도 가능합니다. <br>
+### 🌟  ***동물친구들을 좋아하는 우리 반려동물에겐 다른 반려동물도 같이 참여할 수 있는 이벤트도 가능합니다.*** <br>
+### 🌟  ***우리 아이는 내가 잘 알지~! 직접 이벤트 개최를 위한 장소 대관도 가능합니다.*** <br>
 원하시는 조건만 골라주시면 적절한 업체를 매칭해드립니다. 사랑스러운 우리 아이의 특별한 날을 더욱 빛내주세요! 
 
 
@@ -81,6 +82,16 @@
 ![기능7](https://github.com/user-attachments/assets/590a597d-0624-4b93-9a89-5b79160bd084)
 ![기능8](https://github.com/user-attachments/assets/f30b6f04-2c0b-4e3c-a6b2-d3021d2986a9)
 ![기능9](https://github.com/user-attachments/assets/bde84f01-fd84-49f0-8b57-60c182276c2f)
+
+<br>
+
+## 📋 DDD
+### Bounded Context
+<img width="850" alt="스크린샷 2024-09-05 오전 5 10 59" src="https://github.com/user-attachments/assets/0b510570-b882-4cb2-a45b-3cac792c7b6e">
+
+
+### Context map
+<img width="850" alt="스크린샷 2024-09-05 오전 5 11 27" src="https://github.com/user-attachments/assets/7721d913-d921-4d2f-bfd3-efe4989a1f55">
 
 
 <br>
