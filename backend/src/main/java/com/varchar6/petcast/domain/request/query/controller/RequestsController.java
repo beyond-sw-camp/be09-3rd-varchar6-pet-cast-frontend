@@ -3,8 +3,8 @@ package com.varchar6.petcast.domain.request.query.controller;
 
 import com.varchar6.petcast.common.response.ResponseMessage;
 import com.varchar6.petcast.domain.request.command.application.dto.response.CreateRequestsResponseDTO;
-import com.varchar6.petcast.domain.request.command.application.service.RequestsService;
 import com.varchar6.petcast.domain.request.query.mapper.RequestsMapper;
+import com.varchar6.petcast.domain.request.query.service.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,17 +13,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/requests")
 public class RequestsController {
-    private final RequestsService requestsService;
+private final RequestService requestService;
     private RequestsMapper requestsMapper;
 
+    private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
+
     @Autowired
-    public RequestsController(RequestsService requestsService, RequestsMapper requestsMapper) {
-        this.requestsService = requestsService;
+    public RequestsController(RequestService requestService, RequestsMapper requestsMapper) {
+        this.requestService = requestService;
         this.requestsMapper = requestsMapper;
     }
 
@@ -31,7 +35,7 @@ public class RequestsController {
     // 고객 요청서 목록 조회
     @GetMapping("/list/{memberId}")
     public ResponseEntity<ResponseMessage> findRequestsByCustomer(@PathVariable int memberId) {
-        List<CreateRequestsResponseDTO> requests = requestsService.findAllRequestsByMemberId(memberId);
+        List<CreateRequestsResponseDTO> requests = requestService.findAllRequestsByMemberId(memberId);
         return ResponseEntity.ok()
                              .body(ResponseMessage.builder()
                                                      .httpStatus(HttpStatus.OK.value())
@@ -43,7 +47,7 @@ public class RequestsController {
     // 업체 요청서 목록 조회
     @GetMapping("/list/{companyId}")
     public ResponseEntity<ResponseMessage> findRequestsForCompany(@PathVariable int companyId) {
-        List<CreateRequestsResponseDTO> requests = requestsService.findAllRequestsByCompanyId(companyId);
+        List<CreateRequestsResponseDTO> requests = requestService.findAllRequestsByCompanyId(companyId);
         return ResponseEntity.ok()
                              .body(ResponseMessage.builder()
                                                   .httpStatus(HttpStatus.OK.value())
@@ -55,7 +59,7 @@ public class RequestsController {
     // 요청서 상세 조회
     @GetMapping("/list/{requestId}")
     public ResponseEntity<ResponseMessage> getRequestById(@PathVariable int requestId) {
-        CreateRequestsResponseDTO request = requestsService.findRequestById(requestId);
+        CreateRequestsResponseDTO request = requestService.findRequestById(requestId);
         return ResponseEntity.ok()
                 .body(ResponseMessage.builder()
                         .httpStatus(HttpStatus.OK.value())

@@ -17,4 +17,5 @@ public interface RequestsService {
 
     // 요청서 거절
     void rejectRequest(int requestId);
+    
 }
