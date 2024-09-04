@@ -21,9 +21,11 @@ public class RequestsController {
     }
 
     // 요청서 작성
-    @PostMapping("/request")
+    @PostMapping("")
     public ResponseEntity<ResponseMessage> createRequest(@RequestBody CreateRequestsRequestDTO createRequestsRequestDTO,
-                                                         @RequestAttribute("memberId") int memberId) {
+        @RequestHeader("X-Member-Id") String id) {
+
+        int memberId = Integer.parseInt(id);
         String message = "요청서 작성 성공!";
         try {
             requestsService.createRequest(createRequestsRequestDTO, memberId);
@@ -41,7 +43,10 @@ public class RequestsController {
     // 요청서 삭제
     @DeleteMapping("/list/{requestId}")
     public ResponseEntity<ResponseMessage> deleteRequest(@PathVariable int requestId,
-                                                         @RequestAttribute("memberId") int memberId) {
+        @RequestHeader("X-Member-Id") String id) {
+
+        int memberId = Integer.parseInt(id);
+
         String message = "요청서 삭제 성공!";
         try {
             requestsService.deleteRequest(requestId, memberId);
@@ -59,7 +64,8 @@ public class RequestsController {
     // 요청서 수락
     @PutMapping("/list/acceptance/{requestId}")
     public ResponseEntity<ResponseMessage> acceptRequest(@PathVariable int requestId,
-                                                         @RequestAttribute("memberId") int memberId) {
+        @RequestHeader("X-Member-Id") String id) {
+
         String message = "요청서 수락 성공!";
         try {
             requestsService.acceptRequest(requestId);
@@ -77,7 +83,9 @@ public class RequestsController {
     // 요청서 거절
     @PutMapping("/list/refusal/{requestId}")
     public ResponseEntity<ResponseMessage> rejectRequest(@PathVariable int requestId,
-                                                         @RequestAttribute("memberId") int memberId) {
+        @RequestHeader("X-Member-Id") String id) {
+
+        int memberId = Integer.parseInt(id);
         String message = "요청서 거절 성공!";
 
         try {

@@ -1,18 +1,18 @@
-package com.varchar6.petcast.domain.member.command.application.service;
+package com.varchar6.petcast.servicemember.domain.member.command.application.service;
 
-import com.varchar6.petcast.domain.member.command.application.dto.request.MemberRequestDTO;
-import com.varchar6.petcast.domain.member.command.application.dto.request.MemberUpdateRequestDTO;
-import com.varchar6.petcast.domain.member.command.application.dto.request.ProfileRequestDTO;
-import com.varchar6.petcast.domain.member.command.application.dto.request.ProfileUpdateRequestDTO;
-import com.varchar6.petcast.domain.member.command.application.dto.response.MemberResponseDTO;
-import com.varchar6.petcast.domain.member.command.application.dto.response.MemberUpdateResponseDTO;
-import com.varchar6.petcast.domain.member.command.application.vo.response.ProfileRegistResponseVO;
+import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.MemberRequestDTO;
+import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.MemberUpdateRequestDTO;
+import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.ProfileRequestDTO;
+import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.ProfileUpdateRequestDTO;
+import com.varchar6.petcast.servicemember.domain.member.command.application.dto.response.MemberResponseDTO;
+import com.varchar6.petcast.servicemember.domain.member.command.application.dto.response.MemberUpdateResponseDTO;
+import com.varchar6.petcast.servicemember.domain.member.command.application.vo.response.ProfileRegistResponseVO;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static com.varchar6.petcast.domain.member.command.domain.aggregate.Gender.MALE;
+import static com.varchar6.petcast.servicemember.domain.member.command.domain.aggregate.Gender.MALE;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest

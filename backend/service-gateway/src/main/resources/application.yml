@@ -18,7 +18,7 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: service-member-get
+        - id: service-member
           uri: lb://PETCAST-MEMBER-SERVICE
           predicates:
             - Path=/service-member/**
