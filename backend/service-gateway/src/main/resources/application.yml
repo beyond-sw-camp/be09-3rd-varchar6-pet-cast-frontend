@@ -43,7 +43,7 @@ spring:
           filters:
             - RewritePath=/service-member/(?<segment>.*), /$\{segment}
 
-        - id: service-others-get
+        - id: service-others
           uri: lb://PETCAST-OTHERS-SERVICE
           predicates:
             - Path=/service-others/**
