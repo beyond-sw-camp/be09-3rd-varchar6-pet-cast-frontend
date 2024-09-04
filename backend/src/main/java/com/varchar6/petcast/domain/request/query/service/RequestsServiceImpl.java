@@ -4,11 +4,13 @@ import com.varchar6.petcast.domain.request.query.dto.CompanyAndRequestDTO;
 import com.varchar6.petcast.domain.request.query.dto.MemberAndRequestDTO;
 import com.varchar6.petcast.domain.request.query.dto.RequestDetailDTO;
 import com.varchar6.petcast.domain.request.query.mapper.RequestsMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service(value = "queryRequestServiceImpl")
 public class RequestsServiceImpl implements RequestsService{
 
@@ -25,13 +27,17 @@ public class RequestsServiceImpl implements RequestsService{
     }
 
     @Override
-    public List<MemberAndRequestDTO> findAllRequestsByMemberId(int memberId) {
-        return requestsMapper.selectAllRequestsByMemberId(memberId).stream().toList();
+    public List<MemberAndRequestDTO> findAllRequestsByMemberId(int userId) {
+        return requestsMapper.selectAllRequestsByMemberId(userId).stream().toList();
     }
 
     @Override
     public List<CompanyAndRequestDTO> findAllRequestsByCompanyId(int companyId) {
-        return requestsMapper.selectAllRequestsByCompanyId(companyId).stream().toList();
+        log.warn("시작2");
+        List<CompanyAndRequestDTO> a = requestsMapper.selectAllRequestsByCompanyId(companyId).stream().toList();
+        log.warn("쿼리 결과: {}", a);
+        return a;
+//        return requestsMapper.selectAllRequestsByCompanyId(companyId).stream().toList();
     }
 
     @Override

@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface RequestsService {
 
-    List<MemberAndRequestDTO> findAllRequestsByMemberId(int memberId);
+    List<String> findCategoryList();
+
+    List<MemberAndRequestDTO> findAllRequestsByMemberId(int userId);
 
     List<CompanyAndRequestDTO> findAllRequestsByCompanyId(int companyId);
 
     RequestDetailDTO findRequestById(int requestId);
-
-    List<String> findCategoryList();
 }

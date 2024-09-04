@@ -7,16 +7,15 @@ import com.varchar6.petcast.domain.request.query.dto.MemberAndRequestDTO;
 import com.varchar6.petcast.domain.request.query.dto.RequestDetailDTO;
 import com.varchar6.petcast.domain.request.query.mapper.RequestsMapper;
 import com.varchar6.petcast.domain.request.query.service.RequestsService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/v1/requests")
 public class RequestsController {
@@ -46,8 +45,8 @@ public class RequestsController {
     }
 
     // 고객 요청서 목록 조회
-    @GetMapping("/list/{memberId}")
-    public ResponseEntity<ResponseMessage> findRequestsByCustomer(@PathVariable int memberId) {
+    @GetMapping("/list/memberRequest/{userId}")
+    public ResponseEntity<ResponseMessage> findRequestsByCustomer(@RequestAttribute("memberId") int memberId) {
         String message = "고객이 작성한 요청서 목록 조회 성공!";
         List<MemberAndRequestDTO> memberAndRequestDTO = null;
         try {
@@ -64,12 +63,14 @@ public class RequestsController {
     }
 
     // 업체 요청서 목록 조회
-    @GetMapping("/list/{companyId}")
+    @GetMapping("/list/companyRequest/{companyId}")
     public ResponseEntity<ResponseMessage> findRequestsForCompany(@PathVariable int companyId) {
         String message = "업체가 받은 요청서 목록 조회 성공!";
         List<CompanyAndRequestDTO> companyAndRequestDTO = null;
         try{
+            log.info("시작");
             companyAndRequestDTO = requestsService.findAllRequestsByCompanyId(companyId);
+            log.info("{}", companyAndRequestDTO);
         }catch (Exception e){
             message = "업체가 받은 요청서 목록 조회 실패!";
         }
@@ -82,7 +83,7 @@ public class RequestsController {
     }
 
     // 요청서 상세 조회
-    @GetMapping("/list/{requestId}")
+    @GetMapping("/list/detail/{requestId}")
     public ResponseEntity<ResponseMessage> getRequestById(@PathVariable int requestId) {
         String message = "요청서 상세 조회 성공!";
         RequestDetailDTO requestDetailDTO = null;
