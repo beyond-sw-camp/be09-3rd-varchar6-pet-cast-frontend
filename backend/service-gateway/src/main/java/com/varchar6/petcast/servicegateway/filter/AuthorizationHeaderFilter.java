@@ -1,4 +1,4 @@
-package com.ohgiraffers.gateway.filter;
+package com.varchar6.petcast.servicegateway.filter;
 
 
 import io.jsonwebtoken.Jwts;
@@ -13,8 +13,6 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
-
-import java.util.Set;
 
 @Slf4j
 @Component
