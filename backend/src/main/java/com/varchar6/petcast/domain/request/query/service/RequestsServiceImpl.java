@@ -7,6 +7,7 @@ import com.varchar6.petcast.domain.request.query.mapper.RequestsMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,21 +23,25 @@ public class RequestsServiceImpl implements RequestsService{
     }
 
     @Override
+    @Transactional
     public List<String> findCategoryList() {
         return requestsMapper.selectCategoryList().stream().toList();
     }
 
     @Override
+    @Transactional
     public List<MemberAndRequestDTO> findAllRequestsByMemberId(int userId) {
         return requestsMapper.selectAllRequestsByMemberId(userId).stream().toList();
     }
 
     @Override
+    @Transactional
     public List<CompanyAndRequestDTO> findAllRequestsByCompanyId(int companyId) {
         return requestsMapper.selectAllRequestsByCompanyId(companyId).stream().toList();
     }
 
     @Override
+    @Transactional
     public RequestDetailDTO findRequestById(int requestId) {
         return requestsMapper.selectRequestById(requestId);
     }

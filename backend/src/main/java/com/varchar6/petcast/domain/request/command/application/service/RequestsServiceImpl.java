@@ -67,7 +67,7 @@ public class RequestsServiceImpl implements RequestsService {
         try {
             requestsRepository.save(findRequests);
         }catch (Exception e){
-            log.warn("비활성화 DB에 업데이트 실패!");
+            throw new RuntimeException("[Service] 비활성화 DB에 업데이트 실패!", e);
         }
     }
 
@@ -82,7 +82,7 @@ public class RequestsServiceImpl implements RequestsService {
         try {
             requestsRepository.save(request);  // 상태 업데이트 저장
         }catch (Exception e) {
-            log.warn("[Service] 요청서 수락 실패!");
+            throw new RuntimeException("[Service] 요청서 수락 실패!", e);
         }
 
         Event newEvent = Event.builder()
@@ -95,7 +95,7 @@ public class RequestsServiceImpl implements RequestsService {
         try {
             eventsRepository.save(newEvent);
         }catch (Exception e){
-            log.warn("이벤트 생성 실패!");
+            throw new RuntimeException("[Service] 이벤트 생성 실패!", e);
         }
     }
 
@@ -111,7 +111,7 @@ public class RequestsServiceImpl implements RequestsService {
         try {
             request = requestsRepository.save(request);  // 상태 업데이트 저장
         }catch (Exception e) {
-            log.warn("[Service] 요청서 거절 실패!");
+            throw new RuntimeException("[Service] 요청서 거절 실패!", e);
         }
 
     }
