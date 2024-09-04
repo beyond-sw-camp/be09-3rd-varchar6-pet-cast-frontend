@@ -2,6 +2,9 @@ package com.varchar6.petcast.domain.proposalandestimate.command.service;
 
 import com.varchar6.petcast.domain.proposalandestimate.command.application.dto.EstimatesRequestDTO;
 import com.varchar6.petcast.domain.proposalandestimate.command.application.dto.EstimatesResponseDTO;
+import com.varchar6.petcast.domain.proposalandestimate.command.domain.aggregate.Estimates;
+import com.varchar6.petcast.domain.proposalandestimate.command.domain.aggregate.EstimatesStatus;
+import com.varchar6.petcast.domain.proposalandestimate.command.domain.aggregate.Proposals;
 import com.varchar6.petcast.domain.proposalandestimate.command.domain.repository.EstimatesRepository;
 import com.varchar6.petcast.domain.proposalandestimate.command.service.EstimatesService;
 
@@ -18,8 +21,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class EstimatesServiceImplTests {
 
     private EstimatesService estimatesService;
-//    private static EstimatesResponseDTO estimatesResponseDTO;
-//    private static EstimatesRequestDTO estimatesRequestDTO;
     private EstimatesRepository estimatesRepository;
 
     private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
@@ -47,14 +48,25 @@ class EstimatesServiceImplTests {
     }
 
     @Test
-    void deleteEstimate () {
+    @Transactional
+    void 견적서_삭제_테스트 () {
+        int id = 1;
+        estimatesRepository.deleteById ( id );
     }
 
     @Test
-    void acceptEstimate () {
+    @Transactional
+    void 견적서_수락_테스트 () {
+        Estimates estimates = Estimates.builder ()
+                .id ( 1 ).status ( EstimatesStatus.CONFIRMED ).build ();
+        System.out.println (estimatesRepository.save ( estimates ));
     }
 
     @Test
-    void rejectEstimate () {
+    @Transactional
+    void 견적서_거절_테스트 () {
+        Estimates estimates = Estimates.builder ()
+                                    .id ( 1 ).status ( EstimatesStatus.REJECTED ).build ();
+        System.out.println (estimatesRepository.save ( estimates ));
     }
 }
