@@ -31,9 +31,12 @@ public class GatherController {
     }
 
     @PostMapping("")
-    public ResponseEntity<ResponseMessage> createGather(@RequestBody RequestCreateGatherDTO requestCreateGatherDTO,
-                                                        @RequestAttribute("memberId") int memberId){
-        requestCreateGatherDTO.setUserId(memberId);
+    private ResponseEntity<ResponseMessage> createGather(
+//        @RequestHeader(value = "X-Member-Id", required = false) String id,
+        @RequestBody RequestCreateGatherDTO requestCreateGatherDTO) {
+
+//        int memberId = Integer.parseInt(id);
+//        requestCreateGatherDTO.setUserId(memberId);
         gatherService.createGather(requestCreateGatherDTO);
 
         return ResponseEntity.ok(
@@ -45,9 +48,12 @@ public class GatherController {
     }
 
     @PutMapping("")
-    public ResponseEntity<ResponseMessage> updateGatherInfo(@RequestBody RequestUpdateGatherInfoDTO requestUpdateGatherDTO,
-                                                            @RequestAttribute("memberId") int memberId){
-        requestUpdateGatherDTO.setUserId(memberId);
+    public ResponseEntity<ResponseMessage> updateGatherInfo(@RequestBody RequestUpdateGatherInfoDTO requestUpdateGatherDTO
+//        @RequestHeader("X-Member-Id") String id
+    ){
+
+//        int memberId = Integer.parseInt(id);
+//        requestUpdateGatherDTO.setUserId(memberId);
         ResponseUpdateGatherInfoDTO responseUpdateGatherInfoDTO = gatherService.updateGatherInfo(requestUpdateGatherDTO);
 
         ResponseMessage responseMessage = ResponseMessage.builder()
@@ -65,11 +71,12 @@ public class GatherController {
     }
 
     @DeleteMapping("")
-    public ResponseEntity<ResponseMessage> deactiveGather(@RequestBody RequestDeactiveGatherDTO requestDeactiveGatherDTO,
-        @RequestHeader("X-Member-Id") String id){
+    public ResponseEntity<ResponseMessage> deactiveGather(@RequestBody RequestDeactiveGatherDTO requestDeactiveGatherDTO
+//        @RequestHeader("X-Member-Id") String id
+    ){
 
-        int memberId = Integer.parseInt(id);
-        requestDeactiveGatherDTO.setUserId(memberId);
+//        int memberId = Integer.parseInt(id);
+//        requestDeactiveGatherDTO.setUserId(memberId);
         ResponseDeactiveGatherDTO responseDeactiveGatherDTO = gatherService.deactiveGather(requestDeactiveGatherDTO);
 
         ResponseMessage responseMessage = ResponseMessage.builder()

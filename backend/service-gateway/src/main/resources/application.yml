@@ -18,27 +18,43 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: service-member-get
+        - id: service-member
           uri: lb://PETCAST-MEMBER-SERVICE
           predicates:
             - Path=/service-member/**
-            - Method=GET
+#            - Method=GET
           filters:
             - RewritePath=/service-member/(?<segment>.*), /$\{segment}
-            - AuthorizationHeaderFilter
+#            - AuthorizationHeaderFilter
 
-        - id: service-member-post
-          uri: lb://PETCAST-MEMBER-SERVICE
-          predicates:
-            - Path=/service-member/**
-            - Method=POST
-          filters:
-            - RewritePath=/service-member/(?<segment>.*), /$\{segment}
+#        - id: service-member-post
+#          uri: lb://PETCAST-MEMBER-SERVICE
+#          predicates:
+#            - Path=/service-member/**
+#            - Method=POST
+#          filters:
+#            - RewritePath=/service-member/(?<segment>.*), /$\{segment}
+#            -
+#        - id: service-member-put
+#          uri: lb://PETCAST-MEMBER-SERVICE
+#          predicates:
+#            - Path=/service-member/**
+#            - Method=PUT
+#          filters:
+#            - RewritePath=/service-member/(?<segment>.*), /$\{segment}
+#
+#        - id: service-member-delete
+#          uri: lb://PETCAST-MEMBER-SERVICE
+#          predicates:
+#            - Path=/service-member/**
+#            - Method=DELETE
+#          filters:
+#            - RewritePath=/service-member/(?<segment>.*), /$\{segment}
 
-        - id: service-others-get
+        - id: service-others
           uri: lb://PETCAST-OTHERS-SERVICE
           predicates:
             - Path=/service-others/**
           filters:
             - RewritePath=/service-others/(?<segment>.*), /$\{segment}
-            - AuthorizationHeaderFilter
+#            - AuthorizationHeaderFilter

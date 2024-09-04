@@ -152,7 +152,6 @@ public class MemberController {
         @RequestHeader("X-Member-Id") String id) {
 
         int memberId = Integer.parseInt(id);
-
         updateProfile.setMemberId(memberId);
 
         ProfileUpdateRequestDTO profileUpdateRequestDTO = modelMapper.map(updateProfile, ProfileUpdateRequestDTO.class);

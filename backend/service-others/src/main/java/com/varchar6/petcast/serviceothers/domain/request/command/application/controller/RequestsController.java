@@ -66,7 +66,6 @@ public class RequestsController {
     public ResponseEntity<ResponseMessage> acceptRequest(@PathVariable int requestId,
         @RequestHeader("X-Member-Id") String id) {
 
-        int memberId = Integer.parseInt(id);
         String message = "요청서 수락 성공!";
         try {
             requestsService.acceptRequest(requestId);
