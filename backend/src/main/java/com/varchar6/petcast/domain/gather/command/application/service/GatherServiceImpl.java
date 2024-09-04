@@ -63,7 +63,7 @@ public class GatherServiceImpl implements GatherService {
         try {
             newGather = gatherRepository.save(gather);
         } catch (Exception e) {
-            log.error("새로운 모임 insert 실패!!");
+            throw new RuntimeException("[Command Service] ");
         }
 
         try {
