@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -18,10 +20,13 @@ import java.util.Map;
 @RequestMapping("/api/v1/members")
 public class MemberController {
     private final MemberService memberService;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public MemberController(MemberService memberService) {
+    public MemberController(MemberService memberService,
+                            PasswordEncoder passwordEncoder) {
         this.memberService = memberService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("{memberId}")
@@ -38,8 +43,8 @@ public class MemberController {
                 );
     }
 
-    @GetMapping("/id-check/{loginId}")
-    public ResponseEntity<ResponseMessage> checkDoubleByLoginId(@RequestAttribute("longinId") String loginId ){
+    @PostMapping("/id-check")
+    public ResponseEntity<ResponseMessage> checkDoubleByLoginId(@RequestBody String loginId){
 
         Boolean answer = memberService.checkDoubleByLoginId(loginId);
 
@@ -53,8 +58,8 @@ public class MemberController {
                 );
     }
 
-    @GetMapping("/nickname-check/{nickname}")
-    public ResponseEntity<ResponseMessage> checkDoubleByNickName(@RequestAttribute("nickname") String nickName){
+    @PostMapping("/nickname-check")
+    public ResponseEntity<ResponseMessage> checkDoubleByNickName(@RequestBody String nickName){
 
         Boolean answer = memberService.checkDoubleByNickName(nickName);
 
@@ -68,9 +73,9 @@ public class MemberController {
                 );
     }
 
-    @GetMapping("/search-loginId/{name}/{phone}")
-    public ResponseEntity<ResponseMessage> searchLoginIdByNameAndPhone(@RequestAttribute("name") String name,
-                                                                      @RequestAttribute("phone") String phone){
+    @GetMapping("/search-loginId")
+    public ResponseEntity<ResponseMessage> searchLoginIdByNameAndPhone(@RequestAttribute("memberName") String name,
+                                                                      @RequestAttribute("memberPhone") String phone){
 
         String memberLoginId = memberService.searchLoginIdByNameAndPhone(name, phone);
 
@@ -84,9 +89,9 @@ public class MemberController {
                 );
     }
 
-    @GetMapping("/password-change-possible/{loginId}/{phone}")
-    public ResponseEntity<ResponseMessage> checkIdAndPhone(@RequestAttribute("loginId") String loginId,
-                                                           @RequestAttribute("phone") String phone) {
+    @GetMapping("/password-change-possible")
+    public ResponseEntity<ResponseMessage> checkIdAndPhone(@RequestAttribute("memberLoginId") String loginId,
+                                                           @RequestAttribute("memberPhone") String phone) {
 
         int answer = memberService.checkIdAndPhone(loginId, phone);
 
@@ -110,8 +115,8 @@ public class MemberController {
                 );
     }
 
-    @GetMapping("/password-check/{password}")
-    public ResponseEntity<ResponseMessage> checkPasswordByIdAndPassword(@RequestAttribute("password") String password,
+    @PostMapping("/password-check")
+    public ResponseEntity<ResponseMessage> checkPasswordByIdAndPassword(@RequestBody String password,
                                                                         @RequestAttribute("memberId") int id){
 
         String answer = memberService.checkPasswordByIdAndPassword(id);
@@ -122,7 +127,7 @@ public class MemberController {
                         ResponseMessage.builder()
                                 .httpStatus(HttpStatus.OK.value())
                                 .message("비밀번호 체크 성공")
-                                .result(password.equals(answer))
+                                .result(passwordEncoder.matches(password,answer))
                                 .build()
                 );
     }

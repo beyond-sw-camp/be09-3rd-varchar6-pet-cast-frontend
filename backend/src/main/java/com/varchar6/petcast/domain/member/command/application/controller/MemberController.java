@@ -21,6 +21,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.util.List;
 
 @RestController(value = "commandMemberController")
@@ -41,6 +42,7 @@ public class MemberController {
     public String getTest(
             @RequestAttribute("memberId") int memberId,
             @RequestAttribute("memberLoginId") String memberLoginId,
+            @RequestAttribute("memberName") String name,
             @RequestAttribute("memberPhone") String memberPhone,
             @RequestAttribute("memberNickname") String memberNickname,
             @RequestAttribute("image") String image,
@@ -83,9 +85,10 @@ public class MemberController {
                 );
     }
 
-    @PutMapping("/update-member-status")
-    public ResponseEntity<ResponseMessage> updateMemberStatus(@RequestBody MemberUpdateRequestVO updateStatus,
-                                                              @RequestAttribute("memberId") int memberId) {
+    @PostMapping("/update-member-status")
+    public ResponseEntity<ResponseMessage> updateMemberStatus(@RequestAttribute("memberId") int memberId) {
+
+        MemberUpdateRequestDTO updateStatus = new MemberUpdateRequestDTO();
 
         updateStatus.setId(memberId);
 
@@ -147,7 +150,7 @@ public class MemberController {
 
     @PutMapping("/update-member-profile")
     public ResponseEntity<ResponseMessage> updateMemberProfile(@RequestBody ProfileUpdateRequestVO updateProfile,
-                                                               @RequestAttribute(" memberId") int memberId) {
+                                                               @RequestAttribute("memberId") int memberId) {
         updateProfile.setMemberId(memberId);
 
         ProfileUpdateRequestDTO profileUpdateRequestDTO = modelMapper.map(updateProfile, ProfileUpdateRequestDTO.class);

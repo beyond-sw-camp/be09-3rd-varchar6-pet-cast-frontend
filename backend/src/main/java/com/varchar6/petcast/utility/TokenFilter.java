@@ -28,6 +28,7 @@ public class TokenFilter implements Filter {
                 CustomUser customUser = (CustomUser) authentication.getPrincipal();
                 httpServletRequest.setAttribute("memberId", customUser.getId());
                 httpServletRequest.setAttribute("memberLoginId", customUser.getUsername());
+                httpServletRequest.setAttribute("memberName", customUser.getName());
                 httpServletRequest.setAttribute("memberPhone", customUser.getPhone());
                 httpServletRequest.setAttribute("memberNickname", customUser.getNickname());
                 httpServletRequest.setAttribute("image", customUser.getImage());
