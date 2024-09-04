@@ -14,5 +14,4 @@ public class MemberRequestDTO {
     private String nickname;
     private String image;
     private String introduction;
-
 }

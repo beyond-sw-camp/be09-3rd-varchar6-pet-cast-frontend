@@ -28,7 +28,7 @@
           FROM TBL_NOTICE A
          WHERE A.ID = #{ id }
     </select>
-    <select id="selectAllNotice" resultMap="memberResultMap">
+    <select id="selectAllNotice" resultMap="memberResultMap" parameterType="_int">
         SELECT
                A.ID
              , A.TITLE

@@ -1,15 +1,15 @@
 package com.varchar6.petcast.domain.member.command.application.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
+@ToString
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class MemberResponseDTO {
+
+    private int id;
     private String loginId;
     private String password;
     private String name;

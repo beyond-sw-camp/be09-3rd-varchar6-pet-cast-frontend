@@ -1,16 +1,10 @@
-package com.varchar6.petcast.domain.member.query.dto;
+package com.varchar6.petcast.domain.member.command.application.vo.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class MemberDTO {
-    private int id;
+@Data
+public class MemberUpdateResponseVO {
+
     private String loginId;
     private String password;
     private String name;
@@ -21,5 +15,4 @@ public class MemberDTO {
     private String updatedAt;
     private boolean active;
     private String introduction;
-
 }

@@ -33,6 +33,93 @@
          WHERE A.ID = #{ id }
     </select>
 
+    <select id="checkDoubleByLoginId" resultMap="memberResultMap" parameterType="string">
+        SELECT
+        A.ID
+        , A.LOGIN_ID
+        , A.PASSWORD
+        , A.NAME
+        , A.PHONE
+        , A.NICKNAME
+        , A.IMAGE
+        , A.CREATED_AT
+        , A.UPDATED_AT
+        , A.ACTIVE
+        , A.INTRODUCTION
+        FROM TBL_MEMBER A
+        WHERE A.LOGIN_ID = #{ loginId }
+    </select>
+
+    <select id="checkDoubleByNickName" resultMap="memberResultMap" parameterType="string">
+        SELECT
+        A.ID
+        , A.LOGIN_ID
+        , A.PASSWORD
+        , A.NAME
+        , A.PHONE
+        , A.NICKNAME
+        , A.IMAGE
+        , A.CREATED_AT
+        , A.UPDATED_AT
+        , A.ACTIVE
+        , A.INTRODUCTION
+        FROM TBL_MEMBER A
+        WHERE A.NICKNAME = #{ nickname }
+    </select>
+
+    <select id="searchLoginIdByNameAndPhone" resultMap="memberResultMap" parameterType="map">
+        SELECT
+        A.ID
+        , A.LOGIN_ID
+        , A.PASSWORD
+        , A.NAME
+        , A.PHONE
+        , A.NICKNAME
+        , A.IMAGE
+        , A.CREATED_AT
+        , A.UPDATED_AT
+        , A.ACTIVE
+        , A.INTRODUCTION
+        FROM TBL_MEMBER A
+        WHERE A.NAME = #{ name }
+        AND A.PHONE = #{ phone }
+    </select>
+
+    <select id="checkIdAndPhone" resultMap="memberResultMap" parameterType="map">
+        SELECT
+        A.ID
+        , A.LOGIN_ID
+        , A.PASSWORD
+        , A.NAME
+        , A.PHONE
+        , A.NICKNAME
+        , A.IMAGE
+        , A.CREATED_AT
+        , A.UPDATED_AT
+        , A.ACTIVE
+        , A.INTRODUCTION
+        FROM TBL_MEMBER A
+        WHERE A.LOGIN_ID = #{ loginId }
+        AND A.PHONE = #{ phone }
+    </select>
+
+    <select id="checkPasswordByIdAndPassword" resultMap="memberResultMap" parameterType="_int">
+        SELECT
+        A.ID
+        , A.LOGIN_ID
+        , A.PASSWORD
+        , A.NAME
+        , A.PHONE
+        , A.NICKNAME
+        , A.IMAGE
+        , A.CREATED_AT
+        , A.UPDATED_AT
+        , A.ACTIVE
+        , A.INTRODUCTION
+        FROM TBL_MEMBER A
+        WHERE A.ID = #{ id }
+    </select>
+
 <!--    권한 정보까지 모두 조회-->
     <resultMap id="memberWithDistinctRolesMap" type="com.varchar6.petcast.domain.member.query.vo.MemberVO">
         <id property="id" column="ID"/>
@@ -74,4 +161,29 @@
          WHERE M.LOGIN_ID = #{ memberId }
          GROUP BY R.NAME
     </select>
+
+    <select id="searchMemberRole" resultMap="memberWithDistinctRolesMap" parameterType="_int">
+        SELECT
+               M.ID
+             , M.LOGIN_ID
+             , M.PASSWORD
+             , M.NAME AS memberName
+             , M.PHONE
+             , M.NICKNAME
+             , M.IMAGE
+             , M.INTRODUCTION
+             , M.CREATED_AT
+             , M.UPDATED_AT
+             , M.ACTIVE AS memberActive
+             , R.NAME AS roleName
+             , R.ACTIVE AS roleActive
+          FROM TBL_MEMBER M
+         INNER JOIN TBL_MEMBER_ROLE MR
+            ON (M.ID = MR.MEMBER_ID)
+         INNER JOIN TBL_ROLE R
+            ON (MR.ROLE_ID = R.ID)
+         WHERE M.ID = #{ memberId }
+         GROUP BY R.NAME
+    </select>
+
 </mapper>
