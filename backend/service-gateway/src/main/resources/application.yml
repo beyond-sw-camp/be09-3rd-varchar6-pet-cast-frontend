@@ -1,0 +1,44 @@
+server:
+  port: 8000
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    server-url:
+      defaultZone: http://localhost:8761/service-discovery
+
+spring:
+  application:
+    name: gateway
+  config:
+    import:
+      - classpath:/bootstrap.yml
+
+  cloud:
+    gateway:
+      routes:
+        - id: service-member-get
+          uri: lb://PETCAST-MEMBER-SERVICE
+          predicates:
+            - Path=/service-member/**
+            - Method=GET
+          filters:
+            - RewritePath=/service-member/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter
+
+        - id: service-member-post
+          uri: lb://PETCAST-MEMBER-SERVICE
+          predicates:
+            - Path=/service-member/**
+            - Method=POST
+          filters:
+            - RewritePath=/service-member/(?<segment>.*), /$\{segment}
+
+        - id: service-others-get
+          uri: lb://PETCAST-OTHERS-SERVICE
+          predicates:
+            - Path=/service-others/**
+          filters:
+            - RewritePath=/service-others/(?<segment>.*), /$\{segment}
+#            - AuthorizationHeaderFilter

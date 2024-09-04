@@ -1,5 +1,6 @@
-#spring:
-#  cloud:
-#    config:
-#      uri: http://localhost:8888
-#      name:
+# eureka client에 들어갈 설정 내용
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8888
+      name: msaconfig
