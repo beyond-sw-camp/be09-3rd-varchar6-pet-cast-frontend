@@ -13,14 +13,14 @@ import java.time.format.DateTimeFormatter;
 
 @RestController
 @RequestMapping("/api/v1/estimate")
-public class EstimateController {
+public class EstimatesController {
     private final EstimatesService estimatesService;
 
     private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
 
     @Autowired
-    public EstimateController(EstimatesService estimatesService) {
+    public EstimatesController ( EstimatesService estimatesService) {
         this.estimatesService = estimatesService;
     }
 

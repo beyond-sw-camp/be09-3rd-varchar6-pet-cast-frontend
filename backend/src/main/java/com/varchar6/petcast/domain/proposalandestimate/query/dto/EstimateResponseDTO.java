@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
+//@Builder
 public class EstimateResponseDTO {
     private int id;
     private int expectedCost;

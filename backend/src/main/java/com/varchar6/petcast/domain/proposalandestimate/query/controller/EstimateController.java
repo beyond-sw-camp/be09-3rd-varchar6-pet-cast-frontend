@@ -1,7 +1,6 @@
 package com.varchar6.petcast.domain.proposalandestimate.query.controller;
 
 import com.varchar6.petcast.common.response.ResponseMessage;
-import com.varchar6.petcast.domain.proposalandestimate.command.application.dto.EstimatesResponseDTO;
 import com.varchar6.petcast.domain.proposalandestimate.query.dto.EstimateResponseDTO;
 import com.varchar6.petcast.domain.proposalandestimate.query.mapper.EstimatesMapper;
 import com.varchar6.petcast.domain.proposalandestimate.query.service.EstimateService;
@@ -18,18 +17,16 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/estimates")
-public class EstimatesController {
+public class EstimateController {
 
     private final EstimateService estimateService;
-    private final EstimatesMapper estimatesMapper;
 
     private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
 
     @Autowired
-    public EstimatesController ( EstimateService estimateService, EstimatesMapper estimatesMapper ) {
+    public EstimateController ( EstimateService estimateService) {
         this.estimateService = estimateService;
-        this.estimatesMapper = estimatesMapper;
     }
 
 

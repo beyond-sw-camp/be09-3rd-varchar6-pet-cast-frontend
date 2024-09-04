@@ -15,22 +15,21 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-@RestController
+@RestController("queryProposalController")
 @RequestMapping("/api/v1/proposal")
 
 public class ProposalController {
 
     private final ProposalService proposalService;
-    private final ProposalsMapper proposalsMapper;
 
     private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
 
     @Autowired
-    public ProposalController ( ProposalService proposalService, ProposalsMapper proposalsMapper ) {
+    public ProposalController ( ProposalService proposalService ) {
         this.proposalService = proposalService;
-        this.proposalsMapper = proposalsMapper;
     }
+
     // 고객 견적서 목록 조회
     @GetMapping("/list/{memberId}")
     public ResponseEntity<ResponseMessage> findAllProposalsByMemberId ( @PathVariable int memberId ) {
@@ -47,7 +46,7 @@ public class ProposalController {
     // 업체 요청서 목록 조회
     @GetMapping("/list/{companyId}")
     public ResponseEntity<ResponseMessage> findAllProposalsByCompanyId ( @PathVariable int companyId ) {
-        List<ProposalResponseDTO> proposals = proposalService.findAllProposalsByCompanyId ( companyId );
+        List<ProposalResponseDTO> proposals = proposalService.findAll ();
         return ResponseEntity.ok ()
                 .body ( ResponseMessage.builder ()
                         .httpStatus ( HttpStatus.OK.value () )

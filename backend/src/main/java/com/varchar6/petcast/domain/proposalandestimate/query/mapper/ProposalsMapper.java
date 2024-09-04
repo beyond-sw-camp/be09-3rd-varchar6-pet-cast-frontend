@@ -2,13 +2,15 @@ package com.varchar6.petcast.domain.proposalandestimate.query.mapper;
 
 import com.varchar6.petcast.domain.proposalandestimate.command.domain.aggregate.Proposals;
 import com.varchar6.petcast.domain.proposalandestimate.query.dto.ProposalResponseDTO;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+@Mapper
 public interface ProposalsMapper {
-    List<Proposals> findAllProposalsByMemberId(int memberId);
-
-    List<Proposals> findAllProposalsByCompanyId(int companyId);
+    List<ProposalResponseDTO> findAllProposalsByMemberId(int memberId);
 
     ProposalResponseDTO findProposalById( int proposalId);
+
+    List<ProposalResponseDTO> findAll ();
 }

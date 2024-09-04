@@ -1,7 +1,6 @@
 package com.varchar6.petcast.domain.proposalandestimate.query.service;
 
 import com.varchar6.petcast.domain.proposalandestimate.command.domain.aggregate.Estimates;
-import com.varchar6.petcast.domain.proposalandestimate.command.domain.repository.EstimatesRepository;
 import com.varchar6.petcast.domain.proposalandestimate.query.dto.EstimateResponseDTO;
 import com.varchar6.petcast.domain.proposalandestimate.query.mapper.EstimatesMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +11,10 @@ import java.util.List;
 public class EstimateServiceImpl implements EstimateService{
 
     private final EstimatesMapper estimatesMapper;
-    private final EstimatesRepository estimatesRepository;
 
     @Autowired
-    public EstimateServiceImpl ( EstimatesMapper estimatesMapper, EstimatesRepository estimatesRepository ) {
-        this.estimatesMapper = estimatesMapper;
-        this.estimatesRepository = estimatesRepository;
-    }
+    public EstimateServiceImpl ( EstimatesMapper estimatesMapper) {
+        this.estimatesMapper = estimatesMapper;}
 
     // 고객이 보낸 견적서 목록 조회
     @Override
@@ -41,13 +37,14 @@ public class EstimateServiceImpl implements EstimateService{
     }
 
     private EstimateResponseDTO entityToResponseDTO( Estimates estimates) {
-        return EstimateResponseDTO.builder()
-                .id ( estimates.getId () )
-                .expectedCost(estimates.getExpectedCost())
-                .createdAt (estimates.getCreatedAt ())
-                .updatedAt (estimates.getUpdatedAt ())
-                .status ( estimates.getStatus () )
-                .active ( estimates.isActive () )
-                .build ();
+//        return EstimateResponseDTO.builder()
+//                .id ( estimates.getId () )
+//                .expectedCost(estimates.getExpectedCost())
+//                .createdAt (estimates.getCreatedAt ())
+//                .updatedAt (estimates.getUpdatedAt ())
+//                .status ( estimates.getStatus () )
+//                .active ( estimates.isActive () )
+//                .build ();
+        return null;
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 public interface ProposalService {
     List<ProposalResponseDTO> findAllProposalsByMemberId ( int memberId );
 
-    List<ProposalResponseDTO> findAllProposalsByCompanyId ( int companyId );
-
     ProposalResponseDTO findProposalById ( int proposalId );
+
+    List<ProposalResponseDTO> findAll ();
 }

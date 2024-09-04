@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/proposal")
-public class ProposalController {
+public class ProposalsController {
 
     private final ProposalsService proposalsService;
 
     @Autowired
-    public ProposalController(ProposalsService proposalsService) {
+    public ProposalsController ( ProposalsService proposalsService) {
         this.proposalsService = proposalsService;
     }
 

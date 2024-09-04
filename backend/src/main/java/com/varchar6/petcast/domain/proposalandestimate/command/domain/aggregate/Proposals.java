@@ -2,7 +2,6 @@ package com.varchar6.petcast.domain.proposalandestimate.command.domain.aggregate
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
 
 @Entity
 @Table(name = "tbl_proposal")

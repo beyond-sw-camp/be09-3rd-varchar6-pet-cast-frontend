@@ -16,7 +16,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class ProposalServiceImpl implements ProposalsService{
+public class ProposalsServiceImpl implements ProposalsService{
 
     private final ProposalsRepository proposalRepository;
 
@@ -24,7 +24,7 @@ public class ProposalServiceImpl implements ProposalsService{
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
 
     @Autowired
-    public ProposalServiceImpl(ProposalsRepository proposalsRepository) {
+    public ProposalsServiceImpl ( ProposalsRepository proposalsRepository) {
         this.proposalRepository = proposalsRepository;
     }
 

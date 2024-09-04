@@ -7,50 +7,55 @@ import com.varchar6.petcast.domain.proposalandestimate.query.mapper.ProposalsMap
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Service("queryProposalServiceImpl")
 public class ProposalServiceImpl implements ProposalService{
         private final ProposalsMapper proposalsMapper;
-        private final ProposalService proposalService;
 
         @Autowired
-    public ProposalServiceImpl ( ProposalsMapper proposalsMapper, ProposalService proposalService ) {
+    public ProposalServiceImpl ( ProposalsMapper proposalsMapper ) {
         this.proposalsMapper = proposalsMapper;
-        this.proposalService = proposalService;
     }
 
     // 고객이 보낸 기획서 목록 조회
         @Override
         public List<ProposalResponseDTO> findAllProposalsByMemberId( int memberId) {
-            List<Proposals> proposals = proposalsMapper.findAllProposalsByMemberId(memberId);
-            return proposals.stream().map(this::entityToResponseDTO).toList();
+            System.out.println("memberId: " + memberId);
+            List<ProposalResponseDTO> proposals = proposalsMapper.findAllProposalsByMemberId(memberId);
+            return proposals;
         }
 
         // 업체가 받은 기획서 목록 조회
         @Override
-        public List<ProposalResponseDTO> findAllProposalsByCompanyId( int companyId) {
-            List<Proposals> proposals = proposalsMapper.findAllProposalsByCompanyId(companyId);
-            return proposals.stream().map(this::entityToResponseDTO).toList();
+        public List<ProposalResponseDTO> findAll () {
+            List<ProposalResponseDTO> allProposals = proposalsMapper.findAll();
+            return allProposals;
         }
 
         // 기획서 상세 조회
         @Override
         public ProposalResponseDTO findProposalById( int proposalId) {
-            return proposalsMapper.findProposalById(proposalId);
+            ProposalResponseDTO aProposal =  proposalsMapper.findProposalById(proposalId);
+            return aProposal;
         }
 
-        private ProposalResponseDTO entityToResponseDTO( Proposals proposals) {
-            return ProposalResponseDTO.builder()
-                    .id ( proposals.getId () )
-                    .hopeTime ( proposals.getHopeTime () )
-                    .hopeLocation ( proposals.getHopeLocation () )
-                    .hopeCost ( proposals.getHopeCost () )
-                    .createdAt (proposals.getCreatedAt ())
-                    .updatedAt (proposals.getUpdatedAt ())
-                    .status ( proposals.getStatus () )
-                    .active ( proposals.isActive () )
-                    .build ();
+
+
+    private ProposalResponseDTO entityToResponseDTO( Proposals proposals) {
+//            return ProposalResponseDTO.builder()
+//                    .id ( proposals.getId () )
+//                    .hopeTime ( proposals.getHopeTime () )
+//                    .hopeLocation ( proposals.getHopeLocation () )
+//                    .hopeCost ( proposals.getHopeCost () )
+//                    .createdAt (proposals.getCreatedAt ())
+//                    .updatedAt (proposals.getUpdatedAt ())
+////                    .status ( proposals.getStatus () )
+//                    .active ( proposals.isActive () )
+//                    .build ();
+
+            return null;
         }
     }
 
