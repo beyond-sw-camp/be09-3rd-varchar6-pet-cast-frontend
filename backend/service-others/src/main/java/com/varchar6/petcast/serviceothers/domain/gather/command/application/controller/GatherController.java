@@ -66,7 +66,9 @@ public class GatherController {
 
     @DeleteMapping("")
     public ResponseEntity<ResponseMessage> deactiveGather(@RequestBody RequestDeactiveGatherDTO requestDeactiveGatherDTO,
-                                                          @RequestAttribute("memberId") int memberId){
+        @RequestHeader("X-Member-Id") String id){
+
+        int memberId = Integer.parseInt(id);
         requestDeactiveGatherDTO.setUserId(memberId);
         ResponseDeactiveGatherDTO responseDeactiveGatherDTO = gatherService.deactiveGather(requestDeactiveGatherDTO);
 
@@ -86,7 +88,10 @@ public class GatherController {
 
     @PostMapping("/invitation")
     public ResponseEntity<ResponseMessage> sendInvitation(@RequestBody RequestSendInvitationDTO requestSendInvitationDTO,
-                                                          @RequestAttribute("memberId") int memberId) {
+        @RequestHeader("X-Member-Id") String id) {
+
+        int memberId = Integer.parseInt(id);
+
         requestSendInvitationDTO.setUserId(memberId);
         ResponseSendInvitaionDTO responseSendInvitaionDTO = gatherService.sendInvitation(requestSendInvitationDTO);
 
@@ -106,7 +111,9 @@ public class GatherController {
 
     @PutMapping("/invitation/accept")
     public ResponseEntity<ResponseMessage> acceptInvitation(@RequestBody RequestInvitationDTO requestInvitationDTO,
-                                                            @RequestAttribute("memberId") int memberId){
+        @RequestHeader("X-Member-Id") String id){
+
+        int memberId = Integer.parseInt(id);
         requestInvitationDTO.setUserId(memberId);
         ResponseInvitationDTO responseInvitationDTO = gatherService.acceptInvatation(requestInvitationDTO);
 
@@ -126,7 +133,10 @@ public class GatherController {
 
     @PutMapping("/invitation/refuse")
     public ResponseEntity<ResponseMessage> refuseInvitation(@RequestBody RequestInvitationDTO requestInvitationDTO,
-                                                            @RequestAttribute("memberId") int memberId){
+        @RequestHeader("X-Member-Id") String id){
+
+        int memberId = Integer.parseInt(id);
+
         requestInvitationDTO.setUserId(memberId);
         ResponseInvitationDTO responseInvitationDTO = gatherService.refuseInvatation(requestInvitationDTO);
 
@@ -146,8 +156,11 @@ public class GatherController {
 
     @DeleteMapping("/member")
     public ResponseEntity<ResponseMessage> deleteMember(@RequestBody RequestDeleteMemberDTO requestDeleteMemberDTO,
-                                                        @RequestAttribute("memberId") int userId){
-        requestDeleteMemberDTO.setUserId(userId);
+        @RequestHeader("X-Member-Id") String id){
+
+        int memberId = Integer.parseInt(id);
+
+        requestDeleteMemberDTO.setUserId(memberId);
         gatherService.deleteMember(requestDeleteMemberDTO);
 
         return ResponseEntity.ok(

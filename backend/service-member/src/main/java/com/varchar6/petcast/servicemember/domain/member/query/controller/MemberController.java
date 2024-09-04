@@ -78,7 +78,7 @@ public class MemberController {
             );
     }
 
-    @GetMapping("/search-loginId")
+    @PostMapping("/search-loginId")
     public ResponseEntity<ResponseMessage> searchLoginIdByNameAndPhone(@RequestBody MemberVO memberVO){
 
         String name = memberVO.getName();

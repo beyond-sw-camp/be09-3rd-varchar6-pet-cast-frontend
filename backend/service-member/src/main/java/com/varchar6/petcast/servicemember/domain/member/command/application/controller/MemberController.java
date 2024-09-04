@@ -128,7 +128,9 @@ public class MemberController {
 
     @PostMapping("/regist-member-profile")
     public ResponseEntity<ResponseMessage> registMemberProfile(@RequestBody ProfileRegistRequestVO newProfile,
-                                                               @RequestAttribute("memberId") int memberId) {
+        @RequestHeader("X-Member-Id") String id) {
+
+        int memberId = Integer.parseInt(id);
 
         newProfile.setMemberId(memberId);
 
@@ -147,7 +149,10 @@ public class MemberController {
 
     @PutMapping("/update-member-profile")
     public ResponseEntity<ResponseMessage> updateMemberProfile(@RequestBody ProfileUpdateRequestVO updateProfile,
-                                                               @RequestAttribute("memberId") int memberId) {
+        @RequestHeader("X-Member-Id") String id) {
+
+        int memberId = Integer.parseInt(id);
+
         updateProfile.setMemberId(memberId);
 
         ProfileUpdateRequestDTO profileUpdateRequestDTO = modelMapper.map(updateProfile, ProfileUpdateRequestDTO.class);

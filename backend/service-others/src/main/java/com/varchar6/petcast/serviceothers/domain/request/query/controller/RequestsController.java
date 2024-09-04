@@ -46,7 +46,10 @@ public class RequestsController {
 
     // 고객 요청서 목록 조회
     @GetMapping("/list/memberRequest/{userId}")
-    public ResponseEntity<ResponseMessage> findRequestsByCustomer(@RequestAttribute("memberId") int memberId) {
+    public ResponseEntity<ResponseMessage> findRequestsByCustomer(@RequestHeader("X-Member-Id") String id) {
+
+        int memberId = Integer.parseInt(id);
+
         String message = "고객이 작성한 요청서 목록 조회 성공!";
         List<MemberAndRequestDTO> memberAndRequestDTO = null;
         try {
