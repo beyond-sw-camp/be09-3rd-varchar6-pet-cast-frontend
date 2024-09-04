@@ -43,15 +43,15 @@
     <!-- 고객 특정 기획서 조회 -->
     <select id="findProposalById" parameterType="_int" resultMap="proposalMap">
         SELECT
-            p.id AS proposal_id,
-            p.content AS proposal_content,
-            p.hope_location AS proposal_location,
-            p.hope_time AS proposal_time,
-            p.created_at AS proposal_created_at,
-            p.updated_at AS proposal_updated_at,
-            p.status AS proposal_status,
-            p.hope_cost AS proposal_cost,
-            p.active AS proposal_active
+            p.id ,
+            p.content,
+            p.hope_location,
+            p.hope_time,
+            p.created_at,
+            p.updated_at,
+            p.status,
+            p.hope_cost,
+            p.active
         FROM
             tbl_proposal p
         WHERE

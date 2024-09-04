@@ -51,7 +51,7 @@ public class ProposalServiceImpl implements ProposalService{
 //                    .hopeCost ( proposals.getHopeCost () )
 //                    .createdAt (proposals.getCreatedAt ())
 //                    .updatedAt (proposals.getUpdatedAt ())
-////                    .status ( proposals.getStatus () )
+//                    .status ( proposals.getStatus () )
 //                    .active ( proposals.isActive () )
 //                    .build ();
 

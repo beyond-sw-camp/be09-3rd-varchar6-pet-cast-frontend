@@ -28,22 +28,6 @@ public class ProposalsServiceImpl implements ProposalsService{
         this.proposalRepository = proposalsRepository;
     }
 
-
-    @Override
-    public List<ProposalsResponseDTO> findAllProposalsByMemberId(int memberId) {
-        return List.of();
-    }
-
-    @Override
-    public List<ProposalsResponseDTO> findAllProposalsByCompanyId(int companyId) {
-        return List.of();
-    }
-
-    @Override
-    public ProposalsResponseDTO findProposalById(int proposalId) {
-        return null;
-    }
-
     // 기획서 작성
     @Transactional
     public ProposalsResponseDTO createProposal(ProposalsRequestDTO proposalRequestDTO) {
@@ -86,5 +70,6 @@ public class ProposalsServiceImpl implements ProposalsService{
                 .hopeTime(proposals.getHopeTime())
                 .hopeCost(proposals.getHopeCost())
                 .build();
+
     }
 }
