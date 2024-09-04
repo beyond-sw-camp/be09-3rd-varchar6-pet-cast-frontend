@@ -2,6 +2,7 @@ package com.varchar6.petcast.domain.member.query.controller;
 
 import com.varchar6.petcast.common.response.ResponseMessage;
 import com.varchar6.petcast.domain.member.query.service.MemberService;
+import com.varchar6.petcast.domain.member.query.vo.RoleVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -109,9 +110,9 @@ public class MemberController {
                 );
     }
 
-    @GetMapping("/password-check/{id}/{password}")
-    public ResponseEntity<ResponseMessage> checkPasswordByIdAndPassword(@PathVariable("id") int id,
-                                                                @PathVariable("password") String password){
+    @GetMapping("/password-check/{password}")
+    public ResponseEntity<ResponseMessage> checkPasswordByIdAndPassword(@PathVariable("password") String password,
+                                                                        @RequestAttribute("memberId") int id){
 
         String answer = memberService.checkPasswordByIdAndPassword(id);
 
@@ -125,4 +126,22 @@ public class MemberController {
                                 .build()
                 );
     }
+
+    @GetMapping("/search-member-role")
+    public ResponseEntity<ResponseMessage> searchMemberRole(@RequestAttribute("memberId") int id){
+
+
+        List<RoleVO> roleList = memberService.searchMemberRole(id);
+
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.OK.value())
+                                .message("회원 권한 조회 성공")
+                                .result(roleList)
+                                .build()
+                );
+    }
+
 }

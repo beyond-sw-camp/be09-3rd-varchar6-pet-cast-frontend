@@ -21,4 +21,6 @@ public interface MemberMapper {
     MemberDTO checkIdAndPhone(Map<String, Object> resultMap);
 
     MemberDTO checkPasswordByIdAndPassword(int id);
+
+    MemberVO searchMemberRole(int id);
 }

@@ -84,7 +84,10 @@ public class MemberController {
     }
 
     @PutMapping("/update-member-status")
-    public ResponseEntity<ResponseMessage> updateMemberStatus(@RequestBody MemberUpdateRequestVO updateStatus) {
+    public ResponseEntity<ResponseMessage> updateMemberStatus(@RequestBody MemberUpdateRequestVO updateStatus,
+                                                              @RequestAttribute("memberId") int memberId) {
+
+        updateStatus.setId(memberId);
 
         MemberUpdateRequestDTO memberUpdateRequestDTO
                 = modelMapper.map(updateStatus, MemberUpdateRequestDTO.class);
@@ -103,7 +106,10 @@ public class MemberController {
     }
 
     @PutMapping("/update-password")
-    public ResponseEntity<ResponseMessage> updateMemberPassword(@RequestBody MemberUpdateRequestVO updateMember) {
+    public ResponseEntity<ResponseMessage> updateMemberPassword(@RequestBody MemberUpdateRequestVO updateMember,
+                                                                @RequestAttribute("memberId") int memberId) {
+
+        updateMember.setId(memberId);
 
         MemberUpdateRequestDTO memberUpdateRequestDTO = modelMapper.map(updateMember, MemberUpdateRequestDTO.class);
 
@@ -121,7 +127,10 @@ public class MemberController {
     }
 
     @PostMapping("/regist-member-profile")
-    public ResponseEntity<ResponseMessage> registMemberProfile(@RequestBody ProfileRegistRequestVO newProfile) {
+    public ResponseEntity<ResponseMessage> registMemberProfile(@RequestBody ProfileRegistRequestVO newProfile,
+                                                               @RequestAttribute("memberId") int memberId) {
+
+        newProfile.setMemberId(memberId);
 
         ProfileRequestDTO profileRequestDTO = modelMapper.map(newProfile, ProfileRequestDTO.class);
 
@@ -137,7 +146,9 @@ public class MemberController {
     }
 
     @PutMapping("/update-member-profile")
-    public ResponseEntity<ResponseMessage> updateMemberProfile(@RequestBody ProfileUpdateRequestVO updateProfile) {
+    public ResponseEntity<ResponseMessage> updateMemberProfile(@RequestBody ProfileUpdateRequestVO updateProfile,
+                                                               @RequestAttribute(" memberId") int memberId) {
+        updateProfile.setMemberId(memberId);
 
         ProfileUpdateRequestDTO profileUpdateRequestDTO = modelMapper.map(updateProfile, ProfileUpdateRequestDTO.class);
 

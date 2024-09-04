@@ -161,4 +161,29 @@
          WHERE M.LOGIN_ID = #{ memberId }
          GROUP BY R.NAME
     </select>
+
+    <select id="searchMemberRole" resultMap="memberWithDistinctRolesMap" parameterType="_int">
+        SELECT
+               M.ID
+             , M.LOGIN_ID
+             , M.PASSWORD
+             , M.NAME AS memberName
+             , M.PHONE
+             , M.NICKNAME
+             , M.IMAGE
+             , M.INTRODUCTION
+             , M.CREATED_AT
+             , M.UPDATED_AT
+             , M.ACTIVE AS memberActive
+             , R.NAME AS roleName
+             , R.ACTIVE AS roleActive
+          FROM TBL_MEMBER M
+         INNER JOIN TBL_MEMBER_ROLE MR
+            ON (M.ID = MR.MEMBER_ID)
+         INNER JOIN TBL_ROLE R
+            ON (MR.ROLE_ID = R.ID)
+         WHERE M.ID = #{ memberId }
+         GROUP BY R.NAME
+    </select>
+
 </mapper>

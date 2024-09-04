@@ -2,11 +2,14 @@ package com.varchar6.petcast.domain.member.query.service;
 
 import com.varchar6.petcast.domain.member.query.dto.MemberDTO;
 import com.varchar6.petcast.domain.member.query.mapper.MemberMapper;
+import com.varchar6.petcast.domain.member.query.vo.MemberVO;
+import com.varchar6.petcast.domain.member.query.vo.RoleVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -86,4 +89,18 @@ public class MemberServiceImpl implements MemberService {
 
         return 0;
     }
+
+    @Override
+    public List<RoleVO> searchMemberRole(int id) {
+
+        MemberVO memberVO  = memberMapper.searchMemberRole(id);
+
+        if(memberVO == null){
+            return null;
+        }
+
+        return memberVO.getRoleVOList();
+    }
+
+
 }
