@@ -48,7 +48,7 @@
 
 ## 🔧 기술 스택 
 
-| 백엔드              | 배지                                                                 |
+| 백엔드              | 기술                                                                 |
 |-------------------|----------------------------------------------------------------------|
 | **Java**          | ![Java](https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white)   |
 | **Spring Boot**   | ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)   |
@@ -59,13 +59,13 @@
 | **Hibernate**     | ![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=hibernate&logoColor=white)   |
 | **JWT**           | ![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=json-web-tokens&logoColor=white)   |
 
-| 데이터베이스(DB)              | 배지                                                                 |
+| 데이터베이스(DB)              | 기술                                                                 |
 |-------------------|----------------------------------------------------------------------|
 | **MariaDB**        | ![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)   |
 
 ## 🛠 사용 tools
 
-| 사용 tools          | 배지                                                                 |
+| 사용 tools          | 기술                                                                 |
 |-------------------|----------------------------------------------------------------------|
 | **DA#**           | ![DA#](https://img.shields.io/badge/DA%23-007ACC?style=for-the-badge&logo=data&logoColor=white)   |
 | **GitHub**        | ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)   |
@@ -96,7 +96,7 @@
 
 ## 📋 DDD
 ### Bounded Context
-<img width="950" alt="스크린샷 2024-09-05 오전 5 10 59" src="https://github.com/user-attachments/assets/0b510570-b882-4cb2-a45b-3cac792c7b6e">
+<img width="950" alt="스크린샷 2024-09-05 오전 8 52 31" src="https://github.com/user-attachments/assets/de97d439-e60a-45f9-8fb1-d91bce653bef">
 
 
 ### Context map
