@@ -6,8 +6,5 @@ import org.apache.ibatis.javassist.NotFoundException;
 
 public interface CompanyService {
     CompanyResponseDTO applyEnroll(CompanyEnrollRequestDTO companyEnrollRequestDTO);
-
     void deleteCompanyById(int companyId);
-
-//    void deleteCategoriesByCompanyId(int companyId);
 }

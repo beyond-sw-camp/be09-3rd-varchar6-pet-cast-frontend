@@ -10,4 +10,5 @@ import java.util.List;
 public interface CompanyMapper {
     List<CategoryVO> findCategoriesByCompanyId(String companyId);
     CompanyVO findCompanyInformationByCompanyId(int companyId);
+    List<CompanyVO> findAllCompanies();
 }

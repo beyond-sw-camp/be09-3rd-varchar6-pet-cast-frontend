@@ -14,18 +14,21 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-@Service(value="commandCompanyServiceImpl")
+@Service(value="commandCompanyService")
 public class CompanyServiceImpl implements CompanyService {
     private final CompanyRepository companyRepository;
+    private final CategoryRepository categoryRepository;
 
     private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
 
     @Autowired
     public CompanyServiceImpl(
-            CompanyRepository companyRepository
+            CompanyRepository companyRepository,
+            CategoryRepository categoryRepository
     ) {
         this.companyRepository = companyRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @Transactional
@@ -40,17 +43,15 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     @Transactional
     public void deleteCompanyById(int companyId) {
-        Company company = companyRepository.findByCompanyId(companyId)
-                .orElseThrow();
+        Company company = companyRepository.findById(companyId).orElseThrow();
         companyRepository.delete(company);
     }
 
-//    @Override
-//    @Transactional
-//    public void deleteCategoriesByCompanyId(int companyId) {
-//        categoryRepository.deleteByCompanyId(companyId);
-//
-//    }
+    @Transactional
+    public void deleteCategoriesByCompanyId(int companyId) {
+        categoryRepository.deleteByCompanyId(companyId);
+
+    }
 
     private Company toEntity(CompanyEnrollRequestDTO companyEnrollRequestDTO) {
         return Company.builder()

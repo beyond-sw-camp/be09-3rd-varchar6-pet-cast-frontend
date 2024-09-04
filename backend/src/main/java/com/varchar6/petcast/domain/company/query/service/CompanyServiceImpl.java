@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Slf4j
 @Service(value = "companyQueryService")
@@ -54,5 +56,11 @@ public class CompanyServiceImpl implements CompanyService {
                 .toList());
 
         return categoryResponseDTO;
+    }
+
+    @Override
+    public List<CompanyResponseDTO> getCompanyList() {
+        List<CompanyVO> companyVOList = companyMapper.findAllCompanies();
+        return null;
     }
 }
