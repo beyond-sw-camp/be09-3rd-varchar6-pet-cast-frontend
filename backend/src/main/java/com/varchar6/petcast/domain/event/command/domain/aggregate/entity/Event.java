@@ -1,5 +1,6 @@
-package com.varchar6.petcast.domain.event.command.domain.aggregate;
+package com.varchar6.petcast.domain.event.command.domain.aggregate.entity;
 
+import com.varchar6.petcast.domain.event.command.domain.aggregate.EventStatusEnum;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "title", nullable = false)
     private String title;
@@ -31,7 +32,7 @@ public class Event {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private EventStatus status;
+    private EventStatusEnum status;
 
     @Column(name = "company_id", nullable = false)
     private Integer companyId;

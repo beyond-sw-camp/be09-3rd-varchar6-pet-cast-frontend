@@ -1,9 +1,8 @@
-package com.varchar6.petcast.domain.event.command.domain.aggregate;
+package com.varchar6.petcast.domain.event.command.domain.aggregate.entity;
 
+import com.varchar6.petcast.domain.event.command.domain.aggregate.EventCategoryId;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
@@ -25,10 +24,10 @@ public class EventCategory {
 
     @Id
     @Column(name = "category_id")
-    private int categoryId;
+    private Integer categoryId;
 
     @Id
     @Column(name = "event_id")
-    private int eventId;
+    private Integer eventId;
 
 }

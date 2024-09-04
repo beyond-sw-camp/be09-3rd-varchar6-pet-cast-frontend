@@ -1,6 +1,6 @@
 package com.varchar6.petcast.domain.event.query.dto;
 
-import com.varchar6.petcast.domain.event.command.domain.aggregate.EventStatus;
+import com.varchar6.petcast.domain.event.command.domain.aggregate.EventStatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +17,7 @@ public class EventDTO {
     private String title;
     private String content;
     private String image;
-    private EventStatus status;
+    private EventStatusEnum status;
     private Integer companyId;
     private Integer memberId;
 

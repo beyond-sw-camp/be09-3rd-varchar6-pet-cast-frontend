@@ -3,7 +3,7 @@ package com.varchar6.petcast.domain.review.command.application.service;
 import com.varchar6.petcast.domain.review.command.application.dto.request.ReviewCreateRequestDTO;
 import com.varchar6.petcast.domain.review.command.application.dto.request.ReviewUpdateRequestDTO;
 import com.varchar6.petcast.domain.review.command.application.dto.response.ReviewResponseDTO;
-import com.varchar6.petcast.domain.review.command.domain.aggregate.Review;
+import com.varchar6.petcast.domain.review.command.domain.aggregate.entity.Review;
 import com.varchar6.petcast.domain.review.command.domain.repository.ReviewRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;

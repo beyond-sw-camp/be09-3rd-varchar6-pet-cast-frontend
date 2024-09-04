@@ -1,6 +1,6 @@
 package com.varchar6.petcast.domain.event.command.application.dto.response;
 
-import com.varchar6.petcast.domain.event.command.domain.aggregate.EventStatus;
+import com.varchar6.petcast.domain.event.command.domain.aggregate.EventStatusEnum;
 import lombok.*;
 
 @ToString
@@ -13,7 +13,7 @@ public class EventResponseDTO {
     private String title;
     private String content;
     private String image;
-    private EventStatus status;
+    private EventStatusEnum status;
     private Integer companyId;
     private Integer memberId;
 

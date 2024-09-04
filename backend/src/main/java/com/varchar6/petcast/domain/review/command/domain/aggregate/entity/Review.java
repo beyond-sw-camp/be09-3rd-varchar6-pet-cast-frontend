@@ -1,4 +1,4 @@
-package com.varchar6.petcast.domain.review.command.domain.aggregate;
+package com.varchar6.petcast.domain.review.command.domain.aggregate.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

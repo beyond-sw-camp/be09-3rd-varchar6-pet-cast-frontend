@@ -26,6 +26,7 @@
       FROM TBL_EVENT A
      WHERE A.MEMBER_ID = #{ customerId }
        AND A.ID &lt; #{ lastEventId }
+     ORDER BY A.ID DESC
      limit 10
   </select>
 
@@ -41,6 +42,7 @@
       FROM TBL_EVENT A
      WHERE A.COMPANY_ID = #{ companyId }
        AND A.ID &lt; #{ lastEventId }
+     ORDER BY A.ID DESC
      limit 10
   </select>
 
