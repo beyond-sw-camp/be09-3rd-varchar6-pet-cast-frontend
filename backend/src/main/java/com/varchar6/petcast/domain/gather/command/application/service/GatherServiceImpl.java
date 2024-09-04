@@ -63,7 +63,7 @@ public class GatherServiceImpl implements GatherService {
         try {
             newGather = gatherRepository.save(gather);
         } catch (Exception e) {
-            log.error("새로운 모임 insert 실패!!");
+            throw new RuntimeException("[Service] 새로운 모임 insert 실패!!", e);
         }
 
         try {
@@ -74,7 +74,7 @@ public class GatherServiceImpl implements GatherService {
                     .build();
             gatherMemberRepository.save(newGatherMember);
         } catch (Exception e) {
-            log.error("모임&회원 중간 테이블 insert 실패!!");
+            throw new RuntimeException("[Service] 모임&회원 중간 테이블 insert 실패!!", e);
         }
 
     }
@@ -104,7 +104,7 @@ public class GatherServiceImpl implements GatherService {
             try {
                 responseUpdateGatherInfoDTO = modelMapper.map(updateGather, ResponseUpdateGatherInfoDTO.class);
             } catch (Exception e) {
-                log.error("모임 정보 수정 중에 에러 발생!!");
+                throw new RuntimeException("[Service] 모임 정보 수정 중에 에러 발생!!", e);
             }
         }
         return responseUpdateGatherInfoDTO;
@@ -115,7 +115,7 @@ public class GatherServiceImpl implements GatherService {
     public ResponseDeactiveGatherDTO deactiveGather(RequestDeactiveGatherDTO requestDeactiveGatherDTO) {
         String currentDate = getNow();
 
-        /* 궁금. 모임의 LEADER인지 확인 */
+        // Leader인지 확인
         Map<String, Object> params = new HashMap<>();
         params.put("selectValue", "role");
         params.put("gather_id", requestDeactiveGatherDTO.getGatherId());
@@ -131,7 +131,7 @@ public class GatherServiceImpl implements GatherService {
             try {
                 responseDeactiveGatherDTO = modelMapper.map(currentGather, ResponseDeactiveGatherDTO.class);
             } catch (Exception e) {
-                log.error("비활성화 업데이트 중 에러 발생!!");
+                throw new RuntimeException("[Service] 비활성화 업데이트 중 에러 발생!!", e);
             }
 
         }
@@ -143,7 +143,6 @@ public class GatherServiceImpl implements GatherService {
     public ResponseSendInvitaionDTO sendInvitation(RequestSendInvitationDTO requestInvitationDTO) {
 
         // 1. 해당 모임의 모임장인지 확인
-        /* 궁금. 모임의 LEADER인지 확인 */
         Map<String, Object> params = new HashMap<>();
         params.put("selectValue", "role");
         params.put("gather_id", requestInvitationDTO.getGatherId());
@@ -165,7 +164,7 @@ public class GatherServiceImpl implements GatherService {
             try {
                 invitationRepository.save(invitation);
             } catch (Exception e) {
-                log.error("초대장 정보 저장 중에 에러 발생!!");
+                throw new RuntimeException("[Service] 초대장 정보 저장 중에 에러 발생!!", e);
             }
 
             // 3. 문자 전송~
@@ -177,7 +176,7 @@ public class GatherServiceImpl implements GatherService {
                         .gatherId(requestInvitationDTO.getGatherId())
                         .build();
             } catch (Exception e) {
-                log.error("return 만들다 실패");
+                throw new RuntimeException("[Service] return 만들다 실패", e);
             }
         }
         return responseSendInvitaionDTO;
@@ -194,7 +193,7 @@ public class GatherServiceImpl implements GatherService {
         try {
             responseInvitationDTO = modelMapper.map(invitation, ResponseInvitationDTO.class);
         } catch (Exception e) {
-            log.error("수락 하다 실패!");
+            throw new RuntimeException("[Service] 수락하다 실패!", e);
         }
 
         return responseInvitationDTO;
@@ -211,7 +210,7 @@ public class GatherServiceImpl implements GatherService {
         try {
             responseInvitationDTO = modelMapper.map(invitation, ResponseInvitationDTO.class);
         } catch (Exception e) {
-            log.error("거절 하다 실패!");
+            throw new RuntimeException("[Service] 거절하다 실패!", e);
         }
 
         return responseInvitationDTO;
@@ -238,7 +237,7 @@ public class GatherServiceImpl implements GatherService {
         try {
             foundGather = gatherMemberRepository.findById(id).orElseThrow();
         }catch(Exception e){
-            log.error("해당 모임을 찾을수 없습니다.");
+            throw new RuntimeException("[Service] 해당 모임을 찾을 수 없습니다.", e);
         }
 
         if (GatherRole.LEADER.toString().equals(memberRole)) {
@@ -247,7 +246,7 @@ public class GatherServiceImpl implements GatherService {
             try {
                 modelMapper.map(foundGather, GatherMember.class);
             } catch (Exception e) {
-                log.error("매핑 실패!");
+                throw new RuntimeException("[Service] 매핑 실패!");
             }
         }
     }

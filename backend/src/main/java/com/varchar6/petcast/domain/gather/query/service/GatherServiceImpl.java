@@ -6,6 +6,7 @@ import com.varchar6.petcast.domain.gather.query.mapper.GatherMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,8 @@ public class GatherServiceImpl implements GatherService {
 
     }
 
+    @Override
+    @Transactional
     public GatherDetailDTO findDetailGather(int gatherId) {
 
         GatherDTO gatherInfo = gatherMapper.selectGatherDetailById(gatherId);
@@ -51,6 +54,8 @@ public class GatherServiceImpl implements GatherService {
         return gatherDetail;
     }
 
+    @Override
+    @Transactional
     public Boolean isAccessTrueGather(int invitationId, int userId) {
         List<Integer> membersId = gatherMapper.selectGroupMembersIdById(invitationId, userId);
         if (!membersId.isEmpty() && membersId.contains(userId)) {
@@ -64,6 +69,7 @@ public class GatherServiceImpl implements GatherService {
     }
 
     @Override
+    @Transactional
     public Object findMemberRoleById(Map<String, Object> params) {
 
         if(params.containsKey("id")){

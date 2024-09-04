@@ -22,10 +22,9 @@ public class GatherController {
         this.gatherService = gatherService;
     }
 
-    @PostMapping("/createGather")
+    @PostMapping("/gather")
     public ResponseEntity<ResponseMessage> createGather(@RequestBody RequestCreateGatherDTO requestCreateGatherDTO,
                                                         @RequestAttribute("memberId") int memberId){
-        log.debug("check memberId: {}", memberId);
         requestCreateGatherDTO.setUserId(memberId);
         gatherService.createGather(requestCreateGatherDTO);
 
@@ -37,7 +36,7 @@ public class GatherController {
         );
     }
 
-    @PutMapping("/updateGatherInfo")
+    @PutMapping("/gather-info")
     public ResponseEntity<ResponseMessage> updateGatherInfo(@RequestBody RequestUpdateGatherInfoDTO requestUpdateGatherDTO,
                                                             @RequestAttribute("memberId") int memberId){
         requestUpdateGatherDTO.setUserId(memberId);
@@ -57,7 +56,7 @@ public class GatherController {
         return ResponseEntity.ok(responseMessage);
     }
 
-    @PutMapping("/deactiveGather")
+    @DeleteMapping("/deactive-gather")
     public ResponseEntity<ResponseMessage> deactiveGather(@RequestBody RequestDeactiveGatherDTO requestDeactiveGatherDTO,
                                                           @RequestAttribute("memberId") int memberId){
         requestDeactiveGatherDTO.setUserId(memberId);
@@ -77,7 +76,7 @@ public class GatherController {
         return ResponseEntity.ok(responseMessage);
     }
 
-    @PostMapping("/sendInvitation")
+    @PostMapping("/invitation")
     public ResponseEntity<ResponseMessage> sendInvitation(@RequestBody RequestSendInvitationDTO requestSendInvitationDTO,
                                                           @RequestAttribute("memberId") int memberId) {
         requestSendInvitationDTO.setUserId(memberId);
@@ -97,7 +96,7 @@ public class GatherController {
         return ResponseEntity.ok(responseMessage);
     }
 
-    @PutMapping("/acceptInvitation")
+    @PutMapping("/invitation/accept")
     public ResponseEntity<ResponseMessage> acceptInvitation(@RequestBody RequestInvitationDTO requestInvitationDTO,
                                                             @RequestAttribute("memberId") int memberId){
         requestInvitationDTO.setUserId(memberId);
@@ -117,7 +116,7 @@ public class GatherController {
         return ResponseEntity.ok(responseMessage);
     }
 
-    @PutMapping("/refuseInvitation")
+    @PutMapping("/invitation/refuse")
     public ResponseEntity<ResponseMessage> refuseInvitation(@RequestBody RequestInvitationDTO requestInvitationDTO,
                                                             @RequestAttribute("memberId") int memberId){
         requestInvitationDTO.setUserId(memberId);
@@ -137,7 +136,7 @@ public class GatherController {
         return ResponseEntity.ok(responseMessage);
     }
 
-    @DeleteMapping("/deleteMember")
+    @DeleteMapping("/member")
     public ResponseEntity<ResponseMessage> deleteMember(@RequestBody RequestDeleteMemberDTO requestDeleteMemberDTO,
                                                         @RequestAttribute("memberId") int userId){
         requestDeleteMemberDTO.setUserId(userId);
