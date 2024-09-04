@@ -27,8 +27,10 @@ public class QnaController {
     }
 
     @PostMapping("")
-    private ResponseEntity<ResponseMessage> createQna(@RequestBody QnaCreateRequestDTO qnaCreateRequestDTO){
+    private ResponseEntity<ResponseMessage> createQna(@RequestBody QnaCreateRequestDTO qnaCreateRequestDTO,
+                                                      @RequestAttribute("memberId") int memberId){
 
+        qnaCreateRequestDTO.setQuestionerId(memberId);
         int result = qnaService.insertQna(qnaCreateRequestDTO);
 
         return ResponseEntity
@@ -43,8 +45,10 @@ public class QnaController {
     }
 
     @PutMapping("")
-    private ResponseEntity<ResponseMessage> updateAnswer(@RequestBody QnaUpdateRequestDTO qnaUpdateRequestDTO){
+    private ResponseEntity<ResponseMessage> updateAnswer(@RequestBody QnaUpdateRequestDTO qnaUpdateRequestDTO,
+                                                         @RequestAttribute("memberId") int memberId){
 
+        qnaUpdateRequestDTO.setAnswererId(memberId);
         QnaResponseDTO qnaResponseDTO = qnaService.updateQna(qnaUpdateRequestDTO);
 
         return ResponseEntity
@@ -74,8 +78,10 @@ public class QnaController {
                 );
     }
     @PutMapping("/answer")
-    private ResponseEntity<ResponseMessage> deleteQnaAnswer(@RequestBody QnaDeleteAnswerRequestDTO qnaDeleteAnswerRequestDTO){
+    private ResponseEntity<ResponseMessage> deleteQnaAnswer(@RequestBody QnaDeleteAnswerRequestDTO qnaDeleteAnswerRequestDTO,
+                                                            @RequestAttribute("memberId") int memberId){
 
+        qnaDeleteAnswerRequestDTO.setAnswererId(memberId);
         QnaResponseDTO qnaResponseDTO = qnaService.deleteQnaAnswer(qnaDeleteAnswerRequestDTO);
 
         return ResponseEntity

@@ -22,8 +22,10 @@ public class ReportController {
     }
 
     @PostMapping("")
-    private ResponseEntity<ResponseMessage> createReport(@RequestBody ReportCreateRequestDTO reportCreateRequestDTO){
+    private ResponseEntity<ResponseMessage> createReport(@RequestBody ReportCreateRequestDTO reportCreateRequestDTO,
+                                                         @RequestAttribute("memberId") int memberId){
 
+        reportCreateRequestDTO.setReporterId(memberId);
         reportService.insertReport(reportCreateRequestDTO);
 
         return ResponseEntity

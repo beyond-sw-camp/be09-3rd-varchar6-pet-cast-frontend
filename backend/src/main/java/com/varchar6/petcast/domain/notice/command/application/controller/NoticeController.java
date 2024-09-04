@@ -25,8 +25,9 @@ public class NoticeController {
     }
 
     @PostMapping("")
-    private ResponseEntity<ResponseMessage> createNotice(@RequestBody NoticeWriteRequestDTO noticeWriteRequestDTO){
-
+    private ResponseEntity<ResponseMessage> createNotice(@RequestBody NoticeWriteRequestDTO noticeWriteRequestDTO,
+                                                         @RequestAttribute("memberId") int memberId){
+        noticeWriteRequestDTO.setMemberId(memberId);
         int result = noticeService.insertNotice(noticeWriteRequestDTO);
 
         return ResponseEntity
