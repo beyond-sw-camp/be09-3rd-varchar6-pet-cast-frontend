@@ -1,4 +1,4 @@
-package com.varchar6.petcast.domain.notice.command.application.dto.request;
+package com.varchar6.petcast.domain.qna.command.application.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +9,9 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class NoticeWriteRequestDTO {
+public class QnaCreateRequestDTO {
     private String title;
     private String content;
-    private int memberId;
-    private boolean fixed;
+    private Integer questionerId;
+    private Integer companyId;
 }

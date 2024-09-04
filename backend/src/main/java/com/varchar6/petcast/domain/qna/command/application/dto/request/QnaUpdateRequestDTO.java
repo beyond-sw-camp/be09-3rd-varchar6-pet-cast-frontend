@@ -1,4 +1,4 @@
-package com.varchar6.petcast.domain.notice.command.application.dto.request;
+package com.varchar6.petcast.domain.qna.command.application.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,8 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class NoticeUpdateRequestDTO {
+public class QnaUpdateRequestDTO {
     private int id;
-    private boolean fixed;
+    private String answer;
+    private Integer answererId;
 }

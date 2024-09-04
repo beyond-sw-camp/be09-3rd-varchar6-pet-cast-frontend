@@ -1,4 +1,4 @@
-package com.varchar6.petcast.domain.notice.command.domain.aggregate;
+package com.varchar6.petcast.domain.qna.command.domain.aggregate;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -6,11 +6,11 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "tbl_notice")
+@Table(name = "tbl_qna")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Notice {
+public class Qna {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,18 +25,24 @@ public class Notice {
     @Column(name = "created_at", nullable = false)
     private String createdAt;
 
-    @Column(name = "updated_at", nullable = false)
-    private String updatedAt;
+    @Column(name = "answered_at")
+    private String answeredAt;
+
+    @Column(name = "answer")
+    private String answer;
+
+    @Column(name = "answered", nullable = false)
+    private boolean answered;
 
     @Column(name = "active", nullable = false)
     private boolean active;
 
-    @Column(name = "view", nullable = false)
-    private int view;
+    @Column(name = "company_id")
+    private Integer companyId;
 
-    @Column(name = "member_id")
-    private int memberId;
+    @Column(name = "questioner_id", nullable = false)
+    private Integer questionerId;
 
-    @Column(name = "fixed", nullable = false)
-    private boolean fixed;
+    @Column(name = "answerer_id")
+    private Integer answererId;
 }
