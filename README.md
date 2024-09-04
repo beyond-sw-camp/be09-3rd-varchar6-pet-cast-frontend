@@ -64,19 +64,16 @@
 <br>
 
 ## 📙 요구사항 명세서
-https://docs.google.com/spreadsheets/d/1QcbQHmhLQ76bXKGVnVfurkTbIlVpPk1o3f3c-3LNoeU/edit?gid=1027017419#gid=1027017419
+[[🔗요구사항 명세서]](https://docs.google.com/spreadsheets/d/1QcbQHmhLQ76bXKGVnVfurkTbIlVpPk1o3f3c-3LNoeU/edit?gid=1027017419#gid=1027017419/)
 <br>
 <img width="950" alt="스크린샷 2024-09-05 오전 5 33 09" src="https://github.com/user-attachments/assets/ef722a9a-b74d-4494-81b0-899cca9fe3a2">
 
-<br>
 
 ## 📘 기능 명세서
-https://docs.google.com/spreadsheets/d/1uxs1YQeDMAhOQqUH84lzAan0NFmG4b5YkxJqN8Zu3rc/edit?gid=628887481#gid=628887481
+[[🔗기능 명세서]](https://docs.google.com/spreadsheets/d/1uxs1YQeDMAhOQqUH84lzAan0NFmG4b5YkxJqN8Zu3rc/edit?gid=628887481#gid=628887481/)
 <br>
 <img width="950" alt="스크린샷 2024-09-05 오전 5 26 43" src="https://github.com/user-attachments/assets/fc0c2e2e-8e0f-483d-867f-2af18756a5fa">
 
-
-<br>
 
 ## 📋 DDD
 ### Bounded Context
@@ -100,19 +97,18 @@ https://docs.google.com/spreadsheets/d/1uxs1YQeDMAhOQqUH84lzAan0NFmG4b5YkxJqN8Zu
 
 
 
-<br>
-
 ## 🗿네트워크 아키텍쳐
 <img width="950" alt="스크린샷 2024-09-05 오전 5 20 43" src="https://github.com/user-attachments/assets/f00aaff0-b6b1-44d5-9e51-a22c88a90202">
 
 <br>
 
 ## 📗 단위 테이블 결과 보고서
-https://docs.google.com/spreadsheets/d/1QcbQHmhLQ76bXKGVnVfurkTbIlVpPk1o3f3c-3LNoeU/edit?gid=0#gid=0
+[[🔗단위 테이블 결과 link]](https://docs.google.com/spreadsheets/d/1QcbQHmhLQ76bXKGVnVfurkTbIlVpPk1o3f3c-3LNoeU/edit?gid=0#gid=0/)
 <img width="950" alt="스크린샷 2024-09-05 오전 5 33 09" src="https://github.com/user-attachments/assets/2d00466e-498a-4c5d-9547-b3ac5e2caf59">
 
 <br>
 
 ## 📝 테스트 계획서 및 결과 보고서
+[[🔗테스트 계획서 및 결과 link]](https://docs.google.com/spreadsheets/d/1QcbQHmhLQ76bXKGVnVfurkTbIlVpPk1o3f3c-3LNoeU/edit?gid=1418811021#gid=1418811021/)
 <img width="950" alt="스크린샷 2024-09-05 오전 5 35 09" src="https://github.com/user-attachments/assets/a65b9fbb-a93f-4122-a463-af2cff8e6854">
 
