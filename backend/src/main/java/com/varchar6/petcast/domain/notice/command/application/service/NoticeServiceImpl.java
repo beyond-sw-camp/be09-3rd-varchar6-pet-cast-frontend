@@ -6,7 +6,10 @@ import com.varchar6.petcast.domain.notice.command.application.dto.response.Notic
 import com.varchar6.petcast.domain.notice.command.domain.aggregate.Notice;
 import com.varchar6.petcast.domain.notice.command.domain.repository.NoticeRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,104 +21,71 @@ import java.util.List;
 @Service(value = "commandNoticeService")
 public class NoticeServiceImpl implements NoticeService {
     private final NoticeRepository noticeRepository;
+    private final ModelMapper modelMapper;
 
     private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
 
-    @Autowired
-    public NoticeServiceImpl(NoticeRepository noticeRepository) {
+    public NoticeServiceImpl(NoticeRepository noticeRepository, ModelMapper modelMapper) {
         this.noticeRepository = noticeRepository;
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        this.modelMapper = modelMapper;
+    }
+
+
+    @Override
+    @Transactional
+    public int insertNotice(NoticeWriteRequestDTO noticeWriteRequestDTO) {
+        int result = 0;
+
+        Notice notice = modelMapper.map(noticeWriteRequestDTO, Notice.class);
+        notice.setCreatedAt(LocalDateTime.now().format(FORMATTER));
+        notice.setUpdatedAt(LocalDateTime.now().format(FORMATTER));
+        notice.setView(0);
+        notice.setActive(true);
+
+        try {
+            noticeRepository.save(notice);
+            result++;
+        }catch(Exception e){
+            throw new RuntimeException("공지 입력 실패") {
+            };
+        }
+
+        return result;
     }
 
     @Override
-    public List<NoticeResponseDTO> findAllNoticeList() {
-        return  noticeRepository.findAll().stream()
-                .map(
-                        notice -> {
-                            NoticeResponseDTO noticeResponseDTO = new NoticeResponseDTO();
-
-                            noticeResponseDTO.setId(notice.getId());
-                            noticeResponseDTO.setTitle(notice.getTitle());
-                            noticeResponseDTO.setCreatedAt(notice.getCreatedAt());
-                            noticeResponseDTO.setUpdatedAt(notice.getUpdatedAt());
-                            noticeResponseDTO.setActiveYn(notice.isActiveYn());
-                            noticeResponseDTO.setDescription(notice.getDescription());
-                            noticeResponseDTO.setView(notice.getView());
-                            noticeResponseDTO.setMemberNoticeId(notice.getMemberNoticeId());
-                            noticeResponseDTO.setTopFix(notice.isTopFix());
-                            return noticeResponseDTO;
-                        }
-                ).toList();
-    }
-
-    @Transactional
-    public NoticeResponseDTO createNotice(NoticeWriteRequestDTO noticeWriteRequestDTO) {
-        NoticeResponseDTO noticeResponseDTO = new NoticeResponseDTO();
-
-        Notice notice = noticeRepository.save(
-                requestDTOToEntity(noticeWriteRequestDTO)
-        );
-
-        noticeResponseDTO.setId(notice.getId());
-        noticeResponseDTO.setTitle(notice.getTitle());
-        noticeResponseDTO.setCreatedAt(notice.getCreatedAt());
-        noticeResponseDTO.setUpdatedAt(notice.getUpdatedAt());
-        noticeResponseDTO.setActiveYn(notice.isActiveYn());
-        noticeResponseDTO.setDescription(notice.getDescription());
-        noticeResponseDTO.setView(notice.getView());
-        noticeResponseDTO.setMemberNoticeId(notice.getMemberNoticeId());
-        noticeResponseDTO.setTopFix(notice.isTopFix());
-
-        return noticeResponseDTO;
-
-    }
-
     @Transactional
     public NoticeResponseDTO updateNotice(NoticeUpdateRequestDTO noticeUpdateRequestDTO) {
-        NoticeResponseDTO noticeResponseDTO = new NoticeResponseDTO();
+        Notice notice = noticeRepository.findById(noticeUpdateRequestDTO.getId()).orElse(null);
 
-        Notice foundNotice = noticeRepository.findById(noticeUpdateRequestDTO.getId())
-                .orElseThrow(IllegalAccessError::new);
+        if(notice.isFixed())
+            notice.setFixed(false);
+        else
+            notice.setFixed(true);
 
-        foundNotice.setTitle(noticeUpdateRequestDTO.getTitle());
-        foundNotice.setDescription(noticeUpdateRequestDTO.getDescription());
-        foundNotice.setTopFix(noticeUpdateRequestDTO.isTopFix());
-        foundNotice.setUpdatedAt(LocalDateTime.now().format(FORMATTER));
+        notice.setUpdatedAt(LocalDateTime.now().format(FORMATTER));
 
-        noticeResponseDTO.setId(foundNotice.getId());
-        noticeResponseDTO.setTitle(foundNotice.getTitle());
-        noticeResponseDTO.setCreatedAt(foundNotice.getCreatedAt());
-        noticeResponseDTO.setUpdatedAt(foundNotice.getUpdatedAt());
-        noticeResponseDTO.setActiveYn(foundNotice.isActiveYn());
-        noticeResponseDTO.setDescription(foundNotice.getDescription());
-        noticeResponseDTO.setView(foundNotice.getView());
-        noticeResponseDTO.setMemberNoticeId(foundNotice.getMemberNoticeId());
-        noticeResponseDTO.setTopFix(foundNotice.isTopFix());
+        NoticeResponseDTO noticeResponseDTO = modelMapper.map(notice, NoticeResponseDTO.class);
 
         return noticeResponseDTO;
     }
 
+    @Override
     @Transactional
-    public void deleteNotice(int noticeId) {
-        noticeRepository.deleteById(noticeId);
+    public int deleteNotice(int noticeId) {
+        int result = 0;
+
+        try {
+            noticeRepository.deleteById(noticeId);
+            result++;
+        } catch (Exception e) {
+            throw new RuntimeException("공지 삭제 실패") {
+            };
+        }
+
+        return result;
     }
 
-    private static Notice requestDTOToEntity(NoticeWriteRequestDTO noticeWriteRequestDTO) {
-        return Notice.builder()
-                .title(noticeWriteRequestDTO.getTitle())
-                .createdAt(
-                        LocalDateTime.now()
-                                .format(FORMATTER)
-                )
-                .updatedAt(
-                        LocalDateTime.now()
-                                .format(FORMATTER)
-                )
-                .activeYn(true)
-                .description(noticeWriteRequestDTO.getDescription())
-                .view(0)
-                .memberNoticeId(noticeWriteRequestDTO.getMemberNoticeId())
-                .topFix(noticeWriteRequestDTO.isTopFix())
-                .build();
-    }
 }

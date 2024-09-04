@@ -10,11 +10,11 @@ import lombok.*;
 public class NoticeResponseDTO {
     private int id;
     private String title;
+    private String content;
     private String createdAt;
     private String updatedAt;
-    private boolean activeYn;
-    private String description;
+    private boolean active;
     private int view;
-    private int memberNoticeId;
-    private boolean topFix;
+    private int memberId;
+    private boolean fixed;
 }

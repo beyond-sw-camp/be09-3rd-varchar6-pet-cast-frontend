@@ -8,9 +8,8 @@ import java.util.List;
 
 
 public interface NoticeService {
-    List<NoticeResponseDTO> findAllNoticeList();
-
-    NoticeResponseDTO createNotice(NoticeWriteRequestDTO noticeWriteRequestDTO);
+    int insertNotice(NoticeWriteRequestDTO noticeWriteRequestDTO);
     NoticeResponseDTO updateNotice(NoticeUpdateRequestDTO noticeUpdateRequestDTO);
-    void deleteNotice(int noticeId);
+    int deleteNotice(int noticeId);
+
 }
