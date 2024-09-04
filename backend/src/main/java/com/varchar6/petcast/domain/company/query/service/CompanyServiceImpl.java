@@ -9,7 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Slf4j
@@ -61,6 +63,24 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public List<CompanyResponseDTO> getCompanyList() {
         List<CompanyVO> companyVOList = companyMapper.findAllCompanies();
-        return null;
+        return companyVOList.stream()
+                .map(companyVO -> {
+                    CompanyResponseDTO companyResponseDTO = new CompanyResponseDTO();
+
+                    companyResponseDTO.setId(companyVO.getId());
+                    companyResponseDTO.setName(companyVO.getName());
+                    companyResponseDTO.setAddress(companyVO.getAddress());
+                    companyResponseDTO.setEmployeeNumber(companyVO.getEmployeeNumber());
+                    companyResponseDTO.setCareer(companyVO.getCareer());
+                    companyResponseDTO.setLicense(companyVO.getLicense());
+                    companyResponseDTO.setIntroduction(companyVO.getIntroduction());
+                    companyResponseDTO.setContactableTime(companyVO.getContactableTime());
+                    companyResponseDTO.setCreatedAt(companyVO.getCreatedAt());
+                    companyResponseDTO.setUpdatedAt(companyVO.getUpdatedAt());
+                    companyResponseDTO.setActive(companyVO.isActive());
+                    companyResponseDTO.setApproved(companyVO.isApproved());
+                    companyResponseDTO.setMemberId(companyVO.getMemberId());
+                    return companyResponseDTO;
+                }).toList();
     }
 }

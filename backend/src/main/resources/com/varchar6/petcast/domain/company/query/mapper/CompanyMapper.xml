@@ -50,14 +50,22 @@
             ON (CC.CATEGORY_ID = CT.ID)
          WHERE CP.ID = #{ memberId };
     </select>
-    <select id="findAllCompanies" resultMap="companyCategoryList" parameterType="string">
+    <select id="findAllCompanies" resultMap="companyInformation">
         SELECT
-        CT.NAME AS categoryName
-        FROM TBL_COMPANY CP
-        INNER JOIN TBL_COMPANY_CATEGORY CC
-        ON (CP.ID = CC.COMPANY_ID)
-        INNER JOIN TBL_CATEGORY CT
-        ON (CC.CATEGORY_ID = CT.ID)
-        WHERE CP.ID = #{ memberId };
+               TC.ID
+             , TC.NAME
+             , TC.ADDRESS
+             , TC.EMPLOYEE_NUMBER
+             , TC.CAREER
+             , TC.LICENSE
+             , TC.INTRODUCTION
+             , TC.CONTACTABLE_TIME
+             , TC.CREATED_AT
+             , TC.UPDATED_AT
+             , TC.ACTIVE
+             , TC.APPROVED
+             , TC.MEMBER_ID
+          FROM TBL_COMPANY TC
+         WHERE TC.ACTIVE = true
     </select>
 </mapper>

@@ -32,7 +32,7 @@ public class CompanyController {
                         ResponseMessage.builder()
                                 .httpStatus(HttpStatus.OK.value())
                                 .message("category list")
-                                .result()
+                                .result(companyResponseDTOList)
                                 .build()
                 );
     }
