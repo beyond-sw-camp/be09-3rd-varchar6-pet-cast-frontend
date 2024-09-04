@@ -4,7 +4,7 @@ import com.varchar6.petcast.domain.request.command.domain.aggregate.EventsStatus
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
+@Entity(name = "requestEvent")
 @Table(name = "tbl_event")
 @Getter
 @Setter
