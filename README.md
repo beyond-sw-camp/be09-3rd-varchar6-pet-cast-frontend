@@ -3,19 +3,21 @@
 ![제목을-입력해주세요_-001 (2)](https://github.com/user-attachments/assets/1f8491a3-89b5-43a3-8a50-3e769303c46f)
 	
 
-### Service for matching who want to take an event for their family!
+## Service for matching who want to take an event for their family!
 <br>
 
 
-##### 한화시스템 BEYOND SW캠프 / 🍑 TEAM VARCHAR(6) 🍑 <br>
+## 한화시스템 BEYOND SW캠프 / 🍑 TEAM VARCHAR(6) 🍑 <br>
 
-🎯 팀원 소개
+### 🎯 팀원 소개
 					
 🦥 기우석 	🐬 방동호 	🐰 송의혁 	🐻‍❄️ 용길한 	🐱 이효진 	🐹 정준서 
 
 
-
-
+| <img src="https://github.com/3-Minutes-Query/choleeTest/assets/102345450/1046b24a-5d40-4dc1-a747-cb65f20dc764" height=100/>| <img src="https://github.com/3-Minutes-Query/choleeTest/assets/102345450/535b423b-f9c6-4c9a-8052-d1484c7145fb" height=100/> | <img src="https://github.com/3-Minutes-Query/choleeTest/assets/102345450/1046b24a-5d40-4dc1-a747-cb65f20dc764" height=100/> | <img src="https://github.com/3-Minutes-Query/choleeTest/assets/102345450/3679e77e-3678-4f16-a927-04b2c9f2309d" height=100/> | <img src="https://github.com/3-Minutes-Query/choleeTest/assets/102345450/e5de118d-7587-416b-bd9b-d965db443df1" height=100/> | <img src="https://github.com/3-Minutes-Query/choleeTest/assets/102345450/589d04ac-c48f-4491-a2f4-6f372ad95138" height=100/> |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                            기우석                            |                            방동호                            |                            송의혁                            |                            용길한                            |                            이효진                            |                            정준서                            |
+| [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/woosuk1) <br>| [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/Bang1999) <br>| [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/euihyeok-song) <br>| [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/Yong-ga-ri) <br>| [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/jinjin0528) <br>| [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/JeongJunSeo99) <br>|
 
 <br>
 
