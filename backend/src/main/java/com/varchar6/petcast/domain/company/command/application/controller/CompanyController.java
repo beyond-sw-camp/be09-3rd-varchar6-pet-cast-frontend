@@ -6,12 +6,13 @@ import com.varchar6.petcast.domain.company.command.application.controller.vo.res
 import com.varchar6.petcast.domain.company.command.application.dto.request.CompanyEnrollRequestDTO;
 import com.varchar6.petcast.domain.company.command.application.dto.response.CompanyResponseDTO;
 import com.varchar6.petcast.domain.company.command.application.service.CompanyService;
-import org.apache.ibatis.javassist.NotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController(value = "companyCommandController")
 @RequestMapping("/api/v1/companies")
 public class CompanyController {
@@ -60,6 +61,21 @@ public class CompanyController {
                                 .httpStatus(HttpStatus.CREATED.value())
                                 .message("Enrollment Requested Successfully")
                                 .result(companyResponseVO)
+                                .build()
+                );
+    }
+
+    @PatchMapping("approve/{companyId}")
+    public ResponseEntity<ResponseMessage> approveCompany(
+            @PathVariable int companyId
+    ) {
+        companyService.approveCompany(companyId);
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.OK.value())
+                                .message("company approved successfully")
                                 .build()
                 );
     }

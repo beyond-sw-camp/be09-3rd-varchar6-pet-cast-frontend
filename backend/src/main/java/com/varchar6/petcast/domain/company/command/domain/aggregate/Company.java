@@ -6,6 +6,7 @@ import lombok.*;
 
 @Getter
 @Entity
+@Setter
 @ToString
 @Table(name = "tbl_company")
 @Builder

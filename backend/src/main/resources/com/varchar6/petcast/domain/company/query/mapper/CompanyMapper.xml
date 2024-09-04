@@ -67,5 +67,6 @@
              , TC.MEMBER_ID
           FROM TBL_COMPANY TC
          WHERE TC.ACTIVE = true
+         ORDER BY TC.CREATED_AT DESC
     </select>
 </mapper>
