@@ -47,7 +47,7 @@ public class NoticeServiceImpl implements NoticeService {
             noticeRepository.save(notice);
             result++;
         }catch(Exception e){
-            log.info("notice 생성 실패");
+            throw new IllegalArgumentException("공지 입력 실패");
         }
 
         return result;
@@ -79,7 +79,7 @@ public class NoticeServiceImpl implements NoticeService {
             noticeRepository.deleteById(noticeId);
             result++;
         } catch (Exception e) {
-            log.info("리뷰 삭제 실패");
+            throw new IllegalArgumentException("공지 삭제 실패");
         }
 
         return result;

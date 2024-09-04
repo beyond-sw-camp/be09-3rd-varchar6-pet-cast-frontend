@@ -39,7 +39,7 @@ public class ReportServiceImpl implements ReportService{
             reportRepository.save(report);
             result++;
         }catch(Exception e){
-            log.info("report 생성 실패");
+            throw new IllegalArgumentException("신고 입력 실패");
         }
 
         return result;

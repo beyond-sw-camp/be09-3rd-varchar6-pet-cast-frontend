@@ -48,7 +48,7 @@ public class QnaServiceImpl implements QnaService{
             qnaRepository.save(qna);
             result++;
         }catch(Exception e){
-            log.info("qna 생성 실패");
+            throw new IllegalArgumentException("qna 입력 실패");
         }
 
         return result;
@@ -93,7 +93,7 @@ public class QnaServiceImpl implements QnaService{
             qnaRepository.deleteById(id);
             result++;
         } catch (Exception e) {
-            log.info("리뷰 삭제 실패");
+            throw new IllegalArgumentException("qna 삭제 실패");
         }
 
         return result;
