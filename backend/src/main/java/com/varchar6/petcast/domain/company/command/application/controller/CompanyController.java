@@ -65,7 +65,7 @@ public class CompanyController {
                 );
     }
 
-    @PatchMapping("approve/{companyId}")
+    @PostMapping("approve/{companyId}")
     public ResponseEntity<ResponseMessage> approveCompany(
             @PathVariable int companyId
     ) {
@@ -76,6 +76,19 @@ public class CompanyController {
                         ResponseMessage.builder()
                                 .httpStatus(HttpStatus.OK.value())
                                 .message("company approved successfully")
+                                .build()
+                );
+    }
+
+    @PostMapping("deactivate/{companyId}")
+    public ResponseEntity<ResponseMessage> deactivateCompany(@PathVariable int companyId) {
+        companyService.deactivateCompany(companyId);
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.OK.value())
+                                .message("company deactivated successfully")
                                 .build()
                 );
     }

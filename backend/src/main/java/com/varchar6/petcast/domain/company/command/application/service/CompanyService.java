@@ -8,5 +8,7 @@ public interface CompanyService {
     CompanyResponseDTO applyEnroll(CompanyEnrollRequestDTO companyEnrollRequestDTO);
     void deleteCompanyById(int companyId);
 
-    boolean approveCompany(int companyId);
+    void approveCompany(int companyId);
+
+    void deactivateCompany(int companyId);
 }

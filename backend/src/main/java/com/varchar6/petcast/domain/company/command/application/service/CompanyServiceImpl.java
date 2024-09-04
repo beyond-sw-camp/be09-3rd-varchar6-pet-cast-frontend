@@ -59,7 +59,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     @Transactional
-    public boolean approveCompany(int companyId) {
+    public void approveCompany(int companyId) {
 
         Company company = companyRepository.findById(companyId).orElseThrow(IllegalAccessError::new);
 
@@ -83,8 +83,14 @@ public class CompanyServiceImpl implements CompanyService {
 
         // company update
         companyRepository.save(company);
-        return true;
+    }
 
+    @Transactional
+    public void deactivateCompany(int companyId) {
+        Company company = companyRepository.findById(companyId).orElseThrow(IllegalAccessError::new);
+        company.setActive(false);
+        company.setUpdatedAt(LocalDateTime.now().format(FORMATTER));
+        companyRepository.save(company);
     }
 
 
