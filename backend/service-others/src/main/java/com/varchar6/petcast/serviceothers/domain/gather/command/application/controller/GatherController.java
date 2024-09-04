@@ -30,7 +30,7 @@ public class GatherController {
         this.gatherService = gatherService;
     }
 
-    @PostMapping("/gather")
+    @PostMapping("")
     public ResponseEntity<ResponseMessage> createGather(@RequestBody RequestCreateGatherDTO requestCreateGatherDTO,
                                                         @RequestAttribute("memberId") int memberId){
         requestCreateGatherDTO.setUserId(memberId);
@@ -44,7 +44,7 @@ public class GatherController {
         );
     }
 
-    @PutMapping("/gather-info")
+    @PutMapping("")
     public ResponseEntity<ResponseMessage> updateGatherInfo(@RequestBody RequestUpdateGatherInfoDTO requestUpdateGatherDTO,
                                                             @RequestAttribute("memberId") int memberId){
         requestUpdateGatherDTO.setUserId(memberId);
@@ -64,7 +64,7 @@ public class GatherController {
         return ResponseEntity.ok(responseMessage);
     }
 
-    @DeleteMapping("/deactive-gather")
+    @DeleteMapping("")
     public ResponseEntity<ResponseMessage> deactiveGather(@RequestBody RequestDeactiveGatherDTO requestDeactiveGatherDTO,
                                                           @RequestAttribute("memberId") int memberId){
         requestDeactiveGatherDTO.setUserId(memberId);
