@@ -116,10 +116,13 @@ public class MemberController {
     }
 
     @PostMapping("/password-check")
-    public ResponseEntity<ResponseMessage> checkPasswordByIdAndPassword(@RequestBody String password,
+    public ResponseEntity<ResponseMessage> checkPasswordByIdAndPassword(@RequestBody Map<String, String> request,
                                                                         @RequestAttribute("memberId") int id){
 
+        String password = request.get("password");
         String answer = memberService.checkPasswordByIdAndPassword(id);
+
+        log.info(answer);
 
         return ResponseEntity
                 .ok()
