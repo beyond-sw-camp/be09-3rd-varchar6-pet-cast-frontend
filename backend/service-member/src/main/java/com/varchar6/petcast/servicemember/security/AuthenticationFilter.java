@@ -59,7 +59,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                 .map(GrantedAuthority::getAuthority)
                 .toList()
         );
-        claims.put("jti", customUser.getId());
+        claims.put("jti", customUser.getId() + "");
 
         String token = Jwts.builder()
                 .setClaims(claims)

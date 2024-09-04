@@ -27,7 +27,15 @@ spring:
             - RewritePath=/service-member/(?<segment>.*), /$\{segment}
             - AuthorizationHeaderFilter
 
-        - id: service-member-post
+        - id: service-member-signup
+          uri: lb://PETCAST-MEMBER-SERVICE
+          predicates:
+            - Path=/service-member/api/v1/members/sign-up
+            - Method=POST
+          filters:
+            - RewritePath=/service-member/(?<segment>.*), /$\{segment}
+
+        - id: service-member-other-post
           uri: lb://PETCAST-MEMBER-SERVICE
           predicates:
             - Path=/service-member/**

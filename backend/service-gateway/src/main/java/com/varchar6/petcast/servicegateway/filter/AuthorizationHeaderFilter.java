@@ -59,7 +59,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
             }
 
             // 필요한 정보 추출
-            String memberId = (claims.get("jti", Integer.class)).toString();
+            String memberId = claims.get("jti", String.class);
             String memberLoginId = claims.get("sub", String.class);
             List<String> authorities = claims.get("authorities", List.class);
 
