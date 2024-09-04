@@ -32,17 +32,29 @@ public class ReviewController {
     @PostMapping("")
     private ResponseEntity<ResponseMessage> createReview(@RequestBody ReviewCreateRequestDTO reviewCreateRequestDTO){
 
-        reviewService.insertReview(reviewCreateRequestDTO);
+        int result = reviewService.insertReview(reviewCreateRequestDTO);
 
-        return ResponseEntity
-            .ok()
-            .body(
-                ResponseMessage.builder()
-                    .httpStatus(HttpStatus.CREATED.value())
-                    .message("리뷰 생성 성공")
-                    .result(null)
-                    .build()
-            );
+        if(result == 1)
+            return ResponseEntity
+                .ok()
+                .body(
+                    ResponseMessage.builder()
+                        .httpStatus(HttpStatus.CREATED.value())
+                        .message("리뷰 생성 성공")
+                        .result(null)
+                        .build()
+                );
+
+        else
+            return ResponseEntity
+                .ok()
+                .body(
+                    ResponseMessage.builder()
+                        .httpStatus(HttpStatus.NO_CONTENT.value())
+                        .message("리뷰 생성 실패. 이벤트 상태가 완료되지 않았습니다")
+                        .result(null)
+                        .build()
+                );
     }
 
     @PutMapping("")

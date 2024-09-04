@@ -6,7 +6,7 @@ import com.varchar6.petcast.serviceothers.domain.review.command.application.dto.
 
 public interface ReviewService {
 
-    void insertReview(ReviewCreateRequestDTO reviewCreateRequestDTO);
+    int insertReview(ReviewCreateRequestDTO reviewCreateRequestDTO);
 
     ReviewResponseDTO updateReview(ReviewUpdateRequestDTO reviewUpdateRequestDTO);
 

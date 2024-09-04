@@ -1,5 +1,8 @@
 package com.varchar6.petcast.serviceothers.domain.review.command.application.service;
 
+import com.varchar6.petcast.serviceothers.domain.event.command.domain.aggregate.EventStatusEnum;
+import com.varchar6.petcast.serviceothers.domain.event.query.dto.EventDTO;
+import com.varchar6.petcast.serviceothers.domain.event.query.service.EventService;
 import com.varchar6.petcast.serviceothers.domain.review.command.application.dto.request.ReviewCreateRequestDTO;
 import com.varchar6.petcast.serviceothers.domain.review.command.application.dto.request.ReviewUpdateRequestDTO;
 import com.varchar6.petcast.serviceothers.domain.review.command.application.dto.response.ReviewResponseDTO;
@@ -18,22 +21,33 @@ public class ReviewServiceImpl implements ReviewService {
 
     private final ReviewRepository reviewRepository;
     private final ModelMapper modelMapper;
+    private final EventService eventService;
 
 
     @Autowired
-    public ReviewServiceImpl(ReviewRepository reviewRepository, ModelMapper modelMapper) {
+    public ReviewServiceImpl(ReviewRepository reviewRepository, ModelMapper modelMapper, EventService eventService) {
         this.reviewRepository = reviewRepository;
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         this.modelMapper = modelMapper;
+        this.eventService = eventService;
     }
 
     @Override
     @Transactional
-    public void insertReview(ReviewCreateRequestDTO reviewCreateRequestDTO) {
+    public int insertReview(ReviewCreateRequestDTO reviewCreateRequestDTO) {
+        int result = 0;
 
-        Review review = modelMapper.map(reviewCreateRequestDTO, Review.class);
+        EventDTO eventDTO = eventService.findEvent(reviewCreateRequestDTO.getEventId());
 
-        reviewRepository.save(review);
+        if(eventDTO.getStatus() == EventStatusEnum.DONE) {
+            Review review = modelMapper.map(reviewCreateRequestDTO, Review.class);
+            reviewRepository.save(review);
+            result++;
+            return result;
+        }
+        else
+            return result;
+
     }
 
     @Override
