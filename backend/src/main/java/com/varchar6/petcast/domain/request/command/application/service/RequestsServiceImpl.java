@@ -33,6 +33,7 @@ public class RequestsServiceImpl implements RequestsService {
     }
 
     // 요청서 작성
+    @Override
     @Transactional
     public void createRequest(CreateRequestsRequestDTO createRequestsRequestDTO, int memberId) {
         Requests requests = Requests.builder()
@@ -56,6 +57,7 @@ public class RequestsServiceImpl implements RequestsService {
     }
 
     // 요청서 삭제
+    @Override
     @Transactional
     public void deleteRequest(int requestId, int memberId) {
         Requests findRequests = requestsRepository.findById(requestId).orElseThrow(
@@ -70,6 +72,7 @@ public class RequestsServiceImpl implements RequestsService {
     }
 
     // 요청서 수락
+    @Override
     @Transactional
     public void acceptRequest(int requestId) {
         Requests request = requestsRepository.findById(requestId)
@@ -97,6 +100,7 @@ public class RequestsServiceImpl implements RequestsService {
     }
 
     // 요청서 거절
+    @Override
     @Transactional
     public void rejectRequest(int requestId) {
         Requests request = requestsRepository.findById(requestId)
