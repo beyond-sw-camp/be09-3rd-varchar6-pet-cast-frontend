@@ -41,4 +41,4 @@ spring:
             - Path=/service-others/**
           filters:
             - RewritePath=/service-others/(?<segment>.*), /$\{segment}
-#            - AuthorizationHeaderFilter
+            - AuthorizationHeaderFilter

@@ -17,13 +17,12 @@ spring:
 
   ## jpa config
   jpa:
-    hibernate:
-      ddl-auto: create
+    generate-ddl: false
     show-sql: true
     database: mysql
     properties:
       hibernate:
-        '[format_sql]': true
+        format_sql: true
   config:
     import:
       - classpath:/bootstrap.yml

@@ -52,10 +52,14 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
             FilterChain chain,
             Authentication authResult
     ) {
-        Claims claims = Jwts.claims().setSubject(((CustomUser) authResult.getPrincipal()).getUsername());
-        claims.put("authorities", authResult.getAuthorities().stream()
+        CustomUser customUser = (CustomUser) authResult.getPrincipal();
+        Claims claims = Jwts.claims().setSubject(customUser.getUsername());
+        claims.put(
+            "authorities", authResult.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
-                .toList());
+                .toList()
+        );
+        claims.put("jti", customUser.getId());
 
         String token = Jwts.builder()
                 .setClaims(claims)

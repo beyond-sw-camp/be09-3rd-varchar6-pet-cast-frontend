@@ -22,12 +22,12 @@ import reactor.core.publisher.Mono;
 public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<AuthorizationHeaderFilter.Config> {
 
     private final Environment environment;
-    Environment env;
+    private final JwtUtil jwtUtil;
 
-    public AuthorizationHeaderFilter(Environment env, Environment environment) {
+    public AuthorizationHeaderFilter(Environment environment, JwtUtil jwtUtil) {
         super(Config.class);
-        this.env = env;
         this.environment = environment;
+        this.jwtUtil = jwtUtil;
     }
 
     public static class Config {
@@ -50,24 +50,17 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
                 return onError(exchange, "Invalid JWT token", HttpStatus.UNAUTHORIZED);
             }
 
+
             // JWT에서 사용자 정보 추출
-            Claims claims = getClaims(jwt);
+            Claims claims = jwtUtil.parseClaims(jwt);
 
             if (claims == null) {
                 return onError(exchange, "Invalid JWT claims", HttpStatus.UNAUTHORIZED);
             }
 
             // 필요한 정보 추출
-            String memberId = claims.get("memberId", String.class);
-            String memberLoginId = claims.get("memberLoginId", String.class);
-            String memberName = claims.get("memberName", String.class);
-            String memberPhone = claims.get("memberPhone", String.class);
-            String memberNickname = claims.get("memberNickname", String.class);
-            String image = claims.get("image", String.class);
-            String created = claims.get("created", String.class);
-            String updated = claims.get("updated", String.class);
-            String active = claims.get("active", String.class);
-            String introduction = claims.get("introduction", String.class);
+            String memberId = (claims.get("jti", Integer.class)).toString();
+            String memberLoginId = claims.get("sub", String.class);
             List<String> authorities = claims.get("authorities", List.class);
 
             String authoritiesHeader = authorities.stream().collect(Collectors.joining(","));
@@ -76,15 +69,12 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
             headers.addAll(request.getHeaders()); // 기존 헤더 복사
             headers.add("X-Member-Id", memberId);
             headers.add("X-Member-Login-Id", memberLoginId);
-            headers.add("X-Member-Name", memberName);
-            headers.add("X-Member-Phone", memberPhone);
-            headers.add("X-Member-Nickname", memberNickname);
-            headers.add("X-image", image);
-            headers.add("X-created", created);
-            headers.add("X-updated", updated);
-            headers.add("X-active", active);
-            headers.add("X-introduction", introduction);
             headers.add("X-authorities", authoritiesHeader);
+
+            // 헤더가 올바르게 추가되었는지 확인하는 로깅
+            headers.forEach((key, value) -> {
+                log.info(String.format("Gateway added header '%s' with value '%s'", key, value));
+            });
 
             ServerHttpRequest modifiedRequest = request.mutate().headers(httpHeaders -> {
                 httpHeaders.addAll(headers);
@@ -111,7 +101,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
         String subject = null;
         try{
             subject = Jwts.parser()
-                    .setSigningKey(env.getProperty("token.secret"))
+                    .setSigningKey(environment.getProperty("token.secret"))
                     .parseClaimsJws(jwt)
                     .getBody()
                     .getSubject();
@@ -127,15 +117,5 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
         return returnValue;
     }
 
-    private Claims getClaims(String jwt) {
-        try {
-            return Jwts.parser()
-                .setSigningKey(environment.getProperty("token.secret"))
-                .parseClaimsJws(jwt)
-                .getBody();
-        } catch (Exception e) {
-            log.error("Could not parse claims from JWT: {}", e.getMessage());
-            return null;
-        }
-    }
+
 }

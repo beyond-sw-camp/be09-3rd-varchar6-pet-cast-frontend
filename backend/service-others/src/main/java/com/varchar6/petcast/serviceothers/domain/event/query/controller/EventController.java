@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,8 +49,10 @@ public class EventController {
     }
 
     @GetMapping("/users")
-    private ResponseEntity<ResponseMessage> findEventByCustomer(@RequestAttribute("memberId") int memberId,
+    private ResponseEntity<ResponseMessage> findEventByCustomer(@RequestHeader("X-Member-Id") String id,
         @RequestParam Integer lastEventId){
+
+        int memberId = Integer.parseInt(id);
 
         List<EventDTO> responseEvents = eventService.findEventByCustomer(memberId, lastEventId);
 
