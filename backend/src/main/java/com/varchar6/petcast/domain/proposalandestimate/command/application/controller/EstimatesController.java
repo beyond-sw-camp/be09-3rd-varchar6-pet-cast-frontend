@@ -27,9 +27,17 @@ public class EstimatesController {
 
     // 견적서 작성
     @PostMapping("/create")
-    public ResponseEntity<EstimatesResponseDTO> createEstimate(@RequestBody EstimatesRequestDTO estimatesRequestDTO) {
-        EstimatesResponseDTO createEstimate = estimatesService.createEstimate(estimatesRequestDTO);
-        return new ResponseEntity<>(createEstimate, HttpStatus.CREATED);
+    public ResponseEntity<ResponseMessage> createEstimate(@RequestBody EstimatesRequestDTO estimatesRequestDTO) {
+        int createEstimate = estimatesService.createEstimate(estimatesRequestDTO);
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.OK.value())
+                                .message("Enrollment Requested Successfully")
+                                .result(1)
+                                .build()
+                );
     }
 
     // 견적서 삭제

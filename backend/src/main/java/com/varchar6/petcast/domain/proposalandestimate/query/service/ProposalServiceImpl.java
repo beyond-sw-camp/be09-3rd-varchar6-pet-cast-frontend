@@ -11,39 +11,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service("queryProposalServiceImpl")
-public class ProposalServiceImpl implements ProposalService{
-        private final ProposalsMapper proposalsMapper;
+public class ProposalServiceImpl implements ProposalService {
+    private final ProposalsMapper proposalsMapper;
 
-        @Autowired
+    @Autowired
     public ProposalServiceImpl ( ProposalsMapper proposalsMapper ) {
         this.proposalsMapper = proposalsMapper;
     }
 
     // 고객이 보낸 기획서 목록 조회
-        @Override
-        public List<ProposalResponseDTO> findAllProposalsByMemberId( int memberId) {
-            System.out.println("memberId: " + memberId);
-            List<ProposalResponseDTO> proposals = proposalsMapper.findAllProposalsByMemberId(memberId);
-            return proposals;
-        }
+    @Override
+    public List<ProposalResponseDTO> findAllProposalsByMemberId ( int memberId ) {
+        System.out.println ( "memberId: " + memberId );
+        List<ProposalResponseDTO> proposals = proposalsMapper.findAllProposalsByMemberId ( memberId );
+        return proposals;
+    }
 
-        // 업체가 받은 기획서 목록 조회
-        @Override
-        public List<ProposalResponseDTO> findAll () {
-            List<ProposalResponseDTO> allProposals = proposalsMapper.findAll();
-            return allProposals;
-        }
+    // 업체가 받은 기획서 목록 조회
+    @Override
+    public List<ProposalResponseDTO> findAll () {
+        List<ProposalResponseDTO> allProposals = proposalsMapper.findAll ();
+        return allProposals;
+    }
 
-        // 기획서 상세 조회
-        @Override
-        public ProposalResponseDTO findProposalById( int proposalId) {
-            ProposalResponseDTO aProposal =  proposalsMapper.findProposalById(proposalId);
-            return aProposal;
-        }
+    // 기획서 상세 조회
+    @Override
+    public ProposalResponseDTO findProposalById ( int proposalId ) {
+        ProposalResponseDTO aProposal = proposalsMapper.findProposalById ( proposalId );
+        return aProposal;
+    }
 
 
-
-    private ProposalResponseDTO entityToResponseDTO( Proposals proposals) {
+    private ProposalResponseDTO entityToResponseDTO ( Proposals proposals ) {
 //            return ProposalResponseDTO.builder()
 //                    .id ( proposals.getId () )
 //                    .hopeTime ( proposals.getHopeTime () )
@@ -54,8 +53,10 @@ public class ProposalServiceImpl implements ProposalService{
 //                    .status ( proposals.getStatus () )
 //                    .active ( proposals.isActive () )
 //                    .build ();
-
-            return null;
-        }
+        return null;
     }
+}
+
+
+
 

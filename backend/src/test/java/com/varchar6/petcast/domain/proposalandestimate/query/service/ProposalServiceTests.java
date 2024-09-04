@@ -38,7 +38,5 @@ class ProposalServiceTests {
         int id = 1;
         ProposalResponseDTO aProposal = proposalService.findProposalById ( id );
         assertEquals ( aProposal.getId(), id );
-
-
     }
 }

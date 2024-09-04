@@ -32,10 +32,10 @@ public class ProposalsServiceImpl implements ProposalsService{
     @Transactional
     public ProposalsResponseDTO createProposal(ProposalsRequestDTO proposalRequestDTO) {
         Proposals proposals = Proposals.builder()
+                .content(proposalRequestDTO.getContent())
                 .hopeLocation(proposalRequestDTO.getHopeLocation())
                 .hopeTime(proposalRequestDTO.getHopeTime())
                 .hopeCost(proposalRequestDTO.getHopeCost())
-                .content(proposalRequestDTO.getContent())
                 .createdAt(proposalRequestDTO.getCreatedAt())
                 .updatedAt(proposalRequestDTO.getUpdatedAt())
                 .status(proposalRequestDTO.getStatus())

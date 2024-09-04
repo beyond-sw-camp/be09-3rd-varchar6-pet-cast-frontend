@@ -4,15 +4,16 @@ package com.varchar6.petcast.domain.proposalandestimate.command.service;
 import com.varchar6.petcast.domain.proposalandestimate.command.application.dto.EstimatesResponseDTO;
 import com.varchar6.petcast.domain.proposalandestimate.command.domain.aggregate.Estimates;
 import com.varchar6.petcast.domain.proposalandestimate.command.application.dto.EstimatesRequestDTO;
+import com.varchar6.petcast.domain.proposalandestimate.command.domain.aggregate.EstimatesStatus;
 import com.varchar6.petcast.domain.proposalandestimate.command.domain.repository.EstimatesRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 
 @Service
@@ -24,29 +25,34 @@ public class EstimatesServiceImpl implements EstimatesService {
     private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
 
+
     @Autowired
-    public EstimatesServiceImpl(EstimatesRepository estimatesRepository) {
+    public EstimatesServiceImpl ( EstimatesRepository estimatesRepository ) {
         this.estimatesRepository = estimatesRepository;
     }
 
     // 견적서 작성
     @Transactional
-    public EstimatesResponseDTO createEstimate(EstimatesRequestDTO estimatesRequestDTO) {
+    public int createEstimate( EstimatesRequestDTO estimatesRequestDTO) {
+        int result = 0;
         Estimates estimates = Estimates.builder()
+                .status ( EstimatesStatus.SENT )
                 .expectedCost(estimatesRequestDTO.getExpectedCost())
-                .status(estimatesRequestDTO.getStatus())
-                .createdAt(LocalDateTime.now().format(FORMATTER))
+                .createdAt(estimatesRequestDTO.getCreatedAt ())
                 .updatedAt(LocalDateTime.now().format(FORMATTER))
                 .active(true)
                 .companyId(estimatesRequestDTO.getCompanyId())
-                .proposalId(estimatesRequestDTO.getProposalId())
+                .proposalId ( estimatesRequestDTO.getProposalId())
                 .build();
 
-        EstimatesResponseDTO.builder()
-                .expectedCost(estimates.getExpectedCost())
-                .build();
+        try{
+            estimatesRepository.save(estimates);
+            result++;
+        }catch (Exception e) {
+            throw new RuntimeException ("견적서 작성 실패!",e);
+        }
 
-        return entityToResponseDTO(estimates);
+        return result;
 
     }
 
