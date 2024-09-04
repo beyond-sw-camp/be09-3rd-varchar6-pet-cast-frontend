@@ -40,8 +40,7 @@ public class ReportServiceImpl implements ReportService{
             reportRepository.save(report);
             result++;
         }catch(Exception e){
-            throw new RuntimeException("신고 입력 실패") {
-            };
+            throw new RuntimeException("신고 입력 실패");
         }
 
         return result;
