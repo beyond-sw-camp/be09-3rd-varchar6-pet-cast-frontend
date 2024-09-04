@@ -9,13 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController(value = "queryReviewController")
-@RequestMapping("/api/v1/review")
+@RequestMapping("/api/v1/reviews")
 public class ReviewController {
 
     private final ReviewService reviewService;
@@ -25,7 +26,7 @@ public class ReviewController {
         this.reviewService = reviewService;
     }
 
-    @GetMapping("/company/{companyId}")
+    @GetMapping("/companies/{companyId}")
     private ResponseEntity<ResponseMessage> findEventByCompany(@PathVariable Integer companyId,
         @RequestParam Integer lastReviewId){
 
@@ -35,11 +36,11 @@ public class ReviewController {
             , responseReview));
     }
 
-    @GetMapping("/user/{userId}")
-    private ResponseEntity<ResponseMessage> findEventByCustomer(@PathVariable Integer userId,
+    @GetMapping("/users")
+    private ResponseEntity<ResponseMessage> findEventByCustomer(@RequestAttribute("memberId") int memberId,
         @RequestParam Integer lastReviewId){
 
-        List<ReviewDTO> responseReview = reviewService.findEventByCustomer(userId, lastReviewId);
+        List<ReviewDTO> responseReview = reviewService.findEventByCustomer(memberId, lastReviewId);
 
         return ResponseEntity.ok(new ResponseMessage(200, "이벤트 조회 성공"
             , responseReview));

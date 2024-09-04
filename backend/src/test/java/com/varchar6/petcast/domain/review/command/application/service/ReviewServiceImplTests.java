@@ -3,11 +3,8 @@ package com.varchar6.petcast.domain.review.command.application.service;
 import com.varchar6.petcast.domain.review.command.application.dto.request.ReviewCreateRequestDTO;
 import com.varchar6.petcast.domain.review.command.application.dto.request.ReviewUpdateRequestDTO;
 import com.varchar6.petcast.domain.review.command.application.dto.response.ReviewResponseDTO;
-import com.varchar6.petcast.domain.review.command.domain.aggregate.Review;
+import com.varchar6.petcast.domain.review.command.domain.aggregate.entity.Review;
 import com.varchar6.petcast.domain.review.command.domain.repository.ReviewRepository;
-import java.util.List;
-import java.util.Optional;
-import java.util.function.Function;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
@@ -15,15 +12,8 @@ import org.modelmapper.convention.MatchingStrategies;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.HashMap;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
 
 @SpringBootTest
 public class ReviewServiceImplTests {

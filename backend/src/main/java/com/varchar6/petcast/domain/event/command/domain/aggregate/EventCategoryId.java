@@ -3,6 +3,7 @@ package com.varchar6.petcast.domain.event.command.domain.aggregate;
 
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +12,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 public class EventCategoryId implements Serializable {
-    private int categoryId;
-    private int eventId;
+    private Integer categoryId;
+    private Integer eventId;
 }

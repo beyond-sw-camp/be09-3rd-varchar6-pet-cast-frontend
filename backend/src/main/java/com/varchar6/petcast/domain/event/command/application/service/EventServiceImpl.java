@@ -4,8 +4,8 @@ import com.varchar6.petcast.domain.event.command.application.dto.request.EventCr
 import com.varchar6.petcast.domain.event.command.application.dto.request.EventSetStatusRequestDTO;
 import com.varchar6.petcast.domain.event.command.application.dto.request.EventUpdateRequestDTO;
 import com.varchar6.petcast.domain.event.command.application.dto.response.EventResponseDTO;
-import com.varchar6.petcast.domain.event.command.domain.aggregate.Event;
-import com.varchar6.petcast.domain.event.command.domain.aggregate.EventCategory;
+import com.varchar6.petcast.domain.event.command.domain.aggregate.entity.Event;
+import com.varchar6.petcast.domain.event.command.domain.aggregate.entity.EventCategory;
 import com.varchar6.petcast.domain.event.command.domain.repository.EventCategoryRepository;
 import com.varchar6.petcast.domain.event.command.domain.repository.EventRepository;
 import java.util.List;

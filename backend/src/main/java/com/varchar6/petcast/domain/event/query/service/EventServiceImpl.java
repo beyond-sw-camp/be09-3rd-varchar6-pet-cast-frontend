@@ -27,6 +27,10 @@ public class EventServiceImpl implements EventService{
     @Transactional
     public List<EventDTO> findEventByCompany(Integer companyId, Integer lastEventId) {
         Map<String, String> params = new HashMap<String, String>();
+
+        if(lastEventId == null || lastEventId == 0)
+            lastEventId = Integer.MAX_VALUE;
+
         params.put("companyId", String.valueOf(companyId));
         params.put("lastEventId", String.valueOf(lastEventId));
 
@@ -37,6 +41,10 @@ public class EventServiceImpl implements EventService{
     @Transactional
     public List<EventDTO> findEventByCustomer(Integer customerId, Integer lastEventId) {
         Map<String, String> params = new HashMap<String, String>();
+
+        if(lastEventId == null || lastEventId == 0)
+            lastEventId = Integer.MAX_VALUE;
+
         params.put("customerId", String.valueOf(customerId));
         params.put("lastEventId", String.valueOf(lastEventId));
 

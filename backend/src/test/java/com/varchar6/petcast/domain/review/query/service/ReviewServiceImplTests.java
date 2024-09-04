@@ -1,6 +1,6 @@
 package com.varchar6.petcast.domain.review.query.service;
 
-import com.varchar6.petcast.domain.review.command.domain.aggregate.Review;
+import com.varchar6.petcast.domain.review.command.domain.aggregate.entity.Review;
 import com.varchar6.petcast.domain.review.command.domain.repository.ReviewRepository;
 import com.varchar6.petcast.domain.review.query.dto.ReviewDTO;
 import com.varchar6.petcast.domain.review.query.mapper.ReviewMapper;
@@ -8,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
