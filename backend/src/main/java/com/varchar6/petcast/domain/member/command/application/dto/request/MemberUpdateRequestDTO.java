@@ -20,7 +20,7 @@ public class MemberUpdateRequestDTO {
     private String image;
     private String createdAt;
     private String updatedAt;
-    private Boolean active;
+    private boolean active;
     private String introduction;
 
 }

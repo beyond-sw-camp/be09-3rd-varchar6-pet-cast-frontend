@@ -22,6 +22,7 @@ public class MemberServiceImpl implements MemberService {
         this.memberMapper = memberMapper;
     }
 
+    @Override
     public MemberDTO getMemberInformationById(int memberId) {
         return memberMapper.selectMemberByMemberId(memberId);
     }

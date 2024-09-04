@@ -136,7 +136,7 @@ public class MemberServiceImpl implements MemberService {
     @Transactional
     public Boolean registMemberProfile(ProfileRequestDTO profileRequestDTO) {
 
-        Member member = memberRepository.findById(profileRequestDTO.getMemberId()).orElse(null);
+        Member member = memberRepository.findById(profileRequestDTO.getMemberId()).orElseThrow();
 
         if(member != null) {
             member.setImage(profileRequestDTO.getMemberImage());

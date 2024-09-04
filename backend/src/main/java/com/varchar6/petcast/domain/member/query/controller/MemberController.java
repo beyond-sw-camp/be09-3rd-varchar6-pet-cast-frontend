@@ -39,7 +39,7 @@ public class MemberController {
     }
 
     @GetMapping("/id-check/{loginId}")
-    public ResponseEntity<ResponseMessage> checkDoubleByLoginId(@PathVariable("loginId") String loginId){
+    public ResponseEntity<ResponseMessage> checkDoubleByLoginId(@RequestAttribute("longinId") String loginId ){
 
         Boolean answer = memberService.checkDoubleByLoginId(loginId);
 
@@ -54,7 +54,7 @@ public class MemberController {
     }
 
     @GetMapping("/nickname-check/{nickname}")
-    public ResponseEntity<ResponseMessage> checkDoubleByNickName(@PathVariable("nickname") String nickName){
+    public ResponseEntity<ResponseMessage> checkDoubleByNickName(@RequestAttribute("nickname") String nickName){
 
         Boolean answer = memberService.checkDoubleByNickName(nickName);
 
@@ -69,8 +69,8 @@ public class MemberController {
     }
 
     @GetMapping("/search-loginId/{name}/{phone}")
-    public ResponseEntity<ResponseMessage> searchLoginIdByNameAndPhone(@PathVariable("name") String name,
-                                                              @PathVariable("phone") String phone){
+    public ResponseEntity<ResponseMessage> searchLoginIdByNameAndPhone(@RequestAttribute("name") String name,
+                                                                      @RequestAttribute("phone") String phone){
 
         String memberLoginId = memberService.searchLoginIdByNameAndPhone(name, phone);
 
@@ -85,8 +85,8 @@ public class MemberController {
     }
 
     @GetMapping("/password-change-possible/{loginId}/{phone}")
-    public ResponseEntity<ResponseMessage> checkIdAndPhone(@PathVariable("loginId") String loginId,
-                                                               @PathVariable("phone") String phone) {
+    public ResponseEntity<ResponseMessage> checkIdAndPhone(@RequestAttribute("loginId") String loginId,
+                                                           @RequestAttribute("phone") String phone) {
 
         int answer = memberService.checkIdAndPhone(loginId, phone);
 
@@ -111,7 +111,7 @@ public class MemberController {
     }
 
     @GetMapping("/password-check/{password}")
-    public ResponseEntity<ResponseMessage> checkPasswordByIdAndPassword(@PathVariable("password") String password,
+    public ResponseEntity<ResponseMessage> checkPasswordByIdAndPassword(@RequestAttribute("password") String password,
                                                                         @RequestAttribute("memberId") int id){
 
         String answer = memberService.checkPasswordByIdAndPassword(id);
