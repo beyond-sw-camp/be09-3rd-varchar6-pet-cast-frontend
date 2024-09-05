@@ -21,16 +21,16 @@ public class EstimateController {
     private final EstimateService estimateService;
 
     private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern ( FORMAT );
 
     @Autowired
-    public EstimateController ( EstimateService estimateService) {
+    public EstimateController ( EstimateService estimateService ) {
         this.estimateService = estimateService;
     }
 
 
     // 고객 견적서 목록 조회
-    @GetMapping("/list/{memberId}")
+    @GetMapping("/list/customer/{memberId}")
     public ResponseEntity<ResponseMessage> findAllEstimatesByMemberId ( @PathVariable int memberId ) {
         List<EstimateResponseDTO> estimates
                 = estimateService.findAllEstimatesByMemberId ( memberId );
@@ -43,7 +43,7 @@ public class EstimateController {
     }
 
     // 업체 견적서 목록 조회
-    @GetMapping("/list/{companyId}")
+    @GetMapping("/list/company/{companyId}")
     public ResponseEntity<ResponseMessage> findAllEstimatesByCompanyId ( @PathVariable int companyId ) {
         List<EstimateResponseDTO> estimates = estimateService.findAllEstimatesByCompanyId ( companyId );
         return ResponseEntity.ok ()
@@ -54,8 +54,8 @@ public class EstimateController {
                         .build () );
     }
 
-    // 요청서 상세 조회
-    @GetMapping("/list/{requestId}")
+    // 견적서 상세 조회
+    @GetMapping("/list/detail/{estimateId}")
     public ResponseEntity<ResponseMessage> findEstimateById ( @PathVariable int estimateId ) {
         EstimateResponseDTO estimate = estimateService.findEstimateById ( estimateId );
         return ResponseEntity.ok ()

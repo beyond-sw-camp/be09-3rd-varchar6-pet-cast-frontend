@@ -31,7 +31,7 @@ public class ProposalController {
     }
 
     // 고객 견적서 목록 조회
-    @GetMapping("/list/{memberId}")
+    @GetMapping("/list/customer/{memberId}")
     public ResponseEntity<ResponseMessage> findAllProposalsByMemberId ( @PathVariable int memberId ) {
         List<ProposalResponseDTO> proposals
                 = proposalService.findAllProposalsByMemberId ( memberId );
@@ -43,8 +43,8 @@ public class ProposalController {
                         .build () );
     }
 
-    // 업체 요청서 목록 조회
-    @GetMapping("/list/{companyId}")
+    // 업체 기획서 목록 조회
+    @GetMapping("/list/company/{companyId}")
     public ResponseEntity<ResponseMessage> findAllProposalsByCompanyId ( @PathVariable int companyId ) {
         List<ProposalResponseDTO> proposals = proposalService.findAll ();
         return ResponseEntity.ok ()
@@ -55,8 +55,8 @@ public class ProposalController {
                         .build () );
     }
 
-    // 요청서 상세 조회
-    @GetMapping("/list/{requestId}")
+    // 기획서 상세 조회
+    @GetMapping("/list/detail/{proposalId}")
     public ResponseEntity<ResponseMessage> findProposalById ( @PathVariable int proposalId ) {
         ProposalResponseDTO proposal = proposalService.findProposalById ( proposalId );
         return ResponseEntity.ok ()

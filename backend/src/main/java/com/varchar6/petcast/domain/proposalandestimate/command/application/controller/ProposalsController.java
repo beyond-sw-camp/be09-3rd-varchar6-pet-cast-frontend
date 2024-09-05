@@ -1,5 +1,6 @@
 package com.varchar6.petcast.domain.proposalandestimate.command.application.controller;
 
+import com.varchar6.petcast.common.response.ResponseMessage;
 import com.varchar6.petcast.domain.proposalandestimate.command.application.dto.ProposalsRequestDTO;
 import com.varchar6.petcast.domain.proposalandestimate.command.application.dto.ProposalsResponseDTO;
 import com.varchar6.petcast.domain.proposalandestimate.command.service.ProposalsService;
@@ -28,10 +29,17 @@ public class ProposalsController {
 
 
     // 기획서 삭제
-    @DeleteMapping("/list/{proposalId}")
-    public ResponseEntity<Void> deleteProposal(@PathVariable int proposalId) {
+    @DeleteMapping("/list/delete/{proposalId}")
+    public ResponseEntity<ResponseMessage> deleteProposal( @PathVariable int proposalId) {
         proposalsService.deleteProposal(proposalId);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.OK.value())
+                                .message("기획서 삭제 성공")
+                                .result(true)
+                                .build());
 
     }
 }

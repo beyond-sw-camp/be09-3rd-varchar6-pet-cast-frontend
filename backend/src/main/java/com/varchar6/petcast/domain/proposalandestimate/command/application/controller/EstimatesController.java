@@ -3,6 +3,7 @@ package com.varchar6.petcast.domain.proposalandestimate.command.application.cont
 import com.varchar6.petcast.common.response.ResponseMessage;
 import com.varchar6.petcast.domain.proposalandestimate.command.application.dto.EstimatesRequestDTO;
 import com.varchar6.petcast.domain.proposalandestimate.command.application.dto.EstimatesResponseDTO;
+import com.varchar6.petcast.domain.proposalandestimate.command.domain.repository.EstimatesRepository;
 import com.varchar6.petcast.domain.proposalandestimate.command.service.EstimatesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,7 @@ public class EstimatesController {
 
 
     // 견적서 작성
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<ResponseMessage> createEstimate(@RequestBody EstimatesRequestDTO estimatesRequestDTO) {
         int createEstimate = estimatesService.createEstimate(estimatesRequestDTO);
         return ResponseEntity
@@ -42,13 +43,22 @@ public class EstimatesController {
 
     // 견적서 삭제
     @DeleteMapping("/delete/{estimateId}")
-    public ResponseEntity<Void> deleteEstimate(@PathVariable int estimateId) {
+    public ResponseEntity<ResponseMessage> deleteEstimate(@PathVariable int estimateId) {
+
         estimatesService.deleteEstimate(estimateId);
-        return ResponseEntity.noContent().build();
+
+        return ResponseEntity
+                .ok()
+                .body(
+                        ResponseMessage.builder()
+                                .httpStatus(HttpStatus.OK.value())
+                                .message("견적서 삭제 성공")
+                                .result(true)
+                                .build());
     }
 
     // 견적서 수락
-    @PutMapping("/list/{estimateId}/accept")
+    @PutMapping("/list/accept/{estimateId}")
     public ResponseEntity<ResponseMessage> acceptEstimate(@PathVariable int estimateId) {
         estimatesService.acceptEstimate(estimateId);
         return ResponseEntity.ok()
@@ -60,7 +70,7 @@ public class EstimatesController {
     }
 
     // 견적서 거절
-    @PutMapping("/list/{estimateId}/reject")
+    @PutMapping("/list/reject/{estimateId}")
     public ResponseEntity<ResponseMessage> rejectEstimate(@PathVariable int estimateId) {
         estimatesService.rejectEstimate(estimateId);
         return ResponseEntity.ok()

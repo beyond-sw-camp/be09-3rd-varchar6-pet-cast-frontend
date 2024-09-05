@@ -42,7 +42,7 @@ public class EstimatesServiceImpl implements EstimatesService {
                 .updatedAt(LocalDateTime.now().format(FORMATTER))
                 .active(true)
                 .companyId(estimatesRequestDTO.getCompanyId())
-                .proposalId ( estimatesRequestDTO.getProposalId())
+                .proposalId (estimatesRequestDTO.getProposalId())
                 .build();
 
         try{
@@ -89,7 +89,14 @@ public class EstimatesServiceImpl implements EstimatesService {
 
     private EstimatesResponseDTO entityToResponseDTO(Estimates estimates) {
         return EstimatesResponseDTO.builder()
+                .id ( estimates.getId () )
                 .expectedCost(estimates.getExpectedCost())
+                .status ( estimates.getStatus () )
+                .createdAt ( estimates.getCreatedAt () )
+                .updatedAt ( estimates.getUpdatedAt () )
+                .active ( estimates.isActive () )
+                .companyId ( estimates.getCompanyId () )
+                .proposalId ( estimates.getProposalId () )
                 .build();
     }
 
