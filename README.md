@@ -112,7 +112,7 @@
 
 
 ### 물리 모델링 <br>
-<img width="950" alt="스크린샷 2024-09-05 오전 5 29 05" src="https://github.com/user-attachments/assets/19f64d3e-3454-427e-bd52-6d0402e4b2cd">
+<img width="950" alt="스크린샷 2024-09-05 오전 9 08 06" src="https://github.com/user-attachments/assets/144d6a74-ecff-45ea-901b-4091ec4c4c12">
 
 
 
