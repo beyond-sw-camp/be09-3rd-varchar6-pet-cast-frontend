@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
-@Service
+@Service("commandEstimatesServiceImpl")
 @Slf4j
 public class EstimatesServiceImpl implements EstimatesService {
 
@@ -32,6 +32,7 @@ public class EstimatesServiceImpl implements EstimatesService {
     }
 
     // 견적서 작성
+    @Override
     @Transactional
     public int createEstimate( EstimatesRequestDTO estimatesRequestDTO) {
         int result = 0;
@@ -57,7 +58,7 @@ public class EstimatesServiceImpl implements EstimatesService {
     }
 
     // 견적서 삭제
-
+    @Override
     @Transactional
     public void deleteEstimate(int estimateId) {
         if(estimatesRepository.existsById(estimateId)) {
@@ -68,6 +69,7 @@ public class EstimatesServiceImpl implements EstimatesService {
     }
 
     // 견적서 수락
+    @Override
     @Transactional
     public EstimatesResponseDTO acceptEstimate(int estimateId) {
         Estimates estimates = estimatesRepository.findById(estimateId).orElseThrow(IllegalArgumentException::new);
@@ -78,6 +80,7 @@ public class EstimatesServiceImpl implements EstimatesService {
     }
 
     // 견적서 거절
+    @Override
     @Transactional
     public EstimatesResponseDTO rejectEstimate(int estimateId) {
         Estimates estimates = estimatesRepository.findById(estimateId).orElseThrow(IllegalArgumentException::new);

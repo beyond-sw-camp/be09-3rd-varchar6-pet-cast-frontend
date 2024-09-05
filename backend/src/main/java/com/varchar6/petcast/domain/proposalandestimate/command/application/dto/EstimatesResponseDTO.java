@@ -3,10 +3,7 @@ package com.varchar6.petcast.domain.proposalandestimate.command.application.dto;
 
 import com.varchar6.petcast.domain.proposalandestimate.command.domain.aggregate.EstimatesStatus;
 import lombok.*;
-import org.springframework.stereotype.Component;
 
-
-//@Data
 @AllArgsConstructor
 @Builder
 @Getter

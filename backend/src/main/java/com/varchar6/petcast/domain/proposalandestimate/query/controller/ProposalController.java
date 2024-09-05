@@ -2,7 +2,6 @@ package com.varchar6.petcast.domain.proposalandestimate.query.controller;
 
 import com.varchar6.petcast.common.response.ResponseMessage;
 import com.varchar6.petcast.domain.proposalandestimate.query.dto.ProposalResponseDTO;
-import com.varchar6.petcast.domain.proposalandestimate.query.mapper.ProposalsMapper;
 import com.varchar6.petcast.domain.proposalandestimate.query.service.ProposalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

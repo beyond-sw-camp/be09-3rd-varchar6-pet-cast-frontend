@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@RestController("commandProposalsController")
 @RequestMapping("/api/v1/proposal")
 public class ProposalsController {
 
@@ -21,7 +21,7 @@ public class ProposalsController {
     }
 
     // 기획서 작성
-    @PostMapping
+    @PostMapping("")
     public ResponseEntity<ProposalsResponseDTO> createProposal(@RequestBody ProposalsRequestDTO proposalRequestDTO) {
         ProposalsResponseDTO createdProposal = proposalsService.createProposal(proposalRequestDTO);
         return new ResponseEntity<>(createdProposal, HttpStatus.CREATED);
@@ -29,7 +29,7 @@ public class ProposalsController {
 
 
     // 기획서 삭제
-    @DeleteMapping("/list/delete/{proposalId}")
+    @DeleteMapping("/list/{proposalId}")
     public ResponseEntity<ResponseMessage> deleteProposal( @PathVariable int proposalId) {
         proposalsService.deleteProposal(proposalId);
         return ResponseEntity

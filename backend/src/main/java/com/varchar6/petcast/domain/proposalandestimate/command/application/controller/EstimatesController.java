@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.format.DateTimeFormatter;
 
-@RestController
+@RestController("commandEstimatesController")
 @RequestMapping("/api/v1/estimate")
 public class EstimatesController {
     private final EstimatesService estimatesService;
@@ -27,7 +27,7 @@ public class EstimatesController {
 
 
     // 견적서 작성
-    @PostMapping
+    @PostMapping("")
     public ResponseEntity<ResponseMessage> createEstimate(@RequestBody EstimatesRequestDTO estimatesRequestDTO) {
         int createEstimate = estimatesService.createEstimate(estimatesRequestDTO);
         return ResponseEntity
@@ -42,7 +42,7 @@ public class EstimatesController {
     }
 
     // 견적서 삭제
-    @DeleteMapping("/delete/{estimateId}")
+    @DeleteMapping("/{estimateId}")
     public ResponseEntity<ResponseMessage> deleteEstimate(@PathVariable int estimateId) {
 
         estimatesService.deleteEstimate(estimateId);

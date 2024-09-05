@@ -12,9 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
-@Service
+@Service("commandProposalsServiceImpl")
 @Slf4j
 public class ProposalsServiceImpl implements ProposalsService{
 
@@ -29,6 +28,7 @@ public class ProposalsServiceImpl implements ProposalsService{
     }
 
     // 기획서 작성
+    @Override
     @Transactional
     public ProposalsResponseDTO createProposal(ProposalsRequestDTO proposalRequestDTO) {
         Proposals proposals = Proposals.builder()
@@ -54,6 +54,7 @@ public class ProposalsServiceImpl implements ProposalsService{
     }
 
     // 기획서 삭제
+    @Override
     @Transactional
     public void deleteProposal(int proposalsId) {
         if (proposalRepository.existsById(proposalsId)) {

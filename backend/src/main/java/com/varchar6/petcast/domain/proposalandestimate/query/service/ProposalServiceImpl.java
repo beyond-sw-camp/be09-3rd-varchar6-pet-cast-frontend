@@ -7,7 +7,6 @@ import com.varchar6.petcast.domain.proposalandestimate.query.mapper.ProposalsMap
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service("queryProposalServiceImpl")
@@ -43,16 +42,6 @@ public class ProposalServiceImpl implements ProposalService {
 
 
     private ProposalResponseDTO entityToResponseDTO ( Proposals proposals ) {
-//            return ProposalResponseDTO.builder()
-//                    .id ( proposals.getId () )
-//                    .hopeTime ( proposals.getHopeTime () )
-//                    .hopeLocation ( proposals.getHopeLocation () )
-//                    .hopeCost ( proposals.getHopeCost () )
-//                    .createdAt (proposals.getCreatedAt ())
-//                    .updatedAt (proposals.getUpdatedAt ())
-//                    .status ( proposals.getStatus () )
-//                    .active ( proposals.isActive () )
-//                    .build ();
         return null;
     }
 }

@@ -1,6 +1,5 @@
 package com.varchar6.petcast.domain.proposalandestimate.query.mapper;
 
-import com.varchar6.petcast.domain.proposalandestimate.command.domain.aggregate.Proposals;
 import com.varchar6.petcast.domain.proposalandestimate.query.dto.ProposalResponseDTO;
 import org.apache.ibatis.annotations.Mapper;
 
