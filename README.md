@@ -74,7 +74,7 @@
 <br>
 
 ## 🗓️ 프로젝트 계획 (WBS) <br>
-[[🔗 WBS Link]]https://docs.google.com/spreadsheets/d/1QcbQHmhLQ76bXKGVnVfurkTbIlVpPk1o3f3c-3LNoeU/edit?gid=1027017419#gid=1027017419
+[[🔗 WBS Link]](https://docs.google.com/spreadsheets/d/1QcbQHmhLQ76bXKGVnVfurkTbIlVpPk1o3f3c-3LNoeU/edit?gid=1027017419#gid=1027017419/)
 <img width="1387" alt="스크린샷 2024-09-05 오전 8 48 36" src="https://github.com/user-attachments/assets/84b6c901-c651-4785-8dba-8baa57b39121">
 
 
