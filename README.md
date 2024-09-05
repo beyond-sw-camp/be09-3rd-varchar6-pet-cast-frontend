@@ -79,9 +79,6 @@
 
 
 
-
-<br>
-
 ## 📙 요구사항 명세서
 [[🔗요구사항 명세서 Link]](https://docs.google.com/spreadsheets/d/1QcbQHmhLQ76bXKGVnVfurkTbIlVpPk1o3f3c-3LNoeU/edit?gid=1027017419#gid=1027017419/)
 <br>
