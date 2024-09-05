@@ -77,7 +77,9 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
             });
 
             ServerHttpRequest modifiedRequest = request.mutate().headers(httpHeaders -> {
-                httpHeaders.addAll(headers);
+                headers.forEach((key, value) -> {
+                    httpHeaders.set(key, String.join(",", value)); // 첫 번째 값을 사용하여 헤더에 추가
+                });
             }).build();
 
             ServerWebExchange modifiedExchange = exchange.mutate().request(modifiedRequest).build();
