@@ -6,12 +6,12 @@
 ## Service for matching who want to take an event for their family!
 <br>
 
-
 ## 한화시스템 BEYOND SW캠프 / 🍑 TEAM VARCHAR(6) 🍑 <br>
 
 ### 🎯 팀원 소개
-					
-| <img src="https://github.com/3-Minutes-Query/choleeTest/assets/102345450/1046b24a-5d40-4dc1-a747-cb65f20dc764" height=100/>| <img src="https://github.com/3-Minutes-Query/choleeTest/assets/102345450/535b423b-f9c6-4c9a-8052-d1484c7145fb" height=100/> | <img src="https://github.com/3-Minutes-Query/choleeTest/assets/102345450/1046b24a-5d40-4dc1-a747-cb65f20dc764" height=100/> | <img src="https://github.com/3-Minutes-Query/choleeTest/assets/102345450/3679e77e-3678-4f16-a927-04b2c9f2309d" height=100/> | <img src="https://github.com/3-Minutes-Query/choleeTest/assets/102345450/e5de118d-7587-416b-bd9b-d965db443df1" height=100/> | <img src="https://github.com/3-Minutes-Query/choleeTest/assets/102345450/589d04ac-c48f-4491-a2f4-6f372ad95138" height=100/> |
+
+
+| <img width="130" height:"100" alt="스크린샷 2024-09-05 오전 9 50 04" src="https://github.com/user-attachments/assets/5ce7dd8a-205b-49f9-9274-aeef0ebe11fb">| <img width="130" height="100" alt="스크린샷 2024-09-05 오전 9 47 10" src="https://github.com/user-attachments/assets/6a0e2b77-22d6-4e45-be58-2336f7e80afe"> | <img width="130" height="100" alt="스크린샷 2024-09-05 오전 9 47 28" src="https://github.com/user-attachments/assets/67e48c8e-6e01-476e-b255-c902a1eba08e"> | <img src="https://github.com/3-Minutes-Query/choleeTest/assets/102345450/3679e77e-3678-4f16-a927-04b2c9f2309d" height=100/> | <img src="https://github.com/3-Minutes-Query/choleeTest/assets/102345450/e5de118d-7587-416b-bd9b-d965db443df1" height=100/> | <img width="130" height="100" alt="스크린샷 2024-09-05 오전 9 50 11" src="https://github.com/user-attachments/assets/cfc4c8d8-f3bd-4dd8-b7eb-66190711d858">|
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 |                            기우석                            |                            방동호                            |                            송의혁                            |                            용길한                            |                            이효진                            |                            정준서                            |
 | [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/woosuk1) <br>| [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/Bang1999) <br>| [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/euihyeok-song) <br>| [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/Yong-ga-ri) <br>| [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/jinjin0528) <br>| [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/JeongJunSeo99) <br>|
@@ -75,7 +75,7 @@
 
 ## 🗓️ 프로젝트 계획 (WBS) <br>
 [[🔗 WBS Link]](https://docs.google.com/spreadsheets/d/1QcbQHmhLQ76bXKGVnVfurkTbIlVpPk1o3f3c-3LNoeU/edit?gid=1027017419#gid=1027017419/)
-<img width="1387" alt="스크린샷 2024-09-05 오전 8 48 36" src="https://github.com/user-attachments/assets/84b6c901-c651-4785-8dba-8baa57b39121">
+<img width="950" alt="스크린샷 2024-09-05 오전 8 48 36" src="https://github.com/user-attachments/assets/84b6c901-c651-4785-8dba-8baa57b39121">
 
 
 
@@ -124,10 +124,3 @@
 ## 📗 단위 테이블 결과 보고서
 [[🔗단위 테이블 결과 Link]](https://docs.google.com/spreadsheets/d/1QcbQHmhLQ76bXKGVnVfurkTbIlVpPk1o3f3c-3LNoeU/edit?gid=0#gid=0/)
 <img width="950" alt="스크린샷 2024-09-05 오전 5 33 09" src="https://github.com/user-attachments/assets/2d00466e-498a-4c5d-9547-b3ac5e2caf59">
-
-<br>
-
-## 📝 테스트 계획서 및 결과 보고서
-[[🔗테스트 계획서 및 결과 Link]](https://docs.google.com/spreadsheets/d/1QcbQHmhLQ76bXKGVnVfurkTbIlVpPk1o3f3c-3LNoeU/edit?gid=1418811021#gid=1418811021/)
-<img width="950" alt="스크린샷 2024-09-05 오전 5 35 09" src="https://github.com/user-attachments/assets/a65b9fbb-a93f-4122-a463-af2cff8e6854">
-
