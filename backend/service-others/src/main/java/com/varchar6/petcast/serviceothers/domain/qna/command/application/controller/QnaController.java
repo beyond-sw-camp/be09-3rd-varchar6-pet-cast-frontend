@@ -4,7 +4,6 @@ import com.varchar6.petcast.serviceothers.common.response.ResponseMessage;
 import com.varchar6.petcast.serviceothers.domain.qna.command.application.dto.request.QnaCreateRequestDTO;
 import com.varchar6.petcast.serviceothers.domain.qna.command.application.dto.request.QnaDeleteAnswerRequestDTO;
 import com.varchar6.petcast.serviceothers.domain.qna.command.application.dto.request.QnaUpdateRequestDTO;
-import com.varchar6.petcast.serviceothers.domain.qna.command.application.dto.response.QnaResponseDTO;
 import com.varchar6.petcast.serviceothers.domain.qna.command.application.service.QnaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,7 @@ public class QnaController {
                                                       @RequestAttribute("memberId") int memberId){
 
         qnaCreateRequestDTO.setQuestionerId(memberId);
-        int result = qnaService.insertQna(qnaCreateRequestDTO);
+        qnaService.insertQna(qnaCreateRequestDTO);
 
         return ResponseEntity
                 .ok()
@@ -49,7 +48,7 @@ public class QnaController {
                                                          @RequestAttribute("memberId") int memberId){
 
         qnaUpdateRequestDTO.setAnswererId(memberId);
-        int result = qnaService.updateQna(qnaUpdateRequestDTO);
+        qnaService.updateQna(qnaUpdateRequestDTO);
 
         return ResponseEntity
                 .ok()
@@ -66,7 +65,7 @@ public class QnaController {
     private ResponseEntity<ResponseMessage> setQnaActive(@RequestBody Map<String, Integer> request,
                                                          @RequestAttribute("memberId") int memberId){
         int id = request.get("id");
-        int result = qnaService.setQnaActive(id, memberId);
+        qnaService.setQnaActive(id, memberId);
 
 
 
@@ -85,7 +84,7 @@ public class QnaController {
                                                             @RequestAttribute("memberId") int memberId){
 
         qnaDeleteAnswerRequestDTO.setAnswererId(memberId);
-        int result = qnaService.deleteQnaAnswer(qnaDeleteAnswerRequestDTO);
+        qnaService.deleteQnaAnswer(qnaDeleteAnswerRequestDTO);
 
         return ResponseEntity
                 .ok()

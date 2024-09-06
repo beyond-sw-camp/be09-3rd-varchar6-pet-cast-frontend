@@ -3,7 +3,6 @@ package com.varchar6.petcast.serviceothers.domain.qna.command.application.servic
 import com.varchar6.petcast.serviceothers.domain.qna.command.application.dto.request.QnaCreateRequestDTO;
 import com.varchar6.petcast.serviceothers.domain.qna.command.application.dto.request.QnaDeleteAnswerRequestDTO;
 import com.varchar6.petcast.serviceothers.domain.qna.command.application.dto.request.QnaUpdateRequestDTO;
-import com.varchar6.petcast.serviceothers.domain.qna.command.application.dto.response.QnaResponseDTO;
 
 public interface QnaService {
     int insertQna(QnaCreateRequestDTO qnaCreateRequestDTO);

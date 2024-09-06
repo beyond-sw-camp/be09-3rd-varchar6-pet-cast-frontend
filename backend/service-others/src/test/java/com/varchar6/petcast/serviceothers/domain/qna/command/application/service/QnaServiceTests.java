@@ -3,12 +3,10 @@ package com.varchar6.petcast.serviceothers.domain.qna.command.application.servic
 import com.varchar6.petcast.serviceothers.domain.qna.command.application.dto.request.QnaCreateRequestDTO;
 import com.varchar6.petcast.serviceothers.domain.qna.command.application.dto.request.QnaDeleteAnswerRequestDTO;
 import com.varchar6.petcast.serviceothers.domain.qna.command.application.dto.request.QnaUpdateRequestDTO;
-import com.varchar6.petcast.serviceothers.domain.qna.command.domain.repository.QnaRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-import org.modelmapper.ModelMapper;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -42,7 +40,7 @@ class QnaServiceTests {
     @Test
     @Transactional
     public void 답변_작성_테스트(){
-        int result = 0;
+        int result;
         qnaUpdateRequestDTO.setId(32);
         qnaUpdateRequestDTO.setAnswer("저희도 모릅니다");
         qnaUpdateRequestDTO.setAnswererId(3);
