@@ -11,4 +11,6 @@ public interface EventService {
     EventResponseDTO updateEvent(EventUpdateRequestDTO updateRequestDTO);
     void insertEvent(EventCreateRequestDTO eventCreateRequestDTO);
     EventResponseDTO setEventStatus(EventSetStatusRequestDTO eventSetStatusRequestDTO);
+
+    int deleteEvent(Integer companyId, Integer eventId);
 }

@@ -23,13 +23,16 @@ public class EventServiceImpl implements EventService {
     private final EventRepository eventRepository;
     private final ModelMapper modelMapper;
     private final EventCategoryRepository eventCategoryRepository;
+    com.varchar6.petcast.serviceothers.domain.event.query.service.EventService eventService;
 
     @Autowired
-    public EventServiceImpl(EventRepository eventRepository, ModelMapper modelMapper, EventCategoryRepository eventCategoryRepository) {
+    public EventServiceImpl(EventRepository eventRepository, ModelMapper modelMapper, EventCategoryRepository eventCategoryRepository
+        , com.varchar6.petcast.serviceothers.domain.event.query.service.EventService eventService) {
         this.eventRepository = eventRepository;
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         this.modelMapper = modelMapper;
         this.eventCategoryRepository = eventCategoryRepository;
+        this.eventService = eventService;
     }
 
     @Override
@@ -62,6 +65,20 @@ public class EventServiceImpl implements EventService {
         EventResponseDTO responseDTO = modelMapper.map(event, EventResponseDTO.class);
 
         return responseDTO;
+    }
+
+    @Override
+    public int deleteEvent(Integer companyId, Integer eventId) {
+        Event event = modelMapper.map(eventService.findEvent(eventId), Event.class);
+        int result = 0;
+
+        if(event.getCompanyId().equals(companyId)){
+            eventRepository.delete(event);
+            result++;
+            return result;
+        }
+        else
+            return result;
     }
 
     private void saveEventCategories(Integer eventId, List<Integer> categoryIds) {

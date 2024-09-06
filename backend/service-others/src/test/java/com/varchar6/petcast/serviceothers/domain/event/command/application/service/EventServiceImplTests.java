@@ -12,6 +12,7 @@ import com.varchar6.petcast.serviceothers.domain.event.command.domain.aggregate.
 import com.varchar6.petcast.serviceothers.domain.event.command.domain.aggregate.entity.EventCategory;
 import com.varchar6.petcast.serviceothers.domain.event.command.domain.repository.EventCategoryRepository;
 import com.varchar6.petcast.serviceothers.domain.event.command.domain.repository.EventRepository;
+import com.varchar6.petcast.serviceothers.domain.event.query.service.EventService;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,10 +40,12 @@ public class EventServiceImplTests {
 
     private EventServiceImpl eventService;
 
+    private EventService queryEventService;
+
     @BeforeEach
     void setUp() {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-        eventService = new EventServiceImpl(eventRepository, modelMapper, eventCategoryRepository);
+        eventService = new EventServiceImpl(eventRepository, modelMapper, eventCategoryRepository,queryEventService);
     }
 
     @Test
