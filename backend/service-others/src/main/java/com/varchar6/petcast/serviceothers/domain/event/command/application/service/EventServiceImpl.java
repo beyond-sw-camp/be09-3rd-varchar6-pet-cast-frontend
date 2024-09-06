@@ -23,7 +23,7 @@ public class EventServiceImpl implements EventService {
     private final EventRepository eventRepository;
     private final ModelMapper modelMapper;
     private final EventCategoryRepository eventCategoryRepository;
-    com.varchar6.petcast.serviceothers.domain.event.query.service.EventService eventService;
+    private final com.varchar6.petcast.serviceothers.domain.event.query.service.EventService eventService;
 
     @Autowired
     public EventServiceImpl(EventRepository eventRepository, ModelMapper modelMapper, EventCategoryRepository eventCategoryRepository
@@ -68,6 +68,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    @Transactional
     public int deleteEvent(Integer companyId, Integer eventId) {
         Event event = modelMapper.map(eventService.findEvent(eventId), Event.class);
         int result = 0;

@@ -12,6 +12,7 @@ import com.varchar6.petcast.serviceothers.domain.event.command.domain.aggregate.
 import com.varchar6.petcast.serviceothers.domain.event.command.domain.aggregate.entity.EventCategory;
 import com.varchar6.petcast.serviceothers.domain.event.command.domain.repository.EventCategoryRepository;
 import com.varchar6.petcast.serviceothers.domain.event.command.domain.repository.EventRepository;
+import com.varchar6.petcast.serviceothers.domain.event.query.mapper.EventMapper;
 import com.varchar6.petcast.serviceothers.domain.event.query.service.EventService;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,12 +41,16 @@ public class EventServiceImplTests {
 
     private EventServiceImpl eventService;
 
-    private EventService queryEventService;
+    private com.varchar6.petcast.serviceothers.domain.event.query.service.EventServiceImpl queryEventService;
+
+    @Autowired
+    private EventMapper eventMapper;
 
     @BeforeEach
     void setUp() {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-        eventService = new EventServiceImpl(eventRepository, modelMapper, eventCategoryRepository,queryEventService);
+        queryEventService = new com.varchar6.petcast.serviceothers.domain.event.query.service.EventServiceImpl(eventMapper);
+        eventService = new EventServiceImpl(eventRepository, modelMapper, eventCategoryRepository, queryEventService);
     }
 
     @Test
@@ -125,6 +130,26 @@ public class EventServiceImplTests {
 
 
 
+    }
+
+    @Test
+    void testDeleteEvent() {
+        // 이벤트 생성 및 저장
+        Event event = new Event();
+        event.setContent("테스트용 기존 content");
+        event.setStatus(EventStatusEnum.READY);
+        event.setImage("테스트용 image");
+        event.setTitle("테스트용 기존 title");
+        event.setCompanyId(1);
+        event.setMemberId(1);
+        Event savedEvent = eventRepository.save(event);
+
+        // 이벤트 삭제 요청
+        int result = eventService.deleteEvent(1, savedEvent.getId());
+
+        // 삭제 후 결과 확인
+        assertEquals(1, result); // 삭제가 성공했는지 확인
+        assertTrue(eventRepository.findById(savedEvent.getId()).isEmpty()); // 이벤트가 실제로 삭제되었는지 확인
     }
 
 }

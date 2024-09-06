@@ -1,5 +1,6 @@
 package com.varchar6.petcast.serviceothers.domain.review.command.application.service;
 
+import com.varchar6.petcast.serviceothers.domain.event.query.service.EventService;
 import com.varchar6.petcast.serviceothers.domain.review.command.application.dto.request.ReviewCreateRequestDTO;
 import com.varchar6.petcast.serviceothers.domain.review.command.application.dto.request.ReviewUpdateRequestDTO;
 import com.varchar6.petcast.serviceothers.domain.review.command.application.dto.response.ReviewResponseDTO;
@@ -26,10 +27,12 @@ public class ReviewServiceImplTests {
 
     private ReviewServiceImpl reviewService;
 
+    private EventService eventService;
+
     @BeforeEach
     void setUp() {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-        reviewService = new ReviewServiceImpl(reviewRepository, modelMapper);
+        reviewService = new ReviewServiceImpl(reviewRepository, modelMapper, eventService);
     }
 
     @Test
