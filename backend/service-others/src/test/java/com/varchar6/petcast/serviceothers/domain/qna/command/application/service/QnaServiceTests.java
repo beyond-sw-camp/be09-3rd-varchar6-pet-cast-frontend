@@ -53,9 +53,9 @@ class QnaServiceTests {
     @Test
     @Transactional
     public void 답변_삭제_테스트(){
-        qnaDeleteAnswerRequestDTO.setId(22);
-        qnaDeleteAnswerRequestDTO.setCompanyId(22);
-        qnaDeleteAnswerRequestDTO.setAnswererId(32);
+        qnaDeleteAnswerRequestDTO.setId(38);
+        qnaDeleteAnswerRequestDTO.setCompanyId(30);
+        qnaDeleteAnswerRequestDTO.setAnswererId(6);
 
         int result = qnaService.deleteQnaAnswer(qnaDeleteAnswerRequestDTO);
 

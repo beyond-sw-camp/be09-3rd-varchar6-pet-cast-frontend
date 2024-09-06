@@ -78,7 +78,7 @@ public class QnaServiceImpl implements QnaService{
                     .orElseThrow(() -> new NoSuchElementException("해당 Qna가 존재하지 않습니다."));
 
             /* 설명. 답변자 아이디와 db의 아이디와 비교 */
-            if (qna.getAnswererId().equals(qnaDeleteAnswerRequestDTO.getAnswererId())) {
+            if (!qna.getAnswererId().equals(qnaDeleteAnswerRequestDTO.getAnswererId())) {
                 throw new IllegalArgumentException("검증 실패: 업체에 등록된 아이디와 일치하지 않습니다.");
             }
 
