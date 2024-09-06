@@ -6,6 +6,7 @@ import com.varchar6.petcast.serviceothers.domain.request.command.domain.aggregat
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.aggregate.entity.Event;
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.aggregate.entity.Requests;
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.repository.EventsRepository;
+import com.varchar6.petcast.serviceothers.domain.request.command.domain.repository.RequestsCategoryRepository;
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.repository.RequestsRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +22,18 @@ import java.util.NoSuchElementException;
 public class RequestsServiceImpl implements RequestsService {
     private final RequestsRepository requestsRepository;
     private final EventsRepository eventsRepository;
+    private final RequestsCategoryRepository requestsCategoryRepository;
 
     private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
 
     @Autowired
     public RequestsServiceImpl(RequestsRepository requestsRepository,
-                               EventsRepository eventsRepository) {
+                               EventsRepository eventsRepository,
+                               RequestsCategoryRepository requestsCategoryRepository) {
         this.requestsRepository = requestsRepository;
         this.eventsRepository = eventsRepository;
+        this.requestsCategoryRepository = requestsCategoryRepository;
     }
 
     // 요청서 작성
