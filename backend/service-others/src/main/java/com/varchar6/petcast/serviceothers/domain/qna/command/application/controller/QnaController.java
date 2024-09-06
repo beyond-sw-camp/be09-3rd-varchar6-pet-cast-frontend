@@ -49,7 +49,7 @@ public class QnaController {
                                                          @RequestAttribute("memberId") int memberId){
 
         qnaUpdateRequestDTO.setAnswererId(memberId);
-        QnaResponseDTO qnaResponseDTO = qnaService.updateQna(qnaUpdateRequestDTO);
+        int result = qnaService.updateQna(qnaUpdateRequestDTO);
 
         return ResponseEntity
                 .ok()
@@ -63,9 +63,12 @@ public class QnaController {
     }
 
     @DeleteMapping("")
-    private ResponseEntity<ResponseMessage> setQnaActive(@RequestBody Map<String, Integer> request){
+    private ResponseEntity<ResponseMessage> setQnaActive(@RequestBody Map<String, Integer> request,
+                                                         @RequestAttribute("memberId") int memberId){
         int id = request.get("id");
-        int result = qnaService.setQnaActive(id);
+        int result = qnaService.setQnaActive(id, memberId);
+
+
 
         return ResponseEntity
                 .ok()
@@ -82,7 +85,7 @@ public class QnaController {
                                                             @RequestAttribute("memberId") int memberId){
 
         qnaDeleteAnswerRequestDTO.setAnswererId(memberId);
-        QnaResponseDTO qnaResponseDTO = qnaService.deleteQnaAnswer(qnaDeleteAnswerRequestDTO);
+        int result = qnaService.deleteQnaAnswer(qnaDeleteAnswerRequestDTO);
 
         return ResponseEntity
                 .ok()

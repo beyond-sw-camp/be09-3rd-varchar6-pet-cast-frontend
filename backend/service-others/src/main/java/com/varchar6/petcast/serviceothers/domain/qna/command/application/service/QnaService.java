@@ -7,7 +7,7 @@ import com.varchar6.petcast.serviceothers.domain.qna.command.application.dto.res
 
 public interface QnaService {
     int insertQna(QnaCreateRequestDTO qnaCreateRequestDTO);
-    QnaResponseDTO updateQna(QnaUpdateRequestDTO qnaUpdateRequestDTO);
-    int setQnaActive(int id);
-    QnaResponseDTO deleteQnaAnswer(QnaDeleteAnswerRequestDTO qnaDeleteAnswerRequestDTO);
+    int updateQna(QnaUpdateRequestDTO qnaUpdateRequestDTO);
+    int setQnaActive(int id, int memberId);
+    int deleteQnaAnswer(QnaDeleteAnswerRequestDTO qnaDeleteAnswerRequestDTO);
 }
