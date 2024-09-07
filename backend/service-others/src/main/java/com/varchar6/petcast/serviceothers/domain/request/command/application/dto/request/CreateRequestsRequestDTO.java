@@ -4,6 +4,8 @@ import com.varchar6.petcast.serviceothers.domain.request.command.domain.aggregat
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Builder
 public class CreateRequestsRequestDTO {
@@ -13,4 +15,6 @@ public class CreateRequestsRequestDTO {
     private String hopeTime;
     private RequestsStatus status;
     private int companyId;
+    private List<Integer> categoryId;
+
 }

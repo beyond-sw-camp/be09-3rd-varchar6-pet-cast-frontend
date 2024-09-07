@@ -4,10 +4,12 @@ import com.varchar6.petcast.serviceothers.domain.request.command.application.dto
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.aggregate.EventsStatus;
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.aggregate.RequestsStatus;
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.aggregate.entity.Event;
+import com.varchar6.petcast.serviceothers.domain.request.command.domain.aggregate.entity.RequestCategory;
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.aggregate.entity.Requests;
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.repository.EventsRepository;
-import com.varchar6.petcast.serviceothers.domain.request.command.domain.repository.RequestsCategoryRepository;
+import com.varchar6.petcast.serviceothers.domain.request.command.domain.repository.RequestCategoryRepository;
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.repository.RequestsRepository;
+import com.varchar6.petcast.serviceothers.exception.CustomNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service(value = "commandRequestServiceImpl")
@@ -22,7 +25,7 @@ import java.util.NoSuchElementException;
 public class RequestsServiceImpl implements RequestsService {
     private final RequestsRepository requestsRepository;
     private final EventsRepository eventsRepository;
-    private final RequestsCategoryRepository requestsCategoryRepository;
+    private final RequestCategoryRepository requestCategoryRepository;
 
     private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
@@ -30,10 +33,10 @@ public class RequestsServiceImpl implements RequestsService {
     @Autowired
     public RequestsServiceImpl(RequestsRepository requestsRepository,
                                EventsRepository eventsRepository,
-                               RequestsCategoryRepository requestsCategoryRepository) {
+                               RequestCategoryRepository requestCategoryRepository) {
         this.requestsRepository = requestsRepository;
         this.eventsRepository = eventsRepository;
-        this.requestsCategoryRepository = requestsCategoryRepository;
+        this.requestCategoryRepository = requestCategoryRepository;
     }
 
     // 요청서 작성
@@ -53,71 +56,93 @@ public class RequestsServiceImpl implements RequestsService {
                 .memberId(memberId)
                 .build();
 
-        try {
-            requestsRepository.save(requests);
-        } catch (Exception e) {
-            log.warn("[Service] Repository에 넣다가 실패!");
+        Requests savedRequest = requestsRepository.save(requests);
+
+        List<Integer> categoryIds = createRequestsRequestDTO.getCategoryId();
+
+        for (Integer categoryId : categoryIds) {
+            boolean categoryExists = requestCategoryRepository.existsById(categoryId);
+            if (!categoryExists) {
+                throw new CustomNotFoundException(categoryId + "에 해당하는 카테고리가 없습니다!");
+            }
+
+            RequestCategory requestCategory = new RequestCategory();
+            requestCategory.setRequestId(savedRequest.getId());
+            requestCategory.setCategoryId(categoryId);
+            requestCategoryRepository.save(requestCategory);
         }
+
+        log.info(savedRequest.getId() + "번 요청서가 성공적으로 저장되었습니다.");
     }
 
-    // 요청서 삭제
-    @Override
-    @Transactional
-    public void deleteRequest(int requestId, int memberId) {
-        Requests findRequests = requestsRepository.findById(requestId).orElseThrow(
-                () -> (new NoSuchElementException("해당 요청서가 없습니다."))
-        );
-        findRequests.setActive(false);
-        try {
-            requestsRepository.save(findRequests);
-        }catch (Exception e){
-            throw new RuntimeException("[Service] 비활성화 DB에 업데이트 실패!", e);
+        // 요청서 삭제
+        @Override
+        @Transactional
+        public void deleteRequest(int requestId, int memberId) {
+            Requests findRequests = requestsRepository.findById(requestId).orElseThrow(
+                    () -> (new NoSuchElementException("해당 요청서가 없습니다."))
+            );
+            findRequests.setActive(false);
+            try {
+                requestsRepository.save(findRequests);
+            }catch (Exception e){
+                throw new RuntimeException("[Service] 비활성화 DB에 업데이트 실패!", e);
+            }
+        }
+
+        // 요청서 수락
+        @Override
+        @Transactional
+        public void acceptRequest(int requestId) {
+            Requests request = requestsRepository.findById(requestId)
+                    .orElseThrow(() -> new IllegalArgumentException("해당 " + requestId + " 번 요청서를 찾을 수 없습니다."));
+
+            request.setStatus(RequestsStatus.CONFIRMED);    // 상태 변경
+            try {
+                requestsRepository.save(request);  // 상태 업데이트 저장
+            }catch (Exception e) {
+                throw new RuntimeException("[Service] 요청서 수락 실패!", e);
+            }
+
+            Event newEvent = Event.builder()
+                    .title(request.getMemberId()+"님의 "+request.getCompanyId()+"기업 요청서")
+                    .content(request.getContent())
+                    .status(EventsStatus.READY)
+                    .companyId(request.getCompanyId())
+                    .memberId(request.getMemberId())
+                    .build();
+            try {
+                eventsRepository.save(newEvent);
+            }catch (Exception e){
+                throw new RuntimeException("[Service] 이벤트 생성 실패!", e);
+            }
+        }
+
+        // 요청서 거절
+        @Override
+        @Transactional
+        public void rejectRequest(int requestId) {
+            Requests request = requestsRepository.findById(requestId)
+                    .orElseThrow(() -> new IllegalArgumentException("해당 " + requestId + " 번 요청서를 찾을 수 없습니다."));
+
+            request.setStatus(RequestsStatus.REJECTED); // 상태 변경
+
+            try {
+                request = requestsRepository.save(request);  // 상태 업데이트 저장
+            }catch (Exception e) {
+                throw new RuntimeException("[Service] 요청서 거절 실패!", e);
+            }
+
+        }
+
+
+    private void insertRequestCategory ( int requestId, List<Integer> categoryId ) {
+        for (Integer categorysId : categoryId) {
+            RequestCategory requestCategory = new RequestCategory ();
+            requestCategory.setRequestId ( requestId );
+            requestCategory.setCategoryId ( categorysId );
+            requestCategoryRepository.save ( requestCategory );
         }
     }
-
-    // 요청서 수락
-    @Override
-    @Transactional
-    public void acceptRequest(int requestId) {
-        Requests request = requestsRepository.findById(requestId)
-                .orElseThrow(() -> new IllegalArgumentException("해당 " + requestId + " 번 요청서를 찾을 수 없습니다."));
-
-        request.setStatus(RequestsStatus.CONFIRMED);    // 상태 변경
-        try {
-            requestsRepository.save(request);  // 상태 업데이트 저장
-        }catch (Exception e) {
-            throw new RuntimeException("[Service] 요청서 수락 실패!", e);
-        }
-
-        Event newEvent = Event.builder()
-                .title(request.getMemberId()+"님의 "+request.getCompanyId()+"기업 요청서")
-                .content(request.getContent())
-                .status(EventsStatus.READY)
-                .companyId(request.getCompanyId())
-                .memberId(request.getMemberId())
-                .build();
-        try {
-            eventsRepository.save(newEvent);
-        }catch (Exception e){
-            throw new RuntimeException("[Service] 이벤트 생성 실패!", e);
-        }
-    }
-
-    // 요청서 거절
-    @Override
-    @Transactional
-    public void rejectRequest(int requestId) {
-        Requests request = requestsRepository.findById(requestId)
-                .orElseThrow(() -> new IllegalArgumentException("해당 " + requestId + " 번 요청서를 찾을 수 없습니다."));
-
-        request.setStatus(RequestsStatus.REJECTED); // 상태 변경
-
-        try {
-            request = requestsRepository.save(request);  // 상태 업데이트 저장
-        }catch (Exception e) {
-            throw new RuntimeException("[Service] 요청서 거절 실패!", e);
-        }
-
-    }
-
 }
+

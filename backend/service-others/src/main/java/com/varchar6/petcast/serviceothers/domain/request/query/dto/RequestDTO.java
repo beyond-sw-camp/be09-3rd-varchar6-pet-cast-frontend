@@ -3,6 +3,8 @@ package com.varchar6.petcast.serviceothers.domain.request.query.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Generated
@@ -41,4 +43,7 @@ public class RequestDTO {
 
     @JsonProperty("memberId")
     private int memberId;
+
+    private List<Integer> categoryId;
+
 }
