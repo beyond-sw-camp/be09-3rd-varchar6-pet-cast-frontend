@@ -1,7 +1,6 @@
 package com.varchar6.petcast.serviceothers.domain.gather.query.controller;
 
 import com.varchar6.petcast.serviceothers.common.response.ResponseMessage;
-import com.varchar6.petcast.serviceothers.domain.gather.query.dto.GatherDTO;
 import com.varchar6.petcast.serviceothers.domain.gather.query.dto.GatherDetailDTO;
 import com.varchar6.petcast.serviceothers.domain.gather.query.service.GatherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +22,8 @@ public class GatherController {
     }
 
     @GetMapping("/grouplist")
-    public ResponseEntity<ResponseMessage> findAllGather(@RequestAttribute("memberId") int memberId){
-        List<String> gathers = gatherService.findAllGather(memberId);
+    public ResponseEntity<ResponseMessage> findAllGather(@RequestHeader("X-Member-Id") String id){
+        List<String> gathers = gatherService.findAllGather(Integer.parseInt(id));
 
         ResponseMessage responseMessage = ResponseMessage.builder()
                 .httpStatus(HttpStatus.OK.value())
@@ -48,10 +47,10 @@ public class GatherController {
         return ResponseEntity.ok(responseMessage);
     }
 
-    @GetMapping("/invitation")
-    public ResponseEntity<ResponseMessage> findInvitationPageById(@RequestParam("invitationId") int invitationId,
-                                                                  @RequestAttribute("memberId") int memberId){
-        Boolean isAccessTrueGather = gatherService.isAccessTrueGather(invitationId, memberId);
+    @GetMapping("/invitation/{invitationId}")
+    public ResponseEntity<ResponseMessage> findInvitationPageById(@PathVariable("invitationId") int invitationId,
+                                                                  @RequestHeader("X-Member-Id") String id){
+        Boolean isAccessTrueGather = gatherService.isAccessTrueGather(invitationId, Integer.parseInt(id));
 
         ResponseMessage responseMessage = ResponseMessage.builder()
                 .httpStatus(HttpStatus.OK.value())

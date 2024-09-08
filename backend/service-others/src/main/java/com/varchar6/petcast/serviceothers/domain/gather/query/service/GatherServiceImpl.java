@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -25,7 +24,6 @@ public class GatherServiceImpl implements GatherService {
     }
 
     public List<String> findAllGather(int userId) {
-
         return gatherMapper.selectGatherById(userId).stream()
                 .map(GatherDTO::getName)
                 .collect(Collectors.toList());
@@ -35,10 +33,8 @@ public class GatherServiceImpl implements GatherService {
     @Override
     @Transactional
     public GatherDetailDTO findDetailGather(int gatherId) {
-
         GatherDTO gatherInfo = gatherMapper.selectGatherDetailById(gatherId);
         List<String> memberInfo = gatherMapper.selectMembersById(gatherId);
-
         GatherDetailDTO gatherDetail = GatherDetailDTO.builder()
                 .id(gatherId)
                 .name(gatherInfo.getName())
@@ -50,7 +46,6 @@ public class GatherServiceImpl implements GatherService {
                 .active(gatherInfo.isActive())
                 .members(memberInfo)
                 .build();
-
         return gatherDetail;
     }
 
@@ -72,10 +67,12 @@ public class GatherServiceImpl implements GatherService {
     @Transactional
     public Object findMemberRoleById(Map<String, Object> params) {
 
-        if(params.containsKey("id")){
-            return (Integer) gatherMapper.selectMemberRoleById(params);
+        if("id".equals(params.get("selectValue"))){
+            log.error("[Query Service] id 찾는 곳");
+            return gatherMapper.selectMemberRoleById(params);
         }else {
-            return (String) gatherMapper.selectMemberRoleById(params);
+            log.error("[Query Service] role 찾는 곳");
+            return gatherMapper.selectMemberRoleById(params);
         }
     }
 }

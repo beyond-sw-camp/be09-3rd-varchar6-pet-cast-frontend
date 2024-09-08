@@ -165,14 +165,17 @@ public class GatherController {
     public ResponseEntity<ResponseMessage> deleteMember(@RequestBody RequestDeleteMemberDTO requestDeleteMemberDTO,
         @RequestHeader("X-Member-Id") String id){
 
-        int memberId = Integer.parseInt(id);
-
-        requestDeleteMemberDTO.setUserId(memberId);
-        gatherService.deleteMember(requestDeleteMemberDTO);
+        requestDeleteMemberDTO.setUserId(Integer.parseInt(id));
+        try {
+            gatherService.deleteMember(requestDeleteMemberDTO);
+        }catch (Exception e){
+            return ResponseEntity.ok(
+                    ResponseMessage.builder().message("삭제 실패~").build()
+            );
+        }
 
         return ResponseEntity.ok(
                 ResponseMessage.builder().message("삭제 성공~").build()
         );
     }
-
 }

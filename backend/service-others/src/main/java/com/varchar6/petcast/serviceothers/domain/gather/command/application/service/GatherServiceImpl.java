@@ -55,8 +55,8 @@ public class GatherServiceImpl implements GatherService {
                 .content(requestCreateGatherDTO.getContent())
                 .number(requestCreateGatherDTO.getNumber())
                 .url(requestCreateGatherDTO.getUrl())
-                .updatedAt(currentDate)
                 .createdAt(currentDate)
+                .updatedAt(currentDate)
                 .active(true)
                 .build();
         Gather newGather = null;
@@ -225,14 +225,25 @@ public class GatherServiceImpl implements GatherService {
         paramsR.put("selectValue", "role");
         paramsR.put("gather_id", requestDeleteMemberDTO.getGatherId());
         paramsR.put("member_id", requestDeleteMemberDTO.getUserId());
-        String memberRole = (String) gatherService.findMemberRoleById(paramsR);
+        String memberRole = null;
+        try{
+            memberRole = gatherService.findMemberRoleById(paramsR).toString();
+        }catch (Exception e){
+            throw new RuntimeException("[Service] 회원님의 역할을 찾을 수 없습니다.", e);
+        }
+        log.info("memberRole: {}", memberRole);
 
         Map<String, Object> paramsI = new HashMap<>();
         paramsI.put("selectValue", "id");
         paramsI.put("gather_id", requestDeleteMemberDTO.getGatherId());
         paramsI.put("member_id", requestDeleteMemberDTO.getMemberId());
-        int id = (Integer) gatherService.findMemberRoleById(paramsI);
-
+        int id = -1;
+        try {
+            id = Integer.parseInt(gatherService.findMemberRoleById(paramsI).toString());
+        }catch (Exception e){
+            throw new RuntimeException("[Service] 해당 멤버를 찾을 수 없습니다.", e);
+        }
+        log.info("id: {}", id);
         GatherMember foundGather = null;
         try {
             foundGather = gatherMemberRepository.findById(id).orElseThrow();
