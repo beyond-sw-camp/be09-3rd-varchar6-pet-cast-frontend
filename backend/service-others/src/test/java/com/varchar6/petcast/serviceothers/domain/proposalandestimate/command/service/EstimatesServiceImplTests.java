@@ -5,6 +5,7 @@ import com.varchar6.petcast.serviceothers.domain.proposalandestimate.command.dom
 import com.varchar6.petcast.serviceothers.domain.proposalandestimate.command.domain.aggregate.EstimatesStatus;
 import com.varchar6.petcast.serviceothers.domain.proposalandestimate.command.domain.repository.EstimatesRepository;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,8 +31,9 @@ class EstimatesServiceImplTests {
     }
 
     @Test
+    @DisplayName ( "견적서_작성_테스트" )
     @Transactional
-    void 견적서_작성_테스트 () {
+    void createEstimate () {
         EstimatesRequestDTO estimatesRequestDTO = new EstimatesRequestDTO();
 
         estimatesRequestDTO.setCreatedAt ( LocalDateTime.now ().format ( FORMATTER ) );
@@ -45,23 +47,26 @@ class EstimatesServiceImplTests {
     }
 
     @Test
+    @DisplayName ( "견적서_삭제_테스트" )
     @Transactional
-    void 견적서_삭제_테스트 () {
+    void deleteEstimate () {
         int id = 1;
         estimatesRepository.deleteById ( id );
     }
 
     @Test
+    @DisplayName ( "견적서_수락_테스트" )
     @Transactional
-    void 견적서_수락_테스트 () {
+    void acceptEstimate () {
         Estimates estimates = Estimates.builder ()
                 .id ( 1 ).status ( EstimatesStatus.CONFIRMED ).build ();
         System.out.println (estimatesRepository.save ( estimates ));
     }
 
     @Test
+    @DisplayName ( "견적서_거절_테스트" )
     @Transactional
-    void 견적서_거절_테스트 () {
+    void rejectEstimate () {
         Estimates estimates = Estimates.builder ()
                                     .id ( 1 ).status ( EstimatesStatus.REJECTED ).build ();
         System.out.println (estimatesRepository.save ( estimates ));
