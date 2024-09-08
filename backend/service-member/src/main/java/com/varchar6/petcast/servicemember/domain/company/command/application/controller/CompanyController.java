@@ -1,8 +1,8 @@
 package com.varchar6.petcast.servicemember.domain.company.command.application.controller;
 
 import com.varchar6.petcast.servicemember.common.response.ResponseMessage;
-import com.varchar6.petcast.servicemember.domain.company.command.application.controller.vo.request.EnrollRequestVO;
-import com.varchar6.petcast.servicemember.domain.company.command.application.controller.vo.response.CompanyResponseVO;
+import com.varchar6.petcast.servicemember.domain.company.command.application.vo.request.EnrollRequestVO;
+import com.varchar6.petcast.servicemember.domain.company.command.application.vo.response.CompanyResponseVO;
 import com.varchar6.petcast.servicemember.domain.company.command.application.dto.request.CompanyEnrollRequestDTO;
 import com.varchar6.petcast.servicemember.domain.company.command.application.dto.response.CompanyResponseDTO;
 import com.varchar6.petcast.servicemember.domain.company.command.application.service.CompanyService;

@@ -1,4 +1,4 @@
-package com.varchar6.petcast.servicemember.domain.company.command.application.controller.vo.response;
+package com.varchar6.petcast.servicemember.domain.company.command.application.vo.response;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
