@@ -2,11 +2,10 @@ package com.varchar6.petcast.servicemember.domain.member.command.application.ser
 
 import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.MemberRequestDTO;
 import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.MemberUpdateRequestDTO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.ProfileRequestDTO;
+import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.ProfileReqDTO;
 import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.ProfileUpdateRequestDTO;
 import com.varchar6.petcast.servicemember.domain.member.command.application.dto.response.MemberResponseDTO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.dto.response.MemberUpdateResponseDTO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.vo.response.ProfileRegistResponseVO;
+import com.varchar6.petcast.servicemember.domain.member.command.application.dto.response.MemberUpdateStatusRespDTO;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,7 @@ class MemberServiceTests {
 
     MemberRequestDTO memberRequestDTO = new MemberRequestDTO();
     MemberUpdateRequestDTO memberUpdateRequestDTO = new MemberUpdateRequestDTO();
-    ProfileRequestDTO profileRequestDTO = new ProfileRequestDTO();
+    ProfileReqDTO profileReqDTO = new ProfileReqDTO();
     ProfileUpdateRequestDTO profileUpdateRequestDTO = new ProfileUpdateRequestDTO();
 
     @Autowired
@@ -44,8 +43,8 @@ class MemberServiceTests {
     @Transactional
     public void 회원_비활성화_확인() {
         memberUpdateRequestDTO.setId(9);
-        MemberUpdateResponseDTO memberUpdateResponseDTO = memberService.updateMemberStatus(memberUpdateRequestDTO);
-        assertEquals(false, memberUpdateResponseDTO.isActive());
+        MemberUpdateStatusRespDTO memberUpdateStatusRespDTO = memberService.updateMemberStatus(memberUpdateRequestDTO);
+        assertEquals(false, memberUpdateStatusRespDTO.isActive());
     }
 
     @Test
@@ -53,22 +52,22 @@ class MemberServiceTests {
     public void 비밀번호_수정_확인() {
         memberUpdateRequestDTO.setId(9);
         memberUpdateRequestDTO.setPassword("1234");
-        MemberUpdateResponseDTO memberUpdateResponseDTO = memberService.updateMemberPwd(memberUpdateRequestDTO);
-        assertEquals("1234", memberUpdateResponseDTO.getPassword());
+        MemberUpdateStatusRespDTO memberUpdateStatusRespDTO = memberService.updateMemberPwd(memberUpdateRequestDTO);
+        assertEquals("1234", memberUpdateStatusRespDTO.getPassword());
     }
 
     @Test
     @Transactional
     public void 프로필_작성_확인() {
-        profileRequestDTO.setMemberId(2);
-        profileRequestDTO.setMemberIntroduction("안녕하세요 또리 아빠입니다.");
-        profileRequestDTO.setMemberImage("민수 사진1");
-        profileRequestDTO.setPetName("또리");
-        profileRequestDTO.setPetIntroduction("4살 또리에요");
-        profileRequestDTO.setPetGender(MALE);
-        profileRequestDTO.setPetImage("또리 사진2");
-        profileRequestDTO.setPetAge(4);
-        Boolean isTrue = memberService.registMemberProfile(profileRequestDTO);
+        profileReqDTO.setMemberId(2);
+        profileReqDTO.setMemberIntroduction("안녕하세요 또리 아빠입니다.");
+        profileReqDTO.setMemberImage("민수 사진1");
+        profileReqDTO.setPetName("또리");
+        profileReqDTO.setPetIntroduction("4살 또리에요");
+        profileReqDTO.setPetGender(MALE);
+        profileReqDTO.setPetImage("또리 사진2");
+        profileReqDTO.setPetAge(4);
+        Boolean isTrue = memberService.registProfile(profileReqDTO);
         assertEquals(true, isTrue);
     }
 

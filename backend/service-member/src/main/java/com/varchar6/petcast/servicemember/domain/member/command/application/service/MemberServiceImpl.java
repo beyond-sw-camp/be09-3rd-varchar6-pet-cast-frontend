@@ -1,20 +1,15 @@
 package com.varchar6.petcast.servicemember.domain.member.command.application.service;
 
-import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.MemberUpdateRequestDTO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.ProfileRequestDTO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.ProfileUpdateRequestDTO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.dto.response.MemberResponseDTO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.dto.response.MemberUpdateResponseDTO;
+import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.*;
+import com.varchar6.petcast.servicemember.domain.member.command.application.dto.response.*;
 import com.varchar6.petcast.servicemember.domain.member.command.domain.aggregate.*;
 import com.varchar6.petcast.servicemember.domain.member.command.domain.repository.MemberRepository;
-import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.MemberRequestDTO;
 import com.varchar6.petcast.servicemember.domain.member.command.domain.repository.PetRepository;
 import com.varchar6.petcast.servicemember.domain.member.command.domain.repository.RoleRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.javassist.NotFoundException;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +25,7 @@ public class MemberServiceImpl implements MemberService {
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final PetRepository petRepository;
+    private final ModelMapper modelMapper;
 
     private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
@@ -38,11 +34,13 @@ public class MemberServiceImpl implements MemberService {
     public MemberServiceImpl(MemberRepository memberRepository,
                              BCryptPasswordEncoder bCryptPasswordEncoder,
                              RoleRepository roleRepository,
-                             PetRepository petRepository) {
+                             PetRepository petRepository,
+                             ModelMapper modelMapper) {
         this.memberRepository = memberRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.roleRepository = roleRepository;
         this.petRepository = petRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -66,7 +64,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     @Transactional
-    public MemberUpdateResponseDTO updateMemberStatus(MemberUpdateRequestDTO memberUpdateRequestDTO) {
+    public MemberUpdateStatusRespDTO updateStatus(MemberUpdateStatusReqDTO memberUpdateRequestDTO) {
 
         Member member = memberRepository.findById(memberUpdateRequestDTO.getId()).orElseThrow();
 
@@ -78,10 +76,7 @@ public class MemberServiceImpl implements MemberService {
                 .phone(member.getPhone())
                 .nickname(member.getNickname())
                 .image(member.getImage())
-                .createdAt(
-                        LocalDateTime.now()
-                                .format(FORMATTER)
-                )
+                .createdAt(member.getCreatedAt())
                 .updatedAt(
                         LocalDateTime.now()
                                 .format(FORMATTER)
@@ -92,30 +87,27 @@ public class MemberServiceImpl implements MemberService {
 
         memberRepository.save(updateMember);
 
-        MemberUpdateResponseDTO UpdateResponseDTO = entityToUpdateResponseDTO(updateMember);
+        MemberUpdateStatusRespDTO memberUpdateStatusRespDTO
+                = modelMapper.map(updateMember, MemberUpdateStatusRespDTO.class);
 
-        return UpdateResponseDTO;
+        return memberUpdateStatusRespDTO;
     }
 
     @Override
     @Transactional
-    public MemberUpdateResponseDTO updateMemberPwd(MemberUpdateRequestDTO memberUpdateRequestDTO) {
+    public MemberUpdatePwdRespDTO updatePwd(MemberUpdatePwdReqDTO memberUpdatePwdReqDTO) {
 
-        String newPassword = memberUpdateRequestDTO.getPassword();
-        Member member = memberRepository.findById(memberUpdateRequestDTO.getId()).orElseThrow();
+        Member member = memberRepository.findById(memberUpdatePwdReqDTO.getId()).orElseThrow();
 
         Member updateMember = Member.builder()
                 .id(member.getId())
                 .loginId(member.getLoginId())
-                .password(newPassword)
+                .password(memberUpdatePwdReqDTO.getPassword())
                 .name(member.getName())
                 .phone(member.getPhone())
                 .nickname(member.getNickname())
                 .image(member.getImage())
-                .createdAt(
-                        LocalDateTime.now()
-                                .format(FORMATTER)
-                )
+                .createdAt(member.getCreatedAt())
                 .updatedAt(
                         LocalDateTime.now()
                                 .format(FORMATTER)
@@ -126,64 +118,62 @@ public class MemberServiceImpl implements MemberService {
 
         memberRepository.save(updateMember);
 
-        MemberUpdateResponseDTO updatePwdResponseDTO = entityToUpdateResponseDTO(updateMember);
+        MemberUpdatePwdRespDTO memberUpdatePwdRespDTO = modelMapper.map(updateMember,MemberUpdatePwdRespDTO.class);
 
-        return updatePwdResponseDTO;
-
+        return memberUpdatePwdRespDTO;
     }
 
     @Override
     @Transactional
-    public Boolean registMemberProfile(ProfileRequestDTO profileRequestDTO) {
+    public ProfileRespDTO registProfile(ProfileReqDTO profileReqDTO) {
 
-        Member member = memberRepository.findById(profileRequestDTO.getMemberId()).orElseThrow();
+        ProfileRespDTO profileRespDTO = new ProfileRespDTO();
 
-        if(member != null) {
-            member.setImage(profileRequestDTO.getMemberImage());
-            member.setIntroduction(profileRequestDTO.getMemberIntroduction());
+        Member member = memberRepository.findById(profileReqDTO.getMemberId()).orElseThrow();
+
+        if (member != null) {
+            member.setImage(profileReqDTO.getMemberImage());
+            member.setIntroduction(profileReqDTO.getMemberIntroduction());
+            member.setUpdatedAt(LocalDateTime.now().format(FORMATTER));
             memberRepository.save(member);
 
             Pet pet = Pet.builder()
-                    .name(profileRequestDTO.getPetName())
-                    .introduction(profileRequestDTO.getPetIntroduction())
-                    .gender(profileRequestDTO.getPetGender())
-                    .image(profileRequestDTO.getPetImage())
-                    .age(profileRequestDTO.getPetAge())
+                    .name(profileReqDTO.getPetName())
+                    .introduction(profileReqDTO.getPetIntroduction())
+                    .gender(profileReqDTO.getPetGender())
+                    .image(profileReqDTO.getPetImage())
+                    .age(profileReqDTO.getPetAge())
                     .createdAt(LocalDateTime.now().format(FORMATTER))
                     .updatedAt(LocalDateTime.now().format(FORMATTER))
                     .active(true)
-                    .memberId(profileRequestDTO.getMemberId())
+                    .memberId(profileReqDTO.getMemberId())
                     .build();
             petRepository.save(pet);
-            return true;
+
+            profileRespDTO.setNickname(member.getNickname());
+            profileRespDTO.setResult(1);
+
+        } else{
+            profileRespDTO.setResult(0);
         }
 
-        return false;
+        return profileRespDTO;
     }
 
     @Override
     @Transactional
-    public Boolean updateMemberProfile(ProfileUpdateRequestDTO profileUpdateRequestDTO) {
+    public ProfileUpdateRespDTO updateProfile(ProfileUpdateReqDTO profileUpdateReqDTO) {
 
-        Member member = memberRepository.findById(profileUpdateRequestDTO.getMemberId()).orElseThrow();
-        if(member != null){
-            member.setNickname(profileUpdateRequestDTO.getNickname());
+        Member member = memberRepository.findById(profileUpdateReqDTO.getId()).orElseThrow();
+
+        if (member != null){
+            member.setIntroduction(profileUpdateReqDTO.getIntroduction());
             member.setUpdatedAt(LocalDateTime.now().format(FORMATTER));
             memberRepository.save(member);
-        } else{
-            return false;
-        }
 
-        Pet pet = petRepository.findById(profileUpdateRequestDTO.getPetId()).orElseThrow();
-        if(pet != null){
-            pet.setAge(profileUpdateRequestDTO.getAge());
-            pet.setUpdatedAt(LocalDateTime.now().format(FORMATTER));
-            petRepository.save(pet);
-        } else{
-            return false;
-        }
+            Pet pet = petRepository.findByName
 
-        return true;
+        }
     }
 
     public static Member requestDTOToEntity(MemberRequestDTO memberRequestDTO) {
@@ -209,21 +199,6 @@ public class MemberServiceImpl implements MemberService {
 
     public static MemberResponseDTO entityToResponseDTO(Member member) {
         return MemberResponseDTO.builder()
-                .loginId(member.getLoginId())
-                .password(member.getPassword())
-                .name(member.getName())
-                .phone(member.getNickname())
-                .nickname(member.getNickname())
-                .image(member.getImage())
-                .createdAt(member.getCreatedAt())
-                .updatedAt(member.getUpdatedAt())
-                .active(member.isActive())
-                .introduction(member.getIntroduction())
-                .build();
-    }
-
-    public static MemberUpdateResponseDTO entityToUpdateResponseDTO(Member member) {
-        return MemberUpdateResponseDTO.builder()
                 .loginId(member.getLoginId())
                 .password(member.getPassword())
                 .name(member.getName())

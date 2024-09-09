@@ -3,8 +3,7 @@ package com.varchar6.petcast.servicemember.domain.member.command.application.vo.
 import lombok.Data;
 
 @Data
-public class MemberUpdateRequestVO {
+public class MemberUpdatePwdReqVO {
 
-    private int id;
     private String password;
 }

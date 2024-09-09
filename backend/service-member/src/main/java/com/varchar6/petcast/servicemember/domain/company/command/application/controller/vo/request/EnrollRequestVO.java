@@ -1,4 +1,4 @@
-package com.varchar6.petcast.servicemember.domain.company.command.application.vo.request;
+package com.varchar6.petcast.servicemember.domain.company.command.application.controller.vo.request;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,16 +1,11 @@
-package com.varchar6.petcast.servicemember.domain.member.command.application.dto.request;
+package com.varchar6.petcast.servicemember.domain.member.command.application.vo.request;
 
 import com.varchar6.petcast.servicemember.domain.member.command.domain.aggregate.Gender;
-import lombok.*;
+import lombok.Data;
 
-@Getter
-@Setter
-@ToString
-@AllArgsConstructor
-@NoArgsConstructor
-public class ProfileRequestDTO {
+@Data
+public class ProfileReqVO {
 
-    private int memberId;
     private String memberIntroduction;
     private String memberImage;
 

@@ -8,12 +8,15 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProfileUpdateRequestDTO {
+public class ProfileReqDTO {
 
     private int memberId;
-    private String nickname;
-    private int petId;
-    private int age;
-    private String gender;
+    private String memberIntroduction;
+    private String memberImage;
 
+    private String petName;
+    private String petIntroduction;
+    private Gender petGender;
+    private String petImage;
+    private int petAge;
 }
