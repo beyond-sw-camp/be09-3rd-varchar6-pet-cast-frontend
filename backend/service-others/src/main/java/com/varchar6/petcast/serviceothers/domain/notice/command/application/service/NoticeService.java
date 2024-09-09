@@ -8,8 +8,8 @@ import java.util.List;
 
 
 public interface NoticeService {
-    int insertNotice(NoticeWriteRequestDTO noticeWriteRequestDTO);
-    NoticeResponseDTO updateNotice(NoticeUpdateRequestDTO noticeUpdateRequestDTO);
-    int deleteNotice(int noticeId);
+    int insertNotice(NoticeWriteRequestDTO noticeWriteRequestDTO) throws IllegalAccessException;
+    int updateNotice(NoticeUpdateRequestDTO noticeUpdateRequestDTO) throws IllegalAccessException;
+    int deleteNotice(int noticeId, int memberId) throws IllegalAccessException;
 
 }

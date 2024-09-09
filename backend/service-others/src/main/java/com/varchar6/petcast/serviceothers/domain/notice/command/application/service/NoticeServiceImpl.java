@@ -4,7 +4,9 @@ import com.varchar6.petcast.serviceothers.domain.notice.command.application.dto.
 import com.varchar6.petcast.serviceothers.domain.notice.command.application.dto.request.NoticeWriteRequestDTO;
 import com.varchar6.petcast.serviceothers.domain.notice.command.application.dto.response.NoticeResponseDTO;
 import com.varchar6.petcast.serviceothers.domain.notice.command.domain.aggregate.Notice;
+import com.varchar6.petcast.serviceothers.domain.notice.command.domain.aggregate.ResponseMemberRole;
 import com.varchar6.petcast.serviceothers.domain.notice.command.domain.repository.NoticeRepository;
+import com.varchar6.petcast.serviceothers.domain.notice.command.infrastructure.MemberServiceClient;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -16,27 +18,43 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Slf4j
 @Service(value = "commandNoticeService")
 public class NoticeServiceImpl implements NoticeService {
     private final NoticeRepository noticeRepository;
     private final ModelMapper modelMapper;
+    MemberServiceClient memberServiceClient;
 
     private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
 
-    public NoticeServiceImpl(NoticeRepository noticeRepository, ModelMapper modelMapper) {
+    @Autowired
+    public NoticeServiceImpl(NoticeRepository noticeRepository, ModelMapper modelMapper, MemberServiceClient memberServiceClient) {
         this.noticeRepository = noticeRepository;
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         this.modelMapper = modelMapper;
+        this.memberServiceClient = memberServiceClient;
     }
 
 
     @Override
     @Transactional
-    public int insertNotice(NoticeWriteRequestDTO noticeWriteRequestDTO) {
-        int result = 0;
+    public int insertNotice(NoticeWriteRequestDTO noticeWriteRequestDTO) throws IllegalAccessException {
+        boolean flag = false;
+
+        List<ResponseMemberRole> roleList = memberServiceClient.searchMemberRole(noticeWriteRequestDTO.getMemberId());
+
+        for(ResponseMemberRole role : roleList) {
+            if (role.getName().equals("ROLE_ADMIN")) {
+                flag = true;
+                break;
+            }
+        }
+
+        if(!flag)
+            throw new IllegalAccessException("관리자가 아닙니다.");
 
         Notice notice = modelMapper.map(noticeWriteRequestDTO, Notice.class);
         notice.setCreatedAt(LocalDateTime.now().format(FORMATTER));
@@ -46,46 +64,72 @@ public class NoticeServiceImpl implements NoticeService {
 
         try {
             noticeRepository.save(notice);
-            result++;
+            return 1;
         }catch(Exception e){
-            throw new RuntimeException("공지 입력 실패") {
+            throw new RuntimeException("공지 입력 실패", e) {
             };
         }
-
-        return result;
     }
 
     @Override
     @Transactional
-    public NoticeResponseDTO updateNotice(NoticeUpdateRequestDTO noticeUpdateRequestDTO) {
-        Notice notice = noticeRepository.findById(noticeUpdateRequestDTO.getId()).orElse(null);
+    public int updateNotice(NoticeUpdateRequestDTO noticeUpdateRequestDTO) throws IllegalAccessException
+    {
+        boolean flag = false;
 
-        if(notice.isFixed())
-            notice.setFixed(false);
-        else
-            notice.setFixed(true);
+        List<ResponseMemberRole> roleList = memberServiceClient.searchMemberRole(noticeUpdateRequestDTO.getMemberId());
 
-        notice.setUpdatedAt(LocalDateTime.now().format(FORMATTER));
+        for(ResponseMemberRole role : roleList) {
+            if (role.getName().equals("ROLE_ADMIN")) {
+                flag = true;
+                break;
+            }
+        }
 
-        NoticeResponseDTO noticeResponseDTO = modelMapper.map(notice, NoticeResponseDTO.class);
+        if(!flag)
+            throw new IllegalAccessException("관리자가 아닙니다.");
 
-        return noticeResponseDTO;
+        try {
+            Notice notice = noticeRepository.findById(noticeUpdateRequestDTO.getId())
+                    .orElseThrow(() -> new NoSuchElementException("해당 공지가 존재하지 않습니다."));
+
+            notice.setFixed(!notice.isFixed());
+            notice.setUpdatedAt(LocalDateTime.now().format(FORMATTER));
+
+            return 1;
+        } catch(NoSuchElementException e){
+            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException("중요도 수정 실패");
+        }
     }
 
     @Override
     @Transactional
-    public int deleteNotice(int noticeId) {
-        int result = 0;
+    public int deleteNotice(int noticeId, int memberId) throws IllegalAccessException {
+        boolean flag = false;
+
+        List<ResponseMemberRole> roleList = memberServiceClient.searchMemberRole(memberId);
+
+        for(ResponseMemberRole role : roleList) {
+            if (role.getName().equals("ROLE_ADMIN")) {
+                flag = true;
+                break;
+            }
+        }
+
+        if(!flag)
+            throw new IllegalAccessException("관리자가 아닙니다.");
+
 
         try {
             noticeRepository.deleteById(noticeId);
-            result++;
+            return 1;
         } catch (Exception e) {
             throw new RuntimeException("공지 삭제 실패") {
             };
         }
 
-        return result;
     }
 
 }

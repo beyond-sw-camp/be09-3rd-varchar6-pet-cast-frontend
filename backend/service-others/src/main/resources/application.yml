@@ -7,12 +7,12 @@ spring:
 
   datasource:
 
-    #    driver-class-name: org.mariadb.jdbc.Driver
-    #    url: jdbc:mariadb://localhost:3306/pet_cast
-    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    url: jdbc:log4jdbc:mariadb://localhost
-    username:
-    password:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/pet_cast
+#    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+#    url: jdbc:log4jdbc:mariadb://localhost
+    username: swcamp
+    password: swcamp
 
   jpa:
     generate-ddl: false

@@ -26,7 +26,7 @@ public class NoticeController {
 
     @PostMapping("")
     private ResponseEntity<ResponseMessage> createNotice(@RequestBody NoticeWriteRequestDTO noticeWriteRequestDTO,
-                                                         @RequestAttribute("memberId") int memberId){
+                                                         @RequestAttribute("memberId") int memberId) throws IllegalAccessException {
         noticeWriteRequestDTO.setMemberId(memberId);
         int result = noticeService.insertNotice(noticeWriteRequestDTO);
 
@@ -42,9 +42,11 @@ public class NoticeController {
     }
 
     @PutMapping("")
-    private ResponseEntity<ResponseMessage> updateNotice(@RequestBody NoticeUpdateRequestDTO noticeUpdateRequestDTO){
+    private ResponseEntity<ResponseMessage> updateNotice(@RequestBody NoticeUpdateRequestDTO noticeUpdateRequestDTO,
+                                                        @RequestAttribute("memberId") int memberId) throws IllegalAccessException{
 
-        NoticeResponseDTO noticeResponseDTO = noticeService.updateNotice(noticeUpdateRequestDTO);
+        noticeUpdateRequestDTO.setMemberId(memberId);
+        int result = noticeService.updateNotice(noticeUpdateRequestDTO);
 
         return ResponseEntity
                 .ok()
@@ -58,9 +60,10 @@ public class NoticeController {
     }
 
     @DeleteMapping("")
-    private ResponseEntity<ResponseMessage> deleteNotice(@RequestBody Map<String, Integer> request){
+    private ResponseEntity<ResponseMessage> deleteNotice(@RequestBody Map<String, Integer> request
+                                                    , @RequestAttribute("memberId") int memberId) throws IllegalAccessException{
         int id = request.get("id");
-        int result = noticeService.deleteNotice(id);
+        int result = noticeService.deleteNotice(id, memberId);
 
         return ResponseEntity
                 .ok()
