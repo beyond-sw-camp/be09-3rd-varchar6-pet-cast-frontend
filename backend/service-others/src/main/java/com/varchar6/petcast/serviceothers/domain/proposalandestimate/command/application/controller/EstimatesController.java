@@ -6,6 +6,7 @@ import com.varchar6.petcast.serviceothers.domain.proposalandestimate.command.app
 import com.varchar6.petcast.serviceothers.domain.proposalandestimate.command.domain.repository.EstimatesRepository;
 import com.varchar6.petcast.serviceothers.domain.proposalandestimate.command.service.EstimatesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,16 +30,40 @@ public class EstimatesController {
     // 견적서 작성
     @PostMapping("")
     public ResponseEntity<ResponseMessage> createEstimate(@RequestBody EstimatesRequestDTO estimatesRequestDTO) {
+        try{
         int createEstimate = estimatesService.createEstimate(estimatesRequestDTO);
         return ResponseEntity
                 .ok()
                 .body(
                         ResponseMessage.builder()
                                 .httpStatus(HttpStatus.OK.value())
-                                .message("Enrollment Requested Successfully")
+                                .message("견적서가 성공적으로 작성되었습니다!")
                                 .result(1)
                                 .build()
                 );
+        } catch (DataIntegrityViolationException e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(
+                            ResponseMessage.builder()
+                                    .httpStatus(HttpStatus.BAD_REQUEST.value())
+                                    .message("견적서 작성 실패: 데이터가 올바르지 않습니다.")
+                                    .result(-1)
+                                    .build()
+                    );
+        }
+//        catch (Exception e) {
+//            logger.error("견적서 생성 중 오류 발생", e);
+//            return ResponseEntity
+//                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+//                    .body(
+//                            ResponseMessage.builder()
+//                                    .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR.value())
+//                                    .message("견적서 작성 중 알 수 없는 오류가 발생했습니다.")
+//                                    .result(-1)
+//                                    .build()
+//                    );
+//        }
     }
 
     // 견적서 삭제

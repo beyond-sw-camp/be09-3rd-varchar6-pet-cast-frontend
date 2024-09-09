@@ -4,16 +4,22 @@ package com.varchar6.petcast.serviceothers.domain.request.command.application.co
 import com.varchar6.petcast.serviceothers.common.response.ResponseMessage;
 import com.varchar6.petcast.serviceothers.domain.request.command.application.dto.request.CreateRequestsRequestDTO;
 import com.varchar6.petcast.serviceothers.domain.request.command.application.service.RequestsService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
-@RestController(value = "commandRequestController")
+import java.time.format.DateTimeFormatter;
+
+@RestController("commandRequestsController")
 @RequestMapping("/api/v1/requests")
 public class RequestsController {
     private final RequestsService requestsService;
+
+    private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
 
     @Autowired
     public RequestsController(RequestsService requestsService) {
@@ -22,22 +28,31 @@ public class RequestsController {
 
     // 요청서 작성
     @PostMapping("")
-    public ResponseEntity<ResponseMessage> createRequest(@RequestBody CreateRequestsRequestDTO createRequestsRequestDTO,
-        @RequestHeader("X-Member-Id") String id) {
+    public ResponseEntity<ResponseMessage> createRequest(
+            @Valid @RequestBody CreateRequestsRequestDTO createRequestsRequestDTO) {
 
-        int memberId = Integer.parseInt(id);
-        String message = "요청서 작성 성공!";
         try {
-            requestsService.createRequest(createRequestsRequestDTO, memberId);
+            int createRequest = requestsService.createRequest(createRequestsRequestDTO);
+            return  ResponseEntity
+                    .ok()
+                    .body(
+                            ResponseMessage.builder()
+                                    .httpStatus(HttpStatus.CREATED.value())
+                                    .message("요청서가 성공적으로 작성되었습니다!")
+                                    .result(createRequest)
+                                    .build()
+                    );
         } catch (Exception e) {
-            message = "요청서 작성 실패!";
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(
+                            ResponseMessage.builder()
+                                    .httpStatus(HttpStatus.BAD_REQUEST.value())
+                                    .message("요청서 작성 실패: 데이터가 올바르지 않습니다.")
+                                    .result(-1)
+                                    .build()
+                    );
         }
-        return ResponseEntity.ok(
-                ResponseMessage.builder()
-                        .httpStatus(HttpStatus.CREATED.value())
-                        .message(message)
-                        .build()
-        );
     }
 
     // 요청서 삭제

@@ -1,19 +1,21 @@
 package com.varchar6.petcast.serviceothers.domain.request.command.application.dto.request;
 
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.aggregate.RequestsStatus;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
+@ToString
 @Builder
 public class CreateRequestsRequestDTO {
     private String content;
     private int hopeCost;
     private String hopeLocation;
     private String hopeTime;
-    private RequestsStatus status;
     private int companyId;
     private List<Integer> categoryId;
 

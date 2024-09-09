@@ -4,7 +4,7 @@ import com.varchar6.petcast.serviceothers.domain.request.command.application.dto
 
 public interface RequestsService {
     // 요청서 작성
-    void createRequest(CreateRequestsRequestDTO createRequestsRequestDTO, int memberId);
+    int createRequest(CreateRequestsRequestDTO createRequestsRequestDTO);
 
     //  요청서 삭제
     void deleteRequest(int requestId, int memberId);
@@ -14,4 +14,5 @@ public interface RequestsService {
 
     // 요청서 거절
     void rejectRequest(int requestId);
+
 }
