@@ -22,8 +22,10 @@ public class GatherController {
     }
 
     @GetMapping("/grouplist")
-    public ResponseEntity<ResponseMessage> findAllGather(@RequestHeader("X-Member-Id") String id){
-        List<String> gathers = gatherService.findAllGather(Integer.parseInt(id));
+    public ResponseEntity<ResponseMessage> findAllGather(
+            @RequestAttribute("memberId") int id
+    ){
+        List<String> gathers = gatherService.findAllGather(id);
 
         ResponseMessage responseMessage = ResponseMessage.builder()
                 .httpStatus(HttpStatus.OK.value())
