@@ -22,14 +22,18 @@ public class GatherController {
     }
 
     @GetMapping("/grouplist")
-    public ResponseEntity<ResponseMessage> findAllGather(
-            @RequestAttribute("memberId") int id
-    ){
-        List<String> gathers = gatherService.findAllGather(id);
-
+    public ResponseEntity<ResponseMessage> findAllGather(@RequestHeader("X-Member-Id") String id) {
+        String message = "모임 목록 조회 성공!";
+        List<String> gathers = null;
+        try {
+            gathers = gatherService.findAllGather(Integer.parseInt(id));
+        } catch (Exception e) {
+            message = "모임 목록 조회 실패!";
+            throw new RuntimeException(message, e);
+        }
         ResponseMessage responseMessage = ResponseMessage.builder()
                 .httpStatus(HttpStatus.OK.value())
-                .message("모임 목록 조회 성공!")
+                .message(message)
                 .result(gathers)
                 .build();
 
@@ -37,43 +41,64 @@ public class GatherController {
     }
 
     @GetMapping("/detail/{gatherId}")
-    public ResponseEntity<ResponseMessage> findDetailGather(@PathVariable("gatherId") int gatherId){
-        GatherDetailDTO gatherDetail = gatherService.findDetailGather(gatherId);
+    public ResponseEntity<ResponseMessage> findDetailGather(@PathVariable("gatherId") int gatherId) {
+        String message = "모임 상세 조회 성공!";
+        GatherDetailDTO gatherDetail = null;
+        try {
+            gatherDetail = gatherService.findDetailGather(gatherId);
+        } catch (Exception e) {
+            message = "모임 상세 조회 실패!";
+            throw new RuntimeException(message, e);
+        }
 
-        ResponseMessage responseMessage = ResponseMessage.builder()
-                .httpStatus(HttpStatus.OK.value())
-                .message("모임 상세 조회 성공!")
-                .result(gatherDetail)
-                .build();
-
-        return ResponseEntity.ok(responseMessage);
+        return ResponseEntity.ok(
+                ResponseMessage.builder()
+                        .httpStatus(HttpStatus.OK.value())
+                        .message(message)
+                        .result(gatherDetail)
+                        .build()
+        );
     }
 
     @GetMapping("/invitation/{invitationId}")
     public ResponseEntity<ResponseMessage> findInvitationPageById(@PathVariable("invitationId") int invitationId,
-                                                                  @RequestHeader("X-Member-Id") String id){
-        Boolean isAccessTrueGather = gatherService.isAccessTrueGather(invitationId, Integer.parseInt(id));
+                                                                  @RequestHeader("X-Member-Id") String id) {
+        String message = "모임 접근 가능!";
+        Boolean isAccessTrueGather = null;
+        try {
+            isAccessTrueGather = gatherService.isAccessTrueGather(invitationId, Integer.parseInt(id));
+        } catch (Exception e) {
+            message = "모임 접근 불가!";
+            throw new RuntimeException(message, e);
+        }
 
-        ResponseMessage responseMessage = ResponseMessage.builder()
-                .httpStatus(HttpStatus.OK.value())
-                .message("모임 접근 가능!")
-                .result(isAccessTrueGather)
-                .build();
-
-        return ResponseEntity.ok(responseMessage);
+        return ResponseEntity.ok(
+                ResponseMessage.builder()
+                        .httpStatus(HttpStatus.OK.value())
+                        .message(message)
+                        .result(isAccessTrueGather)
+                        .build()
+        );
     }
 
     @GetMapping("groupmemberlist/{gatherId}")
-    public ResponseEntity<ResponseMessage> findGroupMemberById(@PathVariable("gatherId") int gatherId){
-        List<String> groupMembers = gatherService.findGroupMemberById(gatherId);
+    public ResponseEntity<ResponseMessage> findGroupMemberById(@PathVariable("gatherId") int gatherId) {
+        String message = "모임원 목록 조회 성공!";
+        List<String> groupMembers = null;
+        try {
+            groupMembers = gatherService.findGroupMemberById(gatherId);
+        } catch (Exception e) {
+            message = "모임원 목록 조회 실패!";
+            throw new RuntimeException(message, e);
+        }
 
-        ResponseMessage responseMessage = ResponseMessage.builder()
-                .httpStatus(HttpStatus.OK.value())
-                .message("모임원 목록 조회 성공!")
-                .result(groupMembers)
-                .build();
-
-        return ResponseEntity.ok(responseMessage);
+        return ResponseEntity.ok(
+                ResponseMessage.builder()
+                        .httpStatus(HttpStatus.OK.value())
+                        .message(message)
+                        .result(groupMembers)
+                        .build()
+        );
     }
 
 }

@@ -23,6 +23,8 @@ public class GatherServiceImpl implements GatherService {
         this.gatherMapper = gatherMapper;
     }
 
+    @Override
+    @Transactional
     public List<String> findAllGather(int userId) {
         return gatherMapper.selectGatherById(userId).stream()
                 .map(GatherDTO::getName)
@@ -64,14 +66,11 @@ public class GatherServiceImpl implements GatherService {
     }
 
     @Override
-    @Transactional
     public Object findMemberRoleById(Map<String, Object> params) {
 
         if("id".equals(params.get("selectValue"))){
-            log.error("[Query Service] id 찾는 곳");
             return gatherMapper.selectMemberRoleById(params);
         }else {
-            log.error("[Query Service] role 찾는 곳");
             return gatherMapper.selectMemberRoleById(params);
         }
     }
