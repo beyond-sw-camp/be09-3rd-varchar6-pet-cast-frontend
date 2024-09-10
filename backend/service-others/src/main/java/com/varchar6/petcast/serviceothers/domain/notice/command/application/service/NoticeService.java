@@ -2,9 +2,7 @@ package com.varchar6.petcast.serviceothers.domain.notice.command.application.ser
 
 import com.varchar6.petcast.serviceothers.domain.notice.command.application.dto.request.NoticeUpdateRequestDTO;
 import com.varchar6.petcast.serviceothers.domain.notice.command.application.dto.request.NoticeWriteRequestDTO;
-import com.varchar6.petcast.serviceothers.domain.notice.command.application.dto.response.NoticeResponseDTO;
 
-import java.util.List;
 
 
 public interface NoticeService {
