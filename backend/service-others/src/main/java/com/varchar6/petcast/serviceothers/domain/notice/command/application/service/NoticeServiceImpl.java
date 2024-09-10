@@ -5,6 +5,7 @@ import com.varchar6.petcast.serviceothers.domain.notice.command.application.dto.
 import com.varchar6.petcast.serviceothers.domain.notice.command.application.dto.request.NoticeWriteRequestDTO;
 import com.varchar6.petcast.serviceothers.domain.notice.command.domain.aggregate.Notice;
 import com.varchar6.petcast.serviceothers.domain.notice.command.domain.repository.NoticeRepository;
+import com.varchar6.petcast.serviceothers.domain.notice.command.domain.service.MemberService;
 import com.varchar6.petcast.serviceothers.infrastructure.client.MemberServiceClient;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -27,48 +28,27 @@ public class NoticeServiceImpl implements NoticeService {
     private final NoticeRepository noticeRepository;
     private final ModelMapper modelMapper;
     MemberServiceClient memberServiceClient;
-
+    private final MemberService memberService;
     private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
 
     @Autowired
-    public NoticeServiceImpl(NoticeRepository noticeRepository, ModelMapper modelMapper, MemberServiceClient memberServiceClient) {
+    public NoticeServiceImpl(NoticeRepository noticeRepository, ModelMapper modelMapper, MemberService memberService ) {
         this.noticeRepository = noticeRepository;
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         this.modelMapper = modelMapper;
-        this.memberServiceClient = memberServiceClient;
+//        this.memberServiceClient = memberServiceClient;
+        this.memberService = memberService;
     }
 
 
     @Override
     @Transactional
     public int insertNotice(NoticeWriteRequestDTO noticeWriteRequestDTO) throws IllegalAccessException {
-        boolean flag = false;
-
         Map<String, String> map = new HashMap<>();
         map.put("memberId", noticeWriteRequestDTO.getMemberId());
 
-        ResponseEntity<ResponseMessage> message = (ResponseEntity<ResponseMessage>) memberServiceClient.searchMemberRole(map);
-
-        List test= (List) message.getBody().getResult();
-
-        Map<String, String> roleList = new HashMap<>();
-        // Message 객체가 Map<String, Object> 형태라면 캐스팅 후 접근
-
-        for(Object getRole : test){
-
-            roleList = (Map<String, String>) getRole;
-
-            String roleCheck = (String) roleList.get("name");
-
-            if(roleCheck.equals("ROLE_ADMIN")){
-                flag = true;
-                break;
-            }
-        }
-
-        if(!flag)
-            throw new IllegalAccessException("관리자가 아닙니다.");
+        boolean flag = memberService.checkMemberRole(map);
 
         Notice notice = modelMapper.map(noticeWriteRequestDTO, Notice.class);
         notice.setCreatedAt(LocalDateTime.now().format(FORMATTER));

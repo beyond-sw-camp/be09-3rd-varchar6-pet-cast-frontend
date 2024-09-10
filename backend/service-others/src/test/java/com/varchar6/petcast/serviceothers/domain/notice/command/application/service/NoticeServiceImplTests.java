@@ -2,6 +2,7 @@ package com.varchar6.petcast.serviceothers.domain.notice.command.application.ser
 
 import com.varchar6.petcast.serviceothers.domain.notice.command.application.dto.request.NoticeUpdateRequestDTO;
 import com.varchar6.petcast.serviceothers.domain.notice.command.application.dto.request.NoticeWriteRequestDTO;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -26,6 +27,12 @@ class NoticeServiceImplTests {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         this.modelMapper = modelMapper;
         this.noticeService = noticeService;
+    }
+
+    @Test
+    @BeforeEach
+    public void setup(){
+
     }
 
     @Test
