@@ -1,8 +1,6 @@
 package com.varchar6.petcast.serviceothers.domain.request.query.service;
 
-import com.varchar6.petcast.serviceothers.domain.request.query.dto.CompanyAndRequestDTO;
-import com.varchar6.petcast.serviceothers.domain.request.query.dto.MemberAndRequestDTO;
-import com.varchar6.petcast.serviceothers.domain.request.query.dto.RequestDetailDTO;
+import com.varchar6.petcast.serviceothers.domain.request.query.dto.*;
 import com.varchar6.petcast.serviceothers.domain.request.query.mapper.RequestsMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +22,11 @@ public class RequestsServiceImpl implements RequestsService{
 
     @Override
     @Transactional
-    public List<String> findCategoryList() {
-        return requestsMapper.selectCategoryList().stream().toList();
+    public RequestCategoryResponseDTO findCategoryById(int categoryId) {
+        RequestCategoryResponseDTO requestCategoryResponseDTO = new RequestCategoryResponseDTO();
+        requestCategoryResponseDTO.setCategoryId(categoryId);
+
+        return requestsMapper.selectCategoryList(categoryId);
     }
 
     @Override
@@ -42,7 +43,7 @@ public class RequestsServiceImpl implements RequestsService{
 
     @Override
     @Transactional
-    public RequestDetailDTO findRequestById(int requestId) {
+    public RequestDTO findRequestById(int requestId) {
         return requestsMapper.selectRequestById(requestId);
     }
 }

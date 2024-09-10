@@ -44,6 +44,7 @@ public class RequestDTO {
     @JsonProperty("memberId")
     private int memberId;
 
-    private List<Integer> categoryId;
+
+    private RequestCategoryResponseDTO categoryId;
 
 }

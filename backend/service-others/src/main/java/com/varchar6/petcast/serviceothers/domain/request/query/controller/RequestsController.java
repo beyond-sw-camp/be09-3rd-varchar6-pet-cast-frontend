@@ -2,9 +2,7 @@ package com.varchar6.petcast.serviceothers.domain.request.query.controller;
 
 
 import com.varchar6.petcast.serviceothers.common.response.ResponseMessage;
-import com.varchar6.petcast.serviceothers.domain.request.query.dto.CompanyAndRequestDTO;
-import com.varchar6.petcast.serviceothers.domain.request.query.dto.MemberAndRequestDTO;
-import com.varchar6.petcast.serviceothers.domain.request.query.dto.RequestDetailDTO;
+import com.varchar6.petcast.serviceothers.domain.request.query.dto.*;
 import com.varchar6.petcast.serviceothers.domain.request.query.mapper.RequestsMapper;
 import com.varchar6.petcast.serviceothers.domain.request.query.service.RequestsService;
 import lombok.extern.slf4j.Slf4j;
@@ -29,18 +27,18 @@ public class RequestsController {
     }
 
     @GetMapping("/categoryList")
-    public ResponseEntity<ResponseMessage> findCategoryList(){
+    public ResponseEntity<ResponseMessage> findCategoryById(@RequestParam("categoryId") Integer categoryId) {
         String message = "카테고리 조회 성공!";
-        List<String> categoryList = null;
+        RequestCategoryResponseDTO RequestCategoryResponseDTO = null;
         try {
-            categoryList = requestsService.findCategoryList();
+            RequestCategoryResponseDTO = requestsService.findCategoryById(categoryId);
         }catch (Exception e){
             message = "카테고리 조회 실패!";
         }
         return ResponseEntity.ok(ResponseMessage.builder()
                         .httpStatus(HttpStatus.OK.value())
                         .message(message)
-                        .result(categoryList)
+                        .result(RequestCategoryResponseDTO)
                 .build());
     }
 
@@ -87,9 +85,9 @@ public class RequestsController {
     @GetMapping("/list/detail/{requestId}")
     public ResponseEntity<ResponseMessage> getRequestById(@PathVariable int requestId) {
         String message = "요청서 상세 조회 성공!";
-        RequestDetailDTO requestDetailDTO = null;
+        RequestDTO requestDetail = null;
         try {
-            requestDetailDTO = requestsService.findRequestById(requestId);
+            requestDetail = requestsService.findRequestById(requestId);
         } catch (Exception e){
             message = "요청서 상세 조회 실패!";
         }
@@ -97,7 +95,7 @@ public class RequestsController {
                 .body(ResponseMessage.builder()
                         .httpStatus(HttpStatus.OK.value())
                         .message(message)
-                        .result(requestDetailDTO)
+                        .result(requestDetail)
                         .build());
     }
 

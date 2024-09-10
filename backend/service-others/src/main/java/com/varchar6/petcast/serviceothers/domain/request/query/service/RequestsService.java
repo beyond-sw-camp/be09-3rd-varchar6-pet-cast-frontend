@@ -1,18 +1,16 @@
 package com.varchar6.petcast.serviceothers.domain.request.query.service;
 
-import com.varchar6.petcast.serviceothers.domain.request.query.dto.CompanyAndRequestDTO;
-import com.varchar6.petcast.serviceothers.domain.request.query.dto.MemberAndRequestDTO;
-import com.varchar6.petcast.serviceothers.domain.request.query.dto.RequestDetailDTO;
+import com.varchar6.petcast.serviceothers.domain.request.query.dto.*;
 
 import java.util.List;
 
 public interface RequestsService {
 
-    List<String> findCategoryList();
+    RequestCategoryResponseDTO findCategoryById(int categoryId);
 
     List<MemberAndRequestDTO> findAllRequestsByMemberId(int userId);
 
     List<CompanyAndRequestDTO> findAllRequestsByCompanyId(int companyId);
 
-    RequestDetailDTO findRequestById(int requestId);
+    RequestDTO findRequestById(int requestId);
 }
