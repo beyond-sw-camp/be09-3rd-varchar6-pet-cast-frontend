@@ -1,23 +1,24 @@
 package com.varchar6.petcast.serviceothers.domain.notice.command.application.service;
 
+import com.varchar6.petcast.serviceothers.common.response.ResponseMessage;
 import com.varchar6.petcast.serviceothers.domain.notice.command.application.dto.request.NoticeUpdateRequestDTO;
 import com.varchar6.petcast.serviceothers.domain.notice.command.application.dto.request.NoticeWriteRequestDTO;
-import com.varchar6.petcast.serviceothers.domain.notice.command.application.dto.response.NoticeResponseDTO;
 import com.varchar6.petcast.serviceothers.domain.notice.command.domain.aggregate.Notice;
-import com.varchar6.petcast.serviceothers.domain.notice.command.domain.aggregate.ResponseMemberRole;
 import com.varchar6.petcast.serviceothers.domain.notice.command.domain.repository.NoticeRepository;
-import com.varchar6.petcast.serviceothers.domain.notice.command.infrastructure.MemberServiceClient;
+import com.varchar6.petcast.serviceothers.infrastructure.client.MemberServiceClient;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 @Slf4j
@@ -44,10 +45,23 @@ public class NoticeServiceImpl implements NoticeService {
     public int insertNotice(NoticeWriteRequestDTO noticeWriteRequestDTO) throws IllegalAccessException {
         boolean flag = false;
 
-        List<ResponseMemberRole> roleList = memberServiceClient.searchMemberRole(noticeWriteRequestDTO.getMemberId());
+        Map<String, String> map = new HashMap<>();
+        map.put("memberId", noticeWriteRequestDTO.getMemberId());
 
-        for(ResponseMemberRole role : roleList) {
-            if (role.getName().equals("ROLE_ADMIN")) {
+        ResponseEntity<ResponseMessage> message = (ResponseEntity<ResponseMessage>) memberServiceClient.searchMemberRole(map);
+
+        List test= (List) message.getBody().getResult();
+
+        Map<String, String> roleList = new HashMap<>();
+        // Message 객체가 Map<String, Object> 형태라면 캐스팅 후 접근
+
+        for(Object getRole : test){
+
+            roleList = (Map<String, String>) getRole;
+
+            String roleCheck = (String) roleList.get("name");
+
+            if(roleCheck.equals("ROLE_ADMIN")){
                 flag = true;
                 break;
             }
@@ -77,14 +91,28 @@ public class NoticeServiceImpl implements NoticeService {
     {
         boolean flag = false;
 
-        List<ResponseMemberRole> roleList = memberServiceClient.searchMemberRole(noticeUpdateRequestDTO.getMemberId());
+        Map<String, String> map = new HashMap<>();
+        map.put("memberId", noticeUpdateRequestDTO.getMemberId());
 
-        for(ResponseMemberRole role : roleList) {
-            if (role.getName().equals("ROLE_ADMIN")) {
+        ResponseEntity<ResponseMessage> message = (ResponseEntity<ResponseMessage>) memberServiceClient.searchMemberRole(map);
+
+        List test= (List) message.getBody().getResult();
+
+        Map<String, String> roleList = new HashMap<>();
+        // Message 객체가 Map<String, Object> 형태라면 캐스팅 후 접근
+
+        for(Object getRole : test){
+
+            roleList = (Map<String, String>) getRole;
+
+            String roleCheck = (String) roleList.get("name");
+
+            if(roleCheck.equals("ROLE_ADMIN")){
                 flag = true;
                 break;
             }
         }
+
 
         if(!flag)
             throw new IllegalAccessException("관리자가 아닙니다.");
@@ -106,13 +134,26 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     @Transactional
-    public int deleteNotice(int noticeId, int memberId) throws IllegalAccessException {
+    public int deleteNotice(int noticeId, String memberId) throws IllegalAccessException {
         boolean flag = false;
 
-        List<ResponseMemberRole> roleList = memberServiceClient.searchMemberRole(memberId);
+        Map<String, String> map = new HashMap<>();
+        map.put("memberId", memberId);
 
-        for(ResponseMemberRole role : roleList) {
-            if (role.getName().equals("ROLE_ADMIN")) {
+        ResponseEntity<ResponseMessage> message = (ResponseEntity<ResponseMessage>) memberServiceClient.searchMemberRole(map);
+
+        List test= (List) message.getBody().getResult();
+
+        Map<String, String> roleList = new HashMap<>();
+        // Message 객체가 Map<String, Object> 형태라면 캐스팅 후 접근
+
+        for(Object getRole : test){
+
+            roleList = (Map<String, String>) getRole;
+
+            String roleCheck = (String) roleList.get("name");
+
+            if(roleCheck.equals("ROLE_ADMIN")){
                 flag = true;
                 break;
             }

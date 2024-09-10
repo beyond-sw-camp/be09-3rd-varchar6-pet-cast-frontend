@@ -1,8 +1,6 @@
-package com.varchar6.petcast.serviceothers.domain.notice.command.domain.aggregate;
+package com.varchar6.petcast.serviceothers.domain.notice.command.domain.aggregate.vo;
 
 import lombok.*;
-
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor

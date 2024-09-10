@@ -20,13 +20,18 @@ public class ReportServiceImpl implements ReportService{
     }
     @Override
     @Transactional
-    public List<ReportDTO> getAllReports() { return reportMapper.selectAllReports();}
+    public List<ReportDTO> getAllReports(int memberId) {
+
+
+
+        return reportMapper.selectAllReports();
+    }
 
     @Override
     @Transactional
-    public List<ReportDTO> getReportByReporterId(Integer reporterId) { return reportMapper.selectReportByReporterId(reporterId);}
+    public List<ReportDTO> getReportByReporterId(Integer reporterId, int memberId) { return reportMapper.selectReportByReporterId(reporterId);}
 
     @Override
     @Transactional
-    public List<ReportDTO> getReportByRespondentId(Integer respondentId) { return reportMapper.selectReportByRespondentId(respondentId);}
+    public List<ReportDTO> getReportByRespondentId(Integer respondentId, int memberId) { return reportMapper.selectReportByRespondentId(respondentId);}
 }

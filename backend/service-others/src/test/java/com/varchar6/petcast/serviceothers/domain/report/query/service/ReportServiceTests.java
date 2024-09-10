@@ -18,7 +18,8 @@ class ReportServiceTests {
     @Test
     public void 신고_목록_조회(){
 
-        List<ReportDTO> reportResponseDTOList = reportService.getAllReports();
+        int memberId = 3;
+        List<ReportDTO> reportResponseDTOList = reportService.getAllReports(memberId);
         assertEquals(22, reportResponseDTOList.size());
 
     }
@@ -26,7 +27,8 @@ class ReportServiceTests {
     @Test
     public void 신고자_검색() {
         int targetReporterId = 1;
-        List<ReportDTO> reportResponseDTOList = reportService.getReportByReporterId(targetReporterId);
+        int memberId = 3;
+        List<ReportDTO> reportResponseDTOList = reportService.getReportByReporterId(targetReporterId, memberId);
 
         for(ReportDTO report : reportResponseDTOList){
             assertEquals(report.getReporterId(), targetReporterId);
@@ -36,7 +38,8 @@ class ReportServiceTests {
     @Test
     public void 피신고자_검색() {
         int targetRespondentId = 1;
-        List<ReportDTO> reportRespondentDTOList = reportService.getReportByRespondentId(targetRespondentId);
+        int memberId = 3;
+        List<ReportDTO> reportRespondentDTOList = reportService.getReportByRespondentId(targetRespondentId, memberId);
 
         for(ReportDTO report : reportRespondentDTOList){
             assertEquals(report.getRespondentId(), targetRespondentId);

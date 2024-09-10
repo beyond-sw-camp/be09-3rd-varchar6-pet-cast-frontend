@@ -12,6 +12,6 @@ import lombok.Setter;
 public class NoticeWriteRequestDTO {
     private String title;
     private String content;
-    private int memberId;
+    private String memberId;
     private boolean fixed;
 }
