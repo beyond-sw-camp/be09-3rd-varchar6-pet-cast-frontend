@@ -4,4 +4,6 @@ import com.varchar6.petcast.servicemember.domain.member.command.domain.aggregate
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PetRepository extends JpaRepository<Pet, Integer> {
+
+    Pet findByNameAndMemberId(String name, int memberId);
 }

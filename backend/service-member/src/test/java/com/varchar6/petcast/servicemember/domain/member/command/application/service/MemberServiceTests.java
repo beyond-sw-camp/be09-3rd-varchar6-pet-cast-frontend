@@ -1,15 +1,22 @@
 package com.varchar6.petcast.servicemember.domain.member.command.application.service;
 
+import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.MemberReqDTO;
 import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.MemberRequestDTO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.MemberUpdateRequestDTO;
+import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.PetReqDTO;
 import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.ProfileReqDTO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.ProfileUpdateRequestDTO;
+import com.varchar6.petcast.servicemember.domain.member.command.application.dto.response.MemberRespDTO;
 import com.varchar6.petcast.servicemember.domain.member.command.application.dto.response.MemberResponseDTO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.dto.response.MemberUpdateStatusRespDTO;
+import com.varchar6.petcast.servicemember.domain.member.command.application.dto.response.PetRespDTO;
+import com.varchar6.petcast.servicemember.domain.member.command.application.dto.response.ProfileRespDTO;
+import com.varchar6.petcast.servicemember.domain.member.command.domain.aggregate.Gender;
+import com.varchar6.petcast.servicemember.domain.member.command.domain.aggregate.Pet;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.varchar6.petcast.servicemember.domain.member.command.domain.aggregate.Gender.MALE;
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,9 +25,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class MemberServiceTests {
 
     MemberRequestDTO memberRequestDTO = new MemberRequestDTO();
-    MemberUpdateRequestDTO memberUpdateRequestDTO = new MemberUpdateRequestDTO();
+    MemberReqDTO memberReqDTO = new MemberReqDTO();
     ProfileReqDTO profileReqDTO = new ProfileReqDTO();
-    ProfileUpdateRequestDTO profileUpdateRequestDTO = new ProfileUpdateRequestDTO();
+    PetReqDTO petReqDTO = new PetReqDTO();
+
+    MemberRespDTO memberRespDTO = new MemberRespDTO();
+    ProfileRespDTO profileRespDTO = new ProfileRespDTO();
+    PetRespDTO petRespDTO = new PetRespDTO();
 
     @Autowired
     private MemberServiceImpl memberService;
@@ -42,18 +53,19 @@ class MemberServiceTests {
     @Test
     @Transactional
     public void 회원_비활성화_확인() {
-        memberUpdateRequestDTO.setId(9);
-        MemberUpdateStatusRespDTO memberUpdateStatusRespDTO = memberService.updateMemberStatus(memberUpdateRequestDTO);
-        assertEquals(false, memberUpdateStatusRespDTO.isActive());
+        memberReqDTO.setId(9);
+        memberRespDTO  = memberService.updateStatus(memberReqDTO);
+
+        assertEquals(false, memberRespDTO.isActive());
     }
 
     @Test
     @Transactional
     public void 비밀번호_수정_확인() {
-        memberUpdateRequestDTO.setId(9);
-        memberUpdateRequestDTO.setPassword("1234");
-        MemberUpdateStatusRespDTO memberUpdateStatusRespDTO = memberService.updateMemberPwd(memberUpdateRequestDTO);
-        assertEquals("1234", memberUpdateStatusRespDTO.getPassword());
+        memberReqDTO.setId(9);
+        memberReqDTO.setPassword("1234");
+        memberRespDTO  = memberService.updatePassword(memberReqDTO);
+        assertEquals("1234", memberRespDTO.getPassword());
     }
 
     @Test
@@ -62,23 +74,69 @@ class MemberServiceTests {
         profileReqDTO.setMemberId(2);
         profileReqDTO.setMemberIntroduction("안녕하세요 또리 아빠입니다.");
         profileReqDTO.setMemberImage("민수 사진1");
-        profileReqDTO.setPetName("또리");
-        profileReqDTO.setPetIntroduction("4살 또리에요");
-        profileReqDTO.setPetGender(MALE);
-        profileReqDTO.setPetImage("또리 사진2");
-        profileReqDTO.setPetAge(4);
-        Boolean isTrue = memberService.registProfile(profileReqDTO);
-        assertEquals(true, isTrue);
+        List<Pet> pets = new ArrayList<>();
+
+        Pet pet1 = Pet.builder()
+                .name("또리")
+                .age(2)
+                .introduction("귀여운 강아지")
+                .gender(Gender.MALE)
+                .image("pet1.jpg")
+                .memberId(2)
+                .build();
+
+        Pet pet2 = Pet.builder()
+                .name("나비")
+                .age(3)
+                .introduction("호기심 많은 고양이")
+                .gender(Gender.FEMALE)
+                .image("pet2.jpg")
+                .memberId(2)
+                .build();
+
+        pets.add(pet1);
+        pets.add(pet2);
+
+        profileReqDTO.setPetInfo(pets);
+
+        profileRespDTO = memberService.registProfile(profileReqDTO);
+
+        assertEquals(1, profileRespDTO.getResult());
     }
 
     @Test
     @Transactional
-    public void 고객_정보_수정_확인() {
-        profileUpdateRequestDTO.setMemberId(2);
-        profileUpdateRequestDTO.setNickname("또리 아빠");
-        profileUpdateRequestDTO.setPetId(11);
-        profileUpdateRequestDTO.setAge(3);
-        Boolean isTrue = memberService.updateMemberProfile(profileUpdateRequestDTO);
-        assertEquals(true, isTrue);
+    public void 프로필_수정_확인() {
+        profileReqDTO.setMemberId(2);
+        profileReqDTO.setMemberIntroduction("안녕하세요 3살 된 또리 아빠입니다.");
+        List<Pet> pets = new ArrayList<>();
+
+        Pet pet1 = Pet.builder()
+                .name("또리")
+                .age(3)
+                .introduction("귀여운 3살된 강아지")
+                .build();
+
+        pets.add(pet1);
+        profileReqDTO.setPetInfo(pets);
+
+        profileRespDTO = memberService.updateProfile(profileReqDTO);
+
+        assertEquals(1, profileRespDTO.getResult());
+    }
+
+    @Test
+    @Transactional
+    public void 새로운_반려동물_등록() {
+
+        petReqDTO.setName("치치");
+        petReqDTO.setIntroduction("장난끼 많은 강아지");
+        petReqDTO.setGender(Gender.OTHERS);
+        petReqDTO.setImage("치치 사진1.jpg");
+        petReqDTO.setAge(1);
+        petReqDTO.setMemberId(2);
+        petRespDTO = memberService.registPet(petReqDTO);
+
+        assertEquals(1, petRespDTO.getResult());
     }
 }

@@ -4,7 +4,7 @@ import com.varchar6.petcast.servicemember.domain.member.command.domain.aggregate
 import lombok.Data;
 
 @Data
-public class ProfileReqVO {
+public class ProfileRegistReqVO {
 
     private String memberIntroduction;
     private String memberImage;

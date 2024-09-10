@@ -7,11 +7,13 @@ public interface MemberService {
 
     MemberResponseDTO registerMember(MemberRequestDTO memberRequestDTO);
 
-    MemberUpdateStatusRespDTO updateStatus(MemberUpdateStatusReqDTO memberUpdateRequestDTO);
+    MemberRespDTO updateStatus(MemberReqDTO memberReqDTO);
 
-    MemberUpdatePwdRespDTO updatePwd(MemberUpdatePwdReqDTO memberUpdatePwdReqDTO);
+    MemberRespDTO updatePassword(MemberReqDTO memberReqDTO);
 
     ProfileRespDTO registProfile(ProfileReqDTO profileReqDTO);
 
-    ProfileUpdateRespDTO updateProfile(ProfileUpdateReqDTO profileUpdateReqDTO);
+    ProfileRespDTO updateProfile(ProfileReqDTO profileReqDTO);
+
+    PetRespDTO registPet(PetReqDTO petReqDTO);
 }

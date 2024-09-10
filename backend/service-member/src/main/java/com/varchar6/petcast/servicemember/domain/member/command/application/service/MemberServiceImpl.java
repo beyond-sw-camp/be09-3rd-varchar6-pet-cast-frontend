@@ -64,64 +64,74 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     @Transactional
-    public MemberUpdateStatusRespDTO updateStatus(MemberUpdateStatusReqDTO memberUpdateRequestDTO) {
+    public MemberRespDTO updateStatus(MemberReqDTO memberReqDTO) {
 
-        Member member = memberRepository.findById(memberUpdateRequestDTO.getId()).orElseThrow();
+        Member member = memberRepository.findById(memberReqDTO.getId()).orElseThrow();
+        MemberRespDTO memberRespDTO = new MemberRespDTO();
 
-        Member updateMember = Member.builder()
-                .id(member.getId())
-                .loginId(member.getLoginId())
-                .password(member.getPassword())
-                .name(member.getName())
-                .phone(member.getPhone())
-                .nickname(member.getNickname())
-                .image(member.getImage())
-                .createdAt(member.getCreatedAt())
-                .updatedAt(
-                        LocalDateTime.now()
-                                .format(FORMATTER)
-                )
-                .active(false)
-                .introduction(member.getIntroduction())
-                .build();
+        if (member != null) {
+            Member updateMember = Member.builder()
+                    .id(member.getId())
+                    .loginId(member.getLoginId())
+                    .password(member.getPassword())
+                    .name(member.getName())
+                    .phone(member.getPhone())
+                    .nickname(member.getNickname())
+                    .image(member.getImage())
+                    .createdAt(member.getCreatedAt())
+                    .updatedAt(
+                            LocalDateTime.now()
+                                    .format(FORMATTER)
+                    )
+                    .active(false)
+                    .introduction(member.getIntroduction())
+                    .build();
 
-        memberRepository.save(updateMember);
+            memberRepository.save(updateMember);
 
-        MemberUpdateStatusRespDTO memberUpdateStatusRespDTO
-                = modelMapper.map(updateMember, MemberUpdateStatusRespDTO.class);
+            memberRespDTO.setResult(1);
+            memberRespDTO.setActive(false);
+        } else {
+            memberRespDTO.setResult(0);
+        }
 
-        return memberUpdateStatusRespDTO;
+        return memberRespDTO;
     }
 
     @Override
     @Transactional
-    public MemberUpdatePwdRespDTO updatePwd(MemberUpdatePwdReqDTO memberUpdatePwdReqDTO) {
+    public MemberRespDTO updatePassword(MemberReqDTO memberReqDTO) {
 
-        Member member = memberRepository.findById(memberUpdatePwdReqDTO.getId()).orElseThrow();
+        Member member = memberRepository.findById(memberReqDTO.getId()).orElseThrow();
+        MemberRespDTO memberRespDTO = new MemberRespDTO();
 
-        Member updateMember = Member.builder()
+        if(member != null) {
+            Member updateMember = Member.builder()
                 .id(member.getId())
                 .loginId(member.getLoginId())
-                .password(memberUpdatePwdReqDTO.getPassword())
+                .password(memberReqDTO.getPassword())
                 .name(member.getName())
                 .phone(member.getPhone())
                 .nickname(member.getNickname())
                 .image(member.getImage())
                 .createdAt(member.getCreatedAt())
-                .updatedAt(
-                        LocalDateTime.now()
-                                .format(FORMATTER)
-                )
+                .updatedAt(LocalDateTime.now().format(FORMATTER))
                 .active(true)
                 .introduction(member.getIntroduction())
                 .build();
 
-        memberRepository.save(updateMember);
+            memberRepository.save(updateMember);
 
-        MemberUpdatePwdRespDTO memberUpdatePwdRespDTO = modelMapper.map(updateMember,MemberUpdatePwdRespDTO.class);
+            memberRespDTO.setResult(1);
+            memberRespDTO.setPassword(memberReqDTO.getPassword());
+        } else {
+            memberRespDTO.setResult(0);
+        }
 
-        return memberUpdatePwdRespDTO;
+        return memberRespDTO;
     }
+
+
 
     @Override
     @Transactional
@@ -137,22 +147,27 @@ public class MemberServiceImpl implements MemberService {
             member.setUpdatedAt(LocalDateTime.now().format(FORMATTER));
             memberRepository.save(member);
 
-            Pet pet = Pet.builder()
-                    .name(profileReqDTO.getPetName())
-                    .introduction(profileReqDTO.getPetIntroduction())
-                    .gender(profileReqDTO.getPetGender())
-                    .image(profileReqDTO.getPetImage())
-                    .age(profileReqDTO.getPetAge())
-                    .createdAt(LocalDateTime.now().format(FORMATTER))
-                    .updatedAt(LocalDateTime.now().format(FORMATTER))
-                    .active(true)
-                    .memberId(profileReqDTO.getMemberId())
-                    .build();
-            petRepository.save(pet);
+            for (int i = 0; i < profileReqDTO.getPetInfo().size(); i++) {
+                 Pet petInfo = profileReqDTO.getPetInfo().get(i);
 
-            profileRespDTO.setNickname(member.getNickname());
+                 Pet pet = Pet.builder()
+                         .id(petInfo.getId())
+                         .name(petInfo.getName())
+                         .introduction(petInfo.getIntroduction())
+                         .gender(petInfo.getGender())
+                         .image(petInfo.getImage())
+                         .age(petInfo.getAge())
+                         .createdAt(LocalDateTime.now().format(FORMATTER))
+                         .updatedAt(LocalDateTime.now().format(FORMATTER))
+                         .active(true)
+                         .memberId(member.getId())
+                         .build();
+
+                 petRepository.save(pet);
+            }
+
+            profileRespDTO.setMemberNickname(member.getNickname());
             profileRespDTO.setResult(1);
-
         } else{
             profileRespDTO.setResult(0);
         }
@@ -162,18 +177,60 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     @Transactional
-    public ProfileUpdateRespDTO updateProfile(ProfileUpdateReqDTO profileUpdateReqDTO) {
+    public ProfileRespDTO updateProfile(ProfileReqDTO profileReqDTO) {
 
-        Member member = memberRepository.findById(profileUpdateReqDTO.getId()).orElseThrow();
+        Member member = memberRepository.findById(profileReqDTO.getMemberId()).orElseThrow();
+        ProfileRespDTO profileRespDTO = new ProfileRespDTO();
 
         if (member != null){
-            member.setIntroduction(profileUpdateReqDTO.getIntroduction());
+            member.setIntroduction(profileReqDTO.getMemberIntroduction());
             member.setUpdatedAt(LocalDateTime.now().format(FORMATTER));
             memberRepository.save(member);
 
-            Pet pet = petRepository.findByName
+            for (int i = 0; i < profileReqDTO.getPetInfo().size(); i++) {
+                Pet updatePet = profileReqDTO.getPetInfo().get(i);
 
+                Pet pet = petRepository.findByNameAndMemberId(updatePet.getName(),updatePet.getMemberId());
+                pet.setAge(updatePet.getAge());
+                pet.setGender(updatePet.getGender());
+                pet.setUpdatedAt(LocalDateTime.now().format(FORMATTER));
+
+                petRepository.save(pet);
+            }
+
+            profileRespDTO.setMemberNickname(member.getNickname());
+            profileRespDTO.setResult(1);
+
+            return profileRespDTO;
+        } else {
+            profileRespDTO.setResult(0);
+
+            return profileRespDTO;
         }
+    }
+
+    @Override
+    public PetRespDTO registPet(PetReqDTO petReqDTO) {
+
+        Pet pet = Pet.builder()
+                .id(petReqDTO.getId())
+                .name(petReqDTO.getName())
+                .introduction(petReqDTO.getIntroduction())
+                .gender(petReqDTO.getGender())
+                .image(petReqDTO.getImage())
+                .age(petReqDTO.getAge())
+                .createdAt(LocalDateTime.now().format(FORMATTER))
+                .updatedAt(LocalDateTime.now().format(FORMATTER))
+                .active(true)
+                .memberId(petReqDTO.getId())
+                .build();
+
+        petRepository.save(pet);
+
+        PetRespDTO petRespDTO = new PetRespDTO();
+        petRespDTO.setResult(1);
+
+        return petRespDTO;
     }
 
     public static Member requestDTOToEntity(MemberRequestDTO memberRequestDTO) {

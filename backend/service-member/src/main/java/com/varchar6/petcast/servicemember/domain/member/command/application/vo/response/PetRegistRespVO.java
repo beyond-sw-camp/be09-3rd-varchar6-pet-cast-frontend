@@ -3,7 +3,7 @@ package com.varchar6.petcast.servicemember.domain.member.command.application.vo.
 import lombok.Data;
 
 @Data
-public class ProfileRespVO {
+public class PetRegistRespVO {
 
-    private String nickname;
+    private int memberId;
 }
