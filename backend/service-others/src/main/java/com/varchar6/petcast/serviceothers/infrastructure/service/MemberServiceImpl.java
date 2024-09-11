@@ -3,7 +3,6 @@ package com.varchar6.petcast.serviceothers.infrastructure.service;
 import com.varchar6.petcast.serviceothers.common.response.ResponseMessage;
 import com.varchar6.petcast.serviceothers.infrastructure.client.MemberServiceClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import java.util.Map;
 
 @Service(value = "InfrastructureMemberService")
 public class MemberServiceImpl implements MemberService {
-    MemberServiceClient memberServiceClient;
+    private final MemberServiceClient memberServiceClient;
 
     @Autowired
     public MemberServiceImpl(MemberServiceClient memberServiceClient) {
@@ -23,10 +22,11 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public List<String> checkMemberRole(Map<String, String> map) throws IllegalAccessException {
         List<String> RequestRoleList = new ArrayList<String>();
-        if(memberServiceClient.searchMemberRole(map) instanceof ResponseMessage) {
-            ResponseEntity<ResponseMessage> message = (ResponseEntity<ResponseMessage>) memberServiceClient.searchMemberRole(map);
-            if (message.getBody().getResult() instanceof List) {
-                List test = (List) message.getBody().getResult();
+        ResponseMessage messageBody = memberServiceClient.searchMemberRole(map).getBody();
+        /* 필기. 타입 변환이 가능한지 확인(rest api를 통해서) */
+        if(messageBody instanceof ResponseMessage) {
+            if (messageBody.getResult() instanceof List) {
+                List test = (List) messageBody.getResult();
                 Map<String, String> roleList = new HashMap<>();
 
                 for (Object getRole : test) {
