@@ -5,8 +5,8 @@ import com.varchar6.petcast.serviceothers.domain.notice.command.application.dto.
 import com.varchar6.petcast.serviceothers.domain.notice.command.application.dto.request.NoticeWriteRequestDTO;
 import com.varchar6.petcast.serviceothers.domain.notice.command.domain.aggregate.Notice;
 import com.varchar6.petcast.serviceothers.domain.notice.command.domain.repository.NoticeRepository;
-import com.varchar6.petcast.serviceothers.domain.notice.command.domain.service.MemberService;
 import com.varchar6.petcast.serviceothers.infrastructure.client.MemberServiceClient;
+import com.varchar6.petcast.serviceothers.infrastructure.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -45,10 +45,11 @@ public class NoticeServiceImpl implements NoticeService {
     @Override
     @Transactional
     public int insertNotice(NoticeWriteRequestDTO noticeWriteRequestDTO) throws IllegalAccessException {
+        boolean flag = false;
         Map<String, String> map = new HashMap<>();
         map.put("memberId", noticeWriteRequestDTO.getMemberId());
 
-        boolean flag = memberService.checkMemberRole(map);
+        checkRole(flag, map);
 
         Notice notice = modelMapper.map(noticeWriteRequestDTO, Notice.class);
         notice.setCreatedAt(LocalDateTime.now().format(FORMATTER));
@@ -70,32 +71,10 @@ public class NoticeServiceImpl implements NoticeService {
     public int updateNotice(NoticeUpdateRequestDTO noticeUpdateRequestDTO) throws IllegalAccessException
     {
         boolean flag = false;
-
         Map<String, String> map = new HashMap<>();
         map.put("memberId", noticeUpdateRequestDTO.getMemberId());
 
-        ResponseEntity<ResponseMessage> message = (ResponseEntity<ResponseMessage>) memberServiceClient.searchMemberRole(map);
-
-        List test= (List) message.getBody().getResult();
-
-        Map<String, String> roleList = new HashMap<>();
-        // Message 객체가 Map<String, Object> 형태라면 캐스팅 후 접근
-
-        for(Object getRole : test){
-
-            roleList = (Map<String, String>) getRole;
-
-            String roleCheck = (String) roleList.get("name");
-
-            if(roleCheck.equals("ROLE_ADMIN")){
-                flag = true;
-                break;
-            }
-        }
-
-
-        if(!flag)
-            throw new IllegalAccessException("관리자가 아닙니다.");
+        checkRole(flag, map);
 
         try {
             Notice notice = noticeRepository.findById(noticeUpdateRequestDTO.getId())
@@ -116,32 +95,10 @@ public class NoticeServiceImpl implements NoticeService {
     @Transactional
     public int deleteNotice(int noticeId, String memberId) throws IllegalAccessException {
         boolean flag = false;
-
         Map<String, String> map = new HashMap<>();
         map.put("memberId", memberId);
 
-        ResponseEntity<ResponseMessage> message = (ResponseEntity<ResponseMessage>) memberServiceClient.searchMemberRole(map);
-
-        List test= (List) message.getBody().getResult();
-
-        Map<String, String> roleList = new HashMap<>();
-        // Message 객체가 Map<String, Object> 형태라면 캐스팅 후 접근
-
-        for(Object getRole : test){
-
-            roleList = (Map<String, String>) getRole;
-
-            String roleCheck = (String) roleList.get("name");
-
-            if(roleCheck.equals("ROLE_ADMIN")){
-                flag = true;
-                break;
-            }
-        }
-
-        if(!flag)
-            throw new IllegalAccessException("관리자가 아닙니다.");
-
+        checkRole(flag, map);
 
         try {
             noticeRepository.deleteById(noticeId);
@@ -153,4 +110,16 @@ public class NoticeServiceImpl implements NoticeService {
 
     }
 
+    private void checkRole(boolean flag, Map<String, String> map) throws IllegalAccessException {
+        List<String> RequestRoleList = memberService.checkMemberRole(map);
+
+        for (String role : RequestRoleList) {
+            if(role.equals("ROLE_ADMIN")) {
+                flag = true;
+                break;
+            }
+        }
+        if(!flag)
+            throw new IllegalAccessException("관리자가 아닙니다.");
+    }
 }

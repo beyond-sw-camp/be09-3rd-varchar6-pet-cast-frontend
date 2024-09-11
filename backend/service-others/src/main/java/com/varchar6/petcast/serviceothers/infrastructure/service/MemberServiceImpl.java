@@ -22,7 +22,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public List<String> checkMemberRole(Map<String, String> map) throws IllegalAccessException {
-        List<String> ResponseRoleList = new ArrayList<String>();
+        List<String> RequestRoleList = new ArrayList<String>();
         if(memberServiceClient.searchMemberRole(map) instanceof ResponseMessage) {
             ResponseEntity<ResponseMessage> message = (ResponseEntity<ResponseMessage>) memberServiceClient.searchMemberRole(map);
             if (message.getBody().getResult() instanceof List) {
@@ -33,9 +33,7 @@ public class MemberServiceImpl implements MemberService {
 
                     roleList = (Map<String, String>) getRole;
 
-//                    String roleCheck = (String) roleList.get("name");
-//                    ResponseString.add(roleCheck);
-                    ResponseRoleList.add((String) roleList.get("name"));
+                    RequestRoleList.add((String) roleList.get("name"));
                 }
             }
             else{
@@ -45,6 +43,6 @@ public class MemberServiceImpl implements MemberService {
         else{
             throw new ClassCastException("feign client 오류입니다.");
         }
-        return ResponseRoleList;
+        return RequestRoleList;
     }
 }
