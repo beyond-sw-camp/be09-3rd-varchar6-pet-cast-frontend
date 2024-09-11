@@ -1,12 +1,10 @@
 package com.varchar6.petcast.serviceothers.domain.report.query.service;
 
-import com.varchar6.petcast.serviceothers.common.response.ResponseMessage;
 import com.varchar6.petcast.serviceothers.domain.report.query.dto.ReportDTO;
 import com.varchar6.petcast.serviceothers.domain.report.query.mapper.ReportMapper;
-import com.varchar6.petcast.serviceothers.infrastructure.client.MemberServiceClient;
+import com.varchar6.petcast.serviceothers.infrastructure.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,43 +16,21 @@ import java.util.Map;
 @Service(value="queryReportService")
 public class ReportServiceImpl implements ReportService{
     private final ReportMapper reportMapper;
-    MemberServiceClient memberServiceClient;
-
+    private final MemberService memberService;
     @Autowired
-    public ReportServiceImpl(ReportMapper reportMapper, MemberServiceClient memberServiceClient) {
+    public ReportServiceImpl(ReportMapper reportMapper, MemberService memberService) {
         this.reportMapper = reportMapper;
-        this.memberServiceClient = memberServiceClient;
+        this.memberService = memberService;
     }
 
     @Override
     @Transactional
     public List<ReportDTO> getAllReports(String memberId) throws IllegalAccessException {
         boolean flag = false;
-
         Map<String, String> map = new HashMap<>();
         map.put("memberId", memberId);
 
-        ResponseEntity<ResponseMessage> message = memberServiceClient.searchMemberRole(map);
-
-        List test= (List) message.getBody().getResult();
-
-        Map<String, String> roleList = new HashMap<>();
-
-        for(Object getRole : test){
-
-            roleList = (Map<String, String>) getRole;
-
-            String roleCheck = (String) roleList.get("name");
-
-            if(roleCheck.equals("ROLE_ADMIN")){
-                flag = true;
-                break;
-            }
-        }
-
-        if (!flag)
-            throw new IllegalAccessException("관리자가 아닙니다.");
-
+        checkRole(flag, map);
 
         return reportMapper.selectAllReports();
     }
@@ -63,32 +39,10 @@ public class ReportServiceImpl implements ReportService{
     @Transactional
     public List<ReportDTO> getReportByReporterId(Integer reporterId, String memberId) throws IllegalAccessException {
         boolean flag = false;
-
         Map<String, String> map = new HashMap<>();
         map.put("memberId", memberId);
 
-        ResponseEntity<ResponseMessage> message = memberServiceClient.searchMemberRole(map);
-
-        List test= (List) message.getBody().getResult();
-
-        Map<String, String> roleList = new HashMap<>();
-        // Message 객체가 Map<String, Object> 형태라면 캐스팅 후 접근
-
-        for(Object getRole : test){
-
-            roleList = (Map<String, String>) getRole;
-
-            String roleCheck = (String) roleList.get("name");
-
-            if(roleCheck.equals("ROLE_ADMIN")){
-                flag = true;
-                break;
-            }
-        }
-
-        if (!flag)
-            throw new IllegalAccessException("관리자가 아닙니다.");
-
+        checkRole(flag, map);
 
         return reportMapper.selectReportByReporterId(reporterId);
     }
@@ -97,32 +51,24 @@ public class ReportServiceImpl implements ReportService{
     @Transactional
     public List<ReportDTO> getReportByRespondentId(Integer respondentId, String memberId) throws IllegalAccessException {
         boolean flag = false;
-
         Map<String, String> map = new HashMap<>();
         map.put("memberId", memberId);
 
-        ResponseEntity<ResponseMessage> message = memberServiceClient.searchMemberRole(map);
+        checkRole(flag, map);
 
-        List test= (List) message.getBody().getResult();
+        return reportMapper.selectReportByRespondentId(respondentId);
+    }
 
-        Map<String, String> roleList = new HashMap<>();
-        // Message 객체가 Map<String, Object> 형태라면 캐스팅 후 접근
+    private void checkRole(boolean flag, Map<String, String> map) throws IllegalAccessException {
+        List<String> RequestRoleList = memberService.checkMemberRole(map);
 
-        for(Object getRole : test){
-
-            roleList = (Map<String, String>) getRole;
-
-            String roleCheck = (String) roleList.get("name");
-
-            if(roleCheck.equals("ROLE_ADMIN")){
+        for (String role : RequestRoleList) {
+            if(role.equals("ROLE_ADMIN")) {
                 flag = true;
                 break;
             }
         }
-
-        if (!flag)
+        if(!flag)
             throw new IllegalAccessException("관리자가 아닙니다.");
-
-
-        return reportMapper.selectReportByRespondentId(respondentId);
-    }}
+    }
+}
