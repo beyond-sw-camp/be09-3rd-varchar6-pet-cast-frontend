@@ -36,9 +36,9 @@ public class RequestsController {
             message = "카테고리 조회 실패!";
         }
         return ResponseEntity.ok(ResponseMessage.builder()
-                        .httpStatus(HttpStatus.OK.value())
-                        .message(message)
-                        .result(RequestCategoryResponseDTO)
+                .httpStatus(HttpStatus.OK.value())
+                .message(message)
+                .result(RequestCategoryResponseDTO)
                 .build());
     }
 
@@ -56,11 +56,11 @@ public class RequestsController {
             message = "고객이 작성한 요청서 목록 조회 실패!";
         }
         return ResponseEntity.ok()
-                             .body(ResponseMessage.builder()
-                                                     .httpStatus(HttpStatus.OK.value())
-                                                     .message(message)
-                                                     .result(memberAndRequestDTO)
-                                                     .build());
+                .body(ResponseMessage.builder()
+                        .httpStatus(HttpStatus.OK.value())
+                        .message(message)
+                        .result(memberAndRequestDTO)
+                        .build());
     }
 
     // 업체 요청서 목록 조회
@@ -74,11 +74,11 @@ public class RequestsController {
             message = "업체가 받은 요청서 목록 조회 실패!";
         }
         return ResponseEntity.ok()
-                             .body(ResponseMessage.builder()
-                                                  .httpStatus(HttpStatus.OK.value())
-                                                  .message(message)
-                                                  .result(companyAndRequestDTO)
-                                                  .build());
+                .body(ResponseMessage.builder()
+                        .httpStatus(HttpStatus.OK.value())
+                        .message(message)
+                        .result(companyAndRequestDTO)
+                        .build());
     }
 
     // 요청서 상세 조회

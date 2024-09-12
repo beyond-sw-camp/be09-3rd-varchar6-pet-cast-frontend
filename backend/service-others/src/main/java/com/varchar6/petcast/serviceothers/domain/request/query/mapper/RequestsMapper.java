@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface RequestsMapper {
-   RequestCategoryResponseDTO selectCategoryList(@Param("category_id")int category_id);
+    RequestCategoryResponseDTO selectCategoryList(@Param("category_id")int category_id);
 
     List<MemberAndRequestDTO> selectAllRequestsByMemberId(@Param("user_id")int userId);
 
