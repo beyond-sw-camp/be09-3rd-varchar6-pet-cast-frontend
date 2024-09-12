@@ -1,6 +1,5 @@
 package com.varchar6.petcast.serviceothers.domain.request.command.application.dto.request;
 
-import com.varchar6.petcast.serviceothers.domain.request.command.domain.aggregate.RequestsStatus;
 import lombok.*;
 
 import java.util.List;

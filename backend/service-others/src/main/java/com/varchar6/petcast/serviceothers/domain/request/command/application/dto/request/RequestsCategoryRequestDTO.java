@@ -11,5 +11,4 @@ import lombok.*;
 public class RequestsCategoryRequestDTO {
     private int categoryId;
     private int requestId;
-   
 }

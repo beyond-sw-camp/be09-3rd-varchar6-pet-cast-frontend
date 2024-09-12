@@ -46,7 +46,7 @@ class RequestsServiceImplTests {
         createRequestsRequestDTO.setHopeCost(5000);
         createRequestsRequestDTO.setHopeLocation("Test Location");
         createRequestsRequestDTO.setHopeTime(LocalDateTime.now().format(FORMATTER));
-        createRequestsRequestDTO.setCompanyId(1);
+//        createRequestsRequestDTO.setCompanyId(1);
         createRequestsRequestDTO.setCategoryId(List.of(1, 2));
 
 

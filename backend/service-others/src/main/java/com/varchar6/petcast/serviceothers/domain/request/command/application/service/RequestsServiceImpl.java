@@ -1,6 +1,7 @@
 package com.varchar6.petcast.serviceothers.domain.request.command.application.service;
 
 import com.varchar6.petcast.serviceothers.domain.request.command.application.dto.request.CreateRequestsRequestDTO;
+import com.varchar6.petcast.serviceothers.domain.request.command.application.dto.request.RequestsCategoryRequestDTO;
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.aggregate.EventsStatus;
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.aggregate.RequestsStatus;
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.aggregate.entity.Event;
@@ -10,6 +11,7 @@ import com.varchar6.petcast.serviceothers.domain.request.command.domain.aggregat
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.repository.EventsRepository;
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.repository.RequestCategoryRepository;
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.repository.RequestsRepository;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
