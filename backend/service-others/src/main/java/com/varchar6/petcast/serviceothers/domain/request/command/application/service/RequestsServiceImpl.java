@@ -70,7 +70,7 @@ public class RequestsServiceImpl implements RequestsService {
         if (!invalidCategoryIds.isEmpty()) {
             throw new IllegalArgumentException("해당 카테고리가 없습니다!");
         }
-        
+
         categoryIds.forEach(categoryId -> {
             RequestCategory requestCategory = new RequestCategory();
             requestCategory.setRequestId(savedRequest.getId());
