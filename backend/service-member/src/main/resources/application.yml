@@ -16,29 +16,16 @@ spring:
     password: pet
 
   ## jpa config
-#  jpa:
-#    generate-ddl: false
-#    show-sql: true
-#    database: mysql
-#    properties:
-#      hibernate:
-#        format_sql: true
-#  config:
-#    import:
-#      - classpath:/bootstrap.yml
-
-  ## jpa config
   jpa:
-    hibernate:
-      ddl-auto: none
+    generate-ddl: false
     show-sql: true
     database: mysql
     properties:
       hibernate:
-        '[format_sql]': true
-    config:
-      import:
-        - classpath:/bootstrap.yml
+        format_sql: true
+  config:
+    import:
+      - classpath:/bootstrap.yml
 
 eureka:
   instance:
