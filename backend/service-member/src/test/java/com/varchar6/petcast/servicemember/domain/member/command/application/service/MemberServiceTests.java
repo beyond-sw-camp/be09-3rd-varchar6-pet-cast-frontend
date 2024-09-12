@@ -18,7 +18,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.varchar6.petcast.servicemember.domain.member.command.domain.aggregate.Gender.MALE;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest

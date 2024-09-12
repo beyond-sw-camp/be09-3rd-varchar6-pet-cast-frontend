@@ -16,16 +16,29 @@ spring:
     password: pet
 
   ## jpa config
+#  jpa:
+#    generate-ddl: false
+#    show-sql: true
+#    database: mysql
+#    properties:
+#      hibernate:
+#        format_sql: true
+#  config:
+#    import:
+#      - classpath:/bootstrap.yml
+
+  ## jpa config
   jpa:
-    generate-ddl: false
+    hibernate:
+      ddl-auto: none
     show-sql: true
     database: mysql
     properties:
       hibernate:
-        format_sql: true
-  config:
-    import:
-      - classpath:/bootstrap.yml
+        '[format_sql]': true
+    config:
+      import:
+        - classpath:/bootstrap.yml
 
 eureka:
   instance:
@@ -35,3 +48,7 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+token:
+  expiration_time: 432000000
+  secret: CdkKVDgED/8zH71UEu1kRNaeI9/rWJiGxiT+ht0u5QaVjOXKkx//t+hLqtTgwqEGWDuQaz07ze60vVX8LTnlKQ==
