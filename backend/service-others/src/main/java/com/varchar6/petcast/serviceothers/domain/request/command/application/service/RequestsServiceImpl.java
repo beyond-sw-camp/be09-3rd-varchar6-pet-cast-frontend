@@ -1,12 +1,11 @@
 package com.varchar6.petcast.serviceothers.domain.request.command.application.service;
 
+import com.varchar6.petcast.serviceothers.domain.category.command.domain.repository.CategoryRepository;
 import com.varchar6.petcast.serviceothers.domain.request.command.application.dto.request.CreateRequestsRequestDTO;
-import com.varchar6.petcast.serviceothers.domain.request.command.application.dto.request.RequestsCategoryRequestDTO;
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.aggregate.EventsStatus;
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.aggregate.RequestsStatus;
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.aggregate.entity.Event;
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.aggregate.entity.RequestCategory;
-import com.varchar6.petcast.serviceothers.domain.request.command.domain.aggregate.entity.RequestCategoryPK;
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.aggregate.entity.Requests;
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.repository.EventsRepository;
 import com.varchar6.petcast.serviceothers.domain.request.command.domain.repository.RequestCategoryRepository;
@@ -21,6 +20,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @Service("commandRequestsServiceImpl")
 @Slf4j
@@ -28,6 +28,7 @@ public class RequestsServiceImpl implements RequestsService {
     private final RequestsRepository requestsRepository;
     private final EventsRepository eventsRepository;
     private final RequestCategoryRepository requestCategoryRepository;
+    private final CategoryRepository categoryRepository;
 
     private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMAT);
@@ -35,10 +36,12 @@ public class RequestsServiceImpl implements RequestsService {
     @Autowired
     public RequestsServiceImpl(RequestsRepository requestsRepository,
                                EventsRepository eventsRepository,
-                               RequestCategoryRepository requestCategoryRepository) {
+                               RequestCategoryRepository requestCategoryRepository,
+                               CategoryRepository categoryRepository) {
         this.requestsRepository = requestsRepository;
         this.eventsRepository = eventsRepository;
         this.requestCategoryRepository = requestCategoryRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     // 요청서 작성
@@ -50,7 +53,6 @@ public class RequestsServiceImpl implements RequestsService {
                 .hopeCost(createRequestsRequestDTO.getHopeCost())
                 .hopeLocation(createRequestsRequestDTO.getHopeLocation())
                 .hopeTime(createRequestsRequestDTO.getHopeTime())
-                .status(RequestsStatus.SENT)
                 .updatedAt(LocalDateTime.now().format(FORMATTER))
                 .createdAt(LocalDateTime.now().format(FORMATTER))
                 .active(true)
@@ -61,16 +63,20 @@ public class RequestsServiceImpl implements RequestsService {
 
         List<Integer> categoryIds = createRequestsRequestDTO.getCategoryId();
 
-        for (Integer categoryId : categoryIds) {
-            if (!requestCategoryRepository.existsById(new RequestCategoryPK(savedRequest.getId(), categoryId))) {
-                throw new IllegalArgumentException("해당 카테고리가 없습니다!");
-            }
+        List<Integer> invalidCategoryIds = categoryIds.stream()
+                .filter(categoryId -> !categoryRepository.existsById(categoryId))
+                .collect(Collectors.toList());
 
+        if (!invalidCategoryIds.isEmpty()) {
+            throw new IllegalArgumentException("해당 카테고리가 없습니다!");
+        }
+        
+        categoryIds.forEach(categoryId -> {
             RequestCategory requestCategory = new RequestCategory();
             requestCategory.setRequestId(savedRequest.getId());
             requestCategory.setCategoryId(categoryId);
             requestCategoryRepository.save(requestCategory);
-        }
+        });
 
         log.info(savedRequest.getId() + "번 요청서가 성공적으로 저장되었습니다.");
         return 0;
