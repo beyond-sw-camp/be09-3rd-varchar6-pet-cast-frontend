@@ -15,11 +15,11 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class NoticeServiceTests {
 
+    @Autowired
     private final NoticeService noticeService;
     private final NoticeDTO noticeDTO;
     private final Pageable pageable;
 
-    @Autowired
     public NoticeServiceTests(NoticeService noticeService, NoticeDTO noticeDTO, Pageable pageable) {
         this.noticeService = noticeService;
         this.noticeDTO = noticeDTO;
