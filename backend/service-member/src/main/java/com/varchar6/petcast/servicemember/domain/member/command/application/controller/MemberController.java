@@ -84,7 +84,7 @@ public class MemberController {
                     .ok()
                     .body(ResponseMessage.builder()
                             .httpStatus(HttpStatus.OK.value())
-                            .message(responseMember.getNickname() + "회원 비활성화 성공")
+                            .message("'" + responseMember.getNickname() + "' 회원 비활성화 성공")
                             .result(responseMember.isActive())
                             .build());
         }
@@ -93,7 +93,7 @@ public class MemberController {
                 .ok()
                 .body(ResponseMessage.builder()
                         .httpStatus(HttpStatus.BAD_REQUEST.value())
-                        .message("회원 비활성화 실패")
+                        .message("해당 회원 비활성화 실패")
                         .result(null)
                         .build());
     }
@@ -120,7 +120,7 @@ public class MemberController {
                     .ok()
                     .body(ResponseMessage.builder()
                             .httpStatus(HttpStatus.OK.value())
-                            .message(responseMember.getNickname() + "님 암호 변경 성공")
+                            .message("'" + responseMember.getNickname() + "' 님 암호 변경 성공하셨습니다")
                             .result(null)
                             .build());
         }
@@ -129,7 +129,7 @@ public class MemberController {
                 .ok()
                 .body(ResponseMessage.builder()
                         .httpStatus(HttpStatus.BAD_REQUEST.value())
-                        .message("암호 변경 실패")
+                        .message("암호 변경 실패하셨습니다.")
                         .result(null)
                         .build());
     }
@@ -137,10 +137,12 @@ public class MemberController {
     // 회원 프로필 등록
     @PostMapping("/regist-member-profile")
     public ResponseEntity<ResponseMessage> registProfile(@RequestHeader("X-Member-Id") int memberId,
-                                                          @RequestBody ProfileRegistReqVO newProfile) {
+                                                          @RequestBody ProfileReqDTO newProfile) {
 
         ProfileReqDTO profileReqDTO = modelMapper.map(newProfile,ProfileReqDTO.class);
         profileReqDTO.setMemberId(memberId);
+
+        log.info("req 값 확인: {}",profileReqDTO);
 
         ProfileRespDTO profileRespDTO = memberService.registProfile(profileReqDTO);
 
@@ -168,8 +170,8 @@ public class MemberController {
 
     // 회원 프로필 업데이트
     @PutMapping("/update-member-profile")
-    public ResponseEntity<ResponseMessage> updateProfile(@RequestAttribute("X-Member-Id") int memberId,
-                                                         @RequestBody ProfileUpdateReqVO updateProfile) {
+    public ResponseEntity<ResponseMessage> updateProfile(@RequestHeader("X-Member-Id") int memberId,
+                                                         @RequestBody ProfileReqDTO updateProfile) {
 
         ProfileReqDTO profileReqDTO = modelMapper.map(updateProfile, ProfileReqDTO.class);
         profileReqDTO.setMemberId(memberId);

@@ -2,10 +2,7 @@ package com.varchar6.petcast.servicemember.domain.member.command.application.dto
 
 import com.varchar6.petcast.servicemember.domain.member.command.domain.aggregate.Gender;
 import com.varchar6.petcast.servicemember.domain.member.command.domain.aggregate.Pet;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -13,6 +10,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class ProfileReqDTO {
 
     private int memberId;

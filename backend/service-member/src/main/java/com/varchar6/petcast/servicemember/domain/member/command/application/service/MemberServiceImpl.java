@@ -91,6 +91,7 @@ public class MemberServiceImpl implements MemberService {
 
             memberRespDTO.setResult(1);
             memberRespDTO.setActive(false);
+            memberRespDTO.setNickname(member.getNickname());
         } else {
             memberRespDTO.setResult(0);
         }
@@ -124,10 +125,10 @@ public class MemberServiceImpl implements MemberService {
 
             memberRespDTO.setResult(1);
             memberRespDTO.setPassword(memberReqDTO.getPassword());
+            memberRespDTO.setNickname(member.getNickname());
         } else {
             memberRespDTO.setResult(0);
         }
-
         return memberRespDTO;
     }
 
@@ -146,6 +147,8 @@ public class MemberServiceImpl implements MemberService {
             member.setIntroduction(profileReqDTO.getMemberIntroduction());
             member.setUpdatedAt(LocalDateTime.now().format(FORMATTER));
             memberRepository.save(member);
+
+            log.info("배열 값: {} ", profileReqDTO.getPetInfo().toArray());
 
             for (int i = 0; i < profileReqDTO.getPetInfo().size(); i++) {
                  Pet petInfo = profileReqDTO.getPetInfo().get(i);
