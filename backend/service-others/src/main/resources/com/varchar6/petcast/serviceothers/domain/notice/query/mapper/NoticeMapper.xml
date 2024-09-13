@@ -41,7 +41,7 @@
              , A.MEMBER_ID
           FROM TBL_NOTICE A
         OFFSET #{pageable.offset} ROWS FETCH NEXT #{pageable.pageSize} ROWS ONLY
-         ORDER BY A.CREATED_AT DESC
+         ORDER BY A.CREATED_AT DESC;
     </select>
     <select id="selectAllNoticeCount" resultType="int">
         SELECT
