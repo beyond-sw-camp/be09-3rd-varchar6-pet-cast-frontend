@@ -142,8 +142,6 @@ public class MemberController {
         ProfileReqDTO profileReqDTO = modelMapper.map(newProfile,ProfileReqDTO.class);
         profileReqDTO.setMemberId(memberId);
 
-        log.info("req 값 확인: {}",profileReqDTO);
-
         ProfileRespDTO profileRespDTO = memberService.registProfile(profileReqDTO);
 
         if(profileRespDTO.getResult() == 1) {
@@ -175,6 +173,8 @@ public class MemberController {
 
         ProfileReqDTO profileReqDTO = modelMapper.map(updateProfile, ProfileReqDTO.class);
         profileReqDTO.setMemberId(memberId);
+
+        log.info("req 값 확인: {}",profileReqDTO);
 
         ProfileRespDTO profileRespDTO = memberService.updateProfile(profileReqDTO);
 

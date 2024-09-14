@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PetRepository extends JpaRepository<Pet, Integer> {
 
-    Pet findByNameAndMemberId(String name, int memberId);
+    Pet findByName(String name);
 }
