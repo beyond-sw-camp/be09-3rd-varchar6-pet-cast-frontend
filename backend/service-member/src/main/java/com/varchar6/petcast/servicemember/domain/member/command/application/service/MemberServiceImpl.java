@@ -193,7 +193,7 @@ public class MemberServiceImpl implements MemberService {
             for (int i = 0; i < profileReqDTO.getPetInfo().size(); i++) {
                 Pet updatePet = profileReqDTO.getPetInfo().get(i);
 
-                Pet pet = petRepository.findByName(updatePet.getName());
+                Pet pet = petRepository.findByMemberIdAndName(member.getId(),updatePet.getName());
 
                 pet.setAge(updatePet.getAge());
                 pet.setGender(updatePet.getGender());
@@ -226,7 +226,7 @@ public class MemberServiceImpl implements MemberService {
                 .createdAt(LocalDateTime.now().format(FORMATTER))
                 .updatedAt(LocalDateTime.now().format(FORMATTER))
                 .active(true)
-                .memberId(petReqDTO.getId())
+                .memberId(petReqDTO.getMemberId())
                 .build();
 
         petRepository.save(pet);

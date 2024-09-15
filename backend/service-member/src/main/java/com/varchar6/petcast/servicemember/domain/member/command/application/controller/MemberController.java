@@ -84,7 +84,7 @@ public class MemberController {
                     .ok()
                     .body(ResponseMessage.builder()
                             .httpStatus(HttpStatus.OK.value())
-                            .message("'" + responseMember.getNickname() + "' 회원 비활성화 성공")
+                            .message(responseMember.getNickname() + "회원 비활성화 성공")
                             .result(responseMember.isActive())
                             .build());
         }
@@ -120,7 +120,7 @@ public class MemberController {
                     .ok()
                     .body(ResponseMessage.builder()
                             .httpStatus(HttpStatus.OK.value())
-                            .message("'" + responseMember.getNickname() + "' 님 암호 변경 성공하셨습니다")
+                            .message(responseMember.getNickname() + "님 암호 변경 성공하셨습니다")
                             .result(null)
                             .build());
         }
@@ -137,7 +137,7 @@ public class MemberController {
     // 회원 프로필 등록
     @PostMapping("/regist-member-profile")
     public ResponseEntity<ResponseMessage> registProfile(@RequestHeader("X-Member-Id") int memberId,
-                                                          @RequestBody ProfileReqDTO newProfile) {
+                                                          @RequestBody ProfileRegistReqVO newProfile) {
 
         ProfileReqDTO profileReqDTO = modelMapper.map(newProfile,ProfileReqDTO.class);
         profileReqDTO.setMemberId(memberId);
@@ -152,7 +152,7 @@ public class MemberController {
                     .ok()
                     .body(ResponseMessage.builder()
                             .httpStatus(HttpStatus.OK.value())
-                            .message(profileRegistRespVO.getNickname() + "님 프로필 생성 성공")
+                            .message(profileRegistRespVO.getNickname() + "님 프로필 생성 성공하셨습니다.")
                             .result(null)
                             .build());
         }
@@ -161,7 +161,7 @@ public class MemberController {
                 .ok()
                 .body(ResponseMessage.builder()
                         .httpStatus(HttpStatus.BAD_REQUEST.value())
-                        .message("프로필 생성 실패")
+                        .message("프로필 생성 실패하셨습니다.")
                         .result(null)
                         .build());
     }
@@ -169,12 +169,10 @@ public class MemberController {
     // 회원 프로필 업데이트
     @PutMapping("/update-member-profile")
     public ResponseEntity<ResponseMessage> updateProfile(@RequestHeader("X-Member-Id") int memberId,
-                                                         @RequestBody ProfileReqDTO updateProfile) {
+                                                         @RequestBody ProfileUpdateReqVO updateProfile) {
 
         ProfileReqDTO profileReqDTO = modelMapper.map(updateProfile, ProfileReqDTO.class);
         profileReqDTO.setMemberId(memberId);
-
-        log.info("req 값 확인: {}",profileReqDTO);
 
         ProfileRespDTO profileRespDTO = memberService.updateProfile(profileReqDTO);
 
@@ -186,7 +184,7 @@ public class MemberController {
                     .ok()
                     .body(ResponseMessage.builder()
                             .httpStatus(HttpStatus.OK.value())
-                            .message(profileUpdateRespVO.getNickname() + "님 프로필 수정 성공")
+                            .message(profileUpdateRespVO.getNickname() + "님 프로필 수정 성공하셨습니다.")
                             .result(null)
                             .build());
         }
@@ -195,14 +193,14 @@ public class MemberController {
                 .ok()
                 .body(ResponseMessage.builder()
                         .httpStatus(HttpStatus.BAD_REQUEST.value())
-                        .message("프로필 수정 실패")
+                        .message("프로필 수정 실패하셨습니다.")
                         .result(null)
                         .build());
     }
 
     // 회원 프로필 반려견 정보 추가
     @PostMapping("/regist-pet")
-    public ResponseEntity<ResponseMessage> registPet(@RequestAttribute("X-Member-Id") int memberId,
+    public ResponseEntity<ResponseMessage> registPet(@RequestHeader("X-Member-Id") int memberId,
                                                      @RequestBody PetRegistReqVO newPet) {
 
         PetReqDTO petReqDTO = modelMapper.map(newPet, PetReqDTO.class);
@@ -215,7 +213,7 @@ public class MemberController {
                     .ok()
                     .body(ResponseMessage.builder()
                             .httpStatus(HttpStatus.OK.value())
-                            .message("반려견 정보 추가 성공")
+                            .message("반려견 정보 추가 성공하셨습니다.")
                             .result(null)
                             .build());
         }
@@ -224,7 +222,7 @@ public class MemberController {
                 .ok()
                 .body(ResponseMessage.builder()
                         .httpStatus(HttpStatus.BAD_REQUEST.value())
-                        .message("반려견 정보 추가 실패")
+                        .message("반려견 정보 추가 실패하셨습니다.")
                         .result(null)
                         .build());
     }

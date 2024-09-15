@@ -1,16 +1,16 @@
 package com.varchar6.petcast.servicemember.domain.member.command.application.vo.request;
 
 import com.varchar6.petcast.servicemember.domain.member.command.domain.aggregate.Gender;
+import com.varchar6.petcast.servicemember.domain.member.command.domain.aggregate.Pet;
 import lombok.Data;
 
+import java.util.List;
 import java.util.Objects;
 
 @Data
 public class ProfileUpdateReqVO {
 
-    private String introduction;
+    private String memberIntroduction;
 
-    private String petName;
-    private int age;
-    private Gender gender;
+    private List<Pet> petInfo;
 }

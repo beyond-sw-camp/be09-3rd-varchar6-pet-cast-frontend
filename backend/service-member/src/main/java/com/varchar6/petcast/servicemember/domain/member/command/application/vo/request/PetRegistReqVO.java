@@ -11,5 +11,4 @@ public class PetRegistReqVO {
     private Gender gender;
     private String image;
     private int age;
-    private int memberId;
 }
