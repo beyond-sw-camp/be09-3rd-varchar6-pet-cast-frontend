@@ -31,6 +31,7 @@ public class GatherController {
         this.gatherService = gatherService;
     }
 
+    // 모임 생성
     @PostMapping("")
     private ResponseEntity<ResponseMessage> createGather(@RequestHeader(value = "X-Member-Id", required = false) String id,
                                                          @RequestBody RequestCreateGatherDTO requestCreateGatherDTO) {
@@ -45,6 +46,7 @@ public class GatherController {
         );
     }
 
+    // 모임 수정
     @PutMapping("")
     public ResponseEntity<ResponseMessage> updateGatherInfo(@RequestBody RequestUpdateGatherInfoDTO requestUpdateGatherDTO
             , @RequestHeader("X-Member-Id") String id
@@ -60,6 +62,7 @@ public class GatherController {
                         .build());
     }
 
+    // 모임 삭제
     @DeleteMapping("")
     public ResponseEntity<ResponseMessage> deactiveGather(@RequestBody RequestDeactiveGatherDTO requestDeactiveGatherDTO
             , @RequestHeader("X-Member-Id") String id
@@ -76,6 +79,7 @@ public class GatherController {
                         .build());
     }
 
+    // 초대장 전송
     @PostMapping("/invitation")
     public ResponseEntity<ResponseMessage> sendInvitation(@RequestBody RequestSendInvitationDTO requestSendInvitationDTO,
                                                           @RequestHeader("X-Member-Id") String id) {
@@ -91,6 +95,7 @@ public class GatherController {
         );
     }
 
+    // 초대장 수락
     @PutMapping("/invitation/accept")
     public ResponseEntity<ResponseMessage> acceptInvitation(@RequestBody RequestInvitationDTO requestInvitationDTO,
                                                             @RequestHeader("X-Member-Id") String id) {
@@ -106,6 +111,7 @@ public class GatherController {
         );
     }
 
+    // 초대장 거절
     @PutMapping("/invitation/refuse")
     public ResponseEntity<ResponseMessage> refuseInvitation(@RequestBody RequestInvitationDTO requestInvitationDTO,
                                                             @RequestHeader("X-Member-Id") String id) {
@@ -121,6 +127,7 @@ public class GatherController {
         );
     }
 
+    // 모임원 추방
     @DeleteMapping("/member")
     public ResponseEntity<ResponseMessage> deleteMember(@RequestBody RequestDeleteMemberDTO requestDeleteMemberDTO,
                                                         @RequestHeader("X-Member-Id") String id) {

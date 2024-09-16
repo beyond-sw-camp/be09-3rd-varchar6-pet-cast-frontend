@@ -47,6 +47,12 @@ public class GatherServiceImpl implements GatherService {
         this.gatherService = gatherService;
     }
 
+    /**설명.
+     *  고객이 모임 정보를 입력하여 모임을 생성할 수 있다.
+     *  모임, 모임 구성원 테이블에 값 insert
+     *  Request: 회원 id, 모임 정보
+     *  Response: 모임 생성 여부
+     **/
     @Override
     @Transactional
     public void createGather(RequestCreateGatherDTO requestCreateGatherDTO) {
@@ -75,6 +81,12 @@ public class GatherServiceImpl implements GatherService {
         GatherMember gatherMember = gatherMemberRepository.save(newGatherMember);
     }
 
+    /**설명.
+     *  1. 모임을 조회하려는 고객이 해당 모임의 모임장인지 db값과 비교해서 구성원 여부 체크
+     *  2. 모임 테이블 update
+     *  Request: 회원 id, 모임 id, 수정하려는 모임 정보
+     *  Response: 모임 수정 성공 여부
+     **/
     @Override
     @Transactional
     public ResponseUpdateGatherInfoDTO updateGatherInfo(RequestUpdateGatherInfoDTO requestUpdateGatherDTO) {
@@ -120,6 +132,12 @@ public class GatherServiceImpl implements GatherService {
                 .build();
     }
 
+    /**설명.
+     *  1. 모임을 조회하려는 고객이 해당 모임의 모임장인지 db값과 비교해서 구성원 여부 체크
+     *  2. 모임 상태 비활성화
+     *  Request: 회원 id, 모임 id
+     *  Response: 모임 삭제 성공 여부
+     **/
     @Override
     @Transactional
     public ResponseDeactiveGatherDTO deactiveGather(RequestDeactiveGatherDTO requestDeactiveGatherDTO) {
@@ -160,6 +178,13 @@ public class GatherServiceImpl implements GatherService {
                 .build();
     }
 
+    /**설명.
+     *  1. 모임을 조회하려는 고객이 해당 모임의 모임장인지 db값과 비교해서 구성원 여부 체크
+     *  2. 초대장 테이블 insert
+     *  3. 문자 전송(설계 안됨)
+     *  Request: 회원 id, 모임 id
+     *  Response: 모임 삭제 성공 여부
+     **/
     @Override
     @Transactional
     public ResponseSendInvitaionDTO sendInvitation(RequestSendInvitationDTO requestInvitationDTO) {
@@ -199,6 +224,11 @@ public class GatherServiceImpl implements GatherService {
                 .build();
     }
 
+    /**설명.
+     *  초대장을 받은 고객이 모임 초대 수락/거절 여부를 선택하고, DB 값 update + 모임 구성원에 insert
+     *  Request: 회원 id, 초대장 id
+     *  Response: 초대장 수락 성공 여부
+     **/
     @Override
     @Transactional
     public ResponseInvitationDTO acceptInvatation(RequestInvitationDTO requestInvitationDTO) {
@@ -220,6 +250,11 @@ public class GatherServiceImpl implements GatherService {
                 .build();
     }
 
+    /**설명.
+     *  초대장을 받은 고객이 모임 초대 수락/거절 여부를 선택하고, DB 값 update + 모임 구성원에 insert
+     *  Request: 회원 id, 초대장 id
+     *  Response: 초대장 수락 성공 여부
+     **/
     @Override
     @Transactional
     public ResponseInvitationDTO refuseInvatation(RequestInvitationDTO requestInvitationDTO) {
@@ -229,10 +264,9 @@ public class GatherServiceImpl implements GatherService {
             throw new CommonException(ErrorCode.NOT_FOUND_INVITATION);
         }
 
-        // 초대장 거절하기
+        // 초대장 거절(삭제)하기
         Invitation refuseInvatation = invitation.get();
-        refuseInvatation.setActive(false);
-        invitationRepository.save(refuseInvatation);
+        invitationRepository.delete(refuseInvatation);
 
         return ResponseInvitationDTO.builder()
                 .userId(requestInvitationDTO.getUserId())
@@ -240,6 +274,12 @@ public class GatherServiceImpl implements GatherService {
                 .build();
     }
 
+    /**설명.
+     *  1. 모임을 조회하려는 고객이 해당 모임의 모임장인지 db값과 비교해서 구성원 여부 체크
+     *  2. 모임원 id에 해당 하는 유저 delete
+     *  Request: 회원 id, 모임 id, 모임원 id
+     *  Response: 모임원 삭제 성공 여부
+     **/
     @Override
     @Transactional
     public void deleteMember(RequestDeleteMemberDTO requestDeleteMemberDTO) {
