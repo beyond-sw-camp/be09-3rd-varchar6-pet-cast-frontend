@@ -14,8 +14,4 @@ public class ExceptionResponse {
         this.httpStatus = errorCode.getHttpStatus();
         this.message = errorCode.getMessage();
     }
-
-//    public static ExceptionResponse of(ErrorCode errorCode){
-//        return new ExceptionResponse(errorCode);
-//    }
 }

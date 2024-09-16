@@ -15,6 +15,8 @@ public enum ErrorCode {
     DATA_INTEGRITY_VIOLATION(40001, HttpStatus.BAD_REQUEST,
             "데이터 무결성 위반입니다. 필수 값이 누락되었거나 유효하지 않습니다."),
     NOT_LEADER(40002, HttpStatus.BAD_REQUEST, "리더가 아닙니다."),
+    INVALID_PARAMETER_FORMAT(40003, HttpStatus.BAD_REQUEST, "요청에 유효하지 않은 인자 형식입니다."),
+    MISSING_REQUEST_PARAMETER(40004, HttpStatus.BAD_REQUEST, "필수 요청 파라미터가 누락되었습니다."),
 
     /*
      * 401(Unauthorized)

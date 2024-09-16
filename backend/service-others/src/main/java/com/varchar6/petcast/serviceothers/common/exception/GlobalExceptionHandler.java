@@ -4,8 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 @Slf4j
@@ -23,40 +25,39 @@ public class GlobalExceptionHandler {
     }
 
     // 메소드의 인자 타입이 일치하지 않을 때 발생하는 예외
-//    @ExceptionHandler(value = {MethodArgumentTypeMismatchException.class})
-//    public ResponseEntity<ExceptionResponse> handleArgumentNotValidException(MethodArgumentTypeMismatchException e) {
-//        log.error("handleArgumentNotValidException() in GlobalExceptionHandler throw MethodArgumentTypeMismatchException : {}"
-//                , e.getMessage());
-//
-//        return ResponseEntity.fail(e);
-//    }
+    @ExceptionHandler(value = {MethodArgumentTypeMismatchException.class})
+    public ResponseEntity<ExceptionResponse> handleArgumentNotValidException(MethodArgumentTypeMismatchException e) {
+        log.error("handleArgumentNotValidException() in GlobalExceptionHandler throw MethodArgumentTypeMismatchException : {}"
+                , e.getMessage());
+        ExceptionResponse response = new ExceptionResponse(new CommonException(ErrorCode.INVALID_PARAMETER_FORMAT).getErrorCode());
+        return new ResponseEntity<>(response, response.getHttpStatus());
+    }
 
     // 필수 파라미터가 누락되었을 때 발생하는 예외
-//    @ExceptionHandler(value = {MissingServletRequestParameterException.class})
-//    public ResponseEntity<ExceptionResponse> handleArgumentNotValidException(MissingServletRequestParameterException e) {
-//        log.error("handleArgumentNotValidException() in GlobalExceptionHandler throw MethodArgumentNotValidException : {}"
-//                , e.getMessage());
-//        return ResponseEntity.fail(e);
-//    }
+    @ExceptionHandler(value = {MissingServletRequestParameterException.class})
+    public ResponseEntity<ExceptionResponse> handleArgumentNotValidException(MissingServletRequestParameterException e) {
+        log.error("handleArgumentNotValidException() in GlobalExceptionHandler throw MethodArgumentNotValidException : {}"
+                , e.getMessage());
+        ExceptionResponse response = new ExceptionResponse(new CommonException(ErrorCode.MISSING_REQUEST_PARAMETER).getErrorCode());
+        return new ResponseEntity<>(response, response.getHttpStatus());
+    }
 
-    // 우선 이것부터 성공 시켜보자
+    // 사용자 정의 예외 처리
     @ExceptionHandler(value = {CommonException.class})
     public ResponseEntity<ExceptionResponse> handleCustomException(CommonException ex) {
         log.error("handleCustomException() in GlobalExceptionHandler: {}", ex.getMessage());
         ExceptionResponse response = new ExceptionResponse(ex.getErrorCode());
 
         return new ResponseEntity<>(response, response.getHttpStatus());
-//        return ResponseEntity.(ex);
     }
 
-    //필기. 서버 내부 오류시 작동
+    // 서버 내부 오류시 작동
     @ExceptionHandler(value = {Exception.class})
     public ResponseEntity<ExceptionResponse> handleServerException(Exception e) {
         log.info("occurred exception in handleServerError = {}", e.getMessage());
         e.printStackTrace();
         ExceptionResponse response = new ExceptionResponse(new CommonException(ErrorCode.INTERNAL_SERVER_ERROR).getErrorCode());
         return new ResponseEntity<>(response, response.getHttpStatus());
-//        return ResponseEntity.fail(new CommonException(ErrorCode.INTERNAL_SERVER_ERROR));
     }
 
     // 데이터 무결성 위반 예외 처리기 추가
@@ -65,6 +66,5 @@ public class GlobalExceptionHandler {
         log.error("handleDataIntegrityViolationException() in GlobalExceptionHandler : {}", e.getMessage());
         ExceptionResponse response = new ExceptionResponse(new CommonException(ErrorCode.DATA_INTEGRITY_VIOLATION).getErrorCode());
         return new ResponseEntity<>(response, response.getHttpStatus());
-//        return ResponseEntity.fail(new CommonException(ErrorCode.DATA_INTEGRITY_VIOLATION));
     }
 }
