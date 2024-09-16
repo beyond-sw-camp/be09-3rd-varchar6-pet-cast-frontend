@@ -34,19 +34,15 @@ public class GatherController {
     @PostMapping("")
     private ResponseEntity<ResponseMessage> createGather(@RequestHeader(value = "X-Member-Id", required = false) String id,
                                                          @RequestBody RequestCreateGatherDTO requestCreateGatherDTO) {
-        String message = "모임 생성 성공!";
         requestCreateGatherDTO.setUserId(Integer.parseInt(id));
-        try {
-            gatherService.createGather(requestCreateGatherDTO);
-        } catch (Exception e) {
-            message = "모임 생성 실패!";
-            throw new RuntimeException(message);
-        }
+
+        gatherService.createGather(requestCreateGatherDTO);
+
 
         return ResponseEntity.ok(
                 ResponseMessage.builder()
                         .httpStatus(HttpStatus.CREATED.value())
-                        .message(message)
+                        .message("모임 생성 성공!")
                         .build()
         );
     }
@@ -58,12 +54,13 @@ public class GatherController {
         String message = "모임 수정 실패!";
         requestUpdateGatherDTO.setUserId(Integer.parseInt(id));
         ResponseUpdateGatherInfoDTO responseUpdateGatherInfoDTO;
-        try {
-            responseUpdateGatherInfoDTO = gatherService.updateGatherInfo(requestUpdateGatherDTO);
-        } catch (Exception e) {
-            message = "모임 수정 실패!";
-            throw new RuntimeException(message);
-        }
+        responseUpdateGatherInfoDTO = gatherService.updateGatherInfo(requestUpdateGatherDTO);
+//        try {
+//            responseUpdateGatherInfoDTO = gatherService.updateGatherInfo(requestUpdateGatherDTO);
+//        } catch (Exception e) {
+//            message = "모임 수정 실패!";
+//            throw new RuntimeException(message);
+//        }
         return ResponseEntity.ok(
                 ResponseMessage.builder()
                         .httpStatus(HttpStatus.OK.value())

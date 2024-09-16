@@ -1,5 +1,7 @@
 package com.varchar6.petcast.serviceothers.domain.gather.command.domain.service;
 
+import com.varchar6.petcast.serviceothers.common.exception.CommonException;
+import com.varchar6.petcast.serviceothers.common.exception.ErrorCode;
 import com.varchar6.petcast.serviceothers.domain.gather.command.application.dto.request.*;
 import com.varchar6.petcast.serviceothers.domain.gather.command.application.dto.response.*;
 import com.varchar6.petcast.serviceothers.domain.gather.command.application.service.GatherService;
@@ -63,18 +65,19 @@ public class GatherServiceImpl implements GatherService {
         try {
             newGather = gatherRepository.save(gather);
         } catch (Exception e) {
-            throw new RuntimeException("[Service] 새로운 모임 insert 실패!!", e);
+            throw new CommonException(ErrorCode.WRONG_ENTRY_POINT);
+//            throw new RuntimeException("[Service] 새로운 모임 insert 실패!!", e);
         }
-
+        GatherMember newGatherMember = GatherMember.builder()
+                .role(GatherRole.LEADER)
+                .gatherId(newGather.getId())
+                .memberId(requestCreateGatherDTO.getUserId())
+                .build();
         try {
-            GatherMember newGatherMember = GatherMember.builder()
-                    .role(GatherRole.LEADER)
-                    .gatherId(newGather.getId())
-                    .memberId(requestCreateGatherDTO.getUserId())
-                    .build();
             gatherMemberRepository.save(newGatherMember);
         } catch (Exception e) {
-            throw new RuntimeException("[Service] 모임&회원 중간 테이블 insert 실패!!", e);
+            throw new CommonException(ErrorCode.WRONG_ENTRY_POINT);
+//            throw new RuntimeException("[Service] 모임&회원 중간 테이블 insert 실패!!", e);
         }
 
     }
@@ -89,12 +92,16 @@ public class GatherServiceImpl implements GatherService {
         params.put("selectValue", "role");
         params.put("gather_id", requestUpdateGatherDTO.getGatherId());
         params.put("member_id", requestUpdateGatherDTO.getUserId());
-        String memberRole;
-        try {
-            memberRole = (String) gatherService.findMemberRoleById(params);
-        } catch (Exception e) {
-            throw new RuntimeException("[Service] 멤버 역할 찾기 실패");
+        String memberRole = null;
+//        memberRole = (String) gatherService.findMemberRoleById(params);
+        if(memberRole == null) {
+            throw new CommonException(ErrorCode.NOT_FOUND_MEMBER_ROLE);
         }
+//        try {
+//            memberRole = (String) gatherService.findMemberRoleById(params);
+//        } catch (Exception e) {
+//            throw new RuntimeException("[Service] 멤버 역할 찾기 실패");
+//        }
 
         // 모임 수정
         Gather updateGather = null;
@@ -185,14 +192,11 @@ public class GatherServiceImpl implements GatherService {
             // 3. 문자 전송~
 
 
-            try {
-                responseSendInvitaionDTO = ResponseSendInvitaionDTO.builder()
-                        .userId(requestInvitationDTO.getUserId())
-                        .gatherId(requestInvitationDTO.getGatherId())
-                        .build();
-            } catch (Exception e) {
-                throw new RuntimeException("[Service] return 만들다 실패", e);
-            }
+            responseSendInvitaionDTO = ResponseSendInvitaionDTO.builder()
+                    .userId(requestInvitationDTO.getUserId())
+                    .gatherId(requestInvitationDTO.getGatherId())
+                    .build();
+
         }
         return responseSendInvitaionDTO;
     }
