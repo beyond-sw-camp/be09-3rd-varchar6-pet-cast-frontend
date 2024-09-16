@@ -67,7 +67,6 @@ public class GatherServiceImpl implements GatherService {
 
     @Override
     public Object findMemberRoleById(Map<String, Object> params) {
-
         if("id".equals(params.get("selectValue"))){
             return gatherMapper.selectMemberRoleById(params);
         }else {

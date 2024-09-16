@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Slf4j
 @Service(value = "commandGatherServiceImpl")
@@ -61,25 +62,17 @@ public class GatherServiceImpl implements GatherService {
                 .updatedAt(currentDate)
                 .active(true)
                 .build();
-        Gather newGather = null;
-        try {
-            newGather = gatherRepository.save(gather);
-        } catch (Exception e) {
-            throw new CommonException(ErrorCode.WRONG_ENTRY_POINT);
-//            throw new RuntimeException("[Service] 새로운 모임 insert 실패!!", e);
-        }
+
+        Gather newGather = gatherRepository.save(gather);
+
+        // 새로 생성한 모임에 리더 지정
         GatherMember newGatherMember = GatherMember.builder()
                 .role(GatherRole.LEADER)
                 .gatherId(newGather.getId())
                 .memberId(requestCreateGatherDTO.getUserId())
                 .build();
-        try {
-            gatherMemberRepository.save(newGatherMember);
-        } catch (Exception e) {
-            throw new CommonException(ErrorCode.WRONG_ENTRY_POINT);
-//            throw new RuntimeException("[Service] 모임&회원 중간 테이블 insert 실패!!", e);
-        }
 
+        GatherMember gatherMember = gatherMemberRepository.save(newGatherMember);
     }
 
     @Override
@@ -92,39 +85,39 @@ public class GatherServiceImpl implements GatherService {
         params.put("selectValue", "role");
         params.put("gather_id", requestUpdateGatherDTO.getGatherId());
         params.put("member_id", requestUpdateGatherDTO.getUserId());
-        String memberRole = null;
-//        memberRole = (String) gatherService.findMemberRoleById(params);
-        if(memberRole == null) {
+        String memberRole = (String) gatherService.findMemberRoleById(params);
+        if ("".equals(memberRole)) {
             throw new CommonException(ErrorCode.NOT_FOUND_MEMBER_ROLE);
         }
-//        try {
-//            memberRole = (String) gatherService.findMemberRoleById(params);
-//        } catch (Exception e) {
-//            throw new RuntimeException("[Service] 멤버 역할 찾기 실패");
-//        }
+        log.warn(memberRole);
 
-        // 모임 수정
-        Gather updateGather = null;
-        ResponseUpdateGatherInfoDTO responseUpdateGatherInfoDTO = null;
-        if (GatherRole.LEADER.toString().equals(memberRole)) {
-            try {
-                updateGather = gatherRepository.findById(requestUpdateGatherDTO.getGatherId()).orElseThrow();
-            } catch (Exception e) {
-                throw new RuntimeException("[Service] 모임 table 수정 실패!");
-            }
-
-            updateGather.setName(requestUpdateGatherDTO.getName());
-            updateGather.setContent(requestUpdateGatherDTO.getContent());
-            updateGather.setNumber(requestUpdateGatherDTO.getNumber());
-            updateGather.setUrl(requestUpdateGatherDTO.getUrl());
-            updateGather.setUpdatedAt(currentDate);
-            try {
-                responseUpdateGatherInfoDTO = modelMapper.map(updateGather, ResponseUpdateGatherInfoDTO.class);
-            } catch (Exception e) {
-                throw new RuntimeException("[Service] 모임 정보 수정 중에 에러 발생!!", e);
-            }
+        // 해당 회원이 리더인지 확인
+        if (!memberRole.equals(GatherRole.LEADER.toString())) {
+            throw new CommonException(ErrorCode.NOT_LEADER);
         }
-        return responseUpdateGatherInfoDTO;
+
+        // 회원이 속한 모임 찾기
+        Optional<Gather> gather = gatherRepository.findById(requestUpdateGatherDTO.getGatherId());
+        if(gather.isEmpty()){
+            throw new CommonException(ErrorCode.NOT_FOUND_GATHER);
+        }
+
+        // 모임 정보 수정하기
+        Gather updateGather = gather.get();
+        updateGather.setName(requestUpdateGatherDTO.getName());
+        updateGather.setContent(requestUpdateGatherDTO.getContent());
+        updateGather.setNumber(requestUpdateGatherDTO.getNumber());
+        updateGather.setUrl(requestUpdateGatherDTO.getUrl());
+        updateGather.setUpdatedAt(currentDate);
+        gatherRepository.save(updateGather);
+
+        return ResponseUpdateGatherInfoDTO.builder()
+                .name(updateGather.getName())
+                .content(updateGather.getContent())
+                .number(updateGather.getNumber())
+                .url(updateGather.getUrl())
+                .active(updateGather.isActive())
+                .build();
     }
 
     @Override
@@ -132,32 +125,39 @@ public class GatherServiceImpl implements GatherService {
     public ResponseDeactiveGatherDTO deactiveGather(RequestDeactiveGatherDTO requestDeactiveGatherDTO) {
         String currentDate = getNow();
 
-        // Leader인지 확인
+        /* Leader인지 확인 */
+        // 멤버 역할 꺼내오기
         Map<String, Object> params = new HashMap<>();
         params.put("selectValue", "role");
         params.put("gather_id", requestDeactiveGatherDTO.getGatherId());
         params.put("member_id", requestDeactiveGatherDTO.getUserId());
+
         String memberRole = (String) gatherService.findMemberRoleById(params);
-
-        ResponseDeactiveGatherDTO responseDeactiveGatherDTO = null;
-        Gather currentGather = null;
-        if (GatherRole.LEADER.toString().equals(memberRole)) {
-            try {
-                currentGather = gatherRepository.findById(requestDeactiveGatherDTO.getGatherId()).orElseThrow();
-            } catch (Exception e) {
-                throw new RuntimeException("[Service] 현재 모임 찾기 실패");
-            }
-            currentGather.setActive(false);
-            currentGather.setUpdatedAt(currentDate);
-
-            try {
-                responseDeactiveGatherDTO = modelMapper.map(currentGather, ResponseDeactiveGatherDTO.class);
-            } catch (Exception e) {
-                throw new RuntimeException("[Service] 비활성화 업데이트 중 에러 발생!!", e);
-            }
-
+        if ("".equals(memberRole)) {
+            throw new CommonException(ErrorCode.NOT_FOUND_MEMBER_ROLE);
         }
-        return responseDeactiveGatherDTO;
+
+        // 해당 회원이 리더인지 확인
+        if (!GatherRole.LEADER.toString().equals(memberRole)) {
+            throw new CommonException(ErrorCode.NOT_LEADER);
+        }
+
+        // 회원이 속한 모임 찾기
+        Optional<Gather> gather = gatherRepository.findById(requestDeactiveGatherDTO.getGatherId());
+        if(gather.isEmpty()){
+            throw new CommonException(ErrorCode.NOT_FOUND_GATHER);
+        }
+
+        // 비활성화로 수정
+        Gather updateGather = gather.get();
+        updateGather.setActive(false);
+        updateGather.setUpdatedAt(currentDate);
+        gatherRepository.save(updateGather);
+
+        return ResponseDeactiveGatherDTO.builder()
+                .userId(requestDeactiveGatherDTO.getUserId())
+                .gatherId(updateGather.getId())
+                .build();
     }
 
     @Override
@@ -170,118 +170,107 @@ public class GatherServiceImpl implements GatherService {
         params.put("gather_id", requestInvitationDTO.getGatherId());
         params.put("member_id", requestInvitationDTO.getUserId());
         String memberRole = (String) gatherService.findMemberRoleById(params);
-
-        // 2. insert
-        ResponseSendInvitaionDTO responseSendInvitaionDTO = null;
-        if (GatherRole.LEADER.toString().equals(memberRole)) {
-            String currentDate = getNow();
-
-            // 2. 초대장 테이블에 insert
-            Invitation invitation = Invitation.builder()
-                    .active(true)
-                    .createdAt(currentDate)
-                    .userId(requestInvitationDTO.getUserId())
-                    .gatherId(responseSendInvitaionDTO.getGatherId())
-                    .build();
-            try {
-                invitationRepository.save(invitation);
-            } catch (Exception e) {
-                throw new RuntimeException("[Service] 초대장 정보 저장 중에 에러 발생!!", e);
-            }
-
-            // 3. 문자 전송~
-
-
-            responseSendInvitaionDTO = ResponseSendInvitaionDTO.builder()
-                    .userId(requestInvitationDTO.getUserId())
-                    .gatherId(requestInvitationDTO.getGatherId())
-                    .build();
-
+        if("".equals(memberRole)) {
+            throw new CommonException(ErrorCode.NOT_FOUND_MEMBER_ROLE);
         }
-        return responseSendInvitaionDTO;
+
+        // 멤버 역할이 리더인지 확인
+        if (!GatherRole.LEADER.toString().equals(memberRole)) {
+            throw new CommonException(ErrorCode.NOT_LEADER);
+        }
+
+        // 초대장 만들고 DB에 저장
+        String currentDate = getNow();
+        Invitation invitation = Invitation.builder()
+                .active(true)
+                .createdAt(currentDate)
+                .userId(requestInvitationDTO.getUserId())
+                .gatherId(requestInvitationDTO.getGatherId())
+                .build();
+        invitationRepository.save(invitation);
+
+        /*
+        * 초대장 전송~~~~~~?
+        * */
+
+        return ResponseSendInvitaionDTO.builder()
+                .userId(requestInvitationDTO.getUserId())
+                .gatherId(requestInvitationDTO.getGatherId())
+                .build();
     }
 
     @Override
     @Transactional
     public ResponseInvitationDTO acceptInvatation(RequestInvitationDTO requestInvitationDTO) {
-        Invitation invitation = invitationRepository.findById(requestInvitationDTO
-                .getInvitationId()).orElseThrow(() -> new NoSuchElementException("Invitation not found with id: " + requestInvitationDTO.getInvitationId()));
 
-        invitation.setActive(true);
-        ResponseInvitationDTO responseInvitationDTO = null;
-        try {
-            responseInvitationDTO = modelMapper.map(invitation, ResponseInvitationDTO.class);
-        } catch (Exception e) {
-            throw new RuntimeException("[Service] 수락하다 실패!", e);
+        // 초대장 찾기
+        Optional<Invitation> invitation = invitationRepository.findById(requestInvitationDTO.getInvitationId());
+        if(invitation.isEmpty()){
+            throw new CommonException(ErrorCode.NOT_FOUND_INVITATION);
         }
 
-        return responseInvitationDTO;
+        // 초대장 수락
+        Invitation acceptInvatation = invitation.get();
+        acceptInvatation.setActive(true);
+        invitationRepository.save(acceptInvatation);
+
+        return ResponseInvitationDTO.builder()
+                .userId(requestInvitationDTO.getUserId())
+                .invitationId(acceptInvatation.getId())
+                .build();
     }
 
     @Override
     @Transactional
     public ResponseInvitationDTO refuseInvatation(RequestInvitationDTO requestInvitationDTO) {
-        Invitation invitation = invitationRepository.findById(requestInvitationDTO
-                .getInvitationId()).orElseThrow(() -> new NoSuchElementException("Invitation not found with id: " + requestInvitationDTO.getInvitationId()));
-
-        invitation.setActive(false);
-        ResponseInvitationDTO responseInvitationDTO = null;
-        try {
-            responseInvitationDTO = modelMapper.map(invitation, ResponseInvitationDTO.class);
-        } catch (Exception e) {
-            throw new RuntimeException("[Service] 거절하다 실패!", e);
+        // 초대장 찾기
+        Optional<Invitation> invitation = invitationRepository.findById(requestInvitationDTO.getInvitationId());
+        if(invitation.isEmpty()){
+            throw new CommonException(ErrorCode.NOT_FOUND_INVITATION);
         }
 
-        return responseInvitationDTO;
+        // 초대장 거절하기
+        Invitation refuseInvatation = invitation.get();
+        refuseInvatation.setActive(false);
+        invitationRepository.save(refuseInvatation);
+
+        return ResponseInvitationDTO.builder()
+                .userId(requestInvitationDTO.getUserId())
+                .invitationId(refuseInvatation.getId())
+                .build();
     }
 
     @Override
     @Transactional
     public void deleteMember(RequestDeleteMemberDTO requestDeleteMemberDTO) {
 
-        /* 궁금. 모임의 LEADER인지 확인 */
+        // LEADER인지 확인
         Map<String, Object> paramsR = new HashMap<>();
         paramsR.put("selectValue", "role");
         paramsR.put("gather_id", requestDeleteMemberDTO.getGatherId());
         paramsR.put("member_id", requestDeleteMemberDTO.getUserId());
-        String memberRole = null;
-        try {
-            memberRole = (String) gatherService.findMemberRoleById(paramsR);
-        } catch (Exception e) {
-            throw new RuntimeException("[Service] 회원님의 역할을 찾을 수 없습니다.", e);
+        String memberRole = (String) gatherService.findMemberRoleById(paramsR);
+        if("".equals(memberRole)) {
+            throw new CommonException(ErrorCode.NOT_FOUND_MEMBER_ROLE);
         }
 
+        // 리더인지 확인
+        if (!GatherRole.LEADER.toString().equals(memberRole)) {
+            throw new CommonException(ErrorCode.NOT_LEADER);
+        }
+
+        // 모임 구성원 아이디 찾기(pk)
         Map<String, Object> paramsI = new HashMap<>();
         paramsI.put("selectValue", "id");
         paramsI.put("gather_id", requestDeleteMemberDTO.getGatherId());
         paramsI.put("member_id", requestDeleteMemberDTO.getMemberId());
-        int id;
-        try {
-            id = (Integer) gatherService.findMemberRoleById(paramsI);
-        } catch (Exception e) {
-            throw new RuntimeException("[Service] 해당 멤버를 찾을 수 없습니다.", e);
+        int id = (Integer) gatherService.findMemberRoleById(paramsI);
+        if(id == 0){
+            throw new CommonException(ErrorCode.NOT_FOUND_GATHER_MEMBER);
         }
 
-        GatherMember foundGather;
-        try {
-            foundGather = gatherMemberRepository.findById(id).orElseThrow();
-        } catch (Exception e) {
-            throw new RuntimeException("[Service] 해당 모임을 찾을 수 없습니다.", e);
-        }
-
-        if (GatherRole.LEADER.toString().equals(memberRole)) {
-            // 삭제
-            try {
-                gatherMemberRepository.deleteById(id);
-            } catch (Exception e) {
-                throw new RuntimeException("[Service] 모임 멤버 삭제하다 실패!");
-            }
-            try {
-                modelMapper.map(foundGather, GatherMember.class);
-            } catch (Exception e) {
-                throw new RuntimeException("[Service] 매핑 실패!");
-            }
-        }
+        // 삭제
+        gatherMemberRepository.deleteById(id);
     }
 
     private static String getNow() {

@@ -35,9 +35,7 @@ public class GatherController {
     private ResponseEntity<ResponseMessage> createGather(@RequestHeader(value = "X-Member-Id", required = false) String id,
                                                          @RequestBody RequestCreateGatherDTO requestCreateGatherDTO) {
         requestCreateGatherDTO.setUserId(Integer.parseInt(id));
-
         gatherService.createGather(requestCreateGatherDTO);
-
 
         return ResponseEntity.ok(
                 ResponseMessage.builder()
@@ -51,20 +49,13 @@ public class GatherController {
     public ResponseEntity<ResponseMessage> updateGatherInfo(@RequestBody RequestUpdateGatherInfoDTO requestUpdateGatherDTO
             , @RequestHeader("X-Member-Id") String id
     ) {
-        String message = "모임 수정 실패!";
         requestUpdateGatherDTO.setUserId(Integer.parseInt(id));
-        ResponseUpdateGatherInfoDTO responseUpdateGatherInfoDTO;
-        responseUpdateGatherInfoDTO = gatherService.updateGatherInfo(requestUpdateGatherDTO);
-//        try {
-//            responseUpdateGatherInfoDTO = gatherService.updateGatherInfo(requestUpdateGatherDTO);
-//        } catch (Exception e) {
-//            message = "모임 수정 실패!";
-//            throw new RuntimeException(message);
-//        }
+        ResponseUpdateGatherInfoDTO responseUpdateGatherInfoDTO = gatherService.updateGatherInfo(requestUpdateGatherDTO);
+
         return ResponseEntity.ok(
                 ResponseMessage.builder()
                         .httpStatus(HttpStatus.OK.value())
-                        .message(message)
+                        .message("모임 수정 성공!")
                         .result(responseUpdateGatherInfoDTO)
                         .build());
     }
@@ -73,21 +64,14 @@ public class GatherController {
     public ResponseEntity<ResponseMessage> deactiveGather(@RequestBody RequestDeactiveGatherDTO requestDeactiveGatherDTO
             , @RequestHeader("X-Member-Id") String id
     ) {
-        String message = "모임 비활성화 성공!";
         requestDeactiveGatherDTO.setUserId(Integer.parseInt(id));
+        ResponseDeactiveGatherDTO responseDeactiveGatherDTO = gatherService.deactiveGather(requestDeactiveGatherDTO);
 
-        ResponseDeactiveGatherDTO responseDeactiveGatherDTO;
-        try {
-            responseDeactiveGatherDTO = gatherService.deactiveGather(requestDeactiveGatherDTO);
-        } catch (Exception e) {
-            message = "모임 비활성화 실패!";
-            throw new RuntimeException(message, e);
-        }
 
         return ResponseEntity.ok(
                 ResponseMessage.builder()
                         .httpStatus(HttpStatus.OK.value())
-                        .message(message)
+                        .message("모임 비활성화 성공!")
                         .result(responseDeactiveGatherDTO)
                         .build());
     }
@@ -95,22 +79,13 @@ public class GatherController {
     @PostMapping("/invitation")
     public ResponseEntity<ResponseMessage> sendInvitation(@RequestBody RequestSendInvitationDTO requestSendInvitationDTO,
                                                           @RequestHeader("X-Member-Id") String id) {
-
-        String message = "초대장 전송 성공!";
         requestSendInvitationDTO.setUserId(Integer.parseInt(id));
-
-        ResponseSendInvitaionDTO responseSendInvitaionDTO;
-        try {
-            responseSendInvitaionDTO = gatherService.sendInvitation(requestSendInvitationDTO);
-        } catch (Exception e) {
-            message = "초대장 전송 실패~";
-            throw new RuntimeException(message, e);
-        }
+        ResponseSendInvitaionDTO responseSendInvitaionDTO = gatherService.sendInvitation(requestSendInvitationDTO);
 
         return ResponseEntity.ok(
                 ResponseMessage.builder()
                         .httpStatus(HttpStatus.OK.value())
-                        .message(message)
+                        .message("초대장 전송 성공!")
                         .result(responseSendInvitaionDTO)
                         .build()
         );
@@ -119,19 +94,13 @@ public class GatherController {
     @PutMapping("/invitation/accept")
     public ResponseEntity<ResponseMessage> acceptInvitation(@RequestBody RequestInvitationDTO requestInvitationDTO,
                                                             @RequestHeader("X-Member-Id") String id) {
-        String message = "수락 성공!";
         requestInvitationDTO.setUserId(Integer.parseInt(id));
-        ResponseInvitationDTO responseInvitationDTO;
-        try {
-            responseInvitationDTO = gatherService.acceptInvatation(requestInvitationDTO);
-        } catch (Exception e) {
-            message = "수락 실패!";
-            throw new RuntimeException(message, e);
-        }
+        ResponseInvitationDTO responseInvitationDTO = gatherService.acceptInvatation(requestInvitationDTO);
+
         return ResponseEntity.ok(
                 ResponseMessage.builder()
                         .httpStatus(HttpStatus.OK.value())
-                        .message(message)
+                        .message("수락 성공!")
                         .result(responseInvitationDTO)
                         .build()
         );
@@ -140,21 +109,13 @@ public class GatherController {
     @PutMapping("/invitation/refuse")
     public ResponseEntity<ResponseMessage> refuseInvitation(@RequestBody RequestInvitationDTO requestInvitationDTO,
                                                             @RequestHeader("X-Member-Id") String id) {
-
-        String message = "거절 성공!";
         requestInvitationDTO.setUserId(Integer.parseInt(id));
-        ResponseInvitationDTO responseInvitationDTO;
-        try {
-            responseInvitationDTO = gatherService.refuseInvatation(requestInvitationDTO);
-        } catch (Exception e) {
-            message = "거절 실패!";
-            throw new RuntimeException(message, e);
-        }
+        ResponseInvitationDTO responseInvitationDTO = gatherService.refuseInvatation(requestInvitationDTO);
 
         return ResponseEntity.ok(
                 ResponseMessage.builder()
                         .httpStatus(HttpStatus.OK.value())
-                        .message(message)
+                        .message("거절 성공!")
                         .result(responseInvitationDTO)
                         .build()
         );
@@ -163,18 +124,12 @@ public class GatherController {
     @DeleteMapping("/member")
     public ResponseEntity<ResponseMessage> deleteMember(@RequestBody RequestDeleteMemberDTO requestDeleteMemberDTO,
                                                         @RequestHeader("X-Member-Id") String id) {
-        String message = "삭제 성공!";
         requestDeleteMemberDTO.setUserId(Integer.parseInt(id));
-        try {
-            gatherService.deleteMember(requestDeleteMemberDTO);
-        } catch (Exception e) {
-            message = "삭제 실패!";
-            throw new RuntimeException(message, e);
-        }
+        gatherService.deleteMember(requestDeleteMemberDTO);
 
         return ResponseEntity.ok(
                 ResponseMessage.builder()
-                        .message(message)
+                        .message("삭제 성공!")
                         .build()
         );
     }
