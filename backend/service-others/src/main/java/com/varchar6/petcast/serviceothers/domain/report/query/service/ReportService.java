@@ -1,11 +1,14 @@
 package com.varchar6.petcast.serviceothers.domain.report.query.service;
 
 import com.varchar6.petcast.serviceothers.domain.report.query.dto.ReportDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ReportService {
-    List<ReportDTO> getAllReports(String memberId) throws IllegalAccessException;
+    Page<Map<String, Object>> getAllReports(String memberId, Pageable pageable) throws IllegalAccessException;
 
     List<ReportDTO> getReportByReporterId(Integer reporterId, String memberId) throws IllegalAccessException;
 

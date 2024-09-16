@@ -5,11 +5,15 @@ import com.varchar6.petcast.serviceothers.domain.report.query.dto.ReportDTO;
 import com.varchar6.petcast.serviceothers.domain.report.query.service.ReportService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController(value = "queryReportController")
@@ -24,9 +28,9 @@ public class ReportController {
     }
 
     @GetMapping("/post")
-    private ResponseEntity<ResponseMessage> getAllReports(@RequestHeader("X-Member-Id") String memberId) throws IllegalAccessException {
-        List<ReportDTO> responseReports = reportService.getAllReports(memberId);
-
+    private ResponseEntity<ResponseMessage> getAllReports(@RequestHeader("X-Member-Id") String memberId, @PageableDefault(size = 20) Pageable pageable) throws IllegalAccessException {
+//        List<ReportDTO> responseReports = reportService.getAllReports(memberId);
+        Page<Map<String, Object>> responseReports = reportService.getAllReports(memberId, pageable);
         return ResponseEntity
                 .ok()
                 .body(

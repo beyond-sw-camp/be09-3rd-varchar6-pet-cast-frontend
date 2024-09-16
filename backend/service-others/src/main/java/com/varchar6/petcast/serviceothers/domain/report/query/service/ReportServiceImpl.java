@@ -1,10 +1,14 @@
 package com.varchar6.petcast.serviceothers.domain.report.query.service;
 
+import com.varchar6.petcast.serviceothers.common.util.RequestList;
 import com.varchar6.petcast.serviceothers.domain.report.query.dto.ReportDTO;
 import com.varchar6.petcast.serviceothers.domain.report.query.mapper.ReportMapper;
 import com.varchar6.petcast.serviceothers.infrastructure.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,14 +29,22 @@ public class ReportServiceImpl implements ReportService{
 
     @Override
     @Transactional
-    public List<ReportDTO> getAllReports(String memberId) throws IllegalAccessException {
+    public Page<Map<String, Object>> getAllReports(String memberId, Pageable pageable) throws IllegalAccessException {
         boolean flag = false;
         Map<String, String> map = new HashMap<>();
         map.put("memberId", memberId);
 
         checkRole(flag, map);
 
-        return reportMapper.selectAllReports();
+        RequestList<?> requestList = RequestList.builder()
+//                .data()
+                .pageable(pageable)
+                .build();
+
+        List<Map<String, Object>> content = reportMapper.selectAllReports(requestList);
+        int total = reportMapper.selectAllReportCount();
+
+        return new PageImpl<>(content, pageable, total);
     }
 
     @Override
