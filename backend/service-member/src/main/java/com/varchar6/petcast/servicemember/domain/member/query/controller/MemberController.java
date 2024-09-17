@@ -44,6 +44,7 @@ public class MemberController {
                 );
     }
 
+    // 아이디 중복 체크
     @PostMapping("/id-check")
     public ResponseEntity<ResponseMessage> checkDoubleByLoginId(@RequestBody MemberVO memberVO){
 
@@ -61,6 +62,7 @@ public class MemberController {
             );
     }
 
+    // 닉네임 중복 체크
     @PostMapping("/nickname-check")
     public ResponseEntity<ResponseMessage> checkDoubleByNickName(@RequestBody MemberVO memberVO){
 
@@ -78,6 +80,7 @@ public class MemberController {
             );
     }
 
+    // 로그인 아이디 찾기
     @PostMapping("/search-loginId")
     public ResponseEntity<ResponseMessage> searchLoginIdByNameAndPhone(@RequestBody MemberVO memberVO){
 
@@ -96,6 +99,7 @@ public class MemberController {
             );
     }
 
+    // 비밀번호 수정 여부 확인
     @GetMapping("/password-change-possible")
     public ResponseEntity<ResponseMessage> checkIdAndPhone(@RequestAttribute("memberLoginId") String loginId,
                                                            @RequestAttribute("memberPhone") String phone) {
@@ -122,6 +126,7 @@ public class MemberController {
                 );
     }
 
+    // 비밀번호 체크
     @PostMapping("/password-check")
     public ResponseEntity<ResponseMessage> checkPasswordByIdAndPassword(@RequestBody MemberVO memberVO,
         @RequestAttribute("memberId") int id){
@@ -142,6 +147,7 @@ public class MemberController {
             );
     }
 
+    // 회원 권한 체크
     @GetMapping("/search-member-role")
     public ResponseEntity<ResponseMessage> searchMemberRole(@RequestAttribute("memberId") int id){
 

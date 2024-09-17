@@ -1,16 +1,16 @@
 package com.varchar6.petcast.servicemember.domain.member.command.application.dto.request;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class MemberUpdateRequestDTO {
+public class MemberReqDTO {
 
-//    private int id;
-//    private String password;
     private int id;
     private String loginId;
     private String password;
@@ -18,9 +18,5 @@ public class MemberUpdateRequestDTO {
     private String phone;
     private String nickname;
     private String image;
-    private String createdAt;
-    private String updatedAt;
-    private boolean active;
     private String introduction;
-
 }

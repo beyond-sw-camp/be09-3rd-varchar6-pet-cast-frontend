@@ -1,18 +1,13 @@
 package com.varchar6.petcast.servicemember.domain.member.command.application.controller;
 
 import com.varchar6.petcast.servicemember.common.response.ResponseMessage;
-import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.MemberRequestDTO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.MemberUpdateRequestDTO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.ProfileRequestDTO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.ProfileUpdateRequestDTO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.dto.response.MemberResponseDTO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.dto.response.MemberUpdateResponseDTO;
+import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.*;
+import com.varchar6.petcast.servicemember.domain.member.command.application.dto.response.*;
 import com.varchar6.petcast.servicemember.domain.member.command.application.service.MemberService;
-import com.varchar6.petcast.servicemember.domain.member.command.application.vo.request.MemberUpdateRequestVO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.vo.request.ProfileRegistRequestVO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.vo.request.ProfileUpdateRequestVO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.vo.request.RequestRegistUserVO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.vo.response.MemberUpdateResponseVO;
+import com.varchar6.petcast.servicemember.domain.member.command.application.vo.request.*;
+import com.varchar6.petcast.servicemember.domain.member.command.application.vo.response.MemberUpdateStatusRespVO;
+import com.varchar6.petcast.servicemember.domain.member.command.application.vo.response.ProfileRegistRespVO;
+import com.varchar6.petcast.servicemember.domain.member.command.application.vo.response.ProfileUpdateRespVO;
 import com.varchar6.petcast.servicemember.domain.member.command.application.vo.response.ResponseRegistUserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -20,9 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.awt.*;
-import java.util.List;
 
 @RestController(value = "commandMemberController")
 @RequestMapping("/api/v1/members")
@@ -75,85 +67,160 @@ public class MemberController {
                 );
     }
 
+    // 회원 상태 비활성화
     @PostMapping("/update-member-status")
-    public ResponseEntity<ResponseMessage> updateMemberStatus(@RequestBody MemberUpdateRequestVO updateStatus) {
+    public ResponseEntity<ResponseMessage> updateMemberStatus(@RequestHeader("X-Member-Id") int memberId){
 
-        MemberUpdateRequestDTO memberUpdateRequestDTO
-            = modelMapper.map(updateStatus, MemberUpdateRequestDTO.class);
+        MemberReqDTO memberReqDTO = new MemberReqDTO();
+        memberReqDTO.setId(memberId);
 
-        MemberUpdateResponseDTO memberUpdateResponseDTO = memberService.updateMemberStatus(memberUpdateRequestDTO);
+        MemberRespDTO memberRespDTO = memberService.updateStatus(memberReqDTO);
 
-        MemberUpdateResponseVO responseMember = modelMapper.map(memberUpdateResponseDTO, MemberUpdateResponseVO.class);
+        if(memberRespDTO.getResult() == 1) {
+
+            MemberUpdateStatusRespVO responseMember =  modelMapper.map(memberRespDTO,MemberUpdateStatusRespVO.class);
+
+            return ResponseEntity
+                    .ok()
+                    .body(ResponseMessage.builder()
+                            .httpStatus(HttpStatus.OK.value())
+                            .message(responseMember.getNickname() + "회원 비활성화 성공")
+                            .result(responseMember.isActive())
+                            .build());
+        }
 
         return ResponseEntity
-            .ok()
-            .body(ResponseMessage.builder()
-                .httpStatus(HttpStatus.OK.value())
-                .message("회원 비활성화 성공")
-                .result(responseMember)
-                .build());
+                .ok()
+                .body(ResponseMessage.builder()
+                        .httpStatus(HttpStatus.BAD_REQUEST.value())
+                        .message("해당 회원 비활성화 실패")
+                        .result(null)
+                        .build());
     }
 
 
+    // 회원 비밀번호 수정
     @PutMapping("/update-password")
-    public ResponseEntity<ResponseMessage> updateMemberPassword(@RequestBody MemberUpdateRequestVO updateMember,
-                                                                @RequestAttribute("memberId") int memberId) {
+    public ResponseEntity<ResponseMessage> updateMemberPassword(@RequestHeader("X-Member-Id") int memberId,
+                                                   @RequestBody MemberUpdatePwdReqVO updateMemberPassword) {
 
-        updateMember.setId(memberId);
+        MemberReqDTO memberReqDTO = modelMapper.map(updateMemberPassword,MemberReqDTO.class);
+        memberReqDTO.setId(memberId);
 
-        MemberUpdateRequestDTO memberUpdateRequestDTO = modelMapper.map(updateMember, MemberUpdateRequestDTO.class);
+        MemberRespDTO memberRespDTO = memberService.updatePassword(memberReqDTO);
 
-        MemberUpdateResponseDTO memberUpdateResponseDTO = memberService.updateMemberPwd(memberUpdateRequestDTO);
+        if(memberRespDTO.getResult() == 1) {
 
-        MemberUpdateResponseVO responseMember = modelMapper.map(memberUpdateResponseDTO, MemberUpdateResponseVO.class);
+            MemberUpdateStatusRespVO responseMember
+                    = modelMapper.map(memberRespDTO,MemberUpdateStatusRespVO.class);
 
+            return ResponseEntity
+                    .ok()
+                    .body(ResponseMessage.builder()
+                            .httpStatus(HttpStatus.OK.value())
+                            .message(responseMember.getNickname() + "님 암호 변경 성공하셨습니다")
+                            .result(null)
+                            .build());
+        }
         return ResponseEntity
                 .ok()
                 .body(ResponseMessage.builder()
-                        .httpStatus(HttpStatus.CREATED.value())
-                        .message("회원 암호 변경 성공")
-                        .result(responseMember)
+                        .httpStatus(HttpStatus.BAD_REQUEST.value())
+                        .message("암호 변경 실패하셨습니다.")
+                        .result(null)
                         .build());
     }
 
+    // 회원 프로필 등록
     @PostMapping("/regist-member-profile")
-    public ResponseEntity<ResponseMessage> registMemberProfile(@RequestBody ProfileRegistRequestVO newProfile,
-        @RequestHeader("X-Member-Id") String id) {
+    public ResponseEntity<ResponseMessage> registProfile(@RequestHeader("X-Member-Id") int memberId,
+                                                          @RequestBody ProfileRegistReqVO newProfile) {
 
-        int memberId = Integer.parseInt(id);
+        ProfileReqDTO profileReqDTO = modelMapper.map(newProfile,ProfileReqDTO.class);
+        profileReqDTO.setMemberId(memberId);
 
-        newProfile.setMemberId(memberId);
+        ProfileRespDTO profileRespDTO = memberService.registProfile(profileReqDTO);
 
-        ProfileRequestDTO profileRequestDTO = modelMapper.map(newProfile, ProfileRequestDTO.class);
+        if(profileRespDTO.getResult() == 1) {
 
-        Boolean answer = memberService.registMemberProfile(profileRequestDTO);
+            ProfileRegistRespVO profileRegistRespVO = modelMapper.map(profileRespDTO, ProfileRegistRespVO.class);
+
+            return ResponseEntity
+                    .ok()
+                    .body(ResponseMessage.builder()
+                            .httpStatus(HttpStatus.OK.value())
+                            .message(profileRegistRespVO.getNickname() + "님 프로필 생성 성공하셨습니다.")
+                            .result(null)
+                            .build());
+        }
 
         return ResponseEntity
                 .ok()
                 .body(ResponseMessage.builder()
-                        .httpStatus(HttpStatus.CREATED.value())
-                        .message("고객 프로필 생성 성공")
-                        .result(answer)
+                        .httpStatus(HttpStatus.BAD_REQUEST.value())
+                        .message("프로필 생성 실패하셨습니다.")
+                        .result(null)
                         .build());
     }
 
+    // 회원 프로필 업데이트
     @PutMapping("/update-member-profile")
-    public ResponseEntity<ResponseMessage> updateMemberProfile(@RequestBody ProfileUpdateRequestVO updateProfile,
-        @RequestHeader("X-Member-Id") String id) {
+    public ResponseEntity<ResponseMessage> updateProfile(@RequestHeader("X-Member-Id") int memberId,
+                                                         @RequestBody ProfileUpdateReqVO updateProfile) {
 
-        int memberId = Integer.parseInt(id);
-        updateProfile.setMemberId(memberId);
+        ProfileReqDTO profileReqDTO = modelMapper.map(updateProfile, ProfileReqDTO.class);
+        profileReqDTO.setMemberId(memberId);
 
-        ProfileUpdateRequestDTO profileUpdateRequestDTO = modelMapper.map(updateProfile, ProfileUpdateRequestDTO.class);
+        ProfileRespDTO profileRespDTO = memberService.updateProfile(profileReqDTO);
 
-        Boolean answer = memberService.updateMemberProfile(profileUpdateRequestDTO);
+        if (profileRespDTO.getResult() == 1) {
+
+            ProfileUpdateRespVO profileUpdateRespVO = modelMapper.map(profileRespDTO, ProfileUpdateRespVO.class);
+
+            return ResponseEntity
+                    .ok()
+                    .body(ResponseMessage.builder()
+                            .httpStatus(HttpStatus.OK.value())
+                            .message(profileUpdateRespVO.getNickname() + "님 프로필 수정 성공하셨습니다.")
+                            .result(null)
+                            .build());
+        }
 
         return ResponseEntity
                 .ok()
                 .body(ResponseMessage.builder()
-                        .httpStatus(HttpStatus.OK.value())
-                        .message("고객 프로필 수정 성공")
-                        .result(answer)
+                        .httpStatus(HttpStatus.BAD_REQUEST.value())
+                        .message("프로필 수정 실패하셨습니다.")
+                        .result(null)
+                        .build());
+    }
+
+    // 회원 프로필 반려견 정보 추가
+    @PostMapping("/regist-pet")
+    public ResponseEntity<ResponseMessage> registPet(@RequestHeader("X-Member-Id") int memberId,
+                                                     @RequestBody PetRegistReqVO newPet) {
+
+        PetReqDTO petReqDTO = modelMapper.map(newPet, PetReqDTO.class);
+        petReqDTO.setMemberId(memberId);
+
+        PetRespDTO petRespDTO = memberService.registPet(petReqDTO);
+
+        if (petRespDTO.getResult() == 1) {
+            return ResponseEntity
+                    .ok()
+                    .body(ResponseMessage.builder()
+                            .httpStatus(HttpStatus.OK.value())
+                            .message("반려견 정보 추가 성공하셨습니다.")
+                            .result(null)
+                            .build());
+        }
+
+        return ResponseEntity
+                .ok()
+                .body(ResponseMessage.builder()
+                        .httpStatus(HttpStatus.BAD_REQUEST.value())
+                        .message("반려견 정보 추가 실패하셨습니다.")
+                        .result(null)
                         .build());
     }
 }

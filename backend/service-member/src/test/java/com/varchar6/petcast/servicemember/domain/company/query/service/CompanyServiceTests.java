@@ -1,6 +1,6 @@
-package com.varchar6.petcast.domain.company.query.service;
+package com.varchar6.petcast.servicemember.domain.company.query.service;
 
-import com.varchar6.petcast.domain.company.query.dto.CategoryResponseDTO;
+import com.varchar6.petcast.servicemember.domain.company.query.dto.CategoryResponseDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,7 +15,4 @@ class CompanyServiceTests {
         CategoryResponseDTO categoryResponseDTO = companyService.getCategories("1");
         System.out.println(categoryResponseDTO);
     }
-
-    @Test
-    public void
 }
