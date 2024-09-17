@@ -106,12 +106,12 @@ class MemberServiceTests {
     @Test
     @Transactional
     public void 프로필_수정_확인() {
-        profileReqDTO.setMemberId(23);
+        profileReqDTO.setMemberId(24);
         profileReqDTO.setMemberIntroduction("안녕하세요 3살 된 루리 아빠입니다.");
         List<Pet> petInfo = new ArrayList<>();
 
         Pet pet1 = Pet.builder()
-                .name("루리")
+                .name("감자")
                 .age(3)
                 .gender(Gender.FEMALE)
                 .build();

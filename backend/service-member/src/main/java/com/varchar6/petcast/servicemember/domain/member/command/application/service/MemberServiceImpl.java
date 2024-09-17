@@ -147,9 +147,6 @@ public class MemberServiceImpl implements MemberService {
             member.setIntroduction(profileReqDTO.getMemberIntroduction());
             member.setUpdatedAt(LocalDateTime.now().format(FORMATTER));
             memberRepository.save(member);
-
-            log.info("배열 값: {} ", profileReqDTO.getPetInfo().toArray());
-
             for (int i = 0; i < profileReqDTO.getPetInfo().size(); i++) {
                  Pet petInfo = profileReqDTO.getPetInfo().get(i);
 
@@ -214,6 +211,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    @Transactional
     public PetRespDTO registPet(PetReqDTO petReqDTO) {
 
         Pet pet = Pet.builder()

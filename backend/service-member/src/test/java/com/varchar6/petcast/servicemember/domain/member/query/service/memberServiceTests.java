@@ -29,7 +29,6 @@ public class memberServiceTests {
     }
 
     @Test
-    @Transactional
     public void 아이디_중복_체크() {
         String inputLoginId = "user1111";
 
@@ -38,7 +37,6 @@ public class memberServiceTests {
     }
 
     @Test
-    @Transactional
     public void 닉네임_중복_체크() {
         String inputNickName = "사람";
 
@@ -47,7 +45,6 @@ public class memberServiceTests {
     }
 
     @Test
-    @Transactional
     public void 아이디_찾기(){
         String inputName = "김철수";
         String inputPhone = "010-1234-5678";
@@ -57,7 +54,6 @@ public class memberServiceTests {
     }
 
     @Test
-    @Transactional
     public void 아이디_전화번호_체크() {
         String inputLoginId = "user01";
         String inputPhone = "010-1234-5678";
@@ -67,7 +63,6 @@ public class memberServiceTests {
     }
 
     @Test
-    @Transactional
     public void 비밀_번호_체크() {
         int inputId =  1;
         String inputPw = "password01";
@@ -77,7 +72,6 @@ public class memberServiceTests {
     }
 
     @Test
-    @Transactional
     public void 멤버_권한_체크() {
         int inputId = 1;
 
