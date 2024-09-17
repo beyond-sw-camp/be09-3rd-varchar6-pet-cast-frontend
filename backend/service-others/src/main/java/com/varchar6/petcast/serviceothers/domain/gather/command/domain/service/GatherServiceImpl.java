@@ -13,7 +13,6 @@ import com.varchar6.petcast.serviceothers.domain.gather.command.domain.repositor
 import com.varchar6.petcast.serviceothers.domain.gather.command.domain.repository.GatherRepository;
 import com.varchar6.petcast.serviceothers.domain.gather.command.domain.repository.InvitationRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Slf4j
@@ -31,19 +29,16 @@ public class GatherServiceImpl implements GatherService {
     private final GatherRepository gatherRepository;
     private final GatherMemberRepository gatherMemberRepository;
     private final InvitationRepository invitationRepository;
-    private final ModelMapper modelMapper;
     private final com.varchar6.petcast.serviceothers.domain.gather.query.service.GatherService gatherService;
 
     @Autowired
     public GatherServiceImpl(GatherRepository gatherRepository,
                              GatherMemberRepository gatherMemberRepository,
                              InvitationRepository invitationRepository,
-                             ModelMapper modelMapper,
                              com.varchar6.petcast.serviceothers.domain.gather.query.service.GatherService gatherService) {
         this.gatherRepository = gatherRepository;
         this.gatherMemberRepository = gatherMemberRepository;
         this.invitationRepository = invitationRepository;
-        this.modelMapper = modelMapper;
         this.gatherService = gatherService;
     }
 
