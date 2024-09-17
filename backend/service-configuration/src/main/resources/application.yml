@@ -10,3 +10,4 @@ spring:
       server:
         git:
           uri: file:///Users/hyeok/desktop/pet-cast-config/config
+
