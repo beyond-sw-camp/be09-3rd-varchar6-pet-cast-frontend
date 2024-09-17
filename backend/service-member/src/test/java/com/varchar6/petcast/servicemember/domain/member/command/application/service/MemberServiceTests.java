@@ -73,7 +73,7 @@ class MemberServiceTests {
         profileReqDTO.setMemberId(2);
         profileReqDTO.setMemberIntroduction("안녕하세요 또리 아빠입니다.");
         profileReqDTO.setMemberImage("민수 사진1");
-        List<Pet> pets = new ArrayList<>();
+        List<Pet> petInfo = new ArrayList<>();
 
         Pet pet1 = Pet.builder()
                 .name("또리")
@@ -93,10 +93,10 @@ class MemberServiceTests {
                 .memberId(2)
                 .build();
 
-        pets.add(pet1);
-        pets.add(pet2);
+        petInfo.add(pet1);
+        petInfo.add(pet2);
 
-        profileReqDTO.setPetInfo(pets);
+        profileReqDTO.setPetInfo(petInfo);
 
         profileRespDTO = memberService.registProfile(profileReqDTO);
 
@@ -106,18 +106,18 @@ class MemberServiceTests {
     @Test
     @Transactional
     public void 프로필_수정_확인() {
-        profileReqDTO.setMemberId(2);
-        profileReqDTO.setMemberIntroduction("안녕하세요 3살 된 또리 아빠입니다.");
-        List<Pet> pets = new ArrayList<>();
+        profileReqDTO.setMemberId(23);
+        profileReqDTO.setMemberIntroduction("안녕하세요 3살 된 루리 아빠입니다.");
+        List<Pet> petInfo = new ArrayList<>();
 
         Pet pet1 = Pet.builder()
-                .name("또리")
+                .name("루리")
                 .age(3)
-                .introduction("귀여운 3살된 강아지")
+                .gender(Gender.FEMALE)
                 .build();
 
-        pets.add(pet1);
-        profileReqDTO.setPetInfo(pets);
+        petInfo.add(pet1);
+        profileReqDTO.setPetInfo(petInfo);
 
         profileRespDTO = memberService.updateProfile(profileReqDTO);
 

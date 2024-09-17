@@ -69,8 +69,8 @@ public class memberServiceTests {
     @Test
     @Transactional
     public void 비밀_번호_체크() {
-        int inputId =  37;
-        String inputPw = "1111";
+        int inputId =  1;
+        String inputPw = "password01";
 
         String password = memberService.checkPasswordByIdAndPassword(inputId);
         Assertions.assertEquals(inputPw,password);

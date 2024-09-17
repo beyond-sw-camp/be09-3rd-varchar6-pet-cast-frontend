@@ -104,8 +104,6 @@ public class MemberController {
     public ResponseEntity<ResponseMessage> updateMemberPassword(@RequestHeader("X-Member-Id") int memberId,
                                                    @RequestBody MemberUpdatePwdReqVO updateMemberPassword) {
 
-        String newPwd = updateMemberPassword.getPassword();
-
         MemberReqDTO memberReqDTO = modelMapper.map(updateMemberPassword,MemberReqDTO.class);
         memberReqDTO.setId(memberId);
 
@@ -124,7 +122,6 @@ public class MemberController {
                             .result(null)
                             .build());
         }
-
         return ResponseEntity
                 .ok()
                 .body(ResponseMessage.builder()
