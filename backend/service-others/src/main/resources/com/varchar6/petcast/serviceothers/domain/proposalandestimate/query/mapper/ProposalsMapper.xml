@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.varchar6.petcast.domain.proposalandestimate.query.mapper.ProposalsMapper">
+<mapper namespace="com.varchar6.petcast.serviceothers.domain.proposalandestimate.query.mapper.ProposalsMapper">
 
     <resultMap id="proposalMap" type="com.varchar6.petcast.serviceothers.domain.proposalandestimate.query.dto.ProposalResponseDTO">
         <id column="id" property="id"/>
