@@ -13,7 +13,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EventDTO {
-    private int id;
+    private Integer id;
     private String title;
     private String content;
     private String image;
