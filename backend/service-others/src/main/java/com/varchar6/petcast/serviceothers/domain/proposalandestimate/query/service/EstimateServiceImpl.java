@@ -44,7 +44,7 @@ public class EstimateServiceImpl implements EstimateService{
     }
 
     // 견적서 상세 조회
-//    @Override
+    @Override
     public EstimateProposalDTO2 findEstimateById(int estimateId) {
         return estimatesMapper.findEstimateById(estimateId);
     }
