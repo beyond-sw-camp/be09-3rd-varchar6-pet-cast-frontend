@@ -6,7 +6,6 @@ import com.varchar6.petcast.serviceothers.domain.request.command.application.dto
 import com.varchar6.petcast.serviceothers.domain.request.command.application.service.RequestsService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
