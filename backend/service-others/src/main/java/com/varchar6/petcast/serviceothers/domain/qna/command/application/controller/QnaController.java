@@ -36,7 +36,7 @@ public class QnaController {
                 .ok()
                 .body(
                         ResponseMessage.builder()
-                                .httpStatus(HttpStatus.CREATED.value())
+                                .httpStatus(HttpStatus.OK.value())
                                 .message("Q&A 생성 성공")
                                 .result(true)
                                 .build()
@@ -54,7 +54,7 @@ public class QnaController {
                 .ok()
                 .body(
                         ResponseMessage.builder()
-                                .httpStatus(HttpStatus.CREATED.value())
+                                .httpStatus(HttpStatus.OK.value())
                                 .message("Q&A 수정 성공")
                                 .result(true)
                                 .build()
@@ -73,7 +73,7 @@ public class QnaController {
                 .ok()
                 .body(
                         ResponseMessage.builder()
-                                .httpStatus(HttpStatus.CREATED.value())
+                                .httpStatus(HttpStatus.OK.value())
                                 .message("Q&A 삭제 성공")
                                 .result(true)
                                 .build()
@@ -90,7 +90,7 @@ public class QnaController {
                 .ok()
                 .body(
                         ResponseMessage.builder()
-                                .httpStatus(HttpStatus.CREATED.value())
+                                .httpStatus(HttpStatus.OK.value())
                                 .message("Q&A 수정 성공")
                                 .result(true)
                                 .build()
