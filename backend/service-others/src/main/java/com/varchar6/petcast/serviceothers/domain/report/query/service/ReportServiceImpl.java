@@ -29,12 +29,22 @@ public class ReportServiceImpl implements ReportService{
 
     @Override
     @Transactional
-    public Page<Map<String, Object>> getAllReports(String memberId, Pageable pageable) throws IllegalAccessException {
+    public Page<Map<String, Object>> getAllReports(int memberId, List<String> roles, Pageable pageable) throws IllegalAccessException {
         boolean flag = false;
-        Map<String, String> map = new HashMap<>();
-        map.put("memberId", memberId);
+//        Map<String, String> map = new HashMap<>();
+//        map.put("memberId", memberId);
+//
+//        checkRole(flag, map);
 
-        checkRole(flag, map);
+        for(String role : roles){
+            if(role.equals("ROLE_ADMIN")){
+                flag = true;
+                break;
+            }
+        }
+
+        if(!flag)
+            throw new IllegalAccessException("관리자가 아닙니다.");
 
         RequestList<?> requestList = RequestList.builder()
 //                .data()
@@ -49,38 +59,56 @@ public class ReportServiceImpl implements ReportService{
 
     @Override
     @Transactional
-    public List<ReportDTO> getReportByReporterId(Integer reporterId, String memberId) throws IllegalAccessException {
+    public List<ReportDTO> getReportByReporterId(Integer reporterId, List<String> roles, int memberId) throws IllegalAccessException {
         boolean flag = false;
-        Map<String, String> map = new HashMap<>();
-        map.put("memberId", memberId);
+//        Map<String, String> map = new HashMap<>();
+//        map.put("memberId", memberId);
+//
+//        checkRole(flag, map);
+        for(String role : roles){
+            if(role.equals("ROLE_ADMIN")){
+                flag = true;
+                break;
+            }
+        }
 
-        checkRole(flag, map);
+        if(!flag)
+            throw new IllegalAccessException("관리자가 아닙니다.");
 
         return reportMapper.selectReportByReporterId(reporterId);
     }
 
     @Override
     @Transactional
-    public List<ReportDTO> getReportByRespondentId(Integer respondentId, String memberId) throws IllegalAccessException {
+    public List<ReportDTO> getReportByRespondentId(Integer respondentId, List<String> roles,int memberId) throws IllegalAccessException {
         boolean flag = false;
-        Map<String, String> map = new HashMap<>();
-        map.put("memberId", memberId);
-
-        checkRole(flag, map);
-
-        return reportMapper.selectReportByRespondentId(respondentId);
-    }
-
-    private void checkRole(boolean flag, Map<String, String> map) throws IllegalAccessException {
-        List<String> RequestRoleList = memberService.checkMemberRole(map);
-
-        for (String role : RequestRoleList) {
-            if(role.equals("ROLE_ADMIN")) {
+//        Map<String, String> map = new HashMap<>();
+//        map.put("memberId", memberId);
+//
+//        checkRole(flag, map);
+        for(String role : roles){
+            if(role.equals("ROLE_ADMIN")){
                 flag = true;
                 break;
             }
         }
+
         if(!flag)
             throw new IllegalAccessException("관리자가 아닙니다.");
+
+        return reportMapper.selectReportByRespondentId(respondentId);
     }
+
+//    private void checkRole(boolean flag, Map<String, String> map) throws IllegalAccessException {
+//        List<String> RequestRoleList = memberService.checkMemberRole(map);
+//
+//        for (String role : RequestRoleList) {
+//            if(role.equals("ROLE_ADMIN")) {
+//                flag = true;
+//                break;
+//            }
+//        }
+//        if(!flag)
+//            throw new IllegalAccessException("관리자가 아닙니다.");
+//    }
 }

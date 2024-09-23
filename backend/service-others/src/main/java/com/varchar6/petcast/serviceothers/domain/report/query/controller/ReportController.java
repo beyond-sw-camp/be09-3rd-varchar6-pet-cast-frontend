@@ -28,9 +28,13 @@ public class ReportController {
     }
 
     @GetMapping("/post")
-    private ResponseEntity<ResponseMessage> getAllReports(@RequestHeader("X-Member-Id") String memberId, @PageableDefault(size = 20) Pageable pageable) throws IllegalAccessException {
+    private ResponseEntity<ResponseMessage> getAllReports(
+//            @RequestHeader("X-Member-Id") String memberId
+            @RequestAttribute("memberId") int memberId,
+            @RequestAttribute("authorities") List<String> roles
+            , @PageableDefault(size = 20) Pageable pageable) throws IllegalAccessException {
 //        List<ReportDTO> responseReports = reportService.getAllReports(memberId);
-        Page<Map<String, Object>> responseReports = reportService.getAllReports(memberId, pageable);
+        Page<Map<String, Object>> responseReports = reportService.getAllReports(memberId, roles, pageable);
         return ResponseEntity
                 .ok()
                 .body(
@@ -45,8 +49,11 @@ public class ReportController {
 
     @GetMapping("/reporter/{reporterId}")
     private ResponseEntity<ResponseMessage> getReportByReporterId(@PathVariable Integer reporterId,
-                                                                  @RequestHeader("X-Member-Id") String memberId) throws IllegalAccessException {
-        List<ReportDTO> responseReports = reportService.getReportByReporterId(reporterId, memberId);
+                                                                  @RequestAttribute("authorities") List<String> roles,
+                                                                  @RequestAttribute("memberId") int memberId
+//                                                                  @RequestHeader("X-Member-Id") String memberId
+    ) throws IllegalAccessException {
+        List<ReportDTO> responseReports = reportService.getReportByReporterId(reporterId, roles, memberId);
 
         return ResponseEntity
                 .ok()
@@ -62,8 +69,11 @@ public class ReportController {
 
     @GetMapping("/respondent/{respondentId}")
     private ResponseEntity<ResponseMessage> getReportByRespondentId(@PathVariable Integer respondentId,
-                                                                    @RequestHeader("X-Member-Id") String memberId) throws IllegalAccessException {
-        List<ReportDTO> responseReports = reportService.getReportByRespondentId(respondentId, memberId);
+//                                                                    @RequestHeader("X-Member-Id") String memberId
+                                                                    @RequestAttribute("memberId") int memberId,
+                                                                    @RequestAttribute("authorities") List<String> roles
+    ) throws IllegalAccessException {
+        List<ReportDTO> responseReports = reportService.getReportByRespondentId(respondentId, roles, memberId);
 
         return ResponseEntity
                 .ok()
