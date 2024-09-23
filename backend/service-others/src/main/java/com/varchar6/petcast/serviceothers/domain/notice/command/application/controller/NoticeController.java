@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -25,9 +26,12 @@ public class NoticeController {
 
     @PostMapping("")
     private ResponseEntity<ResponseMessage> createNotice(@RequestBody NoticeWriteRequestDTO noticeWriteRequestDTO,
-                                                         @RequestHeader("X-Member-Id") String memberId) throws IllegalAccessException {
+                                                         @RequestAttribute("memberId") int memberId,
+                                                         @RequestAttribute("authorities") List<String> roles
+//                                                         @RequestHeader("X-Member-Id") String memberId
+    ) throws IllegalAccessException {
         noticeWriteRequestDTO.setMemberId(memberId);
-        int result = noticeService.insertNotice(noticeWriteRequestDTO);
+        int result = noticeService.insertNotice(noticeWriteRequestDTO, roles);
 
         return ResponseEntity
                 .ok()
@@ -42,10 +46,13 @@ public class NoticeController {
 
     @PutMapping("")
     private ResponseEntity<ResponseMessage> updateNotice(@RequestBody NoticeUpdateRequestDTO noticeUpdateRequestDTO,
-                                                         @RequestHeader("X-Member-Id") String memberId) throws IllegalAccessException{
+                                                         @RequestAttribute("memberId") int memberId,
+                                                         @RequestAttribute("authorities") List<String> roles
+//                                                         @RequestHeader("X-Member-Id") String memberId
+    ) throws IllegalAccessException {
 
         noticeUpdateRequestDTO.setMemberId(memberId);
-        int result = noticeService.updateNotice(noticeUpdateRequestDTO);
+        int result = noticeService.updateNotice(noticeUpdateRequestDTO, roles);
 
         return ResponseEntity
                 .ok()
@@ -59,10 +66,13 @@ public class NoticeController {
     }
 
     @DeleteMapping("")
-    private ResponseEntity<ResponseMessage> deleteNotice(@RequestBody Map<String, Integer> request
-                                                    , @RequestHeader("X-Member-Id") String memberId) throws IllegalAccessException{
+    private ResponseEntity<ResponseMessage> deleteNotice(@RequestBody Map<String, Integer> request,
+                                                         @RequestAttribute("memberId") int memberId,
+                                                         @RequestAttribute("authorities") List<String> roles
+//                                                         @RequestHeader("X-Member-Id") String memberId
+    ) throws IllegalAccessException {
         int id = request.get("id");
-        int result = noticeService.deleteNotice(id, memberId);
+        int result = noticeService.deleteNotice(id, memberId, roles);
 
         return ResponseEntity
                 .ok()

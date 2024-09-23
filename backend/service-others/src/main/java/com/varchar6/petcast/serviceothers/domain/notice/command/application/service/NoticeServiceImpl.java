@@ -44,12 +44,21 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     @Transactional
-    public int insertNotice(NoticeWriteRequestDTO noticeWriteRequestDTO) throws IllegalAccessException {
+    public int insertNotice(NoticeWriteRequestDTO noticeWriteRequestDTO, List<String> roles) throws IllegalAccessException {
         boolean flag = false;
-        Map<String, String> map = new HashMap<>();
-        map.put("memberId", noticeWriteRequestDTO.getMemberId());
+//        Map<String, String> map = new HashMap<>();
+//        map.put("memberId", noticeWriteRequestDTO.getMemberId());
+//
+//        checkRole(flag, map);
+        for(String role : roles){
+            if(role.equals("ROLE_ADMIN")){
+                flag = true;
+                break;
+            }
+        }
 
-        checkRole(flag, map);
+        if(!flag)
+            throw new IllegalAccessException("관리자가 아닙니다.");
 
         Notice notice = modelMapper.map(noticeWriteRequestDTO, Notice.class);
         notice.setCreatedAt(LocalDateTime.now().format(FORMATTER));
@@ -68,13 +77,24 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     @Transactional
-    public int updateNotice(NoticeUpdateRequestDTO noticeUpdateRequestDTO) throws IllegalAccessException
+    public int updateNotice(NoticeUpdateRequestDTO noticeUpdateRequestDTO, List<String> roles) throws IllegalAccessException
     {
         boolean flag = false;
-        Map<String, String> map = new HashMap<>();
-        map.put("memberId", noticeUpdateRequestDTO.getMemberId());
+//        Map<String, String> map = new HashMap<>();
+//        map.put("memberId", noticeUpdateRequestDTO.getMemberId());
+//
+//        checkRole(flag, map);
 
-        checkRole(flag, map);
+        for(String role : roles){
+            if(role.equals("ROLE_ADMIN")){
+                flag = true;
+                break;
+            }
+        }
+
+        if(!flag)
+            throw new IllegalAccessException("관리자가 아닙니다.");
+
 
         try {
             Notice notice = noticeRepository.findById(noticeUpdateRequestDTO.getId())
@@ -93,12 +113,23 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     @Transactional
-    public int deleteNotice(int noticeId, String memberId) throws IllegalAccessException {
+    public int deleteNotice(int noticeId, int memberId, List<String> roles) throws IllegalAccessException {
         boolean flag = false;
-        Map<String, String> map = new HashMap<>();
-        map.put("memberId", memberId);
+//        Map<String, String> map = new HashMap<>();
+//        map.put("memberId", memberId);
+//
+//        checkRole(flag, map);
 
-        checkRole(flag, map);
+        for(String role : roles){
+            if(role.equals("ROLE_ADMIN")){
+                flag = true;
+                break;
+            }
+        }
+
+        if(!flag)
+            throw new IllegalAccessException("관리자가 아닙니다.");
+
 
         try {
             noticeRepository.deleteById(noticeId);
@@ -110,16 +141,16 @@ public class NoticeServiceImpl implements NoticeService {
 
     }
 
-    private void checkRole(boolean flag, Map<String, String> map) throws IllegalAccessException {
-        List<String> RequestRoleList = memberService.checkMemberRole(map);
-
-        for (String role : RequestRoleList) {
-            if(role.equals("ROLE_ADMIN")) {
-                flag = true;
-                break;
-            }
-        }
-        if(!flag)
-            throw new IllegalAccessException("관리자가 아닙니다.");
-    }
+//    private void checkRole(boolean flag, Map<String, String> map) throws IllegalAccessException {
+//        List<String> RequestRoleList = memberService.checkMemberRole(map);
+//
+//        for (String role : RequestRoleList) {
+//            if(role.equals("ROLE_ADMIN")) {
+//                flag = true;
+//                break;
+//            }
+//        }
+//        if(!flag)
+//            throw new IllegalAccessException("관리자가 아닙니다.");
+//    }
 }
