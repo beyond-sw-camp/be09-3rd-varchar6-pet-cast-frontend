@@ -20,8 +20,8 @@
       <img src="../assets/profile/profile_48x48.png" alt="Profile" class="profile-image" />
 
       <!-- 아이콘들 (예시: 알림, 설정 등) -->
-      <i class="icon bell-icon">🔔</i>
-      <i class="icon settings-icon">⚙️</i>
+      <img src="../assets/navigation/alarm.png" alt="alarm"/>
+      <img src="../assets/navigation/setting.png" alt="settings"/>
     </div>
   </nav>
 </template>
