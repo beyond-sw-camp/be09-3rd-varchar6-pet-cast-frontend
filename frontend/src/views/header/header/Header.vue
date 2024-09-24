@@ -1,11 +1,12 @@
 <template>
   <div class="header-content">
-    <img :src=MainLogo alt="main logo">
+    <RouterLink to="/">
+      <img src="../../../assets/image/main/main_logo.png" alt="main logo" />
+    </RouterLink>
   </div>
 </template>
 
 <script setup>
-  import MainLogo from '../assets/main/main_logo.png';
 </script>
 
 <style scoped>

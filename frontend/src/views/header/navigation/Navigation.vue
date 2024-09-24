@@ -3,7 +3,7 @@
     <div class="nav-left">
       <!-- 프로젝트 대표이미지 -->
       <RouterLink to="/">
-        <img src="../assets/profile/logo.png" alt="Project Logo" class="project-logo"/>
+        <img src="../../../assets/image/profile/logo.png" alt="Project Logo" class="project-logo"/>
       </RouterLink>
 
       <!-- 메뉴 리스트 -->
@@ -17,11 +17,11 @@
     <div class="nav-right">
       <!-- 사용자 아이디 및 프로필 이미지 -->
       <span class="user-id">User123</span>
-      <img src="../assets/profile/profile_48x48.png" alt="Profile" class="profile-image" />
+      <img src="../../../assets/icon/navigation/profile_48x48.png" alt="Profile" class="profile-image" />
 
       <!-- 아이콘들 (예시: 알림, 설정 등) -->
-      <img src="../assets/navigation/alarm.png" alt="alarm"/>
-      <img src="../assets/navigation/setting.png" alt="settings"/>
+      <img src="../../../assets/icon/navigation/alarm.png" alt="alarm"/>
+      <img src="../../../assets/icon/navigation/setting.png" alt="settings"/>
     </div>
   </nav>
 </template>
