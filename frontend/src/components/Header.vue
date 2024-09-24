@@ -1,17 +1,16 @@
 <template>
   <div class="header-content">
-    <h1>Header</h1>
+    <img :src=MainLogo alt="main logo">
   </div>
 </template>
 
 <script setup>
+  import MainLogo from '../assets/main/main_logo.png';
 </script>
 
 <style scoped>
 .header-content {
-  padding: 30px;
   text-align: center;
-  background-color: #333;
-  color: white;
+  padding: 10px;
 }
 </style>
