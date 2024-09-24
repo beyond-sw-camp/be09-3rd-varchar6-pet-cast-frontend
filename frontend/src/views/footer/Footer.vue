@@ -1,17 +1,21 @@
 <template>
   <footer>
-    <h2>Footer</h2>
-    <p>&copy; 2024 My Website. All rights reserved.</p>
+    <FooterLeft/>
+    <FooterRight/>
   </footer>
 </template>
 
 <script setup>
+import FooterLeft from '../../components/footer/FooterLeft.vue';
+import FooterRight from '../../components/footer/FooterRight.vue';
 </script>
 
 <style scoped>
+
 footer {
+  display: flex;
+  justify-content: space-between;
   padding: 20px;
-  text-align: center;
   background-color: #FFFED3;
   position: fixed;
   bottom: 0;
