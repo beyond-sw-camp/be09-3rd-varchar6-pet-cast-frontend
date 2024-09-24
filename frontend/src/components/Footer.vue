@@ -12,7 +12,7 @@
 footer {
   padding: 20px;
   text-align: center;
-  background-color: #f5f5f5;
+  background-color: #FFFED3;
   position: fixed;
   bottom: 0;
   width: 100%;

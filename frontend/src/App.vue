@@ -38,6 +38,8 @@ nav {
   font-size: 12px;
   text-align: center;
   margin-top: 2rem;
+  background-color: #FED9CF;
+  padding: 20px;
 }
 
 nav a.router-link-exact-active {
