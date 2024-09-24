@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.domain.Pageable;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,13 +29,20 @@ public class QnaServiceImpl implements QnaService{
     @Transactional
     public Page<Map<String, Object>> getQnaByQuestionerId(Integer questionerId, Pageable pageable){
 
-        RequestList<?> requestList = RequestList.builder()
-                .data(questionerId)
-                .pageable(pageable)
-                .build();
+//        RequestList<?> requestList = RequestList.builder()
+//                .data(questionerId)
+//                .pageable(pageable)
+//                .build();
 
-        List<Map<String, Object>> content = qnaMapper.selectQnaByQuestionerId(requestList);
-        int total = qnaMapper.selectQnaByQuestionerIdCount(requestList);
+        Map<String, Object> params = new HashMap<>();
+        params.put("questionerId", questionerId);
+        params.put("pageable", pageable);
+
+//        log.info(requestList.getData().getClass().toString());
+
+
+        List<Map<String, Object>> content = qnaMapper.selectQnaByQuestionerId(params);
+        int total = qnaMapper.selectQnaByQuestionerIdCount(params);
 
         return new PageImpl<>(content, pageable, total);
 //        return qnaMapper.selectQnaByQuestionerId(questionerId);
@@ -43,13 +51,21 @@ public class QnaServiceImpl implements QnaService{
     @Override
     @Transactional
     public Page<Map<String, Object>> getQnaByCompanyId(Integer companyId, Pageable pageable){
-        RequestList<?> requestList = RequestList.builder()
-                .data(companyId)
-                .pageable(pageable)
-                .build();
+//        RequestList<?> requestList = RequestList.builder()
+//                .data(companyId)
+//                .pageable(pageable)
+//                .build();
 
-        List<Map<String, Object>> content = qnaMapper.selectQnaByCompanyId(requestList);
-        int total = qnaMapper.selectQnaByCompanyIdCount(requestList);
+//        log.info(requestList.getData().getClass().toString());
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("companyId", companyId);
+        params.put("pageable", pageable);
+
+//        List<Map<String, Object>> content = qnaMapper.selectQnaByCompanyId(requestList);
+//        int total = qnaMapper.selectQnaByCompanyIdCount(requestList);
+        List<Map<String, Object>> content = qnaMapper.selectQnaByCompanyId(params);
+        int total = qnaMapper.selectQnaByCompanyIdCount(params);
 
         return new PageImpl<>(content, pageable, total);
 //        return qnaMapper.selectQnaByCompanyId(companyId);

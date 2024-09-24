@@ -16,7 +16,7 @@
         <result property="questionerId" column="QUESTIONER_ID"/>
         <result property="answererId" column="ANSWERER_ID"/>
     </resultMap>
-    <select id="selectQnaByQuestionerId" resultMap="qnaResultMap" parameterType="com.varchar6.petcast.serviceothers.common.util.RequestList">
+    <select id="selectQnaByQuestionerId" resultMap="qnaResultMap" parameterType="java.util.Map">
         SELECT
                Q.TITLE
              , Q.CONTENT
@@ -29,11 +29,11 @@
              , Q.QUESTIONER_ID
              , Q.ANSWERER_ID
           FROM TBL_QNA Q
-         WHERE Q.QUESTIONER_ID = #{ data.questionerId } AND Q.ACTIVE = TRUE
+         WHERE Q.QUESTIONER_ID = #{ questionerId } AND Q.ACTIVE = TRUE
          ORDER BY CREATED_AT DESC
         OFFSET #{pageable.offset} ROWS FETCH NEXT #{pageable.pageSize} ROWS ONLY;
     </select>
-    <select id="selectQnaByCompanyId" resultMap="qnaResultMap" parameterType="com.varchar6.petcast.serviceothers.common.util.RequestList">
+    <select id="selectQnaByCompanyId" resultMap="qnaResultMap" parameterType="java.util.Map">
         SELECT
                Q.TITLE
              , Q.CONTENT
@@ -46,7 +46,7 @@
              , Q.QUESTIONER_ID
              , Q.ANSWERER_ID
           FROM TBL_QNA Q
-         WHERE Q.COMPANY_ID = #{ data.companyId } AND Q.ACTIVE = TRUE
+         WHERE Q.COMPANY_ID = #{ data } AND Q.ACTIVE = TRUE
          ORDER BY CREATED_AT DESC
         OFFSET #{pageable.offset} ROWS FETCH NEXT #{pageable.pageSize} ROWS ONLY;
 
@@ -72,13 +72,13 @@
         SELECT
               COUNT(*) AS CNT
           FROM TBL_QNA Q
-         WHERE Q.COMPANY_ID = #{ data.companyId } AND Q.ACTIVE = TRUE;
+         WHERE Q.COMPANY_ID = #{ companyId } AND Q.ACTIVE = TRUE;
     </select>
 
-    <select id="selectQnaByQuestionerIdCount" resultType="int" parameterType="_int">
+    <select id="selectQnaByQuestionerIdCount" resultType="int" parameterType="java.util.Map">
         SELECT
                COUNT(*) AS CNT
           FROM TBL_QNA Q
-         WHERE Q.QUESTIONER_ID = #{ data.questionerId } AND Q.ACTIVE = TRUE;
+         WHERE Q.QUESTIONER_ID = #{ questionerId } AND Q.ACTIVE = TRUE;
     </select>
 </mapper>

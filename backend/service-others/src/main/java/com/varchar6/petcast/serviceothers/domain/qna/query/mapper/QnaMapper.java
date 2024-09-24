@@ -9,13 +9,15 @@ import java.util.Map;
 
 @Mapper
 public interface QnaMapper {
-    List<Map<String, Object>> selectQnaByQuestionerId(RequestList<?> requestList);
+    List<Map<String, Object>> selectQnaByQuestionerId(Map<String, Object> params);
 
-    List<Map<String, Object>> selectQnaByCompanyId(RequestList<?> requestList);
+//    List<Map<String, Object>> selectQnaByCompanyId(RequestList<?> requestList);
+    List<Map<String, Object>> selectQnaByCompanyId(Map<String, Object> params);
 
     QnaDTO selectQnaById(Integer id);
 
-    int selectQnaByQuestionerIdCount(RequestList<?> requestList);
+    int selectQnaByQuestionerIdCount(Map<String, Object> params);
 
-    int selectQnaByCompanyIdCount(RequestList<?> requestList);
+//    int selectQnaByCompanyIdCount(RequestList<?> requestList);
+    int selectQnaByCompanyIdCount(Map<String, Object> params);
 }
