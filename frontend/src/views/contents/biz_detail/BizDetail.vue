@@ -49,7 +49,7 @@
     <!-- 최근 진행한 이벤트 -->
     <div class="recent-events">
       <h2>
-        현재가 진행한 이벤트
+        업체가 진행한 이벤트
         <span class="more-link" @click="goToEvents">더보기 ></span>
       </h2>
       <div v-for="event in business[0].events.slice(0, 2)" :key="event.id" class="event-item">
