@@ -1,7 +1,8 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router';
-import Header from './components/Header.vue';
-import Footer from './components/Footer.vue';
+import { RouterView } from 'vue-router';
+import Header from './views/header/header/Header.vue';
+import Footer from './views/footer/Footer.vue';
+import Navigation from './views/header/navigation/Navigation.vue';
 </script>
 
 <template>
@@ -9,13 +10,10 @@ import Footer from './components/Footer.vue';
     <header>
       <div class="wrapper">
         <Header />
-
-        <nav>
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/about">About</RouterLink>
-        </nav>
       </div>
     </header>
+    
+    <Navigation />
 
     <RouterView />
 
@@ -33,31 +31,5 @@ header {
   margin: 0 auto 2rem;
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-  background-color: #FED9CF;
-  padding: 20px;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
 
 </style>

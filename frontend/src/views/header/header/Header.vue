@@ -1,6 +1,8 @@
 <template>
   <div class="header-content">
-    <h1>Header</h1>
+    <RouterLink to="/">
+      <img src="../../../assets/image/main/main_logo.png" alt="main logo" />
+    </RouterLink>
   </div>
 </template>
 
@@ -9,9 +11,7 @@
 
 <style scoped>
 .header-content {
-  padding: 30px;
   text-align: center;
-  background-color: #333;
-  color: white;
+  padding: 10px;
 }
 </style>
