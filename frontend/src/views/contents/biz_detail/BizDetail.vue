@@ -48,7 +48,10 @@
 
     <!-- 최근 진행한 이벤트 -->
     <div class="recent-events">
-      <h2>현재가 진행한 이벤트 <span class="more-link" @click="goToEvents">더보기 ></span></h2>
+      <h2>
+        현재가 진행한 이벤트
+        <span class="more-link" @click="goToEvents">더보기 ></span>
+      </h2>
       <div v-for="event in business[0].events.slice(0, 2)" :key="event.id" class="event-item">
         <img :src="event.imageUrl" :alt="event.title">
         <div class="event-info">
@@ -68,7 +71,10 @@
 
     <!-- 리뷰 -->
     <div class="reviews">
-      <h2>리뷰 <span class="more-link" @click="goToReviews">더보기 ></span></h2>
+      <h2>
+        리뷰
+        <span class="more-link" @click="goToReviews">더보기 ></span>
+      </h2>
       <div v-for="review in business[0].reviews.slice(0, 2)" :key="review.id" class="review-item">
         <div class="review-header">
           <span class="rating">★ {{ review.rating }}</span>
@@ -80,7 +86,10 @@
 
     <!-- Q&A -->
     <div class="qa-section">
-      <h2>Q&A <span class="more-link" @click="goToQA">더보기 ></span></h2>
+      <h2>
+        Q&A
+        <span class="more-link" @click="goToQA">더보기 ></span>
+      </h2>
       <div v-for="qa in business[0].qas.slice(0, 3)" :key="qa.id" class="qa-item">
         <span :class="['status', qa.status]">{{ qa.status }}</span>
         <p class="qa-title">{{ qa.title }}</p>
@@ -387,6 +396,20 @@ margin-right: 5px;
 .review-count {
   color: #666;
   font-size: 0.9em;
+}
+
+.recent-events h2,
+.reviews h2,
+.qa-section h2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.more-link {
+  font-size: 0.8em;
+  color: #0066cc;
+  cursor: pointer;
 }
 
 </style>
