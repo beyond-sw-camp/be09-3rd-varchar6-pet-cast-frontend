@@ -2,7 +2,8 @@
     <div class="biz-detail" v-if="business && business.length">
       <!-- 비즈니스 헤더 -->
       <div class="biz-header">
-        <img :src="business[0].imageUrl" alt="비즈니스 이미지">
+        <!-- <img :src="business[0].imageUrl" alt="비즈니스 이미지"> -->
+        <img :src="business[0].imageUrl" alt="이미지"  height="200px" width="aspect-ratio:1">
         <div class="biz-info">
           <h1>{{ business[0].name }}</h1>
           <p>{{ business[0].location }}</p>
@@ -37,9 +38,13 @@
         <div v-for="event in business[0].events.slice(0, 2)" :key="event.id" class="event-item">
           <img :src="event.imageUrl" :alt="event.title">
           <div class="event-info">
-            <h3>{{ event.title }}</h3>
-            <p>{{ event.status }}</p>
-            <p>{{ event.category }}</p>
+            <div class="event-header">
+              <h3 class="event-title">{{ event.title }}</h3>
+              <div class="event-meta">
+                <span class="event-status">상태: {{ event.status }}</span>
+                <span class="event-category">{{ event.category }}</span>
+              </div>
+            </div>
             <p>{{ event.description }}</p>
           </div>
         </div>
@@ -286,5 +291,29 @@ onMounted(() => {
 
 .delete-btn:hover {
   background-color: #cc0000;
+}
+
+.event-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.event-title {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.event-meta {
+  display: flex;
+  align-items: center;
+}
+
+.event-status, .event-category {
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 0.8em;
+  margin-left: 5px;
 }
 </style>
