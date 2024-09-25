@@ -1,0 +1,72 @@
+{
+  "businesses": [
+    {
+      "id": 1,
+      
+      "imageUrl" : "https://drive.google.com/thumbnail?id=1EGVKStm3jJRhSVkJiEOBgRIfxAHjlrB4",
+      "name": "펫파티 플래너",
+      "location": "서울특별시 강남구",
+      "description": "강아지를 너무 사랑해서 우리 아가들에게 이벤트 해주기 위해 업체 차렸습니다",
+      "registrationStatus": "Y",
+      "categories": ["생일파티", "장소대관"],
+      "rating": 4.8,
+      "reviewCount": 25,
+      "experience": "10",
+      "employeeCount": 50,
+      "contactHours": "09:00 - 18:00",
+      "events": [
+        {
+          "id": 1,
+          "title": "강아지 사진전",
+          "status": "진행 중",
+          "category": ["장소대관", "사진"],
+          "imageUrl": "https://drive.google.com/thumbnail?id=1EGVKStm3jJRhSVkJiEOBgRIfxAHjlrB4",
+          "description": "강아지 2마리와 고양이 2마리가 사진을 찍고 있습니다. 참 귀엽죠? 당신의 반려동물도 가능합니다"
+        },
+        {
+          "id": 2,
+          "title": "쿠킹 클래스",
+          "status": "완료",
+          "category": ["펫푸드"],
+          "imageUrl": "https://drive.google.com/thumbnail?id=1EGVKStm3jJRhSVkJiEOBgRIfxAHjlrB4",
+          "description": "직접 만든 간식이 최고입니다. 요알못도 최대한 자세히 알려주는 값비싼 클래스"
+        }
+      ],
+      "reviews": [
+        {
+          "id": 1,
+          "title": "완전 만족 그자체 쿠킹 클래스",
+          "rating": 5,
+          "description": "하루에 300만원 짜리 쿠킹 클래스 듣고 왔습니다. 처음에는 조금 망설여졌지만 막상 들어보니 한 푼도 아깝지 않더군요. 완전 스파르타식으로 알려줘서 지금 당장 요리대회 나가도 될 만큼 실력이 늘었습니다. 감사합니다!!"
+        },
+        {
+          "id": 2,
+          "title": "강아지가 완전 좋아해요",
+          "rating": 4,
+          "description": "강아지가 짱 좋아함"
+        }
+      ],
+      "qas": [
+        {
+          "id": 1,
+          "status": "미답변",
+          "title": "여기 왤케 비싸요? ",
+          "date": "2024-09-20"
+        },
+        {
+          "id": 2,
+          "status": "미답변",
+          "title": "여기 왤케 비싸요? ",
+          "date": "2024-09-19"
+        },
+        {
+          "id": 3,
+          "status": "답변완료",
+          "title": "여기 왤케 비싸요? ",
+          "date": "2024-09-18"
+        }
+      ],
+      "isUserOwner": true
+    }
+  ]
+}
