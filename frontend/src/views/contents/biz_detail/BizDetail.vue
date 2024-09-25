@@ -122,7 +122,6 @@ try {
     throw new Error('네트워크 응답이 올바르지 않습니다.');
   }
   business.value = await response.json();
-  console.log(business.value);
 } catch (error) {
   console.error("데이터를 가져오는 중 오류 발생:", error);
 }
@@ -132,7 +131,7 @@ const deleteAccount = () => {
 // 사용자가 소유자일 경우 계정 삭제 로직
 if (confirm('정말로 계정을 삭제하시겠습니까?')) {
   // 여기에 계정 삭제 API 호출 로직 구현
-  console.log('계정 삭제 로직 실행');
+  console.log('계정 삭제 로직 실행'); // 계정 삭제 여부는 log로 관리해두면 좋을 거 같은데 현재 log 파일을 따로 만들지 않아서 console.log로 대체해뒀습니다
 }
 };
 
