@@ -30,21 +30,8 @@
 </template>
 
 <script setup>
-    import { ref } from 'vue';
-
-
-    const items = ref([
-        { 'index': 1, '모임리더': '강형욱', '모임명': '강아지를 사랑하는 모임', '생성일자': '2024-08-17T10:00:00', '해당 이벤트': '반려동물 생일파티' },
-        { 'index': 2, '모임리더': '김철수', '모임명': '반려묘와의 생활', '생성일자': '2024-09-05T14:00:00', '해당 이벤트': '고양이 털 관리 세미나' },
-        { 'index': 3, '모임리더': '박영희', '모임명': '새들을 사랑하는 모임', '생성일자': '2024-07-22T09:30:00', '해당 이벤트': '앵무새 훈련 워크숍' },
-        { 'index': 4, '모임리더': '이민수', '모임명': '물고기 키우기 마스터', '생성일자': '2024-06-11T18:00:00', '해당 이벤트': '수족관 관리 및 청소 팁' },
-        { 'index': 5, '모임리더': '정하나', '모임명': '특수동물 동호회', '생성일자': '2024-05-28T15:00:00', '해당 이벤트': '파충류 사육 노하우 공유' },
-        { 'index': 6, '모임리더': '이민수', '모임명': '물고기 키우기 마스터', '생성일자': '2024-06-11T18:00:00', '해당 이벤트': '수족관 관리 및 청소 팁' },
-        { 'index': 7, '모임리더': '정하나', '모임명': '특수동물 동호회', '생성일자': '2024-05-28T15:00:00', '해당 이벤트': '파충류 사육 노하우 공유' },
-        { 'index': 8, '모임리더': '정하나', '모임명': '특수동물 동호회', '생성일자': '2024-05-28T15:00:00', '해당 이벤트': '파충류 사육 노하우 공유' },
-        { 'index': 9, '모임리더': '정하나', '모임명': '특수동물 동호회', '생성일자': '2024-05-28T15:00:00', '해당 이벤트': '파충류 사육 노하우 공유' },
-        { 'index': 10, '모임리더': '정하나', '모임명': '특수동물 동호회', '생성일자': '2024-05-28T15:00:00', '해당 이벤트': '파충류 사육 노하우 공유' }
-    ]);
+    import { ref, onMounted } from 'vue';
+    import { useRoute, useRouter } from 'vue-router';
 
     const fields = ref([
         { key: 'index', label: '' },
@@ -53,6 +40,28 @@
         { key: '생성일자', label: '생성 일자' },
         { key: '해당 이벤트', label: '해당 이벤트' }
     ]);
+
+    const currentRoute = useRoute();
+    const router = useRouter();
+    const items = ref(null);
+    
+    const fetchGatherList = async () => {
+        try{
+            console.log('fetchGatherList 실행');
+            const response = await fetch('http://localhost:8080/gatherlist');
+            if(!response.ok){
+                throw new Error('정보 불러오기 실패');
+            }
+            items.value = await response.json();
+            console.log(items);
+        } catch (error) {
+            console.error("데이터 로딩중 에러 발생: ", error);
+        }
+    };
+
+    onMounted(() => {
+        fetchGatherList();
+    });
 </script>
 
 <style scoped>
