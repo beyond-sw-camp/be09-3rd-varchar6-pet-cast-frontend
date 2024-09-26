@@ -5,6 +5,9 @@ import BizDetail from '../views/contents/biz_detail/BizDetail.vue';
 import BusinessEvents from '../views/contents/biz_detail/BusinessEvents.vue';
 import BusinessReviews from '../views/contents/biz_detail/BusinessReviews.vue';
 import BusinessQA from '../views/contents/biz_detail/BusinessQA.vue';
+import NoticeList from '@/views/notice/noticeList.vue';
+import NoticePost from '@/views/notice/NoticePost.vue';
+import NoticeDetail from '@/views/notice/NoticeDetail.vue';
 
 const routes = [
   {
@@ -37,6 +40,22 @@ const routes = [
     name: 'BusinessQA',
     component: BusinessQA
   },
+  {
+    path: '/notice-list',
+    name: 'NoticeList',
+    component: NoticeList
+  },
+  {
+    path: '/notice-post',
+    name: 'NoticePost',
+    component: NoticePost    
+  },
+  {
+    path: '/notice-list/:id',
+    name: 'NoticeDetail',
+    component: NoticeDetail
+  }
+
 ];
 
 const router = createRouter({
