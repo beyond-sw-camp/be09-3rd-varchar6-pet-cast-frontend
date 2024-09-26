@@ -214,31 +214,7 @@ text-decoration: underline;
 }
 
 .event-item, .review-item, .qa-item {
-background-color: #e6f3ff; /* 노란색에서 연한 하늘색으로 변경 */
-padding: 10px;
-margin-bottom: 10px;
-border-radius: 5px;
-}
-
-.status {
-padding: 2px 5px;
-border-radius: 3px;
-font-size: 0.8em;
-}
-
-.status.미답변 {
-background-color: #ffe6e6;
-color: #cc0000;
-}
-
-.status.답변완료 {
 background-color: #e6f3ff;
-color: #0066cc;
-}
-
-.event-item {
-display: flex;
-background-color: #fff9e6;
 padding: 10px;
 margin-bottom: 10px;
 border-radius: 5px;
@@ -251,29 +227,10 @@ object-fit: cover;
 margin-right: 10px;
 }
 
-.review-item {
-background-color: #fff9e6;
-padding: 10px;
-margin-bottom: 10px;
-border-radius: 5px;
-}
-
 .review-header {
 display: flex;
 align-items: center;
 margin-bottom: 5px;
-}
-
-.rating {
-color: #ffd700;
-margin-right: 10px;
-}
-
-.qa-item {
-background-color: #fff9e6;
-padding: 10px;
-margin-bottom: 10px;
-border-radius: 5px;
 }
 
 .status {
@@ -343,12 +300,6 @@ margin-left: 5px;
 
 .biz-info {
 margin-bottom: 20px;
-}
-
-.biz-header {
-display: flex;
-align-items: center;
-margin-bottom: 10px;
 }
 
 .biz-header h1 {
