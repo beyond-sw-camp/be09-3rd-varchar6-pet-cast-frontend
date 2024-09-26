@@ -150,7 +150,7 @@ router.push({ name: 'BusinessReviews', params: { id: business.value[0].id } });
 };
 
 const goToQA = () => {
-router.push({ name: 'BusinessQA', params: { id: business.value[0].id } });
+// router.push({ name: 'BusinessQA', params: { id: business.value[0].id } });
 };
 
 onMounted(() => {
@@ -214,7 +214,7 @@ text-decoration: underline;
 }
 
 .event-item, .review-item, .qa-item {
-background-color: #fff9e6;
+background-color: #e6f3ff; /* 노란색에서 연한 하늘색으로 변경 */
 padding: 10px;
 margin-bottom: 10px;
 border-radius: 5px;
