@@ -64,7 +64,7 @@ const setRating = (value) => {
 // };
 
 const cancel = () => {
-  router.push({ name: 'CustomerReview' }); // 여기를 수정
+  router.push({ name: 'CustomerReview' }); 
 };
 </script>
 

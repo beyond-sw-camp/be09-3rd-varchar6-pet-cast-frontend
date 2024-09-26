@@ -138,7 +138,7 @@ const deleteAccount = () => {
 const checkLoginStatus = () => {
   const rolesString = localStorage.getItem('Roles');
   if (rolesString) {
-    const roles = JSON.parse(rolesString);
+    const roles = rolesString.split(',');
     isLoggedIn.value = roles.includes('COMPANY');
   } else {
     isLoggedIn.value = false;
