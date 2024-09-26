@@ -50,39 +50,60 @@
         <img src="../../assets/icon/google-icon.png" alt="Google" class="oauth-icon" />
       </div>
     </div>
+
+    <Modal :isVisible="showModal" @update:isVisible="showModal = $event" title="로그인 오류" :message="errorMessage" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import axios from 'axios';
 
 const router = useRouter();
 const loginId = ref('');
 const password = ref('');
+const showModal = ref(false);
+const errorMessage = ref('');
 const handleKakaoLogin = async() => {
   // const response = await axios.get('http://localhost:8081/oauth2/authorization/kakao?redirect_uri=http://localhost:5173&mode=login');
-  // window.location.href = `http://localhost:8081/oauth2/authorization/kakao?redirect_uri=http://localhost:3000&mode=login`;
+  window.location.href = `http://localhost:8081/oauth2/authorization/kakao?redirect_uri=http://localhost:5173&mode=login`;
   alert('Kakao 로그인 버튼 클릭됨');
   // 실제 로그인 로직
 };
 
-const handleNaverLogin = () => {
+const handleNaverLogin = async() => {
+  window.location.href = `http://localhost:8081/oauth2/authorization/naver?redirect_uri=http://localhost:5173&mode=login`;
   alert('Naver 로그인 버튼 클릭됨');
   // 실제 로그인 로직
 };
 
-const handleGoogleLogin = () => {
+const handleGoogleLogin = async() => {
+  window.location.href = `http://localhost:8081/oauth2/authorization/google?redirect_uri=http://localhost:5173&mode=login`;
   alert('Google 로그인 버튼 클릭됨');
   // 실제 로그인 로직
 };
-const handleLogin = () => {
-  
-  if (loginId.value === 'user' && password.value === 'password') {
-    alert('Login Successful!');
-    router.push('/');
-  } else {
-    alert('Invalid login Id or password');
+
+const handleLogin = async() => {
+  try {
+    const response = await axios.post(`http://localhost:8081/login`, {
+      "loginId": loginId.value,
+      "password": password.value
+    });
+    console.log("response123124: ", response);
+    const accessToken = response.headers['access-token'];
+    const refreshToken = response.headers['refresh-token'];
+    if (accessToken === undefined || refreshToken === undefined) {
+      console.log("login failed");
+      throw new Error("에러발생! ");
+    }
+    localStorage.setItem("accessToken", accessToken);
+    localStorage.setItem("refreshToken", refreshToken);
+    router.push('/'); // 로그인 성공 후 리디렉션
+  } catch (error) {
+    console.error("msg: ", error);
+    showModal.value = true; // 모달 열기
+    errorMessage.value = "아이디 또는 비밀번호가 잘못되었습니다."; // 오류 메시지 설정
   }
 };
 </script>

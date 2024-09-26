@@ -19,7 +19,7 @@ export default defineConfig({
   //     '/api': {
   //       target: 'http://localhost:8081', // 실제 API 서버 주소
   //       changeOrigin: true,
-  //       rewrite: (path) => path.replace(/^\/oauth2/, '/oauth2') // "/api" 경로를 제거하고 프록시 요청
+  //       rewrite: (path) => path.replace(/^\/api/, '') // "/api" 경로를 제거하고 프록시 요청
   //     }
   //   }
   // }
