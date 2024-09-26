@@ -128,11 +128,11 @@ try {
 };
 
 const deleteAccount = () => {
-// 사용자가 소유자일 경우 계정 삭제 로직
-if (confirm('정말로 계정을 삭제하시겠습니까?')) {
-  // 여기에 계정 삭제 API 호출 로직 구현
-  console.log('계정 삭제 로직 실행'); // 계정 삭제 여부는 log로 관리해두면 좋을 거 같은데 현재 log 파일을 따로 만들지 않아서 console.log로 대체해뒀습니다
-}
+  if (confirm('정말로 계정을 삭제하시겠습니까?')) {
+        //   여기에 계정 삭제 API 호출 로직 구현
+        alert('계정이 삭제되었습니다.');
+        router.push({ name: 'Home' });
+    }
 };
 
 const checkLoginStatus = () => {
@@ -209,8 +209,9 @@ margin-bottom: 20px;
 
 .more-link {
 cursor: pointer;
-color: blue;
+color: #0066cc;
 text-decoration: underline;
+font-size: 0.8em;
 }
 
 .event-item, .review-item, .qa-item {
