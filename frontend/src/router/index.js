@@ -4,6 +4,7 @@ import About from '../views/contents/About.vue';
 import BizDetail from '../views/contents/biz_detail/BizDetail.vue';
 import BusinessEvents from '../views/contents/biz_event/BusinessEvents.vue';
 import BusinessReviews from '../views/contents/biz_review/BusinessReviews.vue';
+import BusinessEventUpdate from '../views/contents/biz_event/BusinessEventUpdate.vue';
 
 const routes = [
   {
@@ -31,6 +32,11 @@ const routes = [
     name: 'BusinessReviews',
     component: BusinessReviews
   },
+  {
+    path: '/edit-event/:id',
+    name: 'BusinessEventUpdate',
+    component: BusinessEventUpdate
+}
 ];
 
 const router = createRouter({
