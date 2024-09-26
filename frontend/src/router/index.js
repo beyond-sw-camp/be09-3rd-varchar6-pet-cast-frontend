@@ -5,6 +5,8 @@ import BizDetail from '../views/contents/biz_detail/BizDetail.vue';
 import BizEvents from '../views/contents/biz_event/BizEvent.vue';
 import BizReviews from '../views/contents/biz_review/BizReview.vue';
 import BizEventUpdate from '../views/contents/biz_event/BizEventUpdate.vue';
+import CustomerEvent from '../views/contents/customer_event/CustomerEvent.vue';
+import CreateReview from '../views/contents/customer_review/CreateReview.vue';
 
 const routes = [
   {
@@ -18,7 +20,7 @@ const routes = [
     component: About,
   },
   {
-    path: '/api/v1/companies/:id',
+    path: '/companies/:id',
     name: 'BizDetail',
     component: BizDetail
   },
@@ -36,12 +38,22 @@ const routes = [
     path: '/edit-event/:id',
     name: 'BusinessEventUpdate',
     component: BizEventUpdate
-}
+  },
+  {
+    path: '/customer-events',
+    name: 'CustomerEvents',
+    component: CustomerEvent
+  },
+  {
+    path: '/create-review/:eventId',
+    name: 'CreateReview',
+    component: CreateReview
+  }
 ];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes
 });
 
 export default router;
