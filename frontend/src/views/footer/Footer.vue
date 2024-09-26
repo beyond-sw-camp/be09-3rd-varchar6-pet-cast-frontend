@@ -17,7 +17,6 @@ footer {
   justify-content: space-between;
   padding: 20px;
   background-color: #FFFED3;
-  position: fixed;
   bottom: 0;
   width: 100%;
 }
