@@ -34,10 +34,10 @@ import { RouterLink, useRouter } from 'vue-router';
 
 const router = useRouter();
 
-    function bizDetail(){
-        const num = 2;
-        router.push(`/api/v1/companies/${num}`);
-    }
+function bizDetail(){
+    const num = 2;
+    router.push(`/biz-detail/${num}`);
+}
 </script>
 
 <style scoped>
