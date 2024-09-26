@@ -116,11 +116,21 @@ const handleGoogleLogin = async() => {
 
 // for dev
 const handleLogin = () => {
-  
-  if (loginId.value === 'user' && password.value === 'password') {
+  if (
+    ((loginId.value === 'customer') || (loginId.value === 'company') || (loginId.value === 'admin'))
+    && password.value === 'password') {
     localStorage.setItem("accessToken", "sample-access-token");
     localStorage.setItem("refreshToken", "sample-refresh-token");
-    // localStorage.setItem("userId", loginId.value);
+
+    if (loginId.value === 'customer') {
+      localStorage.setItem("Roles", ["CUSTOMER"]);
+    } else if (loginId.value === 'company') {
+      localStorage.setItem("Roles", ["CUSTOMER", "COMPANY"]);
+    } else if (loginId.value === 'admin') {
+      localStorage.setItem("Roles", ["CUSTOMER", "COMPANY", "ADMIN"]);
+    } else { 
+      console.log("권한오류");
+    }
     localStorage.setItem("userId", loginId.value);
 
     modalTitle.value = '로그인 성공';
@@ -129,8 +139,9 @@ const handleLogin = () => {
 
     userId.value = loginId.value;
     setIsLoggedIn(true);
+  }
 
-  } else {
+  else {
     modalTitle.value = '로그인 실패';
     modalMessage.value = '아이디 또는 비밀번호가 잘못되었습니다.';
     isModalVisible.value = true;
