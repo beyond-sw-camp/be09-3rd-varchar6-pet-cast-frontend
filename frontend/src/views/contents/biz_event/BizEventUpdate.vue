@@ -119,18 +119,20 @@ onMounted(() => {
 
 <style scoped>
 .edit-event-container {
-    max-width: 1200px; /* 더 넓은 최대 너비 */
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     padding-bottom: 100px;
-    background-color: #e6f3ff;
     border-radius: 5px;
 }
 
 .event-content {
     display: flex;
-    gap: 40px; /* 간격 증가 */
+    gap: 40px;
     margin-bottom: 20px;
+    background-color: #e6f3ff; /* 여기에 하늘색 배경을 추가합니다 */
+    padding: 20px; /* 내용물과 배경 사이에 여백을 추가합니다 */
+    border-radius: 5px; /* 모서리를 둥글게 만듭니다 */
 }
 
 .event-image-container {
