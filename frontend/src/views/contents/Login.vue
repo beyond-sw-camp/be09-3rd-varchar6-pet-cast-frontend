@@ -51,20 +51,24 @@
       </div>
     </div>
 
-    <Modal :isVisible="showModal" @update:isVisible="showModal = $event" title="로그인 오류" :message="errorMessage" />
+    <Modal :isVisible="isModalVisible" :title="modalTitle" :message="modalMessage" @update:isVisible="handleModalClose" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import axios from 'axios';
+import Modal from '../../components/Modal.vue';
+// import axios from 'axios';
 
 const router = useRouter();
 const loginId = ref('');
 const password = ref('');
-const showModal = ref(false);
-const errorMessage = ref('');
+const isModalVisible = ref(false);
+const modalTitle = ref(false);
+const modalMessage = ref('');
+
+
 const handleKakaoLogin = async() => {
   // const response = await axios.get('http://localhost:8081/oauth2/authorization/kakao?redirect_uri=http://localhost:5173&mode=login');
   window.location.href = `http://localhost:8081/oauth2/authorization/kakao?redirect_uri=http://localhost:5173&mode=login`;
@@ -84,26 +88,52 @@ const handleGoogleLogin = async() => {
   // 실제 로그인 로직
 };
 
-const handleLogin = async() => {
-  try {
-    const response = await axios.post(`http://localhost:8081/login`, {
-      "loginId": loginId.value,
-      "password": password.value
-    });
-    console.log("response123124: ", response);
-    const accessToken = response.headers['access-token'];
-    const refreshToken = response.headers['refresh-token'];
-    if (accessToken === undefined || refreshToken === undefined) {
-      console.log("login failed");
-      throw new Error("에러발생! ");
-    }
-    localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("refreshToken", refreshToken);
-    router.push('/'); // 로그인 성공 후 리디렉션
-  } catch (error) {
-    console.error("msg: ", error);
-    showModal.value = true; // 모달 열기
-    errorMessage.value = "아이디 또는 비밀번호가 잘못되었습니다."; // 오류 메시지 설정
+// 서버와 통신
+// const handleLogin = async() => {
+//   try {
+//     const response = await axios.post(`http://localhost:8081/login`, {
+//       "loginId": loginId.value,
+//       "password": password.value
+//     });
+//     console.log("response123124: ", response);
+//     const accessToken = response.headers['access-token'];
+//     const refreshToken = response.headers['refresh-token'];
+//     if (accessToken === undefined || refreshToken === undefined) {
+//       console.log("login failed");
+//       throw new Error("에러발생! ");
+//     }
+//     localStorage.setItem("accessToken", accessToken);
+//     localStorage.setItem("refreshToken", refreshToken);
+//     router.push('/'); // 로그인 성공 후 리디렉션
+//   } catch (error) {
+//  modalTitle.value = '로그인 실패';
+//  modalMessage.value = '아이디 또는 비밀번호가 잘못되었습니다.';
+//  isModalVisible.value = true;
+//   }
+// };
+
+// for dev
+const handleLogin = () => {
+  
+  if (loginId.value === 'user' && password.value === 'password') {
+    localStorage.setItem("accessToken", "sample-access-token");
+    localStorage.setItem("refreshToken", "sample-refresh-token");
+
+    modalTitle.value = '로그인 성공';
+    modalMessage.value = '환영합니다!';
+    isModalVisible.value = true;
+
+  } else {
+    modalTitle.value = '로그인 실패';
+    modalMessage.value = '아이디 또는 비밀번호가 잘못되었습니다.';
+    isModalVisible.value = true;
+  }
+};
+
+const handleModalClose = () => {
+  isModalVisible.value = false;
+  if (modalTitle.value === '로그인 성공') {
+    router.push('/');
   }
 };
 </script>
