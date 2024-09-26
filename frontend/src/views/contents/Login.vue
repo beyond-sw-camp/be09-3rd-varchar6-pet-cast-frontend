@@ -60,19 +60,21 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 const loginId = ref('');
 const password = ref('');
-const handleKakaoLogin = () => {
+const handleKakaoLogin = async() => {
+  // const response = await axios.get('http://localhost:8081/oauth2/authorization/kakao?redirect_uri=http://localhost:5173&mode=login');
+  // window.location.href = `http://localhost:8081/oauth2/authorization/kakao?redirect_uri=http://localhost:3000&mode=login`;
   alert('Kakao 로그인 버튼 클릭됨');
-  // 실제 로그인 로직을 여기에 구현
+  // 실제 로그인 로직
 };
 
 const handleNaverLogin = () => {
   alert('Naver 로그인 버튼 클릭됨');
-  // 실제 로그인 로직을 여기에 구현
+  // 실제 로그인 로직
 };
 
 const handleGoogleLogin = () => {
   alert('Google 로그인 버튼 클릭됨');
-  // 실제 로그인 로직을 여기에 구현
+  // 실제 로그인 로직
 };
 const handleLogin = () => {
   
@@ -132,14 +134,14 @@ h1 {
 }
 
 button {
-  width: 30%;
+  width: 20%;
   padding: 10px;
   background-color: white;
   color: #49D5FF;
   border-color: #49D5FF;
   border-radius: 14px;
   cursor: pointer;
-  font-size: 30px;
+  font-size: 20px;
   justify-content: center;
 }
 

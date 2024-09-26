@@ -17,7 +17,13 @@ const routes = [
   {
     path: '/login',
     component: Login,
-  }
+  },
+
+  // 요청하지 않은 페이지
+  {
+    path: "/:catchAll(.*)*",
+    component: () => import("../views/contents/ErrorNotFound.vue"),
+  },
 ];
 
 const router = createRouter({
