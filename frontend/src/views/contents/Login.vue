@@ -56,7 +56,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, inject } from 'vue';
 import { useRouter } from 'vue-router';
 import Modal from '../../components/Modal.vue';
 // import axios from 'axios';
@@ -67,6 +67,8 @@ const password = ref('');
 const isModalVisible = ref(false);
 const modalTitle = ref(false);
 const modalMessage = ref('');
+const setIsLoggedIn = inject('setIsLoggedIn');
+const userId = inject('userId');
 
 
 const handleKakaoLogin = async() => {
@@ -118,10 +120,15 @@ const handleLogin = () => {
   if (loginId.value === 'user' && password.value === 'password') {
     localStorage.setItem("accessToken", "sample-access-token");
     localStorage.setItem("refreshToken", "sample-refresh-token");
+    // localStorage.setItem("userId", loginId.value);
+    localStorage.setItem("userId", loginId.value);
 
     modalTitle.value = '로그인 성공';
     modalMessage.value = '환영합니다!';
     isModalVisible.value = true;
+
+    userId.value = loginId.value;
+    setIsLoggedIn(true);
 
   } else {
     modalTitle.value = '로그인 실패';
