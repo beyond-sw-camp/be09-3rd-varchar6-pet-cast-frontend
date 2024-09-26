@@ -42,7 +42,8 @@ const event = ref({});
 
 const fetchEvent = async () => {
     try {
-        const response = await fetch(`http://localhost:8081/business-events/${route.params.id}`);
+        const response = await fetch(`http://localhost:8082/business-events/${route.params.id}`);
+        console.log(`http://localhost:8082/business-events/${route.params.id}`)
         if (!response.ok) {
             throw new Error('이벤트 정보를 가져오는데 실패했습니다.');
         }
@@ -90,6 +91,7 @@ onMounted(() => {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
+    padding-bottom: 80px;
     background-color: #e6f3ff;
     border-radius: 5px;
 }
@@ -137,6 +139,12 @@ textarea {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+    position: fixed; 
+    bottom: 20px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: calc(100% - 40px); 
+    max-width: 560px; 
 }
 
 .submit-btn,
