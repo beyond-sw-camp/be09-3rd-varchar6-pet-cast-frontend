@@ -10,7 +10,7 @@
                     <div class="event-info">
                         <div class="event-header">
                             <h3 class="event-title">{{ event.title }}</h3>
-                            <div v-if="isAuth" class="edit-btn-container">
+                            <div v-if="isUpdated" class="edit-btn-container">
                                 <button @click="editEvent(event)" class="edit-btn">수정하기</button>
                             </div>
                         </div>
@@ -40,7 +40,7 @@ const router = useRouter();
 const events = ref([]);
 const totalEvents = ref(0);
 const displayedCount = ref(10);
-const isAuth = ref(false);
+const isUpdated = ref(false);
 
 const fetchEvents = async () => {
     try {
@@ -71,7 +71,7 @@ const loadMoreEvents = () => {
 };
 
 const editEvent = (event) => {
-    if (isAuth.value) {
+    if (isUpdated.value) {
         // 이벤트 수정 페이지로 이동하면서 이벤트 ID를 전달
         router.push({ name: 'BusinessEventUpdate', params: { id: event.id } });
     } else {
@@ -79,8 +79,19 @@ const editEvent = (event) => {
     }
 };
 
+const checkUpdatePermission = () => {
+    const rolesString = localStorage.getItem('Roles');
+    if (rolesString) {
+        const roles = JSON.parse(rolesString);
+        isUpdated.value = roles.includes('COMPANY');
+    } else {
+        isUpdated.value = false;
+    }
+};
+
 onMounted(() => {
     fetchEvents();
+    checkUpdatePermission();
 });
 </script>
 
