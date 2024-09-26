@@ -9,8 +9,8 @@
             type="text" 
             id="id" 
             v-model="loginId" 
-            placeholder="Enter your ID" 
-            required 
+            placeholder="아이디를 입력해주세요" 
+            required
           />
         </div>
         
@@ -20,7 +20,7 @@
             type="password" 
             id="password" 
             v-model="password" 
-            placeholder="Enter your password" 
+            placeholder="비밀번호를 입력해주세요" 
             required 
           />
         </div>
@@ -32,10 +32,23 @@
     </div>
     <div class="register-link">
       <RouterLink to="/register"> 아이디 찾기 </RouterLink>
-      <div>|</div>
+      <span class="divider">|</span>
       <RouterLink to="/register"> 비밀번호 수정 </RouterLink>
-      <div>|</div>
+      <span class="divider">|</span>
       <RouterLink to="/register"> 회원 가입 </RouterLink>
+    </div>
+    <div class="oauth-login-container">
+      <div class="oauth-button" @click="handleKakaoLogin">
+        <img src="../../assets/icon/kakao-icon.png" alt="Kakao" class="oauth-icon" />
+      </div>
+      
+      <div class="oauth-button" @click="handleNaverLogin">
+        <img src="../../assets/icon/naver-icon.png" alt="Naver" class="oauth-icon" />
+      </div>
+      
+      <div class="oauth-button" @click="handleGoogleLogin">
+        <img src="../../assets/icon/google-icon.png" alt="Google" class="oauth-icon" />
+      </div>
     </div>
   </div>
 </template>
@@ -47,8 +60,22 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 const loginId = ref('');
 const password = ref('');
+const handleKakaoLogin = () => {
+  alert('Kakao 로그인 버튼 클릭됨');
+  // 실제 로그인 로직을 여기에 구현
+};
 
+const handleNaverLogin = () => {
+  alert('Naver 로그인 버튼 클릭됨');
+  // 실제 로그인 로직을 여기에 구현
+};
+
+const handleGoogleLogin = () => {
+  alert('Google 로그인 버튼 클릭됨');
+  // 실제 로그인 로직을 여기에 구현
+};
 const handleLogin = () => {
+  
   if (loginId.value === 'user' && password.value === 'password') {
     alert('Login Successful!');
     router.push('/');
@@ -60,20 +87,20 @@ const handleLogin = () => {
 
 <style scoped>
 .login-container {
-  width: 650px;
-	height: 500px;
+  width: 500px;
+  height: 550px;
   margin: 30px auto;
-  padding: 20px;
+  padding: 30px;
   border: 1px solid #ccc;
   border-radius: 26px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background-color: #CCEFFF;
-	opacity: 68%;
+  opacity: 68%;
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
 .form {
@@ -81,7 +108,7 @@ h1 {
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .form-group label {
@@ -92,7 +119,7 @@ h1 {
 
 .form-group input {
   width: 95%;
-	height: 30px;
+  height: 30px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 18px;
@@ -101,32 +128,62 @@ h1 {
 .button-container {
   display: flex;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 30px;
 }
 
 button {
-  width: 40%;
+  width: 30%;
   padding: 10px;
-  background-color: #4CAF50;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
+  background-color: white;
+  color: #49D5FF;
+  border-color: #49D5FF;
+  border-radius: 14px;
   cursor: pointer;
-	justify-content: center;
+  font-size: 30px;
+  justify-content: center;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #9fe0ff;
+  color: white;
 }
 
-register-link {
-  margin-top: 15px;
+.register-link {
+  display: flex;
+  justify-content: center;
   text-align: center;
-  justify-content: space-evenly;
+  margin-top: 15px;
+  padding: 10px;
 }
 
 .register-link a {
-  color: #4CAF50;
   text-decoration: none;
+  color: black;
 }
+
+.divider {
+  margin: 0 10px;
+  color: #999;
+}
+
+.oauth-login-container {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.oauth-button {
+  width: 75px; /* 버튼 크기 조절 */
+  height: 75px; /* 버튼 크기 조절 */
+  margin-inline: 15px;
+}
+
+.oauth-button:hover {
+  cursor: pointer;
+}
+
 </style>
