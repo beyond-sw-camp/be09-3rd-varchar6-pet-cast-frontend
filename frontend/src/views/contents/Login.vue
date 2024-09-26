@@ -10,6 +10,7 @@
             id="id" 
             v-model="loginId" 
             placeholder="아이디를 입력해주세요" 
+            autocomplete="loginId"
             required
           />
         </div>
@@ -21,6 +22,7 @@
             id="password" 
             v-model="password" 
             placeholder="비밀번호를 입력해주세요" 
+            autocomplete="password"
             required 
           />
         </div>
@@ -65,7 +67,7 @@ const router = useRouter();
 const loginId = ref('');
 const password = ref('');
 const isModalVisible = ref(false);
-const modalTitle = ref(false);
+const modalTitle = ref('');
 const modalMessage = ref('');
 const setIsLoggedIn = inject('setIsLoggedIn');
 const userId = inject('userId');
