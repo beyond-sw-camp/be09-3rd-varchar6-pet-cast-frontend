@@ -12,7 +12,7 @@
                     <b-table 
                     striped 
                     hover 
-                    :items="items" 
+                    :items="pageItems" 
                     :fields="fields"
                     @row-clicked="listClicked"
                     ></b-table>
@@ -20,13 +20,13 @@
             <div class="paging">
                 <b-button-toolbar key-nav aria-label="Toolbar with button groups">
                     <b-button-group class="before">
-                        <b-button @click="prevPage" :disabled="currentPage === 1">&lsaquo;</b-button>
+                        <b-button @click="goBack" :disabled="index === 0">&lsaquo;</b-button>
                         </b-button-group>
                     <b-button-group class="current">
-                        <b-button>aaa</b-button>                
+                        <b-button>{{ currentPage }} / {{ totalPages }}</b-button>                
                     </b-button-group>
                 <b-button-group class="after">
-                    <b-button @click="nextPage" :disabled="currentPage === totalPages">&rsaquo;</b-button>
+                    <b-button @click="goNext" :disabled="next >= totalItems">&rsaquo;</b-button>
                     </b-button-group>
                 </b-button-toolbar>
             </div>
@@ -36,12 +36,19 @@
 </template>
 
 <script setup>
-    import { ref, onMounted } from 'vue';
+    import { ref, onMounted, computed } from 'vue';
     import { useRoute, useRouter } from 'vue-router';
     
     const currentRoute = useRoute();
     const router = useRouter();
     const items = ref(null);
+
+    const index = ref(0);
+    const next = ref(10);
+    const pageItems = computed(() => items.value ? items.value.slice(index.value, next.value) : []);
+    const totalItems = computed(() => items.value ? items.value.length : 0);
+    const currentPage = computed(() => Math.floor(index.value / 10) + 1);
+    const totalPages = computed(() => Math.ceil(totalItems.value / 10));
     
     
     
@@ -71,6 +78,19 @@
         router.push(`/gatherdetail/${item.id}`);
     }
 
+    const goBack = () => {
+        if (index.value > 0) {
+            index.value -= 10;
+            next.value -= 10;
+        }
+    };
+
+    const goNext = () => {
+        if (next.value < totalItems.value) {
+            index.value += 10;
+            next.value += 10;
+        }
+    };
 
 
     onMounted(() => {

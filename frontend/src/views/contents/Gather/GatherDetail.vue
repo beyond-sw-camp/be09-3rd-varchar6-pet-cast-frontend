@@ -1,8 +1,8 @@
 <template>
     <section class="container">
-        <div>
-            <b-img :src="gatherDetail?.gatherImg" alt="모임 이미지" class="gather-logo" width="100"></b-img>
-        </div>
+    <div>
+        <b-img :src="gatherDetail?.gatherImg" alt="모임 이미지" class="gather-logo" width="100"></b-img>
+    </div>
         <article class="titlename">
             <div>
                 <h4 class="gathername">강아지를 사랑하는 모임</h4>
@@ -55,26 +55,16 @@
                 
 
 
-                <div class="date">
+                <div class="dated">
                     <b-row>
                         <b-col md="6">
                         <b-form-group label="생성 일자" label-for="createdAtInput">
-                            <b-form-textarea
-                            id="createdAtInput"
-                            :value="gatherDetail?.createAt"
-                            readonly
-                            style="resize: none;"
-                            ></b-form-textarea>
+                            <h6>{{ gatherDetail?.createAt }}</h6>
                         </b-form-group>
                         </b-col>
                         <b-col md="6">
                         <b-form-group label="수정 일자" label-for="updatedAtInput">
-                            <b-form-textarea
-                            id="updatedAtInput"
-                            :value="gatherDetail?.updateAt"
-                            readonly
-                            style="resize: none;"
-                            ></b-form-textarea>
+                            <h6>{{ gatherDetail?.updateAt }}</h6>
                         </b-form-group>
                         </b-col>
                     </b-row>
@@ -116,18 +106,8 @@
     const form = ref({
         name: '',
         email: ''
-    });
+    }); 
 
-    const formSubmitted = ref(false);
-
-    const handleSubmit = () => {
-
-        /* 여기서 폼 데이터를 처리 가능 */
-        formSubmitted.value = true;
-        /* 폼 초기화 */
-        form.value.name = '';
-        form.value.email = '';
-    };
 
     onMounted(() => {
         fetchGatherDetail();
@@ -152,7 +132,7 @@
         
     }
     .detail-info {
-        padding: 2rem;
+        padding-bottom: 7rem;
     }
     .card {
         background-color: #DDF5FF;
@@ -176,10 +156,15 @@
     .url {
         height: 50px; /* 1 unit */
     }
-
-    .date b-form-textarea {
-        height: 30px; /* 1 unit */
+    .dated {
+        display: flex;
+        align-items: center;
+        justify-content: right;
     }
+
+    /* .dated b-form-textarea {
+        height: 15px;
+    } */
 
     /* 모든 textarea에 공통으로 적용할 스타일 */
     .contents, .url, .date b-form-textarea {
