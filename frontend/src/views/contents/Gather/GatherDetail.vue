@@ -1,7 +1,7 @@
 <template>
     <section class="container">
         <div>
-            <b-img src="asdf.png" alt="모임 이미지" class="gather-logo" width="100"></b-img>
+            <b-img :src="gatherDetail?.gatherImg" alt="모임 이미지" class="gather-logo" width="100"></b-img>
         </div>
         <article class="titlename">
             <div>
@@ -18,7 +18,7 @@
                 <b-form class="memberlist">
                     <div>
                         <b-row>
-                            <b-col v-for="member in members" :key="member.id" col="3" class="memberimg">
+                            <b-col v-for="member in gatherDetail?.members" :key="member.id" col="3" class="memberimg">
                                 <div class="member-item">
                                     <div class="member-role">{{ member.role }}</div>
                                     <b-avatar :src="member.img" :text="member.initial" size="4rem"></b-avatar>
@@ -29,46 +29,52 @@
                     </div>
                 </b-form>
 
-                <b-form @submit.prevent="handleSubmit">
-                    <b-form-group label="모임 내용" label-for="nameInput">
-                        <b-form-input
-                            id="nameInput"
-                            v-model="form.name"
-                            required
-                            placeholder="모임 내용"
-                            readonly
-                        ></b-form-input>
-                    </b-form-group>
-                </b-form>
-                <div class="mt-4">
-                    <b-form-group label="URL" label-for="urlInput">
-                        <b-form-input
-                        id="urlInput"
-                        v-model="groupUrl"
+                
+                <b-form-group label="모임 내용" label-for="nameInput">
+                    <b-form-textarea
+                        id="nameInput"
+                        :value="gatherDetail?.contents"
+                        required
+                        placeholder="모임 내용"
                         readonly
-                        ></b-form-input>
-                    </b-form-group>
-                </div>
+                        style="resize: none;"
+                        class="contents"
+                    ></b-form-textarea>
+                </b-form-group>
+                
+                
+                <b-form-group label="URL" label-for="urlInput">
+                    <b-form-textarea
+                    id="urlInput"
+                    :value="gatherDetail?.url"
+                    readonly
+                    style="resize: none;"
+                    class="url"
+                    ></b-form-textarea>
+                </b-form-group>
+                
 
 
-                <div class="mt-4">
+                <div class="date">
                     <b-row>
                         <b-col md="6">
                         <b-form-group label="생성 일자" label-for="createdAtInput">
-                            <b-form-input
+                            <b-form-textarea
                             id="createdAtInput"
-                            v-model="createdAt"
+                            :value="gatherDetail?.createAt"
                             readonly
-                            ></b-form-input>
+                            style="resize: none;"
+                            ></b-form-textarea>
                         </b-form-group>
                         </b-col>
                         <b-col md="6">
                         <b-form-group label="수정 일자" label-for="updatedAtInput">
-                            <b-form-input
+                            <b-form-textarea
                             id="updatedAtInput"
-                            v-model="updatedAt"
+                            :value="gatherDetail?.updateAt"
                             readonly
-                            ></b-form-input>
+                            style="resize: none;"
+                            ></b-form-textarea>
                         </b-form-group>
                         </b-col>
                     </b-row>
@@ -81,14 +87,37 @@
 </template>
 
 <script setup>
-    import { ref } from 'vue';
+    import { ref, onMounted } from 'vue';
+    import { useRoute, useRouter } from 'vue-router';
+
+    const currentRoute = useRoute();
+    const router = useRouter();
+    const gatherList = ref([]);
+    const gatherDetail = ref(null);
+
+
+    const fetchGatherDetail = async () => {
+        try{
+            console.log('fetchGatherDetail 실행');
+            const response = await fetch('http://localhost:8081/gatherdetail');
+            if(!response.ok){
+                throw new Error('정보 불러오기 실패');
+            }
+            // 통신해서 온 정보 포장 까기
+            gatherList.value = await response.json();
+            // 파라미터로 넘어온 id 값을 통해 해당 정보들 저장
+            gatherDetail.value = gatherList.value[parseInt(currentRoute.params.id)-1];
+        } catch (error) {
+            console.error("데이터 로딩중 에러 발생", error);
+        }
+    }
 
     /* 반응형 변수들 */
-    const badgeVisible = ref(true);
     const form = ref({
         name: '',
         email: ''
     });
+
     const formSubmitted = ref(false);
 
     const handleSubmit = () => {
@@ -100,12 +129,9 @@
         form.value.email = '';
     };
 
-    const members = ref([
-        { id: 1, name: '강형욱', role: 'L', img: 'path_to_강형욱_image.jpg', initial: 'ㄱ' },
-        { id: 2, name: '오은영', role: 'M', img: 'path_to_오은영_image.jpg', initial: 'ㅇ' },
-        { id: 3, name: '김이나', role: 'M', img: 'path_to_김이나_image.jpg', initial: 'ㄱ' },
-        { id: 4, name: '이효리', role: 'M', img: 'path_to_이효리_image.jpg', initial: 'ㅇ' }
-    ]);
+    onMounted(() => {
+        fetchGatherDetail();
+    })
 </script>
 
 <style scoped>
@@ -122,18 +148,8 @@
     }
     .gathername {
         position: relative; 
-        display: inline-block;
-        padding-bottom: 5px;
-    }
-    .gathername::after {
-        content: ""; 
-        position: absolute; 
-        left: 0; 
-        bottom: 0;
-        width: 100%; 
-        height: 2px; 
-        background: black; 
-        margin-top: 5px; 
+        background-color: #FFFED3;
+        
     }
     .detail-info {
         padding: 2rem;
@@ -152,4 +168,24 @@
         justify-content: center;
         align-items: center;
     }
+
+    .contents {
+        height: 200px; /* 5 units */
+    }
+
+    .url {
+        height: 50px; /* 1 unit */
+    }
+
+    .date b-form-textarea {
+        height: 30px; /* 1 unit */
+    }
+
+    /* 모든 textarea에 공통으로 적용할 스타일 */
+    .contents, .url, .date b-form-textarea {
+        width: 100%;
+        resize: none;
+        overflow-y: auto; /* 내용이 넘칠 경우 스크롤바 표시 */
+    }
+    
 </style>

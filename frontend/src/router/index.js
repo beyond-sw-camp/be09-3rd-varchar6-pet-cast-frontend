@@ -21,7 +21,7 @@ const routes = [
     component: GatherList
   },
   {
-    path: '/gatherdetail',
+    path: '/gatherdetail/:id',
     name: 'gatherdetail',
     component: GatherDetail
   }

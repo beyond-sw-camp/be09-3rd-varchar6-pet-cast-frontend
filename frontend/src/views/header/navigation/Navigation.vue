@@ -11,7 +11,6 @@
         <li><RouterLink to="/">Home</RouterLink></li>
         <li><RouterLink to="/about">About</RouterLink></li>
         <li><RouterLink to="/gatherlist">모임</RouterLink></li>
-        <li><RouterLink to="/gatherdetail">모임 정보</RouterLink></li>
         <!-- 다른 메뉴 항목 추가 가능 -->
       </ul>
     </div>

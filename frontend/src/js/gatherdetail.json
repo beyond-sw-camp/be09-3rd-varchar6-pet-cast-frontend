@@ -1,0 +1,1028 @@
+{
+    "gatherdetail": [
+        {
+            "id": 1,
+            "gathername": "강아지를 사랑하는 모임",
+            "contents": "강아지를 사랑하는 사람들끼리 모여 모임을 갖기도 하고, 시간되는 분들끼리 모여 같이 즐거운 시간을 모임입니다.",
+            "gatherImg": "https://drive.google.com/thumbnail?id=1t2AhasDlgm3XuV5n6lwzrcPZHcjUdf_A",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/LoveDogGroup",
+            "createAt": "2024.02.11 11:11:11",
+            "updateAt": "2024.09.16 12:12:12",
+            "members": [
+                {
+                    "id": 1,
+                    "name": "강형욱",
+                    "role": "L",
+                    "img": "https://drive.google.com/thumbnail?id=1tnhyVmp7KjVa5fZmw0VsmuGRvZFoNwmJ"
+                },
+                {
+                    "id": 2,
+                    "name": "오은영",
+                    "role": "M",
+                    "img": "https://drive.google.com/thumbnail?id=1QpIm6j0ewyMnTzLHdjUw82DdjzpmYMWA"
+                },
+                {
+                    "id": 3,
+                    "name": "김이나",
+                    "role": "M",
+                    "img": "https://drive.google.com/thumbnail?id=19sVlVEAj-p6mXXhAlPsC0KXQZv7bJCt-"
+                },
+                {
+                    "id": 4,
+                    "name": "이효리",
+                    "role": "M",
+                    "img": "https://drive.google.com/thumbnail?id=1w6lQNOto4duRZ98lejiuSFAfYLBkzVlg"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "gathername": "반려묘와의 생활",
+            "contents": "반려묘를 키우는 사람들을 위한 모임으로, 고양이와의 생활을 공유하고 다양한 정보를 나눕니다.",
+            "gatherImg": "path_to_cat_life_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/CatLife",
+            "createAt": "2024-09-05 14:00:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 2,
+                    "name": "김철수",
+                    "role": "L",
+                    "img": "path_to_김철수_image.jpg"
+                },
+                {
+                    "id": 3,
+                    "name": "이은지",
+                    "role": "M",
+                    "img": "path_to_이은지_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "gathername": "새들을 사랑하는 모임",
+            "contents": "새를 좋아하는 사람들을 위한 모임으로, 함께 새를 돌보는 방법과 관련된 정보를 나눕니다.",
+            "gatherImg": "path_to_bird_love_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/LoveBirdGroup",
+            "createAt": "2024-07-22 09:30:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 3,
+                    "name": "박영희",
+                    "role": "L",
+                    "img": "path_to_박영희_image.jpg"
+                },
+                {
+                    "id": 4,
+                    "name": "이재성",
+                    "role": "M",
+                    "img": "path_to_이재성_image.jpg"
+                },
+                {
+                    "id": 5,
+                    "name": "최다영",
+                    "role": "M",
+                    "img": "path_to_최다영_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "gathername": "물고기 키우기 마스터",
+            "contents": "물고기를 키우는 방법을 연구하고, 수족관 관리 및 청소 팁을 공유하는 모임입니다.",
+            "gatherImg": "path_to_fish_master_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/FishMaster",
+            "createAt": "2024-06-11 18:00:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 4,
+                    "name": "이민수",
+                    "role": "L",
+                    "img": "path_to_이민수_image.jpg"
+                },
+                {
+                    "id": 5,
+                    "name": "최준혁",
+                    "role": "M",
+                    "img": "path_to_최준혁_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "gathername": "특수동물 동호회",
+            "contents": "파충류, 곤충 등 특수동물을 기르는 사람들의 정보를 교류하는 모임입니다.",
+            "gatherImg": "path_to_special_animals_club_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/SpecialAnimalsClub",
+            "createAt": "2024-05-28 15:00:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 5,
+                    "name": "정하나",
+                    "role": "L",
+                    "img": "path_to_정하나_image.jpg"
+                },
+                {
+                    "id": 6,
+                    "name": "김보라",
+                    "role": "M",
+                    "img": "path_to_김보라_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "gathername": "곤충 키우기 연구회",
+            "contents": "곤충을 기르고 연구하는 모임으로, 곤충 사육과 관련된 다양한 세미나와 워크숍을 진행합니다.",
+            "gatherImg": "path_to_insect_study_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/InsectStudy",
+            "createAt": "2024-04-14 13:00:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 6,
+                    "name": "이정훈",
+                    "role": "L",
+                    "img": "path_to_이정훈_image.jpg"
+                },
+                {
+                    "id": 7,
+                    "name": "박수진",
+                    "role": "M",
+                    "img": "path_to_박수진_image.jpg"
+                },
+                {
+                    "id": 8,
+                    "name": "김재원",
+                    "role": "M",
+                    "img": "path_to_김재원_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "gathername": "토끼와의 하루",
+            "contents": "토끼를 기르는 사람들을 위한 모임으로, 토끼 돌보기와 관련된 다양한 정보를 나눕니다.",
+            "gatherImg": "path_to_rabbit_day_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/RabbitDay",
+            "createAt": "2024-03-30 11:00:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 7,
+                    "name": "최민준",
+                    "role": "L",
+                    "img": "path_to_최민준_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "gathername": "파충류 애호가 모임",
+            "contents": "파충류를 사랑하는 사람들이 모여 다양한 파충류 사육법을 공유하는 모임입니다.",
+            "gatherImg": "path_to_reptile_lovers_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/ReptileLovers",
+            "createAt": "2024-02-25 16:00:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 8,
+                    "name": "김영호",
+                    "role": "L",
+                    "img": "path_to_김영호_image.jpg"
+                },
+                {
+                    "id": 9,
+                    "name": "이소라",
+                    "role": "M",
+                    "img": "path_to_이소라_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "gathername": "고슴도치를 사랑하는 모임",
+            "contents": "고슴도치를 키우는 사람들을 위한 모임으로, 고슴도치 돌보는 방법을 나누고 즐거운 시간을 보내는 모임입니다.",
+            "gatherImg": "path_to_hedgehog_lovers_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/HedgehogLovers",
+            "createAt": "2024-01-19 10:00:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 9,
+                    "name": "박서연",
+                    "role": "L",
+                    "img": "path_to_박서연_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "gathername": "작은 동물 돌봄 모임",
+            "contents": "햄스터와 같은 작은 동물을 돌보는 사람들을 위한 모임으로, 동물 돌보는 노하우를 공유합니다.",
+            "gatherImg": "path_to_small_animal_care_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/SmallAnimalCare",
+            "createAt": "2024-05-12 14:30:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 10,
+                    "name": "이수민",
+                    "role": "L",
+                    "img": "path_to_이수민_image.jpg"
+                },
+                {
+                    "id": 11,
+                    "name": "정민우",
+                    "role": "M",
+                    "img": "path_to_정민우_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 11,
+            "gathername": "반려동물 미용 연구회",
+            "contents": "반려동물 미용과 관련된 지식을 공유하고, 다양한 미용 기법을 연구하는 모임입니다.",
+            "gatherImg": "path_to_pet_grooming_research_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/PetGroomingResearch",
+            "createAt": "2022-11-30 10:00:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 11,
+                    "name": "한지우",
+                    "role": "L",
+                    "img": "path_to_한지우_image.jpg"
+                },
+                {
+                    "id": 12,
+                    "name": "김민지",
+                    "role": "M",
+                    "img": "path_to_김민지_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 12,
+            "gathername": "애완조류 사육 모임",
+            "contents": "애완조류를 사육하는 사람들을 위한 모임으로, 새 돌봄 및 사육에 관한 정보를 공유합니다.",
+            "gatherImg": "path_to_pet_bird_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/PetBirdGroup",
+            "createAt": "2022-10-18 12:30:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 12,
+                    "name": "이소영",
+                    "role": "L",
+                    "img": "path_to_이소영_image.jpg"
+                },
+                {
+                    "id": 13,
+                    "name": "박정민",
+                    "role": "M",
+                    "img": "path_to_박정민_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 13,
+            "gathername": "고양이 행동 연구 동호회",
+            "contents": "고양이의 행동을 연구하고 문제 해결 방법을 나누는 모임입니다.",
+            "gatherImg": "path_to_cat_behavior_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/CatBehaviorStudy",
+            "createAt": "2022-09-14 09:45:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 13,
+                    "name": "김재현",
+                    "role": "L",
+                    "img": "path_to_김재현_image.jpg"
+                },
+                {
+                    "id": 14,
+                    "name": "이지연",
+                    "role": "M",
+                    "img": "path_to_이지연_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 14,
+            "gathername": "반려견 산책 모임",
+            "contents": "반려견과 함께 산책하고 운동하는 즐거움을 나누는 모임입니다.",
+            "gatherImg": "path_to_dog_walk_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/DogWalkGroup",
+            "createAt": "2022-08-22 16:00:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 14,
+                    "name": "박혜린",
+                    "role": "L",
+                    "img": "path_to_박혜린_image.jpg"
+                },
+                {
+                    "id": 15,
+                    "name": "윤도현",
+                    "role": "M",
+                    "img": "path_to_윤도현_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 15,
+            "gathername": "파충류 애호가 커뮤니티",
+            "contents": "파충류를 사랑하는 사람들이 모여 다양한 파충류 사육법을 공유하는 모임입니다.",
+            "gatherImg": "path_to_reptile_community_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/ReptileCommunity",
+            "createAt": "2022-07-07 15:15:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 15,
+                    "name": "조민수",
+                    "role": "L",
+                    "img": "path_to_조민수_image.jpg"
+                },
+                {
+                    "id": 16,
+                    "name": "송다혜",
+                    "role": "M",
+                    "img": "path_to_송다혜_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 16,
+            "gathername": "물고기 키우기 동호회",
+            "contents": "물고기 사육과 어항 관리에 관심 있는 사람들이 모여 정보를 나누는 모임입니다.",
+            "gatherImg": "path_to_fish_club_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/FishClub",
+            "createAt": "2022-06-12 10:30:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 16,
+                    "name": "최은비",
+                    "role": "L",
+                    "img": "path_to_최은비_image.jpg"
+                },
+                {
+                    "id": 17,
+                    "name": "이도영",
+                    "role": "M",
+                    "img": "path_to_이도영_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 17,
+            "gathername": "애완견 훈련 연구회",
+            "contents": "애완견 훈련 기법을 공유하고, 훈련의 중요성을 연구하는 모임입니다.",
+            "gatherImg": "path_to_dog_training_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/DogTrainingGroup",
+            "createAt": "2022-05-04 14:00:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 17,
+                    "name": "박성민",
+                    "role": "L",
+                    "img": "path_to_박성민_image.jpg"
+                },
+                {
+                    "id": 18,
+                    "name": "장유진",
+                    "role": "M",
+                    "img": "path_to_장유진_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 18,
+            "gathername": "특수동물 관찰 모임",
+            "contents": "희귀 동물 및 특수동물을 관찰하고 연구하는 모임입니다.",
+            "gatherImg": "path_to_exotic_animal_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/ExoticAnimalGroup",
+            "createAt": "2022-04-21 11:45:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 18,
+                    "name": "이윤아",
+                    "role": "L",
+                    "img": "path_to_이윤아_image.jpg"
+                },
+                {
+                    "id": 19,
+                    "name": "김상혁",
+                    "role": "M",
+                    "img": "path_to_김상혁_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 19,
+            "gathername": "애완동물 사진 동호회",
+            "contents": "반려동물 사진을 찍고, 촬영 기법을 연구하는 모임입니다.",
+            "gatherImg": "path_to_pet_photo_club_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/PetPhotoClub",
+            "createAt": "2022-03-19 13:15:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 19,
+                    "name": "정예진",
+                    "role": "L",
+                    "img": "path_to_정예진_image.jpg"
+                },
+                {
+                    "id": 20,
+                    "name": "오준석",
+                    "role": "M",
+                    "img": "path_to_오준석_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 20,
+            "gathername": "반려동물 영양 관리 모임",
+            "contents": "반려동물의 건강을 위한 식단과 영양 관리에 대해 연구하는 모임입니다.",
+            "gatherImg": "path_to_pet_nutrition_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/PetNutritionGroup",
+            "createAt": "2022-02-12 09:00:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 20,
+                    "name": "이민호",
+                    "role": "L",
+                    "img": "path_to_이민호_image.jpg"
+                },
+                {
+                    "id": 21,
+                    "name": "김유정",
+                    "role": "M",
+                    "img": "path_to_김유정_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 21,
+            "gathername": "애완동물 의류 디자인 모임",
+            "contents": "애완동물 의류 및 액세서리 디자인에 관심 있는 사람들이 모이는 창작 모임입니다.",
+            "gatherImg": "path_to_pet_fashion_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/PetFashionGroup",
+            "createAt": "2022-01-05 18:30:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 21,
+                    "name": "정현우",
+                    "role": "L",
+                    "img": "path_to_정현우_image.jpg"
+                },
+                {
+                    "id": 22,
+                    "name": "김하나",
+                    "role": "M",
+                    "img": "path_to_김하나_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 22,
+            "gathername": "반려동물 행동학 연구회",
+            "contents": "반려동물의 행동과 심리 연구를 통해 문제 행동을 개선하는 방법을 나누는 모임입니다.",
+            "gatherImg": "path_to_pet_behavior_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/PetBehaviorGroup",
+            "createAt": "2021-12-22 14:00:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 22,
+                    "name": "김지수",
+                    "role": "L",
+                    "img": "path_to_김지수_image.jpg"
+                },
+                {
+                    "id": 23,
+                    "name": "이서준",
+                    "role": "M",
+                    "img": "path_to_이서준_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 23,
+            "gathername": "소동물 생태 연구 모임",
+            "contents": "햄스터, 기니피그 등 소동물의 생태와 행동에 대해 연구하고 정보를 공유하는 모임입니다.",
+            "gatherImg": "path_to_small_animal_ecology_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/SmallAnimalEcology",
+            "createAt": "2021-11-11 09:45:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 23,
+                    "name": "최지훈",
+                    "role": "L",
+                    "img": "path_to_최지훈_image.jpg"
+                },
+                {
+                    "id": 24,
+                    "name": "김미소",
+                    "role": "M",
+                    "img": "path_to_김미소_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 24,
+            "gathername": "희귀종 애호가 모임",
+            "contents": "희귀종 동물을 기르며, 동물의 특성과 사육 방법에 대해 연구하는 모임입니다.",
+            "gatherImg": "path_to_rare_species_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/RareSpeciesLovers",
+            "createAt": "2021-10-05 11:15:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 24,
+                    "name": "유민수",
+                    "role": "L",
+                    "img": "path_to_유민수_image.jpg"
+                },
+                {
+                    "id": 25,
+                    "name": "이유진",
+                    "role": "M",
+                    "img": "path_to_이유진_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 25,
+            "gathername": "반려동물 놀이 연구 모임",
+            "contents": "반려동물과 함께 즐길 수 있는 놀이 및 훈련법을 연구하고 공유하는 모임입니다.",
+            "gatherImg": "path_to_pet_play_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/PetPlayGroup",
+            "createAt": "2021-09-02 10:30:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 25,
+                    "name": "박소현",
+                    "role": "L",
+                    "img": "path_to_박소현_image.jpg"
+                },
+                {
+                    "id": 26,
+                    "name": "한지훈",
+                    "role": "M",
+                    "img": "path_to_한지훈_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 26,
+            "gathername": "애완동물 건강 관리 동호회",
+            "contents": "반려동물의 건강과 관련된 정보를 연구하고 공유하는 모임입니다.",
+            "gatherImg": "path_to_pet_health_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/PetHealthGroup",
+            "createAt": "2021-08-14 14:45:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 26,
+                    "name": "이유리",
+                    "role": "L",
+                    "img": "path_to_이유리_image.jpg"
+                },
+                {
+                    "id": 27,
+                    "name": "조하늘",
+                    "role": "M",
+                    "img": "path_to_조하늘_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 27,
+            "gathername": "고양이 사료 연구 모임",
+            "contents": "고양이의 건강을 위한 최적의 사료와 영양 성분을 연구하는 모임입니다.",
+            "gatherImg": "path_to_cat_food_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/CatFoodResearch",
+            "createAt": "2021-07-23 09:30:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 27,
+                    "name": "윤혜진",
+                    "role": "L",
+                    "img": "path_to_윤혜진_image.jpg"
+                },
+                {
+                    "id": 28,
+                    "name": "백준영",
+                    "role": "M",
+                    "img": "path_to_백준영_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 28,
+            "gathername": "파충류 사육법 연구회",
+            "contents": "다양한 파충류 사육 기법을 연구하고 공유하는 모임입니다.",
+            "gatherImg": "path_to_reptile_care_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/ReptileCareGroup",
+            "createAt": "2021-06-12 12:00:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 28,
+                    "name": "김동현",
+                    "role": "L",
+                    "img": "path_to_김동현_image.jpg"
+                },
+                {
+                    "id": 29,
+                    "name": "이경미",
+                    "role": "M",
+                    "img": "path_to_이경미_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 29,
+            "gathername": "소동물 행동 연구회",
+            "contents": "소동물의 행동 특성을 연구하고, 사육법을 공유하는 모임입니다.",
+            "gatherImg": "path_to_small_animal_behavior_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/SmallAnimalBehaviorGroup",
+            "createAt": "2021-05-02 08:30:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 29,
+                    "name": "최현우",
+                    "role": "L",
+                    "img": "path_to_최현우_image.jpg"
+                },
+                {
+                    "id": 30,
+                    "name": "이서현",
+                    "role": "M",
+                    "img": "path_to_이서현_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 30,
+            "gathername": "애완동물 DIY 용품 만들기 모임",
+            "contents": "반려동물을 위한 DIY 용품을 만드는 모임으로, 다양한 제작법을 나누고 함께 만드는 시간을 갖습니다.",
+            "gatherImg": "path_to_pet_diy_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/PetDIYGroup",
+            "createAt": "2021-03-11 17:00:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 30,
+                    "name": "유정민",
+                    "role": "L",
+                    "img": "path_to_유정민_image.jpg"
+                },
+                {
+                    "id": 31,
+                    "name": "오민수",
+                    "role": "M",
+                    "img": "path_to_오민수_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 31,
+            "gathername": "반려동물 훈련사 협회",
+            "contents": "반려동물 훈련사들이 모여 훈련법을 연구하고 교류하는 협회 모임입니다.",
+            "gatherImg": "path_to_pet_trainer_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/PetTrainerAssociation",
+            "createAt": "2021-01-20 14:30:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 31,
+                    "name": "박찬호",
+                    "role": "L",
+                    "img": "path_to_박찬호_image.jpg"
+                },
+                {
+                    "id": 32,
+                    "name": "김다은",
+                    "role": "M",
+                    "img": "path_to_김다은_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 32,
+            "gathername": "애완동물 용품 개발 모임",
+            "contents": "반려동물 관련 제품 개발과 아이디어를 공유하는 모임입니다.",
+            "gatherImg": "path_to_pet_product_development_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/PetProductDevelopmentGroup",
+            "createAt": "2020-12-14 09:00:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 32,
+                    "name": "최영수",
+                    "role": "L",
+                    "img": "path_to_최영수_image.jpg"
+                },
+                {
+                    "id": 33,
+                    "name": "이현지",
+                    "role": "M",
+                    "img": "path_to_이현지_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 33,
+            "gathername": "반려동물 사진 촬영 모임",
+            "contents": "반려동물 사진을 찍는 취미를 가진 사람들이 모여 촬영 노하우를 공유하는 모임입니다.",
+            "gatherImg": "path_to_pet_photography_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/PetPhotographyGroup",
+            "createAt": "2020-11-21 10:30:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 33,
+                    "name": "정우성",
+                    "role": "L",
+                    "img": "path_to_정우성_image.jpg"
+                },
+                {
+                    "id": 34,
+                    "name": "송혜교",
+                    "role": "M",
+                    "img": "path_to_송혜교_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 34,
+            "gathername": "고양이 털 관리 연구 모임",
+            "contents": "고양이 털 관리와 미용에 대해 연구하고 정보를 나누는 모임입니다.",
+            "gatherImg": "path_to_cat_grooming_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/CatGroomingGroup",
+            "createAt": "2020-10-07 08:30:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 34,
+                    "name": "전지현",
+                    "role": "L",
+                    "img": "path_to_전지현_image.jpg"
+                },
+                {
+                    "id": 35,
+                    "name": "정혜인",
+                    "role": "M",
+                    "img": "path_to_정혜인_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 35,
+            "gathername": "강아지 산책 모임",
+            "contents": "강아지와 함께하는 산책을 주제로 다양한 산책 코스와 노하우를 공유하는 모임입니다.",
+            "gatherImg": "path_to_dog_walking_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/DogWalkingGroup",
+            "createAt": "2020-09-02 16:00:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 35,
+                    "name": "이정재",
+                    "role": "L",
+                    "img": "path_to_이정재_image.jpg"
+                },
+                {
+                    "id": 36,
+                    "name": "손예진",
+                    "role": "M",
+                    "img": "path_to_손예진_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 36,
+            "gathername": "토끼 사육 연구회",
+            "contents": "토끼 사육에 대해 연구하고 정보를 공유하는 모임입니다.",
+            "gatherImg": "path_to_rabbit_care_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/RabbitCareGroup",
+            "createAt": "2020-08-11 11:30:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 36,
+                    "name": "김남길",
+                    "role": "L",
+                    "img": "path_to_김남길_image.jpg"
+                },
+                {
+                    "id": 37,
+                    "name": "한예슬",
+                    "role": "M",
+                    "img": "path_to_한예슬_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 37,
+            "gathername": "파충류 애호가 협회",
+            "contents": "파충류에 대한 깊은 애정을 가지고 사육 및 연구하는 사람들의 모임입니다.",
+            "gatherImg": "path_to_reptile_enthusiasts_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/ReptileEnthusiastsAssociation",
+            "createAt": "2020-07-15 14:45:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 37,
+                    "name": "차승원",
+                    "role": "L",
+                    "img": "path_to_차승원_image.jpg"
+                },
+                {
+                    "id": 38,
+                    "name": "배두나",
+                    "role": "M",
+                    "img": "path_to_배두나_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 38,
+            "gathername": "고양이 행동학 연구 모임",
+            "contents": "고양이의 행동과 심리에 대해 연구하고 그 결과를 공유하는 모임입니다.",
+            "gatherImg": "path_to_cat_behavior_study_group_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/CatBehaviorStudy",
+            "createAt": "2020-06-09 12:00:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 38,
+                    "name": "유재석",
+                    "role": "L",
+                    "img": "path_to_유재석_image.jpg"
+                },
+                {
+                    "id": 39,
+                    "name": "박보영",
+                    "role": "M",
+                    "img": "path_to_박보영_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 39,
+            "gathername": "파충류 마니아",
+            "contents": "다양한 파충류를 사랑하는 사람들을 위한 모임으로, 서로 사육법과 경험을 나누는 모임입니다.",
+            "gatherImg": "path_to_reptile_mania_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/ReptileMania",
+            "createAt": "2024-08-12 09:00:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 39,
+                    "name": "송중기",
+                    "role": "L",
+                    "img": "path_to_송중기_image.jpg"
+                },
+                {
+                    "id": 40,
+                    "name": "전지현",
+                    "role": "M",
+                    "img": "path_to_전지현_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 40,
+            "gathername": "아쿠아리움 마스터",
+            "contents": "대형 아쿠아리움을 관리하고 물고기 사육을 연구하는 사람들의 모임입니다.",
+            "gatherImg": "path_to_aquarium_master_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/AquariumMaster",
+            "createAt": "2024-07-05 14:00:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 41,
+                    "name": "이수근",
+                    "role": "L",
+                    "img": "path_to_이수근_image.jpg"
+                },
+                {
+                    "id": 42,
+                    "name": "김지원",
+                    "role": "M",
+                    "img": "path_to_김지원_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 41,
+            "gathername": "곤충 사육사 클럽",
+            "contents": "곤충을 기르는 전문가들이 모여 곤충 사육에 대한 다양한 지식과 팁을 공유하는 모임입니다.",
+            "gatherImg": "path_to_insect_keeper_club_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/InsectKeeperClub",
+            "createAt": "2024-06-18 10:30:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 43,
+                    "name": "정해인",
+                    "role": "L",
+                    "img": "path_to_정해인_image.jpg"
+                },
+                {
+                    "id": 44,
+                    "name": "한지민",
+                    "role": "M",
+                    "img": "path_to_한지민_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 42,
+            "gathername": "캣페어 애호가 모임",
+            "contents": "캣페어에 참여하는 사람들을 위한 모임으로, 캣페어 관련 정보와 팁을 나누는 모임입니다.",
+            "gatherImg": "path_to_cat_fair_lovers_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/CatFairLovers",
+            "createAt": "2024-05-25 12:00:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 45,
+                    "name": "이재훈",
+                    "role": "L",
+                    "img": "path_to_이재훈_image.jpg"
+                },
+                {
+                    "id": 46,
+                    "name": "박민영",
+                    "role": "M",
+                    "img": "path_to_박민영_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 43,
+            "gathername": "햄스터 애호가 모임",
+            "contents": "햄스터를 기르는 사람들을 위한 모임으로, 햄스터 사육과 관련된 정보를 공유합니다.",
+            "gatherImg": "path_to_hamster_lovers_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/HamsterLovers",
+            "createAt": "2024-04-14 11:00:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 47,
+                    "name": "유재석",
+                    "role": "L",
+                    "img": "path_to_유재석_image.jpg"
+                },
+                {
+                    "id": 48,
+                    "name": "박보영",
+                    "role": "M",
+                    "img": "path_to_박보영_image.jpg"
+                }
+            ]
+        },
+        {
+            "id": 44,
+            "gathername": "반려견 의료 포럼",
+            "contents": "반려견의 건강과 의료에 대해 토론하고 정보를 공유하는 전문가 모임입니다.",
+            "gatherImg": "path_to_dog_medical_forum_image.png",
+            "url": "www.pet-cast.com/api/v1/gather/groupdetail/DogMedicalForum",
+            "createAt": "2024-03-12 16:30:00",
+            "updateAt": "2024-09-16 12:12:12",
+            "members": [
+                {
+                    "id": 49,
+                    "name": "서현진",
+                    "role": "L",
+                    "img": "path_to_서현진_image.jpg"
+                },
+                {
+                    "id": 50,
+                    "name": "정유미",
+                    "role": "M",
+                    "img": "path_to_정유미_image.jpg"
+                }
+            ]
+        }
+    ]
+}
