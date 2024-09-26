@@ -8,6 +8,7 @@ import BizEventUpdate from '../views/contents/biz_event/BizEventUpdate.vue';
 import CustomerEvent from '../views/contents/customer_event/CustomerEvent.vue';
 import CustomerReview from '../views/contents/customer_review/CustomerReview.vue';
 import CreateReview from '../views/contents/customer_review/CreateReview.vue';
+import UpdateReview from '../views/contents/customer_review/UpdateReview.vue';
 
 const routes = [
   {
@@ -54,6 +55,11 @@ const routes = [
     path: '/create-review/:eventId',
     name: 'CreateReview',
     component: CreateReview
+  },
+  {
+    path: '/update-review/:reviewId',
+    name: 'UpdateReview',
+    component: UpdateReview
   }
 ];
 

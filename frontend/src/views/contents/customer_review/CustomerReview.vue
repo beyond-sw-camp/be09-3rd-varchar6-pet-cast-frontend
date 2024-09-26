@@ -37,9 +37,10 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 const route = useRoute();
+const router = useRouter();
 const businessId = route.params.id;
 
 const reviews = ref([]);
@@ -93,9 +94,10 @@ const formatDate = (dateString) => {
 };
 
 const handleReviewAction = (reviewId) => {
-    // 리뷰 수정/삭제 로직 구현
-    console.log('리뷰 수정/삭제:', reviewId);
-    // 여기에 수정/삭제 모달 또는 다른 로직을 추가할 수 있습니다.
+    router.push({ 
+        name: 'UpdateReview', 
+        params: { reviewId: reviewId }
+    });
 };
 
 const checkCustomerStatus = () => {
