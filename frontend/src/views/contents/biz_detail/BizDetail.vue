@@ -136,9 +136,13 @@ const deleteAccount = () => {
 };
 
 const checkLoginStatus = () => {
-// 여기에 실제 로그인 상태를 확인하는 로직 구현
-// 예: API 호출 또는 로컬 스토리지 확인 등
-isLoggedIn.value = true; // 예시로 항상 로그인 상태로 설정
+  const rolesString = localStorage.getItem('Roles');
+  if (rolesString) {
+    const roles = JSON.parse(rolesString);
+    isLoggedIn.value = roles.includes('COMPANY');
+  } else {
+    isLoggedIn.value = false;
+  }
 };
 
 const goToEvents = () => {
