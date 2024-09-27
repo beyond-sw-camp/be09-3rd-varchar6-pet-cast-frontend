@@ -1,16 +1,19 @@
 <template>
   <div class="profile-image-wrapper">
-    <img :src="src" alt="프로필 이미지" class="profile-image" />
+    <!-- <img :src="src" alt="프로필 이미지" class="profile-image" /> -->
+    <img src="../../../assets/image/profile/profile_sample_500x500.png" alt="프로필 이미지" class="profile-image" />
   </div>
 </template>
 
 <script setup>
 import { defineProps } from 'vue';
+import defaultProfileimg from '../../../assets/image/profile/default_user_profile_img.png'
 
 const props = defineProps({
   src: {
     type: String,
     required: true,
+    default: defaultProfileimg,
   },
 });
 </script>
