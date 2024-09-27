@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/contents/Home.vue';
 import About from '../views/contents/About.vue';
 import Login from '../views/contents/Login.vue';
-import BizDetail from '../views/contents/biz_detail/BizDetail.vue';
+import BizDetail from '../views/contents/biz/BizDetail.vue';
 import BizEvents from '../views/contents/biz_event/BizEvent.vue';
 import BizReviews from '../views/contents/biz_review/BizReview.vue';
 import BizEventUpdate from '../views/contents/biz_event/BizEventUpdate.vue';
@@ -10,6 +10,7 @@ import CustomerEvent from '../views/contents/customer_event/CustomerEvent.vue';
 import CustomerReview from '../views/contents/customer_review/CustomerReview.vue';
 import CreateReview from '../views/contents/customer_review/CreateReview.vue';
 import UpdateReview from '../views/contents/customer_review/UpdateReview.vue';
+import BizList from '../views/contents/biz/BizList.vue';
 
 const routes = [
   {
@@ -70,6 +71,11 @@ const routes = [
   {
     path: '/login',
     component: Login,
+  },
+  {
+    path: '/biz-list',
+    name: 'BizList',
+    component: BizList
   },
 
   // 요청하지 않은 페이지
