@@ -43,7 +43,7 @@
   const route = useRoute()
   const router = useRouter()
   
-  const noticeData = ref(null)
+  const noticeData = ref({})
   const fixed = ref('일반') // 기본값을 '일반'으로 설정
   const isAdmin = ref(false)
 
@@ -64,20 +64,20 @@
     return new Date(dateString).toLocaleDateString('ko-KR', options)
   }
   
-  const fetchnoticeData = async () => {
-    const id = route.params.id
+  // const fetchnoticeData = async () => {
+    // const id = route.params.id
     // 실제 구현에서는 API 호출로 대체해야 합니다
-    setTimeout(() => {
-      noticeData.value = {
-        id: id,
-        title: "Vue 3 Composition API의 장점은 무엇인가요?",
-        content: "너무 최신기술이다.",
-        createdAt: "2024-09-26T10:30:00",
-        memberId: "Vue 초보자",
-        fixed: fixed.value
-      }
-    }, 1000)
-  }
+    // setTimeout(() => {
+    //   noticeData.value = {
+    //     id: id,
+    //     title: "Vue 3 Composition API의 장점은 무엇인가요?",
+    //     content: "너무 최신기술이다.",
+    //     createdAt: "2024-09-26T10:30:00",
+    //     memberId: "Vue 초보자",
+    //     fixed: fixed.value
+    //   }
+    // }, 1000)
+  // }
   
   const goBack = () => {
     router.push('/api/v1/notice')
@@ -100,8 +100,16 @@
   // }
 
   onMounted(() => {
-    fetchnoticeData()
+    // fetchnoticeData()
     checkRole()
+    noticeData.value = {
+      id: route.query.id,
+      title: route.query.title,
+      content: route.query.content,
+      createdAt: route.query.createdAt,
+      memberId: route.query.memberId,
+      fixed: route.query.fixed
+    };
   })
   
   </script>

@@ -1,94 +1,123 @@
 <template>
-    <div class="notice-list-section">
-      <h2>공지사항</h2>
-      <div class="notice-list">
-        <div class="notice-header">
-          <span>개수 : {{ totalItems }}개</span>
-          <!-- <input type="text" v-model="searchQuery" placeholder="검색어를 입력하세요" @input="searchnotice" /> -->
-        </div>
-        <ul>
-          <li v-for="item in paginatedItems" :key="item.id" class="notice-item" @click="goTonoticeRead(item.id)">
-            <span class="notice-type">{{ item.type }}</span>
-            <span class="notice-title">{{ item.title }}</span>
-            <span class="notice-date">{{ item.date }}</span>
-          </li>
-        </ul>
-        <div class="pagination">
-          <button @click="prevPage" :disabled="currentPage === 1">&lt;</button>
-          <span>{{ currentPage }} / {{ totalPages }}</span>
-          <button @click="nextPage" :disabled="currentPage === totalPages">&gt;</button>
-        </div>
+  <div class="notice-list-section">
+    <h2>공지사항</h2>
+    <div class="notice-list">
+      <div class="notice-header">
+        <span>개수 : {{ totalItems }}개</span>
         <button @click="goToCreatenotice" class="create-btn" v-if="isAdmin">등록</button>
+
+      </div>
+
+      <!-- 상단 고정 공지사항 테이블 -->
+      <ul v-if="fixedItems.length > 0">
+        <!-- <h3>상단 고정</h3> -->
+        <li v-for="item in fixedItems" :key="item.id" class="notice-item" @click="goTonoticeRead(item.id)">
+          <span class="notice-type">필독</span>
+          <span class="notice-title">{{ item.title }}</span>
+          <span class="notice-date">{{ formatDate(item.createdAt) }}</span>
+        </li>
+      </ul>
+
+      <!-- 일반 공지사항 테이블 -->
+      <ul>
+        <!-- <h3>일반 공지사항</h3> -->
+        <li v-for="item in paginatedItems" :key="item.id" class="notice-item" @click="goTonoticeRead(item)">
+          <span class="notice-title">{{ item.title }}</span>
+          <span class="notice-date">{{ formatDate(item.createdAt) }}</span>
+        </li>
+      </ul>
+
+      <div class="pagination">
+        <button @click="prevPage" :disabled="currentPage === 1">&lt;</button>
+        <span>{{ currentPage }} / {{ totalPages }}</span>
+        <button @click="nextPage" :disabled="currentPage === totalPages">&gt;</button>
       </div>
     </div>
-  </template>
-  
-  <script setup>
-  import { ref, computed, onMounted } from 'vue'
-  import { useRouter } from 'vue-router'
-  
-  const router = useRouter()
-  const noticeItems = ref([])
-  const currentPage = ref(1)
-  const itemsPerPage = 10
-  // const searchQuery = ref('')
-  const isAdmin = ref(false)
+  </div>
+</template>
 
-  const checkRole = () => {
-    const roleString = localStorage.getItem('Roles');   
-    console.log(roleString);
-    if(roleString){
-      const roles = roleString.split(',');
-      isAdmin.value = roles.includes('ADMIN');
-    }else{
-      isAdmin.value = false;
-    }
+<script setup>
+import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import NoticeDetail from './NoticeDetail.vue';
+
+const sendItem = ref([])
+const router = useRouter()
+const noticeItems = ref([])
+const currentPage = ref(1)
+const itemsPerPage = 10
+const isAdmin = ref(false)
+
+const formatDate = (dateString) => {
+  if (!dateString) return 'N/A'
+  const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }
+  return new Date(dateString).toLocaleDateString('ko-KR', options)
+}
+
+const checkRole = () => {
+  const roleString = localStorage.getItem('Roles');   
+  if(roleString){
+    const roles = roleString.split(',');
+    isAdmin.value = roles.includes('ADMIN');
+  }else{
+    isAdmin.value = false;
   }
-  const totalItems = computed(() => noticeItems.value.length)
-  const totalPages = computed(() => Math.ceil(totalItems.value / itemsPerPage))
-  
-  const paginatedItems = computed(() => {
-    const start = (currentPage.value - 1) * itemsPerPage
-    const end = start + itemsPerPage
-    return noticeItems.value.slice(start, end)
-  })
-  
-  const fetchnoticeItems = async () => {
-    // 실제 구현에서는 API 호출로 대체해야 합니다
-    noticeItems.value = [
-      { id: 1, type: '필독', title: '펫케어몰레터의 테마 선택 기준 여부', date: '24.09.01' },
-      { id: 2, type: '필독', title: '펫베스트와 행사 기획 범위', date: '24.08.13' },
-      { id: 3, type: '일반', title: '도그웨딩브레이션 케이터링 서비스', date: '24.08.05' },
-      // ... 더 많은 아이템 추가
-    ]
+}
+
+const totalItems = computed(() => noticeItems.value.length)
+const totalPages = computed(() => Math.ceil((noticeItems.value.filter(item => !item.fixed).length) / itemsPerPage))
+
+const fixedItems = computed(() => noticeItems.value.filter(item => item.fixed))
+const nonFixedItems = computed(() => noticeItems.value.filter(item => !item.fixed))
+
+const paginatedItems = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage
+  const end = start + itemsPerPage
+  return nonFixedItems.value.slice(start, end)
+})
+
+const fetchNoticeItems = async () => {
+  try {
+    const response = await fetch('http://localhost:8888/notices');
+    if(!response.ok) throw new Error('에러 발생');
+    const data = await response.json();
+    noticeItems.value = data;
+  } catch (error) {
+    console.error(error);
   }
+}
+
+const prevPage = () => {
+  if (currentPage.value > 1) currentPage.value--
+}
+
+const nextPage = () => {
+  if (currentPage.value < totalPages.value) currentPage.value++
+}
+
+const goToCreatenotice = () => {
+  router.push('/api/v1/notice/post')
+}
+
+// const goTonoticeRead = (id) => {
+
+//   router.push(`/api/v1/notice/${id}`)
   
-  const prevPage = () => {
-    if (currentPage.value > 1) currentPage.value--
-  }
-  
-  const nextPage = () => {
-    if (currentPage.value < totalPages.value) currentPage.value++
-  }
-  
-  // const searchnotice = () => {
-  //   // 실제 구현에서는 서버 측 검색 또는 클라이언트 측 필터링을 수행해야 합니다
-  //   console.log('Searching for:', searchQuery.value)
-  // }
-  
-  const goToCreatenotice = () => {
-    router.push('/api/v1/notice/post') // notice 작성 페이지로 이동
-  }
-  
-  const goTonoticeRead = (id) => {
-    router.push(`/api/v1/notice/${id}`) // notice 상세 읽기 페이지로 이동
-  }
-  
-  onMounted(() => {
-    fetchnoticeItems()
-    checkRole()
-  })
-  </script>
+// }
+
+const goTonoticeRead = (sendItem) => {
+  console.log(sendItem);
+  router.push({path: '/api/v1/notice/${sendItem.id}' , query: { id: sendItem.id, title: sendItem.title, content: sendItem.content, createdAt: sendItem.createdAt, memberId: sendItem.memberId, fixed: sendItem.fixed }})
+  // router.push({name: 'NoticeDetail' , query: { id: item.id, title: item.title, content: item.content, createdAt: item.createdAt }})
+}
+
+
+onMounted(() => {
+  fetchNoticeItems()
+  checkRole()
+})
+</script>
+
   
   <style scoped>
   .notice-list-section {
@@ -152,7 +181,7 @@
   }
   
   .notice-type {
-  background-color: #f6e7e7; /* 유형의 배경색 */
+  background-color: #f2bdbd; /* 유형의 배경색 */
   padding: 5px 12px;
   border-radius: 12px;
   font-size: 0.8em;
