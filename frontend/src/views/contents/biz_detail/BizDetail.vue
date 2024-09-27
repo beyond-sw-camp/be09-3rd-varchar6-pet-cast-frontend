@@ -117,7 +117,7 @@ const isLoggedIn = ref(false); // 로그인 상태를 저장하는 변수
 const fetchBusinessDetails = async () => {
 try {
   console.log('fetchBusinessDetails 실행');
-  const response = await fetch('http://localhost:8080/businesses'); // 비즈니스 ID를 지정하여 데이터 가져오기
+  const response = await fetch('http://localhost:8888/businesses'); // 비즈니스 ID를 지정하여 데이터 가져오기
   if (!response.ok) {
     throw new Error('네트워크 응답이 올바르지 않습니다.');
   }
