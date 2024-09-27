@@ -37,8 +37,10 @@
                 <h2>{{ business.name }}</h2>
                 <p>{{ business.description }}</p>
                 <div class="rating">★ {{ business.rating.toFixed(1) }}</div>
-                <button @click.stop="createRequest(business.id)">요청서 작성하기</button>
-                <button @click.stop="viewReviews(business.id)">리뷰 상세 보기</button>
+                <div class="business-buttons">
+                  <button @click.stop="createRequest(business.id)">요청서 작성하기</button>
+                  <button @click.stop="viewReviews(business.id)">리뷰 상세 보기</button>
+                </div>
               </div>
             </div>
           </div>
@@ -232,12 +234,13 @@ onMounted(() => {
 }
 
 .business-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 
 .business-item {
+  display: flex;
   border: 1px solid #ddd;
   border-radius: 5px;
   overflow: hidden;
@@ -250,26 +253,38 @@ onMounted(() => {
 }
 
 .business-image {
-  width: 100%;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
 }
 
 .business-info {
+  flex: 1;
   padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .business-info h2 {
   margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.business-info p {
+  margin-bottom: 10px;
+}
+
+.business-buttons {
+  display: flex;
+  gap: 10px;
 }
 
 .business-info button {
   background-color: #4CAF50;
   color: white;
   border: none;
-  padding: 5px 10px;
-  margin-top: 10px;
-  margin-right: 5px;
+  padding: 8px 15px;
   border-radius: 3px;
   cursor: pointer;
 }
