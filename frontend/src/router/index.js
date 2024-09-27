@@ -61,7 +61,17 @@ const routes = [
     path: '/update-review/:eventId',
     name: 'UpdateReview',
     component: UpdateReview
-  }
+  },
+  {
+    path: '/login',
+    component: Login,
+  },
+
+  // 요청하지 않은 페이지
+  {
+    path: "/:catchAll(.*)*",
+    component: () => import("../views/contents/ErrorNotFound.vue"),
+  },
 ];
 
 const router = createRouter({
