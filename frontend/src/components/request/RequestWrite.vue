@@ -1,6 +1,6 @@
 <template>
+  <h1 class="title">요청서 작성</h1>
   <section class="container">
-    <h1 class="title">요청서 작성</h1>
     <form>
       <b-form-group label="희망 이벤트" label-sr-only v-slot="{ ariaDescribedby }">
     <b-form-radio-group
@@ -64,6 +64,9 @@ h1 {
   font-family: Jua;
   margin: 60px;
 }
+.option + .types {
+  margin-top: 100px; /* option과 types 사이의 여백 추가 */
+}
 .b-form-radio-group {
   display: flex;
   justify-content: space-between;
@@ -86,7 +89,7 @@ margin: 20px;
 form {
   background-color: rgba(163, 225, 253, 0.384);
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 20px;
   max-width: 700px;
   height: 400px;
   margin: auto;

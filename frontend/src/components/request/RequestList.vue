@@ -14,30 +14,18 @@
           </b-table>
         </div>
         <div v-else>데이터를 불러오는 중...</div>
-       
-        <!-- <div class="button-container">
-          <b-button-group>
-            <b-button
-              class="custom-btn list-before"
-              @click="beforepage"
-              :disabled="currentPage === 1"
-              ><<</b-button
-            >
-            <b-button class="custom-btn list">목록 보기</b-button>
-            <b-button
-              class="custom-btn list-after"
-              @click="afterpage"
-              :disabled="currentPage === totalPages"
-              >>></b-button
-            >
-          </b-button-group>
-        </div> -->
       </div>
       <b-modal
         v-model="showModal"
         title="요청서 상세 정보"
         size="lg"
-        class="custom-modal">
+        class="custom-modal"
+        ok-title="삭제"
+        cancel-title="닫기"
+        ok-variant="danger"
+        cancel-variant="primary"
+        @ok="deleteRequest"
+        @cancel="closeModal">
         <template v-if="selectedItem">
           <div class="detail-item">
             <strong>요청 업체</strong> {{ selectedItem.company_id }}
@@ -59,8 +47,8 @@
           </div>
         </template>
         <template #modal-footer>
-          <b-button size="lg" variant="primary" @click="closeModal()">닫기</b-button>
-          <b-button variant="danger" @click="deleteRequest()">삭제</b-button>
+          <!-- <b-button size="lg" variant="primary" @click="closeModal"></b-button>
+          <b-button variant="danger" @click="deleteRequest"></b-button> -->
         </template>
       </b-modal>
     </main>
@@ -82,24 +70,16 @@ const fields = [
 ];
 
 
-
-
 const showModal = ref(false);
 const selectedItem = ref(null);
 
-// const beforepage = () => {
-//   if (currentPage.value > 1) currentPage.value--;
-// };
-
-// const afterpage = () => {
-//   if (currentPage.value < totalPages.value) currentPage.value++;
-// };
 
 const showDetails = (item) => {
   selectedItem.value = item;
   showModal.value = true;
 };
 const closeModal = () => {
+  console.log('close 버튼 확인!');
   showModal.value = false;
 };
 

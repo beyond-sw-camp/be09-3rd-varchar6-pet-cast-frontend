@@ -21,5 +21,6 @@ footer {
   bottom: 0;
   width: 100%;
   height: 130px;
+  left: 0;
 }
 </style>
