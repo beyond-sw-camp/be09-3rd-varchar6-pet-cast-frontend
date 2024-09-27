@@ -10,9 +10,6 @@
       <ul class="menu-list">
         <li><RouterLink to="/">Home</RouterLink></li>
         <li><RouterLink to="/about">About</RouterLink></li>
-
-        <!-- 업체프로필  상세 조회 페이지 이동 테스트. 현재 업체 상세 페이지 이동 페이지가 만들어지지 않아 테스트용으로 nav에 둠-->
-        <button @click="bizDetail">업체 상세 프로필 test</button>
         <!-- 다른 메뉴 항목 추가 가능 -->
       </ul>
     </div>
@@ -36,48 +33,13 @@
         </RouterLink>
       </template>
     </div>
-    <Modal :isVisible="isModalVisible" :title="modalTitle" :message="modalMessage" @update:isVisible="handleModalClose" />
   </nav>
 </template>
 
 <script setup>
-import { ref, inject } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
-import Modal from '../../../components/Modal.vue';
 
 const router = useRouter();
-const modalTitle = ref('');
-const modalMessage = ref('');
-const isModalVisible = ref(false);
-const isLoggedIn = inject('isLoggedIn');
-const setIsLoggedIn = inject('setIsLoggedIn');
-const userId = inject('userId');
-
-function bizDetail() {
-    const num = 2;
-    router.push(`/api/v1/companies/${num}`);
-};
-
-// 로그아웃 처리
-const handleLogout = () => {
-  localStorage.removeItem('accessToken');
-  localStorage.removeItem('refreshToken');
-  localStorage.removeItem('userId'); // 아이디 정보 제거
-
-  setIsLoggedIn(false);
-  userId.value = '';
-
-  modalTitle.value = '로그아웃 완료';
-  modalMessage.value = '성공적으로 로그아웃 되었습니다.';
-  isModalVisible.value = true;
-};
-
-const handleModalClose = () => {
-  isModalVisible.value = false;
-  if (modalTitle.value === '로그아웃 완료') {
-    router.push('/login'); // 로그아웃 후 로그인 페이지로 이동
-  }
-};
 
 </script>
 

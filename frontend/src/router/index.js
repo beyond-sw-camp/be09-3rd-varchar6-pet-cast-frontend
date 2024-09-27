@@ -3,41 +3,70 @@ import Home from '../views/contents/Home.vue';
 import About from '../views/contents/About.vue';
 import Login from '../views/contents/Login.vue';
 import BizDetail from '../views/contents/biz_detail/BizDetail.vue';
-import BusinessEvents from '../views/contents/biz_detail/BusinessEvents.vue';
-import BusinessReviews from '../views/contents/biz_detail/BusinessReviews.vue';
-import BusinessQA from '../views/contents/biz_detail/BusinessQA.vue';
 import MyPage from '../views/contents/my_page/MyPage.vue';
+import BizEvents from '../views/contents/biz_event/BizEvent.vue';
+import BizReviews from '../views/contents/biz_review/BizReview.vue';
+import BizEventUpdate from '../views/contents/biz_event/BizEventUpdate.vue';
+import CustomerEvent from '../views/contents/customer_event/CustomerEvent.vue';
+import CustomerReview from '../views/contents/customer_review/CustomerReview.vue';
+import CreateReview from '../views/contents/customer_review/CreateReview.vue';
+import UpdateReview from '../views/contents/customer_review/UpdateReview.vue';
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    component: Home
   },
   {
     path: '/about',
     name: 'About',
-    component: About,
+    component: About
   },
   {
-    path: '/api/v1/companies/:id',
+    path: '/biz-detail/:id',
     name: 'BizDetail',
     component: BizDetail
   },
   {
-    path: '/business/:id/events',
-    name: 'BusinessEvents',
-    component: BusinessEvents
+    path: '/biz-events/:id',
+    name: 'BizEvents',
+    component: BizEvents
   },
   {
-    path: '/business/:id/reviews',
-    name: 'BusinessReviews',
-    component: BusinessReviews
+    path: '/biz-reviews/:id',
+    name: 'BizReviews',
+    component: BizReviews
   },
   {
-    path: '/business/:id/qa',
-    name: 'BusinessQA',
-    component: BusinessQA
+    path: '/biz-event-update/:id',
+    name: 'BizEventUpdate',
+    component: BizEventUpdate
+  },
+  {
+    path: '/business-event-update/:id',
+    name: 'BizEventUpdate',
+    component: BizEventUpdate
+  },
+  {
+    path: '/customer-events/:id',
+    name: 'CustomerEvents',
+    component: CustomerEvent
+  },
+  {
+    path: '/customer-reviews/:id',
+    name: 'CustomerReview',
+    component: CustomerReview
+  },
+  {
+    path: '/create-review/:eventId',
+    name: 'CreateReview',
+    component: CreateReview
+  },
+  {
+    path: '/update-review/:reviewId',
+    name: 'UpdateReview',
+    component: UpdateReview
   },
   {
     path: '/login',
@@ -58,7 +87,7 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes
 });
 
 export default router;
