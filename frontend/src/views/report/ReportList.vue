@@ -8,9 +8,9 @@
       </div>
       <ul>
         <li v-for="item in paginatedItems" :key="item.id" class="report-item" @click="goToReportRead(item.id)">
-          <span class="report-type">{{ item.type }}</span>
-          <span class="report-title">{{ item.title }}</span>
-          <span class="report-date">{{ item.date }}</span>
+          <!-- <span class="report-type">{{ item.type }}</span> -->
+          <span class="report-reason">{{ item.reason }}</span>
+          <span class="report-date">{{ formatDate(item.createdAt) }}</span>
         </li>
       </ul>
       <div class="pagination">
@@ -18,7 +18,7 @@
         <span>{{ currentPage }} / {{ totalPages }}</span>
         <button @click="nextPage" :disabled="currentPage === totalPages">&gt;</button>
       </div>
-      <button @click="goToCreatereport" class="create-btn">등록</button>
+      <!-- <button @click="goToCreatereport" class="create-btn">등록</button> -->
     </div>
   </div>
 </template>
@@ -42,6 +42,12 @@ const filteredItems = computed(() => {
   return reportItems.value.filter(item => (item.reporterId === parseInt(searchQuery.value)||(item.respondentId === parseInt(searchQuery.value))))
 })
 
+const formatDate = (dateString) => {
+    if (!dateString) return 'N/A'
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }
+    return new Date(dateString).toLocaleDateString('ko-KR', options)
+  }
+
 const totalItems = computed(() => filteredItems.value.length)
 const totalPages = computed(() => Math.ceil(totalItems.value / itemsPerPage))
 
@@ -54,12 +60,25 @@ const paginatedItems = computed(() => {
 
 // 데이터를 불러오는 예시 함수
 const fetchreportItems = async () => {
-  reportItems.value = [
-    { id: 1, type: '필독', title: '펫케어몰레터의 테마 선택 기준 여부', date: '24.09.01', reporterId: 3, respondentId: 1},
-    { id: 2, type: '필독', title: '펫베스트와 행사 기획 범위', date: '24.08.13', reporterId: 5, respondentId: 4 },
-    { id: 3, type: '일반', title: '도그웨딩브레이션 케이터링 서비스', date: '24.08.05', reporterId: 1, respondentId: 2 },
-    // 더 많은 데이터 추가 가능
-  ]
+  // reportItems.value = [
+  //   { id: 1, type: '필독', title: '펫케어몰레터의 테마 선택 기준 여부', date: '24.09.01', reporterId: 3, respondentId: 1},
+  //   { id: 2, type: '필독', title: '펫베스트와 행사 기획 범위', date: '24.08.13', reporterId: 5, respondentId: 4 },
+  //   { id: 3, type: '일반', title: '도그웨딩브레이션 케이터링 서비스', date: '24.08.05', reporterId: 1, respondentId: 2 },
+  //   // 더 많은 데이터 추가 가능
+  // ]
+  try{
+    const response = await fetch('http://localhost:8888/report');
+    if(!response.ok){
+      throw new Error('이상해여');
+    }
+    const data = await response.json();
+    console.log(data);
+    reportItems.value = data;
+
+  }catch(error){
+    console.error(error);
+  }
+
 }
 
 const prevPage = () => {
@@ -70,9 +89,9 @@ const nextPage = () => {
   if (currentPage.value < totalPages.value) currentPage.value++
 }
 
-const goToCreatereport = () => {
-  router.push('/api/v1/report/post') // report 작성 페이지로 이동
-}
+// const goToCreatereport = () => {
+//   router.push('/api/v1/report/post') // report 작성 페이지로 이동
+// }
 
 const goToReportRead = (id) => {
   router.push(`/api/v1/report/${id}`) // report 상세 읽기 페이지로 이동
