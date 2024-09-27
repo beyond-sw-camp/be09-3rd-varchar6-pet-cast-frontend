@@ -31,7 +31,9 @@
         align-items: center;
         gap: 20px;
     }
-
+    .memberimg {
+        margin: 30px;
+    }
     .member-item {
         display: flex;
         flex-direction: column;

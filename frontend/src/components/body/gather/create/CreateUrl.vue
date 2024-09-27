@@ -5,12 +5,12 @@
 </template>
 
 <script setup>
-    defineProps({
-        url:
-        {
-            type: String,
-            required: true
-        }
+    import { ref, onMounted } from 'vue';
+
+    const url = ref('');
+
+    onMounted(() => {
+        url.value = window.location.href;
     });
 </script>
 

@@ -3,6 +3,7 @@ import Home from '../views/contents/Home.vue';
 import About from '../views/contents/About.vue';
 import GatherList from '../views/contents/Gather/GatherList.vue';
 import GatherDetail from '../views/contents/Gather/GatherDetail.vue';
+import GatherCreate from '../views/contents/Gather/GatherCreate.vue';
 
 const routes = [
   {
@@ -24,7 +25,13 @@ const routes = [
     path: '/gatherdetail/:id',
     name: 'gatherdetail',
     component: GatherDetail
+  },
+  {
+    path: '/gathercreate',
+    name: 'gathercreate',
+    component: GatherCreate
   }
+
 ];
 
 const router = createRouter({

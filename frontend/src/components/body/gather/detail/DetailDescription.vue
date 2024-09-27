@@ -8,7 +8,6 @@
                 
                 <DetailDate :createdAt="gatherDetail?.createAt"
                             :updatedAt="gatherDetail?.updateAt"/>
-<!-- <b-button type="submit" variant="primary">수정</b-button> -->
             </b-card>
 </template>
 

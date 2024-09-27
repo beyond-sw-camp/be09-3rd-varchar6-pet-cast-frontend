@@ -1,11 +1,18 @@
 <template>
     <div class="gatherbtn">
         <b-button size="lg" variant="outline-primary">나의 모임 조회</b-button>
-        <b-button size="lg" variant="outline-primary">모임 생성</b-button>
+        <b-button @click="gatherCreated" size="lg" variant="outline-primary">모임 생성</b-button>
     </div>
 </template>
 
 <script setup>
+    import { useRouter } from 'vue-router';
+
+    const router = useRouter();
+
+    const gatherCreated = () => {
+        router.push('/gathercreate');
+    }
 
 </script>
 
