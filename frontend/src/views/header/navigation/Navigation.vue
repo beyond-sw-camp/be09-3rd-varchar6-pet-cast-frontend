@@ -9,7 +9,7 @@
       <!-- 메뉴 리스트 -->
       <ul class="menu-list">
         <li><RouterLink to="/">Home</RouterLink></li>
-        <li><RouterLink to="/about">About</RouterLink></li>>
+        <li><RouterLink to="/about">About</RouterLink></li>
       </ul>
     </div>
 
