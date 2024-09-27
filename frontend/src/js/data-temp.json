@@ -289,7 +289,7 @@
         "status": "진행중",
         "category": ["사진", "콘테스트"],
         "description": "봄을 맞아 반려동물과 함께 찍은 사진을 공유해주세요. 우승자에게는 특별한 선물이 준비되어 있습니다!",
-        "canReview": true
+        "canReview": false
       },
       {
         "id": 2,
@@ -307,22 +307,22 @@
         "status": "진행중",
         "category": ["할인", "용품"],
         "description": "다양한 고양이 장난감을 최대 50% 할인된 가격에 만나보세요.",
-        "canReview": true
+        "canReview": false
       },
       {
         "id": 4,
         "title": "반려동물 입양 캠페인",
         "imageUrl": "https://example.com/event4.jpg",
-        "status": "상시진행",
+        "status": "진행완료",
         "category": ["입양", "캠페인"],
         "description": "사랑스러운 반려동물들에게 새로운 가족을 찾아주세요. 입양 시 필요한 용품을 무료로 제공합니다.",
-        "canReview": false
+        "canReview": true
       },
       {
         "id": 5,
         "title": "여름 특별 미용 패키지",
         "imageUrl": "https://example.com/event5.jpg",
-        "status": "진행중",
+        "status": "진행완료",
         "category": ["미용", "할인"],
         "description": "더운 여름, 반려동물을 시원하게 해줄 특별 미용 패키지를 만나보세요.",
         "canReview": true
@@ -331,7 +331,7 @@
         "id": 6,
         "title": "반려동물 행동교정 강좌",
         "imageUrl": "https://example.com/event6.jpg",
-        "status": "접수중",
+        "status": "진행완료",
         "category": ["교육", "강좌"],
         "description": "전문 트레이너와 함께하는 반려동물 행동교정 강좌에 참여해보세요.",
         "canReview": false
@@ -340,25 +340,25 @@
         "id": 7,
         "title": "수제간식 만들기 클래스",
         "imageUrl": "https://example.com/event7.jpg",
-        "status": "진행중",
+        "status": "진행완료",
         "category": ["클래스", "간식"],
         "description": "우리 아이를 위한 건강한 수제간식 만들기 클래스에 참여하세요.",
-        "canReview": true
+        "canReview": false
       },
       {
         "id": 8,
         "title": "가을 산책 포토존 이벤트",
         "imageUrl": "https://example.com/event8.jpg",
-        "status": "진행중",
+        "status": "진행완료",
         "category": ["사진", "이벤트"],
         "description": "아름다운 가을 배경과 함께 반려동물과의 특별한 추억을 남겨보세요.",
-        "canReview": true
+        "canReview": false
       },
       {
         "id": 9,
         "title": "겨울철 반려동물 건강관리 세미나",
         "imageUrl": "https://example.com/event9.jpg",
-        "status": "접수중",
+        "status": "진행완료",
         "category": ["세미나", "건강"],
         "description": "추운 겨울, 반려동물의 건강을 지키는 방법을 알아보는 세미나입니다.",
         "canReview": false
@@ -367,16 +367,16 @@
         "id": 10,
         "title": "신년맞이 반려동물 용품 대전",
         "imageUrl": "https://example.com/event10.jpg",
-        "status": "진행중",
+        "status": "진행완료",
         "category": ["할인", "용품"],
         "description": "새해를 맞아 다양한 반려동물 용품을 특별가에 만나보세요.",
-        "canReview": true
+        "canReview": false
       },
       {
         "id": 11,
         "title": "반려동물 스트레스 해소 요가 클래스",
         "imageUrl": "https://example.com/event11.jpg",
-        "status": "접수중",
+        "status": "진행완료",
         "category": ["클래스", "건강"],
         "description": "반려동물과 함께하는 스트레스 해소 요가 클래스에 참여해보세요.",
         "canReview": false
