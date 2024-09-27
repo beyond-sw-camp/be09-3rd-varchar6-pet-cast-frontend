@@ -1,20 +1,20 @@
 <template>
-  <div class="biz-detail" v-if="business && business.length">
+  <div class="biz-detail" v-if="business">
     <!-- 비즈니스 헤더 -->
     <div class="biz-header">
       <!-- <img :src="business[0].imageUrl" alt="비즈니스 이미지"> -->
-      <img :src="business[0].imageUrl" alt="이미지"  height="200px" width="aspect-ratio:1">
+      <img :src="business.imageUrl" alt="이미지"  height="200px" width="aspect-ratio:1">
       <div class="biz-info">
         <div class="biz-header">
-          <h1>{{ business[0].name }}</h1>
-          <p class="location">{{ business[0].location }}</p>
+          <h1>{{ business.name }}</h1>
+          <p class="location">{{ business.location }}</p>
         </div>
-        <p class="description">{{ business[0].description }}</p>
+        <p class="description">{{ business.description }}</p>
         <div class="biz-details">
-          <p class="registration">사업자 등록증: {{ business[0].registrationStatus }}</p>
+          <p class="registration">사업자 등록증: {{ business.registrationStatus }}</p>
           <p class="categories">
-            <span v-for="(category, index) in business[0].categories" :key="index">
-              {{ category }}{{ index < business[0].categories.length - 1 ? ', ' : '' }}
+            <span v-for="(category, index) in business.categories" :key="index">
+              {{ category }}{{ index < business.categories.length - 1 ? ', ' : '' }}
             </span>
           </p>
         </div>
@@ -27,22 +27,22 @@
       <div class="stat-item">
         <h3>리뷰</h3>
         <div class="review-summary">
-          <span class="rating">★ {{ business[0].rating }}</span>
-          <span class="review-count">({{ business[0].reviewCount }}개)</span>
+          <span class="rating">★ {{ business.rating }}</span>
+          <span class="review-count">({{ business.reviewCount }}개)</span>
         </div>
         
       </div>
       <div class="stat-item">
         <h3>경력</h3>
-        <p>{{ business[0].experience }}년</p>
+        <p>{{ business.experience }}년</p>
       </div>
       <div class="stat-item">
         <h3>직원 수</h3>
-        <p>{{ business[0].employeeCount }}명</p>
+        <p>{{ business.employeeCount }}명</p>
       </div>
       <div class="stat-item">
         <h3>연락 가능 시간</h3>
-        <p>{{ business[0].contactHours }}</p>
+        <p>{{ business.contactHours }}</p>
       </div>
     </div>
 
@@ -52,7 +52,7 @@
         업체가 진행한 이벤트
         <span class="more-link" @click="goToEvents">더보기 ></span>
       </h2>
-      <div v-for="event in business[0].events.slice(0, 2)" :key="event.id" class="event-item">
+      <div v-for="event in business.events.slice(0, 2)" :key="event.id" class="event-item">
         <img :src="event.imageUrl" :alt="event.title">
         <div class="event-info">
           <div class="event-header">
@@ -75,7 +75,7 @@
         리뷰
         <span class="more-link" @click="goToReviews">더보기 ></span>
       </h2>
-      <div v-for="review in business[0].reviews.slice(0, 2)" :key="review.id" class="review-item">
+      <div v-for="review in business.reviews.slice(0, 2)" :key="review.id" class="review-item">
         <div class="review-header">
           <span class="rating">★ {{ review.rating }}</span>
           <span class="review-title">{{ review.title }}</span>
@@ -90,7 +90,7 @@
         Q&A
         <span class="more-link" @click="goToQA">더보기 ></span>
       </h2>
-      <div v-for="qa in business[0].qas.slice(0, 3)" :key="qa.id" class="qa-item">
+      <div v-for="qa in business.qas.slice(0, 3)" :key="qa.id" class="qa-item">
         <span :class="['status', qa.status]">{{ qa.status }}</span>
         <p class="qa-title">{{ qa.title }}</p>
         <p class="qa-date">{{ qa.date }}</p>
@@ -121,36 +121,44 @@ try {
   if (!response.ok) {
     throw new Error('네트워크 응답이 올바르지 않습니다.');
   }
-  business.value = await response.json();
+  const data = await response.json();
+  business.value = data; // JSON 응답의 businesses 속성을 저장
+  console.log('business:', business.value);
 } catch (error) {
   console.error("데이터를 가져오는 중 오류 발생:", error);
 }
 };
 
 const deleteAccount = () => {
-// 사용자가 소유자일 경우 계정 삭제 로직
-if (confirm('정말로 계정을 삭제하시겠습니까?')) {
-  // 여기에 계정 삭제 API 호출 로직 구현
-  console.log('계정 삭제 로직 실행'); // 계정 삭제 여부는 log로 관리해두면 좋을 거 같은데 현재 log 파일을 따로 만들지 않아서 console.log로 대체해뒀습니다
-}
+  if (confirm('정말로 계정을 삭제하시겠습니까?')) {
+        //   여기에 계정 삭제 API 호출 로직 구현
+        alert('계정이 삭제되었습니다.');
+        router.push({ name: 'Home' });
+    }
 };
 
 const checkLoginStatus = () => {
-// 여기에 실제 로그인 상태를 확인하는 로직 구현
-// 예: API 호출 또는 로컬 스토리지 확인 등
-isLoggedIn.value = true; // 예시로 항상 로그인 상태로 설정
+  const rolesString = localStorage.getItem('Roles');
+  if (rolesString) {
+    const roles = rolesString.split(',');
+    isLoggedIn.value = roles.includes('COMPANY');
+  } else {
+    isLoggedIn.value = false;
+  }
 };
 
 const goToEvents = () => {
-router.push({ name: 'BusinessEvents', params: { id: business.value[0].id } });
+  router.push(`/biz-events/${business.value.id }`);
+  // router.push({ name: 'BusinessEvents', params: { id: business.value[0].id } });
 };
 
 const goToReviews = () => {
-router.push({ name: 'BusinessReviews', params: { id: business.value[0].id } });
+  router.push(`/biz-reviews/${business.value.id }`);
+// router.push({ name: 'BusinessReviews', params: { id: business.value[0].id } });
 };
 
 const goToQA = () => {
-router.push({ name: 'BusinessQA', params: { id: business.value[0].id } });
+// router.push({ name: 'BusinessQA', params: { id: business.value[0].id } });
 };
 
 onMounted(() => {
@@ -163,10 +171,12 @@ checkLoginStatus();
 
 <style scoped>
 .biz-detail {
-max-width: 800px;
-margin: 0 auto;
-padding: 20px;
-font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-bottom: 80px; /* footer 높이에 따라 조정 */
+  min-height: calc(100vh - 80px); /* footer 높이를 뺀 전체 높이 */
+  font-family: Arial, sans-serif;
 }
 
 .biz-header {
@@ -209,36 +219,13 @@ margin-bottom: 20px;
 
 .more-link {
 cursor: pointer;
-color: blue;
+color: #0066cc;
 text-decoration: underline;
-}
-
-.event-item, .review-item, .qa-item {
-background-color: #fff9e6;
-padding: 10px;
-margin-bottom: 10px;
-border-radius: 5px;
-}
-
-.status {
-padding: 2px 5px;
-border-radius: 3px;
 font-size: 0.8em;
 }
 
-.status.미답변 {
-background-color: #ffe6e6;
-color: #cc0000;
-}
-
-.status.답변완료 {
+.event-item, .review-item, .qa-item {
 background-color: #e6f3ff;
-color: #0066cc;
-}
-
-.event-item {
-display: flex;
-background-color: #fff9e6;
 padding: 10px;
 margin-bottom: 10px;
 border-radius: 5px;
@@ -251,29 +238,10 @@ object-fit: cover;
 margin-right: 10px;
 }
 
-.review-item {
-background-color: #fff9e6;
-padding: 10px;
-margin-bottom: 10px;
-border-radius: 5px;
-}
-
 .review-header {
 display: flex;
 align-items: center;
 margin-bottom: 5px;
-}
-
-.rating {
-color: #ffd700;
-margin-right: 10px;
-}
-
-.qa-item {
-background-color: #fff9e6;
-padding: 10px;
-margin-bottom: 10px;
-border-radius: 5px;
 }
 
 .status {
@@ -345,12 +313,6 @@ margin-left: 5px;
 margin-bottom: 20px;
 }
 
-.biz-header {
-display: flex;
-align-items: center;
-margin-bottom: 10px;
-}
-
 .biz-header h1 {
 margin: 0;
 margin-right: 15px;
@@ -409,6 +371,77 @@ margin-right: 5px;
   font-size: 0.8em;
   color: #0066cc;
   cursor: pointer;
+}
+
+.event-item {
+  display: flex;
+  background-color: #e6f3ff;
+  padding: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.event-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.event-info {
+  flex-grow: 1;
+}
+
+.event-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 5px;
+}
+
+.event-title {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.event-meta {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.event-status {
+  font-size: 0.8em;
+  color: #666;
+  margin-right: 10px;
+}
+
+.event-category {
+  font-size: 0.9em;
+  color: #0066cc;
+  background-color: #e6f3ff;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+.edit-btn-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.edit-btn {
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.edit-btn:hover {
+  background-color: #e0e0e0;
 }
 
 </style>

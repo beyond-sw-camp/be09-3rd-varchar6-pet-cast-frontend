@@ -10,72 +10,26 @@
       <ul class="menu-list">
         <li><RouterLink to="/">Home</RouterLink></li>
         <li><RouterLink to="/about">About</RouterLink></li>
-
-        <!-- 업체프로필  상세 조회 페이지 이동 테스트. 현재 업체 상세 페이지 이동 페이지가 만들어지지 않아 테스트용으로 nav에 둠-->
-        <button @click="bizDetail">업체 상세 프로필 test</button>
         <!-- 다른 메뉴 항목 추가 가능 -->
       </ul>
     </div>
 
     <div class="nav-right">
-      <!-- 로그인 상태에 따라 다르게 표시 -->
-      <template v-if="isLoggedIn">
-        <!-- 로그인된 사용자 정보 및 아이콘 -->
-        <span class="user-id">{{ userId }}님 안녕하세요</span>
-        <img src="@/assets/icon/navigation/profile_48x48.png" alt="Profile" class="profile-image" />
-        <img src="@/assets/icon/navigation/alarm.png" alt="alarm" />
-        <img src="@/assets/icon/navigation/setting.png" alt="settings" />
-        <button @click="handleLogout">Logout</button>
-      </template>
-      <template v-else>
-        <!-- 로그인되지 않은 경우 로그인 버튼 표시 -->
-        <RouterLink to="/login">
-          <button class="login-button">Login</button>
-        </RouterLink>
-      </template>
+      <!-- 사용자 아이디 및 프로필 이미지 -->
+      <span class="user-id">User123</span>
+      <img src="../../../assets/icon/navigation/profile_48x48.png" alt="Profile" class="profile-image" />
+
+      <!-- 아이콘들 (예시: 알림, 설정 등) -->
+      <img src="../../../assets/icon/navigation/alarm.png" alt="alarm"/>
+      <img src="../../../assets/icon/navigation/setting.png" alt="settings"/>
     </div>
-    <Modal :isVisible="isModalVisible" :title="modalTitle" :message="modalMessage" @update:isVisible="handleModalClose" />
   </nav>
 </template>
 
 <script setup>
-import { ref, inject } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
-import Modal from '../../../components/Modal.vue';
 
 const router = useRouter();
-const modalTitle = ref('');
-const modalMessage = ref('');
-const isModalVisible = ref(false);
-const isLoggedIn = inject('isLoggedIn');
-const setIsLoggedIn = inject('setIsLoggedIn');
-const userId = inject('userId');
-
-function bizDetail() {
-    const num = 2;
-    router.push(`/api/v1/companies/${num}`);
-};
-
-// 로그아웃 처리
-const handleLogout = () => {
-  localStorage.removeItem('accessToken');
-  localStorage.removeItem('refreshToken');
-  localStorage.removeItem('userId'); // 아이디 정보 제거
-
-  setIsLoggedIn(false);
-  userId.value = '';
-
-  modalTitle.value = '로그아웃 완료';
-  modalMessage.value = '성공적으로 로그아웃 되었습니다.';
-  isModalVisible.value = true;
-};
-
-const handleModalClose = () => {
-  isModalVisible.value = false;
-  if (modalTitle.value === '로그아웃 완료') {
-    router.push('/login'); // 로그아웃 후 로그인 페이지로 이동
-  }
-};
 
 </script>
 

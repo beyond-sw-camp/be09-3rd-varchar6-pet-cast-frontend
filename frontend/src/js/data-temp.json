@@ -1,81 +1,473 @@
 {
-  "businesses": [
-    {
-      "id": 1,
-      
-      "imageUrl" : "https://drive.google.com/thumbnail?id=1EGVKStm3jJRhSVkJiEOBgRIfxAHjlrB4",
-      "name": "펫파티 플래너",
-      "location": "서울특별시 강남구",
-      "description": "강아지를 너무 사랑해서 우리 아가들에게 이벤트 해주기 위해 업체 차렸습니다",
-      "registrationStatus": "Y",
-      "categories": ["생일파티", "장소대관"],
-      "rating": 4.8,
-      "reviewCount": 25,
-      "experience": "10",
-      "employeeCount": 50,
-      "contactHours": "09:00 - 18:00",
-      "events": [
-        {
-          "id": 1,
-          "title": "강아지 사진전",
-          "status": "진행 중",
-          "category": ["장소대관", "사진"],
-          "imageUrl": "https://drive.google.com/thumbnail?id=1EGVKStm3jJRhSVkJiEOBgRIfxAHjlrB4",
-          "description": "강아지 2마리와 고양이 2마리가 사진을 찍고 있습니다. 참 귀엽죠? 당신의 반려동물도 가능합니다"
-        },
-        {
-          "id": 2,
-          "title": "쿠킹 클래스",
-          "status": "완료",
-          "category": ["펫푸드"],
-          "imageUrl": "https://drive.google.com/thumbnail?id=1EGVKStm3jJRhSVkJiEOBgRIfxAHjlrB4",
-          "description": "직접 만든 간식이 최고입니다. 요알못도 최대한 자세히 알려주는 값비싼 클래스"
-        }
-      ],
-      "reviews": [
-        {
-          "id": 1,
-          "title": "완전 만족 그자체 쿠킹 클래스",
-          "rating": 5,
-          "description": "하루에 300만원 짜리 쿠킹 클래스 듣고 왔습니다. 처음에는 조금 망설여졌지만 막상 들어보니 한 푼도 아깝지 않더군요. 완전 스파르타식으로 알려줘서 지금 당장 요리대회 나가도 될 만큼 실력이 늘었습니다. 감사합니다!!"
-        },
-        {
-          "id": 2,
-          "title": "강아지가 완전 좋아해요",
-          "rating": 4,
-          "description": "강아지가 짱 좋아함"
-        }
-      ],
-      "qas": [
-        {
-          "id": 1,
-          "status": "미답변",
-          "title": "여기 왤케 비싸요? ",
-          "date": "2024-09-20"
-        },
-        {
-          "id": 2,
-          "status": "미답변",
-          "title": "여기 왤케 비싸요? ",
-          "date": "2024-09-19"
-        },
-        {
-          "id": 3,
-          "status": "답변완료",
-          "title": "여기 왤케 비싸요? ",
-          "date": "2024-09-18"
-        }
-      ],
-      "isUserOwner": true
-    }
-  ],
+  "businesses": {
+    "id": 1,
+    "imageUrl" : "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe",
+    "name": "펫파티 플래너",
+    "location": "서울특별시 강남구",
+    "description": "강아지를 너무 사랑해서 우리 아가들에게 이벤트 해주기 위해 업체 차렸습니다",
+    "registrationStatus": "Y",
+    "categories": ["생일파티", "장소대관"],
+    "rating": 4.8,
+    "reviewCount": 25,
+    "experience": "10",
+    "employeeCount": 50,
+    "contactHours": "09:00 - 18:00",
+    "events": [
+      {
+        "id": 1,
+        "title": "강아지 사진전",
+        "status": "진행 중",
+        "category": ["장소대관", "사진"],
+        "imageUrl": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe",
+        "description": "강아지 2마리와 고양이 2마리가 사진을 찍고 있습니다. 참 귀엽죠? 당신의 반려동물도 가능합니다"
+      },
+      {
+        "id": 2,
+        "title": "쿠킹 클래스",
+        "status": "완료",
+        "category": ["펫푸드"],
+        "imageUrl": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe",
+        "description": "직접 만든 간식이 최고입니다. 요알못도 최대한 자세히 알려주는 값비싼 클래스"
+      }
+    ],
+    "reviews": [
+      {
+        "id": 1,
+        "title": "완전 만족 그자체 쿠킹 클래스",
+        "rating": 5,
+        "description": "하루에 300만원 짜리 쿠킹 클래스 듣고 왔습니다. 처음에는 조금 망설여졌지만 막상 들어보니 한 푼도 아깝지 않더군요. 완전 스파르타식으로 알려줘서 지금 당장 요리대회 나가도 될 만큼 실력이 늘었습니다. 감사합니다!!"
+      },
+      {
+        "id": 2,
+        "title": "강아지가 완전 좋아해요",
+        "rating": 4,
+        "description": "강아지가 짱 좋아함"
+      }
+    ],
+    "qas": [
+      {
+        "id": 1,
+        "status": "미답변",
+        "title": "여기 왤케 비싸요? ",
+        "date": "2024-09-20"
+      },
+      {
+        "id": 2,
+        "status": "미답변",
+        "title": "여기 왤케 비싸요? ",
+        "date": "2024-09-19"
+      },
+      {
+        "id": 3,
+        "status": "답변완료",
+        "title": "여기 왤케 비싸요? ",
+        "date": "2024-09-18"
+      }
+    ],
+    "isUserOwner": true
+  },
 
   "user-me": {
-	"id": 34,
-	"name": "testName",
-	"phone": "testPhone",
-	"nickname": "testNickname",
-	"image": "testImage",
-	"introduction": "testIntroduction"
-	}
+    "id": 34,
+    "name": "testName",
+    "phone": "testPhone",
+    "nickname": "testNickname",
+    "image": "testImage",
+    "introduction": "testIntroduction"
+  },
+
+  "business-event1": {
+    "id": 1,
+    "title": "강아지 사진전",
+    "status": "진행 중",
+    "category": ["사진", "전시회"],
+    "description": "강아지 20마리가 2주리기 사진을 찍고 있습니다. 참 귀엽고 재미있는 사진전이 될 것 같습니다.",
+    "imageUrl": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe"
+  },
+
+  "business-events": {
+  "totalCount": 12,
+  "isAuth" : true,
+  "events": [
+      {
+        "id": 1,
+        "title": "강아지 사진전",
+        "status": "진행 중",
+        "category": ["사진", "전시회"],
+        "description": "강아지 20마리가 2주리기 사진을 찍고 있습니다. 참 귀엽고 재미있는 사진전이 될 것 같습니다.",
+        "imageUrl": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe"
+      },
+      {
+        "id": 2,
+        "title": "쿠킹 클래스",
+        "status": "진행 예정",
+        "category": ["요리", "교육"],
+        "description": "유기농 재료로 만드는 건강한 반려동물 간식 만들기 클래스입니다.",
+        "imageUrl": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe"
+      },
+      {
+        "id": 3,
+        "title": "펫 마사지 워크샵",
+        "status": "종료",
+        "category": ["건강", "교육"],
+        "description": "반려동물을 위한 마사지 기법을 배우는 워크샵입니다.",
+        "imageUrl": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe"
+      },
+      {
+        "id": 4,
+        "title": "고양이 용품 할인전",
+        "status": "진행 중",
+        "category": ["세일", "용품"],
+        "description": "모든 고양이 용품 30% 할인 행사를 진행합니다.",
+        "imageUrl": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe"
+      },
+      {
+        "id": 5,
+        "title": "반려동물 건강검진 이벤트",
+        "status": "진행 예정",
+        "category": ["건강", "검진"],
+        "description": "무료 건강검진을 실시합니다. 예약 필수!",
+        "imageUrl": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe"
+      },
+      {
+        "id": 6,
+        "title": "강아지 훈련 세미나",
+        "status": "진행 중",
+        "category": ["교육", "세미나"],
+        "description": "전문 훈련사와 함께하는 강아지 훈련 세미나입니다.",
+        "imageUrl": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe"
+      },
+      {
+        "id": 7,
+        "title": "고양이 카페 오픈 기념 이벤트",
+        "status": "종료",
+        "category": ["카페", "오픈"],
+        "description": "새로 오픈한 고양이 카페에서 음료 1+1 이벤트를 진행합니다.",
+        "imageUrl": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe"
+      },
+      {
+        "id": 8,
+        "title": "반려동물 옷 패션쇼",
+        "status": "진행 예정",
+        "category": ["패션", "쇼"],
+        "description": "귀여운 반려동물들의 패션쇼가 열립니다. 참가 신청 중!",
+        "imageUrl": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe"
+      },
+      {
+        "id": 9,
+        "title": "동물병원 무료 상담의 날",
+        "status": "진행 중",
+        "category": ["의료", "상담"],
+        "description": "전문 수의사와 무료로 상담받을 수 있는 기회입니다.",
+        "imageUrl": "https://example.com/vet_free_consultation.jpg"
+      },
+      {
+        "id": 10,
+        "title": "반려동물 용품 박람회",
+        "status": "진행 예정",
+        "category": ["박람회", "용품"],
+        "description": "다양한 반려동물 용품을 한자리에서 만나보세요.",
+        "imageUrl": "https://example.com/pet_products_expo.jpg"
+      },
+      {
+        "id": 11,
+        "title": "강아지 수영 대회",
+        "status": "진행 중",
+        "category": ["스포츠", "대회"],
+        "description": "강아지들의 수영 실력을 뽐내는 대회입니다.",
+        "imageUrl": "https://example.com/dog_swimming_competition.jpg"
+      },
+      {
+        "id": 12,
+        "title": "고양이 장난감 만들기 워크샵",
+        "status": "진행 예정",
+        "category": ["DIY", "워크샵"],
+        "description": "재활용 재료로 고양이 장난감을 만드는 워크샵입니다.",
+        "imageUrl": "https://example.com/cat_toy_workshop.jpg"
+      }
+    ]
+  },
+
+  "businessReviews": {
+    "averageRating": 4.2,
+    "totalReviews": 12,
+    "reviews": [
+      {
+        "id": 1,
+        "rating": 5,
+        "author": "김철수",
+        "date": "2023-03-15T09:00:00Z",
+        "content": "정말 좋은 서비스였습니다. 직원들도 친절하고 시설도 깨끗해요."
+      },
+      {
+        "id": 2,
+        "rating": 4,
+        "author": "이영희",
+        "date": "2023-03-14T15:30:00Z",
+        "content": "전반적으로 만족스러웠지만, 주차가 조금 불편했어요."
+      },
+      {
+        "id": 3,
+        "rating": 3,
+        "author": "박지성",
+        "date": "2023-03-13T11:45:00Z",
+        "content": "보통이에요. 특별히 좋거나 나쁘지 않았습니다."
+      },
+      {
+        "id": 4,
+        "rating": 5,
+        "author": "최유리",
+        "date": "2023-03-12T14:20:00Z",
+        "content": "최고의 경험이었습니다! 다음에 또 이용할 거예요."
+      },
+      {
+        "id": 5,
+        "rating": 4,
+        "author": "정민호",
+        "date": "2023-03-11T10:10:00Z",
+        "content": "서비스가 꽤 좋았어요. 가격 대비 만족스러웠습니다."
+      },
+      {
+        "id": 6,
+        "rating": 2,
+        "author": "강다솜",
+        "date": "2023-03-10T16:55:00Z",
+        "content": "기대에 미치지 못했어요. 개선이 필요해 보입니다."
+      },
+      {
+        "id": 7,
+        "rating": 5,
+        "author": "윤서연",
+        "date": "2023-03-09T13:40:00Z",
+        "content": "완벽한 서비스였습니다. 강력 추천합니다!"
+      },
+      {
+        "id": 8,
+        "rating": 4,
+        "author": "임재현",
+        "date": "2023-03-08T09:30:00Z",
+        "content": "직원들이 매우 친절해요. 시설도 좋았습니다."
+      },
+      {
+        "id": 9,
+        "rating": 3,
+        "author": "한지민",
+        "date": "2023-03-07T17:15:00Z",
+        "content": "평범한 수준이에요. 특별한 점은 없었습니다."
+      },
+      {
+        "id": 10,
+        "rating": 5,
+        "author": "송민석",
+        "date": "2023-03-06T11:20:00Z",
+        "content": "정말 만족스러운 경험이었어요. 또 방문하고 싶습니다."
+      },
+      {
+        "id": 11,
+        "rating": 4,
+        "author": "오은주",
+        "date": "2023-03-05T14:50:00Z",
+        "content": "전반적으로 좋았어요. 조금 더 개선되면 완벽할 것 같아요."
+      },
+      {
+        "id": 12,
+        "rating": 5,
+        "author": "권태훈",
+        "date": "2023-03-04T10:05:00Z",
+        "content": "최고의 서비스! 주변 사람들에게도 추천했어요."
+      }
+    ]
+  },
+
+  "customerEvents": {
+    "totalCount": 11,
+    "events": [
+      {
+        "id": 1,
+        "title": "봄맞이 반려동물 사진 콘테스트",
+        "imageUrl": "https://example.com/event1.jpg",
+        "status": "진행중",
+        "category": ["사진", "콘테스트"],
+        "description": "봄을 맞아 반려동물과 함께 찍은 사진을 공유해주세요. 우승자에게는 특별한 선물이 준비되어 있습니다!",
+        "canReview": false
+      },
+      {
+        "id": 2,
+        "title": "강아지 건강검진 무료 이벤트",
+        "imageUrl": "https://example.com/event2.jpg",
+        "status": "마감임박",
+        "category": ["건강", "무료검진"],
+        "description": "반려견의 건강을 체크해보세요. 기본 건강검진을 무료로 제공합니다.",
+        "canReview": false
+      },
+      {
+        "id": 3,
+        "title": "고양이 장난감 할인전",
+        "imageUrl": "https://example.com/event3.jpg",
+        "status": "진행중",
+        "category": ["할인", "용품"],
+        "description": "다양한 고양이 장난감을 최대 50% 할인된 가격에 만나보세요.",
+        "canReview": false
+      },
+      {
+        "id": 4,
+        "title": "반려동물 입양 캠페인",
+        "imageUrl": "https://example.com/event4.jpg",
+        "status": "진행완료",
+        "category": ["입양", "캠페인"],
+        "description": "사랑스러운 반려동물들에게 새로운 가족을 찾아주세요. 입양 시 필요한 용품을 무료로 제공합니다.",
+        "canReview": true
+      },
+      {
+        "id": 5,
+        "title": "여름 특별 미용 패키지",
+        "imageUrl": "https://example.com/event5.jpg",
+        "status": "진행완료",
+        "category": ["미용", "할인"],
+        "description": "더운 여름, 반려동물을 시원하게 해줄 특별 미용 패키지를 만나보세요.",
+        "canReview": true
+      },
+      {
+        "id": 6,
+        "title": "반려동물 행동교정 강좌",
+        "imageUrl": "https://example.com/event6.jpg",
+        "status": "진행완료",
+        "category": ["교육", "강좌"],
+        "description": "전문 트레이너와 함께하는 반려동물 행동교정 강좌에 참여해보세요.",
+        "canReview": false
+      },
+      {
+        "id": 7,
+        "title": "수제간식 만들기 클래스",
+        "imageUrl": "https://example.com/event7.jpg",
+        "status": "진행완료",
+        "category": ["클래스", "간식"],
+        "description": "우리 아이를 위한 건강한 수제간식 만들기 클래스에 참여하세요.",
+        "canReview": false
+      },
+      {
+        "id": 8,
+        "title": "가을 산책 포토존 이벤트",
+        "imageUrl": "https://example.com/event8.jpg",
+        "status": "진행완료",
+        "category": ["사진", "이벤트"],
+        "description": "아름다운 가을 배경과 함께 반려동물과의 특별한 추억을 남겨보세요.",
+        "canReview": false
+      },
+      {
+        "id": 9,
+        "title": "겨울철 반려동물 건강관리 세미나",
+        "imageUrl": "https://example.com/event9.jpg",
+        "status": "진행완료",
+        "category": ["세미나", "건강"],
+        "description": "추운 겨울, 반려동물의 건강을 지키는 방법을 알아보는 세미나입니다.",
+        "canReview": false
+      },
+      {
+        "id": 10,
+        "title": "신년맞이 반려동물 용품 대전",
+        "imageUrl": "https://example.com/event10.jpg",
+        "status": "진행완료",
+        "category": ["할인", "용품"],
+        "description": "새해를 맞아 다양한 반려동물 용품을 특별가에 만나보세요.",
+        "canReview": false
+      },
+      {
+        "id": 11,
+        "title": "반려동물 스트레스 해소 요가 클래스",
+        "imageUrl": "https://example.com/event11.jpg",
+        "status": "진행완료",
+        "category": ["클래스", "건강"],
+        "description": "반려동물과 함께하는 스트레스 해소 요가 클래스에 참여해보세요.",
+        "canReview": false
+      }
+    ]
+  },
+
+  "customerReviews": {
+    "totalReviews": 11,
+    "averageRating": 4.2,
+    "reviews": [
+      {
+        "id": 1,
+        "author": "김철수",
+        "rating": 5,
+        "content": "정말 좋은 서비스였습니다. 강아지가 매우 행복해 보였어요!",
+        "date": "2023-06-15T09:00:00Z"
+      },
+      {
+        "id": 2,
+        "author": "김철수",
+        "rating": 4,
+        "content": "전반적으로 만족스러웠지만, 예약 과정이 조금 복잡했어요.",
+        "date": "2023-06-14T15:30:00Z"
+      },
+      {
+        "id": 3,
+        "author": "김철수",
+        "rating": 5,
+        "content": "직원들이 매우 친절하고 전문적이었습니다. 다음에도 이용할 거예요!",
+        "date": "2023-06-13T11:45:00Z"
+      },
+      {
+        "id": 4,
+        "author": "김철수",
+        "rating": 3,
+        "content": "서비스는 괜찮았지만, 가격이 조금 비싼 편이에요.",
+        "date": "2023-06-12T14:20:00Z"
+      },
+      {
+        "id": 5,
+        "author": "김철수",
+        "rating": 5,
+        "content": "우리 고양이가 매우 편안해 했어요. 정말 감사합니다!",
+        "date": "2023-06-11T10:10:00Z"
+      },
+      {
+        "id": 6,
+        "author": "김철수",
+        "rating": 4,
+        "content": "시설이 깨끗하고 잘 관리되어 있었어요. 다만 주차가 조금 불편했습니다.",
+        "date": "2023-06-10T16:55:00Z"
+      },
+      {
+        "id": 7,
+        "author": "김철수",
+        "rating": 5,
+        "content": "전문성이 돋보이는 서비스였습니다. 매우 만족합니다!",
+        "date": "2023-06-09T13:40:00Z"
+      },
+      {
+        "id": 8,
+        "author": "김철수",
+        "rating": 3,
+        "content": "직원들은 친절했지만, 대기 시간이 좀 길었어요.",
+        "date": "2023-06-08T11:25:00Z"
+      },
+      {
+        "id": 9,
+        "author": "김철수",
+        "rating": 4,
+        "content": "반려동물을 잘 케어해주셔서 감사합니다. 조금 더 상세한 피드백이 있었으면 좋겠어요.",
+        "date": "2023-06-07T09:15:00Z"
+      },
+      {
+        "id": 10,
+        "author": "김철수",
+        "rating": 5,
+        "content": "최고의 서비스입니다! 우리 강아지가 정말 좋아했어요.",
+        "date": "2023-06-06T17:30:00Z"
+      },
+      {
+        "id": 11,
+        "author": "김철수",
+        "rating": 4,
+        "content": "전반적으로 만족스러웠습니다. 다음에 또 이용할 계획이에요.",
+        "date": "2023-06-05T12:50:00Z"
+      }
+    ]
+  }
+
+
+
 }
