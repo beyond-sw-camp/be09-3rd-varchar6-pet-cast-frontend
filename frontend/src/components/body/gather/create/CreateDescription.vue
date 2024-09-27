@@ -7,7 +7,6 @@
         <CreateUrl/>
                 
         <CreatedAt/>
-<!-- <b-button type="submit" variant="primary">수정</b-button> -->
     </b-card>
 </template>
 
