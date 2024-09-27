@@ -68,13 +68,13 @@
   },
 
   "user-me": {
-    "id": 34,
-    "name": "testName",
-    "phone": "testPhone",
-    "nickname": "testNickname",
+	  "id": 34,
+    "name": "도기 아버님",
+    "phone": "016-123-5678",
+    "nickname": "도기 집사",
     "image": "testImage",
-    "introduction": "testIntroduction"
-  },
+    "introduction": "안녕하세요 도기 애비되는 사람입니다."
+	},
 
   "business-event1": {
     "id": 1,
@@ -673,7 +673,4 @@
       }
     ]
   }
-
-
-
 }

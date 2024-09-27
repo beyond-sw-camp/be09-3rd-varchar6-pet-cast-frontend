@@ -3,6 +3,7 @@ import Home from '../views/contents/Home.vue';
 import About from '../views/contents/About.vue';
 import Login from '../views/contents/Login.vue';
 import BizDetail from '../views/contents/biz/BizDetail.vue';
+import MyPage from '../views/contents/my_page/MyPage.vue';
 import BizEvents from '../views/contents/biz_event/BizEvent.vue';
 import BizReviews from '../views/contents/biz_review/BizReview.vue';
 import BizEventUpdate from '../views/contents/biz_event/BizEventUpdate.vue';
@@ -76,6 +77,11 @@ const routes = [
     path: '/biz-list',
     name: 'BizList',
     component: BizList
+  },
+  {
+    path: '/me',
+    name: 'MyPage',
+    component: MyPage,
   },
 
   // 요청하지 않은 페이지
