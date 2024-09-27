@@ -49,7 +49,7 @@
   }
   
   const goBack = () => {
-    router.push('/report-list')
+    router.push('/api/v1/report')
   }
   
   onMounted(() => {

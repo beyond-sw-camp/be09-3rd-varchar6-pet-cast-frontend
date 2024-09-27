@@ -41,17 +41,17 @@ const routes = [
     component: BusinessQA
   },
   {
-    path: '/report-list',
+    path: '/api/v1/report',
     name: 'ReportList',
     component: ReportList
   },
   {
-    path: '/report-post',
+    path: '/api/v1/report/post',
     name: 'ReportPost',
     component: ReportPost
   },
   {
-    path: '/report-list/:id',
+    path: '/api/v1/report/:id',
     name: 'ReportDetail',
     component: ReportDetail
   }

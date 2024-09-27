@@ -71,11 +71,11 @@ const nextPage = () => {
 }
 
 const goToCreatereport = () => {
-  router.push('/report-post') // report 작성 페이지로 이동
+  router.push('/api/v1/report/post') // report 작성 페이지로 이동
 }
 
 const goToReportRead = (id) => {
-  router.push(`/report-list/${id}`) // report 상세 읽기 페이지로 이동
+  router.push(`/api/v1/report/${id}`) // report 상세 읽기 페이지로 이동
 }
 
 onMounted(() => {
@@ -85,8 +85,8 @@ onMounted(() => {
 
 <style scoped>
 .report-list-section {
-  font-family: Arial, sans-serif;
-  max-width: 800px;
+  font-family: 'Arial', sans-serif;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
   background-color: #f9f9f9;
@@ -96,6 +96,11 @@ onMounted(() => {
 h2 {
   color: #333;
   margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  /* font-family: Jua; */
+  display: flex;
+  justify-content:flex-start
 }
 
 .report-list {
@@ -116,6 +121,7 @@ h2 {
   padding: 5px;
   border: 1px solid #ddd;
   border-radius: 4px;
+  width: 250px;
 }
 
 ul {
@@ -126,26 +132,32 @@ ul {
 .report-item {
   display: flex;
   justify-content: space-between;
-  padding: 10px 0;
-  border-bottom: 1px solid #eee;
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: #DDF5FF;  /* 목록 항목의 배경색 */
+  border: 1px solid #B0DFF7;  /* 테두리 색상 */
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .report-item:hover {
-  background-color: #f5f5f5;
+  background-color: #C7E9FF; /* 호버 시 더 진한 파란색 */
 }
 
 .report-type {
-  background-color: #e0e0e0;
-  padding: 2px 8px;
+  background-color: #f6e7e7; /* 유형의 배경색 */
+  padding: 5px 12px;
   border-radius: 12px;
   font-size: 0.8em;
+  color: #000000;  /* 텍스트 색상 */
 }
 
 .report-title {
   flex-grow: 1;
   margin: 0 15px;
+  font-weight: bold;
+  color: #333;  /* 제목 텍스트 색상 */
 }
 
 .report-date {
@@ -164,10 +176,11 @@ ul {
   background-color: #4CAF50;
   color: white;
   border: none;
-  padding: 5px 10px;
+  padding: 10px 20px;
   margin: 0 5px;
   cursor: pointer;
   border-radius: 4px;
+  font-size: 14px;
 }
 
 .pagination button:disabled {
@@ -179,10 +192,13 @@ ul {
   background-color: #4CAF50;
   color: white;
   border: none;
-  padding: 10px 15px;
-  margin-top: 20px;
+  padding: 10px 20px;
+  margin-top: 50px;
   cursor: pointer;
   border-radius: 4px;
   float: right;
+  display: flex;
+  justify-content: center;
 }
+
 </style>
