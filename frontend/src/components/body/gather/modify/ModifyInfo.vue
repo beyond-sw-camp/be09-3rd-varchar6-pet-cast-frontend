@@ -1,7 +1,19 @@
 <template>
     <article class="gather-info">
         <div class="gather-logo">
-            <b-img :src="gatherImg" alt="모임 이미지" width="100"></b-img>
+            <input
+                type="file"
+                accept="image/png, image/jpeg"
+                @change="onFileSelected"
+                ref="fileInput"
+                style="display: none"
+            />
+            <img
+                :src="selectedImage || gatherImg"
+                @click="triggerFileInput"
+                class="avatar-image"
+                alt="모임 이미지"
+            ></img>
         </div>
         <div class="gather-name">
             <h3 class="gather-name">모임 이름</h3>
@@ -41,6 +53,29 @@
             name.value = newValue;
         }
     );
+
+    const selectedImage = ref('');
+    const fileInput = ref(null);
+
+    const triggerFileInput = () => {
+        console.log('Triggering file input');
+        if (fileInput.value) {
+            fileInput.value.click();
+        } else {
+            console.error('File input not found');
+        }
+    };
+
+    const onFileSelected = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+            selectedImage.value = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    };
 </script>
 
 <style scoped>
@@ -52,6 +87,7 @@
     }
     .gather-logo {
         flex-shrink: 0;
+        cursor: pointer;
     }
     .gather-name {
         flex-grow: 1;

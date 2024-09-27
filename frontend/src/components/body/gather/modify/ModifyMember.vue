@@ -6,7 +6,15 @@
                     <div class="member-item">
                         <div class="member-role">{{ member.role }}</div>
                         <b-avatar :src="member.img" :text="member.initial" size="4rem"></b-avatar>
-                        <div class="member-name">{{ member.name }}</div>
+                        <!-- <div class="member-name">{{ member.name }}</div> -->
+                        <div class="member-name">
+                            <input 
+                                v-model="member.name" 
+                                @input="updateMemberName"
+                                :placeholder="member.name"
+                                class="name-input"
+                                >
+                        </div>
                     </div>
                 </b-col>
             </b-row>
@@ -51,5 +59,8 @@
         justify-content: center;
         align-items: center;
         font-weight: bold;
+    }
+    .name-input {
+        width: 5em; 
     }
 </style>

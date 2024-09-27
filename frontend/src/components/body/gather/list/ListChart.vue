@@ -13,18 +13,28 @@
 </template>
 
 <script setup>
-    import { ref, onMounted, computed } from 'vue';
+    import { ref, onMounted, computed, watch } from 'vue';
     import { useRouter } from 'vue-router';
     import ListTable from './ListTable.vue';
     import ListPagination from './ListPagination.vue';
     
+    const props = defineProps({
+        selectValue: {
+            type: Boolean,
+            required: true
+        }
+    })
+    
+
     const router = useRouter();
     const items = ref(null);
+    const leaderItems = ref(null);
 
     const index = ref(0);
     const next = ref(10);
-    const pageItems = computed(() => items.value ? items.value.slice(index.value, next.value) : []);
-    const totalItems = computed(() => items.value ? items.value.length : 0);
+
+    const pageItems = computed(() => filteredItems.value.slice(index.value, next.value));
+    const totalItems = computed(() => filteredItems.value.length);
     const currentPage = computed(() => Math.floor(index.value / 10) + 1);
     const totalPages = computed(() => Math.ceil(totalItems.value / 10));
 
@@ -41,6 +51,35 @@
             console.error("데이터 로딩중 에러 발생: ", error);
         }
     };
+
+    const fetchLeaderItems = async () => {
+        try {
+            const response = await fetch('http://localhost:8081/gatherdetail');
+            if (!response.ok) {
+                throw new Error('리더 정보 불러오기 실패');
+            }
+            const data = await response.json();
+            leaderItems.value = data.filter(item => item.isLeader).map(item => item.id);
+        } catch (error) {
+            console.error("리더 데이터 로딩중 에러 발생: ", error);
+        }
+    };
+
+    const filteredItems = computed(() => {
+        if (!items.value) return [];
+        if (props.selectValue) {
+            return items.value;
+        } else {
+            if (!leaderItems.value) return [];
+            return items.value.filter(item => leaderItems.value.includes(item.id));
+        }
+    });
+    
+    watch(() => props.selectValue, (newValue) => {
+        index.value = 0;
+        next.value = 10;
+    });
+    
 
     const fields = ref([
         { key: 'id', label: '' },
@@ -70,6 +109,7 @@
 
     onMounted(() => {
         fetchGatherList();
+        fetchLeaderItems();
     });
 </script>
 
