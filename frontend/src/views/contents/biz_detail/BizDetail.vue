@@ -169,10 +169,12 @@ checkLoginStatus();
 
 <style scoped>
 .biz-detail {
-max-width: 800px;
-margin: 0 auto;
-padding: 20px;
-font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-bottom: 80px; /* footer 높이에 따라 조정 */
+  min-height: calc(100vh - 80px); /* footer 높이를 뺀 전체 높이 */
+  font-family: Arial, sans-serif;
 }
 
 .biz-header {
