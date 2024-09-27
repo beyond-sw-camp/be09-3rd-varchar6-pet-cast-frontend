@@ -9,7 +9,7 @@ import Navigation from './views/header/navigation/Navigation.vue';
   <div id="app">
     <header>
       <div class="wrapper">
-        <Header />
+        <Header/>
       </div>
     </header>
     
@@ -17,7 +17,7 @@ import Navigation from './views/header/navigation/Navigation.vue';
 
     <RouterView />
 
-    <Footer />
+    <Footer/>
   </div>
 </template>
 

@@ -1,90 +1,105 @@
 <template>
-    <h1>요청서 작성</h1>
+  <section class="container">
+    <h1 class="title">요청서 작성</h1>
     <form>
-        <!-- 라디오 버튼 그룹 -->
-        <b-form-group label="희망 이벤트" v-slot="{ ariaDescribedby }">
-      <b-form-radio-group
-        id="radio-slots"
-        v-model="selected"
-        :options="options"
-        :aria-describedby="ariaDescribedby"
-        name="category-options-slots"
-      >
-        <!-- Radios in this slot will appear first -->
-        <template #first>
-          <b-form-radio value="first">생일 이벤트</b-form-radio>
-        </template>
+      <b-form-group label="희망 이벤트" label-sr-only v-slot="{ ariaDescribedby }">
+    <b-form-radio-group
+      id="radio-slots"
+      v-model="selected"
+      :options="options"
+      :aria-describedby="ariaDescribedby"
+      name="category-options-slots"
+    ></b-form-radio-group>
+  </b-form-group>
 
-        <!-- Radios in the default slot will appear after any option generated radios -->
-        <b-form-radio :value="{ fourth: 4 }">This is the 4th radio</b-form-radio>
-        <b-form-radio value="fifth">This is the 5th radio</b-form-radio>
-      </b-form-radio-group>
-    </b-form-group>
-
-
-        <!-- <div v-for="(item, index) in radioList" :key="index">
-            <input type="radio" :id="item.value" v-model="selectedEvent" :value="item.value" />
-            <label :for="item.value">{{ item.value }}</label>
-        </div> -->
-
-        <!-- 선택된 이벤트에 따른 폼 -->
-        <div v-if="selectedEvent">
-            <p>희망 업체 <input type="text" v-model="formData.company" /></p>
-            <p>희망 이벤트 <input type="text" v-model="formData.event" /></p>
-            <p>희망 비용 <input type="text" v-model="formData.cost" /></p>
-            <p>희망 장소 <input type="text" v-model="formData.location" /></p>
-            <p>희망 시간 <input type="text" v-model="formData.time" /></p>
-        </div>
+      <b-container fluid>
+      <b-row class="my-1 input-row" v-for="item in types" :key="item.id">
+        <b-col sm="4">
+          <label :for="`${item.id}`">{{ item.label }}</label>
+        </b-col>
+        <b-col sm="7">
+          <b-form-input :id="`${item,id}`" :type="item.type"></b-form-input>
+        </b-col>
+      </b-row>
+    </b-container>
     </form>
-
-    <button @click="submitEvent">작성 완료</button>
+    <div id="button">
+    <button @click="submitEvent('요청서 제출이 완료되었습니다!')">작성 완료</button>
+    </div>
+</section>
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-            radioList: [
-                { value: "생일 이벤트" },
-                { value: "장소 대관" }
-            ],
-            selectedEvent: "", // 선택한 이벤트 저장
-            formData: {
-                company: "",   // 희망 업체
-                event: "",     // 희망 이벤트
-                cost: "",      // 희망 비용
-                location: "",  // 희망 장소
-                time: ""       // 희망 시간
-            }
-        };
-    },
-    methods: {
-        submitEvent() {
-            // 폼 데이터 제출 로직
-            console.log("폼 제출:", this.formData);
-        }
-    }
-};
+<script setup>
+import { ref } from 'vue';
+
+const selected = ref('');
+const options = [
+  { text: "생일 이벤트", value: "생일 이벤트" },
+  { text: "단체 파티", value: "단체 파티" },
+  { text: "장소 대관", value: "장소 대관" },
+  { text: "장례 서비스", value: "장례 서비스" }
+];
+
+const types = [
+  { id: 'company', label: '요청한 업체', type: 'text' },
+  { id: 'event', label: '요청 이벤트', type: 'text' },
+  { id: 'cost', label: '희망 비용', type: 'number' },
+  { id: 'location', label: '희망 장소', type: 'text' },
+  { id: 'date', label: '희망 날짜', type: 'date' }
+];
+
+function submitEvent(message) {
+  console.log("요청서가 제출되었습니다.");
+  alert(message)
+}
 </script>
 
 <style scoped>
+.container{
+  overflow: auto;
+  height: 100vh;
+}
 h1 {
-    color: rgb(255, 182, 193); /* 이미지와 일치하게 색상 변경 */
+  color: #49D5FF;
+  font-family: Jua;
+  margin: 60px;
+}
+.b-form-radio-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+.b-form-radio {
+  display: inline-block;
+}
+.b-container {
+margin: 20px;
+}
+.input-row {
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+}
+.input-row:last-child {
+  margin-bottom: 0;
 }
 form {
-    background-color: rgba(162, 218, 255, 0.384);
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 400px;
-    margin: auto;
+  background-color: rgba(163, 225, 253, 0.384);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 700px;
+  height: 400px;
+  margin: auto;
+  text-align: center;
+  align-items: center;
 }
 button {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    border: 1px solid #ccc;
-    background-color: white;
-    border-radius: 5px;
-    cursor: pointer;
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  border: 3px solid #a5e0fc;
+  background-color: white;
+  border-radius: 5px;
+  cursor: pointer;
 }
 </style>
