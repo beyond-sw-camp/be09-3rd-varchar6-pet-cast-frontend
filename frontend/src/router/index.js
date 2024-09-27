@@ -5,6 +5,9 @@ import BizDetail from '../views/contents/biz_detail/BizDetail.vue';
 import BusinessEvents from '../views/contents/biz_detail/BusinessEvents.vue';
 import BusinessReviews from '../views/contents/biz_detail/BusinessReviews.vue';
 import BusinessQA from '../views/contents/biz_detail/BusinessQA.vue';
+import ReportList from '@/views/report/ReportList.vue';
+import ReportPost from '@/views/report/ReportPost.vue';
+import ReportDetail from '@/views/report/ReportDetail.vue';
 
 const routes = [
   {
@@ -37,6 +40,22 @@ const routes = [
     name: 'BusinessQA',
     component: BusinessQA
   },
+  {
+    path: '/report-list',
+    name: 'ReportList',
+    component: ReportList
+  },
+  {
+    path: '/report-post',
+    name: 'ReportPost',
+    component: ReportPost
+  },
+  {
+    path: '/report-list/:id',
+    name: 'ReportDetail',
+    component: ReportDetail
+  }
+
 ];
 
 const router = createRouter({
