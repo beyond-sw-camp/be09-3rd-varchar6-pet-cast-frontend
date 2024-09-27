@@ -1,159 +1,134 @@
 <template>
-  <main>
-    <h1>내 요청서</h1>
-    <div>
-  <b-button v-b-modal.modal-1>Launch demo modal</b-button>
-
-  <div>
-  <!-- Using modifiers -->
-  <b-button v-b-modal.my-modal>Show Modal</b-button>
-
-  <!-- Using value -->
-  <b-button v-b-modal="'my-modal'">Show Modal</b-button>
-
-  <!-- The modal -->
-  <b-modal id="my-modal">Hello From My Modal!</b-modal>
-</div>
-</div>
-
-     <!-- 모달 예제 -->
-     <div>
-        <b-card title="모달 예제" class="mb-4">
-           <b-button variant="primary" @click="showModal">모달 열기</b-button>
-          <div v-if="isModalVisible"></div>
-         </b-card>
-        <b-modal style="width:800px; height:800px; background-color:red"
-          id="example-modal"
-          title="BootstrapVue 모달"
-         
-        >
-          <p class="my-4">이것은 모달 창으로 필요한 정보를 여기에 표시하시요.</p>
-          <template #modal-footer="{ ok, cancel }">
-            <b-button variant="secondary" @click="cancel">취소</b-button>
-            <b-button variant="primary" @click="ok">확인</b-button>
-          </template>
-        </b-modal>
-        <b-table striped hover :items="items" :fields="fields" @row-clicked="goToDetailModal">
-          <!-- <b-button variant="primary" @click="showModal">모달 열기</b-button>   -->
-      </b-table>/
-    </div>
-
-    <div class="container mt-4">
-        <b-modal>
-          <p class="my-4">모달^^</p>
-          <input type="text" v-model="modalText">
-          <template #modal-footer="{ ok, cancel }">
-            <b-button variant="secondary" @click="cancel">취소</b-button>
-            <b-button variant="primary" @click="ok">확인</b-button>
-          </template>
-        </b-modal>
-    </div>
-    <div class="button-container">
-      <b-button-group>
-        <b-button
-          class="custom-btn list-before"
-          @click="beforepage"
-          :disabled="currentPage === 1"
-          ><<</b-button
-        >
-        <b-button class="custom-btn list">목록 보기</b-button>
-        <b-button
-          class="custom-btn list-after"
-          @click="afterpage"
-          :disabled="currentPage === totalPages"
-          >>></b-button
-        >
-      </b-button-group>
-    </div>
-  </main>
+  <h1>내 요청서</h1>
+    <main>
+      <div class="request-read">
+        <p :style="{ textAlign: 'right' }">개수: {{ totalRequest }}개</p>
+        <div v-if="items.length">
+          <b-table
+            striped
+            hover
+            :items="items"
+            :fields="fields"
+            @row-clicked="showDetails"
+          >
+          </b-table>
+        </div>
+        <div v-else>데이터를 불러오는 중...</div>
+       
+        <!-- <div class="button-container">
+          <b-button-group>
+            <b-button
+              class="custom-btn list-before"
+              @click="beforepage"
+              :disabled="currentPage === 1"
+              ><<</b-button
+            >
+            <b-button class="custom-btn list">목록 보기</b-button>
+            <b-button
+              class="custom-btn list-after"
+              @click="afterpage"
+              :disabled="currentPage === totalPages"
+              >>></b-button
+            >
+          </b-button-group>
+        </div> -->
+      </div>
+      <b-modal
+        v-model="showModal"
+        title="요청서 상세 정보"
+        size="lg"
+        class="custom-modal">
+        <template v-if="selectedItem">
+          <div class="detail-item">
+            <strong>요청 업체</strong> {{ selectedItem.company_id }}
+          </div>
+          <div class="detail-item">
+            <strong>요청 이벤트</strong> {{ selectedItem.content }}
+          </div>
+          <div class="detail-item">
+            <strong>희망 날짜</strong> {{ selectedItem.hope_time }}
+          </div>
+          <div class="detail-item">
+            <strong>희망 비용</strong> {{ selectedItem.hope_cost }}
+          </div>
+          <div class="detail-item">
+            <strong>희망 장소</strong> {{ selectedItem.hope_location }}
+          </div>
+          <div class="detail-item">
+            <strong>진행 상황</strong> {{ selectedItem.status }}
+          </div>
+        </template>
+        <template #modal-footer>
+          <b-button size="lg" variant="primary" @click="closeModal()">닫기</b-button>
+          <b-button variant="danger" @click="deleteRequest()">삭제</b-button>
+        </template>
+      </b-modal>
+    </main>
 </template>
 
 <script setup>
-import { ref } from "vue";
-// import { useModal } from 'bootstrap-vue-3';
+import { ref, onMounted } from "vue";
 
-// const { showModal, hideModal } = useModal();
-
-const isModalVisible = ref(false);
-
-const showModal = () => {
-  console.log("showModal");
-  console.log(isModalVisible.value);
-    isModalVisible.value = true;
-};
-// const showModal = () => {
-//       isModalVisible.value = true;
-//     };
-const modalText = ref("");
-const goToDetailModal = () => {
-    isModalVisible.value = true;
-
-};
+const totalRequest = ref(0);
+const items = ref([]);
 
 const fields = [
-  { key: "No", label: "No" },
-  { key: "company", label: "요청한 업체" },
-  { key: "event", label: "요청 이벤트" },
-  { key: "date", label: "신청 날짜" },
+  { key: "company_id", label: "요청 업체" },
+  { key: "content", label: "요청 이벤트" },
+  { key: "hope_time", label: "희망 날짜" },
+  { key: "hope_cost", label: "희망 비용" },
+  { key: "hope_location", label: "희망 장소" },
   { key: "status", label: "진행 상황" },
-  { key: "category", label: "해당 이벤트" },
 ];
 
-const items = ref([
-  {
-    No: 1,
-    company: "펫파티플래너",
-    event:
-      "서울에서 반려동물 생일 파티를 기획하려고 합니다. 귀사의 생일 패키지에 대해 더 알고 싶습니다",
-    date: "2024-08-27T10:00:00",
-    status: "확인 중",
-    category: "반려동물 생일파티",
-  },
-  {
-    No: 2,
-    company: "해피펫모먼트",
-    event:
-      "부산에서 반려동물 돌잔치 기획을 검토 중입니다. 귀사의 돌잔치 패키지를 자세히 알고 싶습니다.",
-    date: "2024-08-13T10:00:00",
-    status: "확인 중",
-    category: "돌잔치",
-  },
-  {
-    No: 3,
-    company: "펫케스타",
-    event:
-      "대구에서 풀파티를 개최하고 싶습니다. 귀사의 풀파티 패키지와 제공 서비스에 대해 문의드립니다.",
-    date: "2024-06-13T10:00:00",
-    status: "승인 완료",
-    category: "품파티",
-  },
-]);
-const currentPage = ref(1);
-const totalPages = ref(3);
 
-const beforepage = () => {
-  if (currentPage.value > 1) currentPage.value--;
-};
 
-const afterpage = () => {
-  if (currentPage.value < totalPages.value) currentPage.value++;
-};
 
-// const selectedRequest = ref(null);
+const showModal = ref(false);
+const selectedItem = ref(null);
 
-// const openModal = (item) => {
-//   selectedRequest.value = item;
-//   showModal('request-modal');
+// const beforepage = () => {
+//   if (currentPage.value > 1) currentPage.value--;
 // };
 
-// const closeModal = () => {
-//   hideModal('request-modal');
-//   selectedRequest.value = null;
+// const afterpage = () => {
+//   if (currentPage.value < totalPages.value) currentPage.value++;
 // };
-// return { requests, fields, selectedRequest, openModal, closeModal };
 
+const showDetails = (item) => {
+  selectedItem.value = item;
+  showModal.value = true;
+};
+const closeModal = () => {
+  showModal.value = false;
+};
 
+const deleteRequest = () => {
+  if (selectedItem.value) {
+    items.value = items.value.filter((item) => item !== selectedItem.value);
+    showModal.value = false;
+    totalRequest.value = items.value.length;
+  }
+};
+
+const fetchRequest = async () => {
+  try {
+    const response = await fetch("http://localhost:8888/request");
+    if (!response.ok) {
+      throw new Error("네트워크 응답이 올바르지 않습니다.");
+    }
+    const data = await response.json();
+    items.value = data;
+    totalRequest.value = items.value.length;
+  } catch (error) {
+    console.error("요청서 데이터를 가져오는 중 오류 발생:", error);
+  }
+};
+onMounted(() => {
+  fetchRequest();
+});
 </script>
+
 <style scoped>
 h1 {
   color: #49d5ff;
@@ -188,16 +163,42 @@ main {
 .button-container .custom-btn.list-after {
   font-weight: bold;
 }
-.event-link {
-  cursor: pointer;
+
+/* 모달창 css */
+.custom-modal ::v-deep .modal-content {
+  background-color: #f0f8ff; /* 연한 하늘색 배경 */
+  border-radius: 15px;
 }
-.modal-content {
-  padding: 15px;
+
+.custom-modal ::v-deep .modal-header {
+  background-color: #87ceeb; /* 하늘색 헤더 */
+  color: white;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
-.mb-2 {
-  margin-bottom: 10px;
+
+.custom-modal ::v-deep .modal-title {
+  text-align: center;
+  font-weight: bold;
 }
-.modal-content {
-    background-color: #87ceeb;
+
+.custom-modal ::v-deep .modal-body {
+  padding: 20px;
+}
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-item strong {
+  font-weight: bold;
+  color: #4a4a4a;
 }
 </style>
