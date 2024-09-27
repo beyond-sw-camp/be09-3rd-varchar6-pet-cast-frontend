@@ -26,10 +26,10 @@
 
     const modifyGather = () => {
         router.push(`/gathermodify/${props.gatherId}`)
-    }
+    };
     const deleteGather = () => {
-        router.push('/gatherdelete')
-    }
+        router.push(`/gatherdelete/${props.gatherId}`)
+    };
 </script>
 
 <style scoped>

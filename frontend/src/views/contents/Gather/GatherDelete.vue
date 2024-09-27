@@ -1,29 +1,33 @@
 <template>
     <section class="container">
-        <h2>hi</h2>
-        <!-- <DetailTitle/> -->
-        <!-- <DetailInfo 
+        <DeleteTitle/>
+        
+        <DeleteInfo
             :gatherImg="gatherDetail?.gatherImg"
             :gatherName="gatherDetail?.gathername"
-        /> -->
-        
+            />        
         <article class = "detail-info">
-            <!-- <DetailDescription :gatherDetail="gatherDetail"/> -->
-            <!-- <DetailBtn 
+            <DeleteDescription :gatherDetail="gatherDetail"/>
+            
+            <DeleteBtn
                 :gatherId="gatherDetail?.id"
-                :show="show"/> -->
+                :show="show"/>
         </article>
     </section>
 </template>
 
 <script setup>
-    import { ref, onMounted, onBeforeMount } from 'vue';
+    import { ref, onMounted } from 'vue';
     import { useRoute } from 'vue-router'; 
+
+    import DeleteTitle from '@/components/body/gather/delete/DeleteTitle.vue';
+    import DeleteInfo from '@/components/body/gather/delete/DeleteInfo.vue';
+    import DeleteDescription from '@/components/body/gather/delete/DeleteDescription.vue';
+    import DeleteBtn from '@/components/body/gather/delete/DeleteBtn.vue';
 
     const currentRoute = useRoute();    
     const gatherList = ref([]);
     const gatherDetail = ref(null);
-    const show = ref('');
 
     const fetchGatherDetail = async () => {
         try{
@@ -40,14 +44,9 @@
             console.error("데이터 로딩중 에러 발생", error);
         }
     }
-    const checkUserId = () => {
-        const userId = localStorage.getItem('userid');        
-        show.value = gatherDetail.value?.isLeader ?? false;
-    }    
 
-    onMounted(async () => {
-        await fetchGatherDetail();
-        checkUserId();
+    onMounted(() => {
+        fetchGatherDetail();
     })
 </script>
 

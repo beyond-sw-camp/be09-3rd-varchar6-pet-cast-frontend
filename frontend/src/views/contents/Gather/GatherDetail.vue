@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-    import { ref, onMounted, onBeforeMount } from 'vue';
+    import { ref, onMounted } from 'vue';
     import { useRoute } from 'vue-router';
 
     import DetailTitle from '@/components/body/gather/detail/DetailTitle.vue';

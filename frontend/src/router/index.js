@@ -39,7 +39,7 @@ const routes = [
     component: GatherModify
   },
   {
-    path: '/gatherdelete',
+    path: '/gatherdelete/:id',
     name: 'gatherdelete',
     component: GatherDelete
   }
