@@ -22,7 +22,9 @@
       <template v-if="isLoggedIn">
         <!-- 로그인된 사용자 정보 및 아이콘 -->
         <span class="user-id">{{ userId }}님 안녕하세요</span>
-        <img src="@/assets/icon/navigation/profile_48x48.png" alt="Profile" class="profile-image" />
+        <RouterLink to="/me">
+          <img src="@/assets/icon/navigation/profile_48x48.png" alt="Profile" class="profile-image" />
+        </RouterLink>
         <img src="@/assets/icon/navigation/alarm.png" alt="alarm" />
         <img src="@/assets/icon/navigation/setting.png" alt="settings" />
         <button @click="handleLogout">Logout</button>
