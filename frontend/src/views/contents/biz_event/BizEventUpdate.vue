@@ -70,7 +70,7 @@ const fetchEvent = async () => {
 
 const updateEvent = async () => {
     try {
-        const response = await fetch(`http://localhost:8081/business-events/${route.params.id}`, {
+        const response = await fetch(`http://localhost:8888/business-events/${route.params.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

@@ -48,7 +48,7 @@ const displayedCount = ref(10);
 
 const fetchEvents = async () => {
     try {
-        const response = await fetch('http://localhost:8084/customerEvents');
+        const response = await fetch('http://localhost:8888/customerEvents');
         if (!response.ok) {
             throw new Error('네트워크 응답이 올바르지 않습니다.');
         }

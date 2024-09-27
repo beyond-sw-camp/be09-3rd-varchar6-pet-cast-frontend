@@ -77,7 +77,7 @@ const loadMoreReviews = () => {
 const fetchReviews = async () => {
     try {
         // const response = await fetch(`http://localhost:8083/customerReviews?filter=${selectedFilter.value}`);
-        const response = await fetch('http://localhost:8085/customerReviews');
+        const response = await fetch('http://localhost:8888/customerReviews');
         const data = await response.json();
         reviews.value = data.reviews;
         totalReviews.value = data.totalReviews;

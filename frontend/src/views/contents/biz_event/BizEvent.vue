@@ -44,7 +44,7 @@ const isUpdated = ref(false);
 
 const fetchEvents = async () => {
     try {
-        const response = await fetch('http://localhost:8081/business-events');
+        const response = await fetch('http://localhost:8888/business-events');
         if (!response.ok) {
             throw new Error('네트워크 응답이 올바르지 않습니다.');
         }

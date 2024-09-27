@@ -1,20 +1,20 @@
 <template>
-  <div class="biz-detail" v-if="business && business.length">
+  <div class="biz-detail" v-if="business">
     <!-- 비즈니스 헤더 -->
     <div class="biz-header">
       <!-- <img :src="business[0].imageUrl" alt="비즈니스 이미지"> -->
-      <img :src="business[0].imageUrl" alt="이미지"  height="200px" width="aspect-ratio:1">
+      <img :src="business.imageUrl" alt="이미지"  height="200px" width="aspect-ratio:1">
       <div class="biz-info">
         <div class="biz-header">
-          <h1>{{ business[0].name }}</h1>
-          <p class="location">{{ business[0].location }}</p>
+          <h1>{{ business.name }}</h1>
+          <p class="location">{{ business.location }}</p>
         </div>
-        <p class="description">{{ business[0].description }}</p>
+        <p class="description">{{ business.description }}</p>
         <div class="biz-details">
-          <p class="registration">사업자 등록증: {{ business[0].registrationStatus }}</p>
+          <p class="registration">사업자 등록증: {{ business.registrationStatus }}</p>
           <p class="categories">
-            <span v-for="(category, index) in business[0].categories" :key="index">
-              {{ category }}{{ index < business[0].categories.length - 1 ? ', ' : '' }}
+            <span v-for="(category, index) in business.categories" :key="index">
+              {{ category }}{{ index < business.categories.length - 1 ? ', ' : '' }}
             </span>
           </p>
         </div>
@@ -27,22 +27,22 @@
       <div class="stat-item">
         <h3>리뷰</h3>
         <div class="review-summary">
-          <span class="rating">★ {{ business[0].rating }}</span>
-          <span class="review-count">({{ business[0].reviewCount }}개)</span>
+          <span class="rating">★ {{ business.rating }}</span>
+          <span class="review-count">({{ business.reviewCount }}개)</span>
         </div>
         
       </div>
       <div class="stat-item">
         <h3>경력</h3>
-        <p>{{ business[0].experience }}년</p>
+        <p>{{ business.experience }}년</p>
       </div>
       <div class="stat-item">
         <h3>직원 수</h3>
-        <p>{{ business[0].employeeCount }}명</p>
+        <p>{{ business.employeeCount }}명</p>
       </div>
       <div class="stat-item">
         <h3>연락 가능 시간</h3>
-        <p>{{ business[0].contactHours }}</p>
+        <p>{{ business.contactHours }}</p>
       </div>
     </div>
 
@@ -52,7 +52,7 @@
         업체가 진행한 이벤트
         <span class="more-link" @click="goToEvents">더보기 ></span>
       </h2>
-      <div v-for="event in business[0].events.slice(0, 2)" :key="event.id" class="event-item">
+      <div v-for="event in business.events.slice(0, 2)" :key="event.id" class="event-item">
         <img :src="event.imageUrl" :alt="event.title">
         <div class="event-info">
           <div class="event-header">
@@ -75,7 +75,7 @@
         리뷰
         <span class="more-link" @click="goToReviews">더보기 ></span>
       </h2>
-      <div v-for="review in business[0].reviews.slice(0, 2)" :key="review.id" class="review-item">
+      <div v-for="review in business.reviews.slice(0, 2)" :key="review.id" class="review-item">
         <div class="review-header">
           <span class="rating">★ {{ review.rating }}</span>
           <span class="review-title">{{ review.title }}</span>
@@ -90,7 +90,7 @@
         Q&A
         <span class="more-link" @click="goToQA">더보기 ></span>
       </h2>
-      <div v-for="qa in business[0].qas.slice(0, 3)" :key="qa.id" class="qa-item">
+      <div v-for="qa in business.qas.slice(0, 3)" :key="qa.id" class="qa-item">
         <span :class="['status', qa.status]">{{ qa.status }}</span>
         <p class="qa-title">{{ qa.title }}</p>
         <p class="qa-date">{{ qa.date }}</p>
@@ -121,7 +121,9 @@ try {
   if (!response.ok) {
     throw new Error('네트워크 응답이 올바르지 않습니다.');
   }
-  business.value = await response.json();
+  const data = await response.json();
+  business.value = data; // JSON 응답의 businesses 속성을 저장
+  console.log('business:', business.value);
 } catch (error) {
   console.error("데이터를 가져오는 중 오류 발생:", error);
 }
@@ -146,12 +148,12 @@ const checkLoginStatus = () => {
 };
 
 const goToEvents = () => {
-  router.push(`/biz-events/${business.value[0].id }`);
+  router.push(`/biz-events/${business.value.id }`);
   // router.push({ name: 'BusinessEvents', params: { id: business.value[0].id } });
 };
 
 const goToReviews = () => {
-  router.push(`/biz-reviews/${business.value[0].id }`);
+  router.push(`/biz-reviews/${business.value.id }`);
 // router.push({ name: 'BusinessReviews', params: { id: business.value[0].id } });
 };
 
