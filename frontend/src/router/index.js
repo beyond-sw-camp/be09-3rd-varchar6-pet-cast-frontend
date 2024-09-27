@@ -27,12 +27,12 @@ const routes = [
     component: BizDetail
   },
   {
-    path: '/biz-events',
+    path: '/biz-events/:id',
     name: 'BizEvents',
     component: BizEvents
   },
   {
-    path: '/biz-reviews',
+    path: '/biz-reviews/:id',
     name: 'BizReviews',
     component: BizReviews
   },
@@ -42,12 +42,12 @@ const routes = [
     component: BizEventUpdate
   },
   {
-    path: '/customer-events',
+    path: '/customer-events/:id',
     name: 'CustomerEvents',
     component: CustomerEvent
   },
   {
-    path: '/customer-reviews',
+    path: '/customer-reviews/:id',
     name: 'CustomerReview',
     component: CustomerReview
   },

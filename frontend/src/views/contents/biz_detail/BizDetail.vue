@@ -146,11 +146,13 @@ const checkLoginStatus = () => {
 };
 
 const goToEvents = () => {
-router.push({ name: 'BusinessEvents', params: { id: business.value[0].id } });
+  router.push(`/biz-events/${business.value[0].id }`);
+  // router.push({ name: 'BusinessEvents', params: { id: business.value[0].id } });
 };
 
 const goToReviews = () => {
-router.push({ name: 'BusinessReviews', params: { id: business.value[0].id } });
+  router.push(`/biz-reviews/${business.value[0].id }`);
+// router.push({ name: 'BusinessReviews', params: { id: business.value[0].id } });
 };
 
 const goToQA = () => {

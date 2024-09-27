@@ -72,7 +72,6 @@ const loadMoreEvents = () => {
 
 const editEvent = (event) => {
     if (isUpdated.value) {
-        // 이벤트 수정 페이지로 이동하면서 이벤트 ID를 전달
         router.push({ name: 'BusinessEventUpdate', params: { id: event.id } });
     } else {
         alert('이벤트를 수정할 권한이 없습니다.');
