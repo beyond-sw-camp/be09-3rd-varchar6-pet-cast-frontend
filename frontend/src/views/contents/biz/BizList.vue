@@ -246,6 +246,7 @@ onMounted(() => {
   overflow: hidden;
   cursor: pointer;
   transition: box-shadow 0.3s ease;
+  background-color: #e6f3ff; /* 배경색 추가 */
 }
 
 .business-item:hover {
@@ -253,8 +254,8 @@ onMounted(() => {
 }
 
 .business-image {
-  width: 200px;
-  height: 200px;
+  width: 20%;
+  height: 100%;
   object-fit: cover;
 }
 
