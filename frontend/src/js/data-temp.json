@@ -75,6 +75,25 @@
     "image": "testImage",
     "introduction": "안녕하세요 도기 애비되는 사람입니다."
 	},
+  
+  "pet-profile": [
+  {
+    "id": 4,
+    "name": "도기",
+    "introduction": "도기는 먹는 양이 장난이 아니에요",
+    "gender": "FEMALE",
+    "image": "www.testImageLink.xyz",
+    "age": 1
+  },
+  {
+    "id": 8,
+    "name": "행복",
+    "introduction": "행복이는 목욕을 싫어해요",
+    "gender": "MALE",
+    "image": "www.testImageLink.xyz",
+    "age": 3
+  }
+],
 
   "business-event1": {
     "id": 1,

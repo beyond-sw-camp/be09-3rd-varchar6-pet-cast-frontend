@@ -21,6 +21,7 @@ import PetProfileCardList from '../my_page/PetProfileCardList.vue';
 import SectionList from '../my_page/SectionList.vue';
 
 let userInfo = ref(null);
+let petProfiles = ref(null);
 const events = ref([]);
 const reviews = ref([]);
 const qna = ref([]);
@@ -28,32 +29,24 @@ const qna = ref([]);
 onMounted(
   async () => {
     try {
-      const response = await axios.get(`http://localhost:8888/user-me`);
-      userInfo.value = response.data;
-    
+      const userProfileResponse = await axios.get(`http://localhost:8888/user-me`);
+      userInfo.value = userProfileResponse.data;
 
     } catch (e) {
       console.log('got error with fetching user information for profile');
     }
+
+    try {
+      const petProfileListResponse = await axios.get(`http://localhost:8888/pet-profile`);
+      petProfiles.value = petProfileListResponse.data;
+    
+
+    } catch (e) {
+      console.log('got error with fetching pet information list for profile');
+    }
   }
 )
 
-const petProfiles = ref([
-  {
-    id: 1,
-    name: '도기',
-    type: '강아지',
-    age: 3,
-    image: 'dog-image-path', // 강아지 프로필 이미지 경로
-  },
-  {
-    id: 2,
-    name: '루리',
-    type: '고양이',
-    age: 2,
-    image: 'cat-image-path', // 고양이 프로필 이미지 경로
-  },
-]);
 
 </script>
 
