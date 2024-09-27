@@ -3,16 +3,23 @@
     <div class="notice-section">
       <h2>공지 작성</h2>
       <div class="notice-form">
-        <div class="form-group">
-          <label for="question">질문내용</label>
-          <input type="text" id="question" v-model="question" placeholder="질문 내용을 입력하세요." />
+        <div class="dropdown-container">
+            <label for="fixed">중요도</label>
+            <select id="fixed" v-model="fixed" @change="change">
+                <option value="필독">필독</option>
+                <option value="일반">일반</option>
+            </select>
         </div>
         <div class="form-group">
-          <label for="answer">답변</label>
-          <textarea id="answer" v-model="answer" placeholder="답변 내용을 입력하세요."></textarea>
+          <label for="question">공지제목</label>
+          <input type="text" id="question" v-model="question" placeholder="제목을 입력하세요." />
+        </div>
+        <div class="form-group">
+          <label for="answer">내용</label>
+          <textarea id="answer" v-model="answer" placeholder="내용을 입력하세요."></textarea>
         </div>
         <div class="buttons">
-          <button @click="savenotice" class="save-btn">저장</button>
+          <button @click="savenotice" class="save-btn">등록</button>
           <button @click="cancel" class="cancel-btn">취소</button>
         </div>
       </div>
@@ -24,27 +31,29 @@
   import { useRouter } from 'vue-router'
   
   const router = useRouter()
-  
-  const question = ref('죽겠따')
-  const answer = ref('나도')
+  const fixed = ref('일반') // 기본값을 '일반'으로 설정
+
+  const question = ref('')
+  const answer = ref('')
       
+  const change = (fixed) => {
+    // backend에 쏴주기
+  } 
+
   const goBack = () => {
     router.push('/notice-list')
   }
   
   const savenotice = () => {
     // 여기에 저장 로직을 구현합니다.
-    console.log('저장된 Q&A:', { question: question.value, answer: answer.value })
+    // console.log('저장된 Q&A:', { question: question.value, answer: answer.value })
     // API 호출 또는 상태 관리 로직을 추가할 수 있습니다.
-
+    alert('공지가 등록되었습니다.');
     goBack()
   }
   
   const cancel = () => {
     // 취소 로직을 구현합니다.
-    question.value = ''
-    answer.value = ''
-
     goBack()
   }
   </script>

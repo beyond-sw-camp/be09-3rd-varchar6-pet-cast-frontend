@@ -4,7 +4,11 @@
       <div v-if="noticeData" class="notice-content">
         <div class="dropdown-container">
             <label for="fixed">중요도</label>
-            <select id="fixed" v-model="fixed">
+            <select id="fixed" v-model="fixed" v-if="isAdmin">
+                <option value="필독">필독</option>
+                <option value="일반">일반</option>
+            </select>
+            <select id="fixed" v-model="fixed" disabled v-else>
                 <option value="필독">필독</option>
                 <option value="일반">일반</option>
             </select>
@@ -25,7 +29,10 @@
         </div>
       </div>
       <div v-else class="loading">데이터를 불러오는 중...</div>
+      <button @click="noticeDelete" class="delete-btn" v-if="isAdmin">삭제</button>
+
       <button @click="goBack" class="back-btn">목록으로 돌아가기</button>
+      <!-- <button @click="noticeModify" class="modify-btn" v-if="isAdmin">수정</button> -->
     </div>
   </template>
   
@@ -38,7 +45,18 @@
   
   const noticeData = ref(null)
   const fixed = ref('일반') // 기본값을 '일반'으로 설정
+  const isAdmin = ref(false)
 
+  const checkRole = () => {
+    const roleString = localStorage.getItem('Roles');   
+    console.log(roleString);
+    if(roleString){
+      const roles = roleString.split(',');
+      isAdmin.value = roles.includes('ADMIN');
+    }else{
+      isAdmin.value = false;
+    }
+  }
 
   const formatDate = (dateString) => {
     if (!dateString) return 'N/A'
@@ -65,8 +83,25 @@
     router.push('/notice-list')
   }
   
+  const noticeDelete = () => {
+    // 실제 구현에서는 API 호출로 대체해야 합니다
+    setTimeout(() => {
+      alert('공지가 삭제되었습니다.')
+      router.push('/notice-list')
+    }, 1000)
+  }
+
+  // const noticeModify = () => {
+  //   // 실제 구현에서는 API 호출로 대체해야 합니다
+  //   setTimeout(() => {
+  //     alert('공지가 수정되었습니다.')
+  //     router.push('/notice-list')
+  //   }, 1000)
+  // }
+
   onMounted(() => {
     fetchnoticeData()
+    checkRole()
   })
   
   </script>
@@ -143,5 +178,19 @@
   margin-top: 20px;
   cursor: pointer;
   border-radius: 4px;
-}
+  display: flex;
+  justify-content: center;
+
+  }
+  .delete-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    display:flex;
+    justify-content: center;
+  }
   </style>

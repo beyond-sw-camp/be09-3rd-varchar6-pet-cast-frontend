@@ -4,7 +4,7 @@
       <div class="notice-list">
         <div class="notice-header">
           <span>개수 : {{ totalItems }}개</span>
-          <input type="text" v-model="searchQuery" placeholder="검색어를 입력하세요" @input="searchnotice" />
+          <!-- <input type="text" v-model="searchQuery" placeholder="검색어를 입력하세요" @input="searchnotice" /> -->
         </div>
         <ul>
           <li v-for="item in paginatedItems" :key="item.id" class="notice-item" @click="goTonoticeRead(item.id)">
@@ -18,7 +18,7 @@
           <span>{{ currentPage }} / {{ totalPages }}</span>
           <button @click="nextPage" :disabled="currentPage === totalPages">&gt;</button>
         </div>
-        <button @click="goToCreatenotice" class="create-btn">등록</button>
+        <button @click="goToCreatenotice" class="create-btn" v-if="isAdmin">등록</button>
       </div>
     </div>
   </template>
@@ -28,12 +28,22 @@
   import { useRouter } from 'vue-router'
   
   const router = useRouter()
-  
   const noticeItems = ref([])
   const currentPage = ref(1)
   const itemsPerPage = 10
-  const searchQuery = ref('')
-  
+  // const searchQuery = ref('')
+  const isAdmin = ref(false)
+
+  const checkRole = () => {
+    const roleString = localStorage.getItem('Roles');   
+    console.log(roleString);
+    if(roleString){
+      const roles = roleString.split(',');
+      isAdmin.value = roles.includes('ADMIN');
+    }else{
+      isAdmin.value = false;
+    }
+  }
   const totalItems = computed(() => noticeItems.value.length)
   const totalPages = computed(() => Math.ceil(totalItems.value / itemsPerPage))
   
@@ -61,10 +71,10 @@
     if (currentPage.value < totalPages.value) currentPage.value++
   }
   
-  const searchnotice = () => {
-    // 실제 구현에서는 서버 측 검색 또는 클라이언트 측 필터링을 수행해야 합니다
-    console.log('Searching for:', searchQuery.value)
-  }
+  // const searchnotice = () => {
+  //   // 실제 구현에서는 서버 측 검색 또는 클라이언트 측 필터링을 수행해야 합니다
+  //   console.log('Searching for:', searchQuery.value)
+  // }
   
   const goToCreatenotice = () => {
     router.push('/notice-post') // notice 작성 페이지로 이동
@@ -76,6 +86,7 @@
   
   onMounted(() => {
     fetchnoticeItems()
+    checkRole()
   })
   </script>
   
