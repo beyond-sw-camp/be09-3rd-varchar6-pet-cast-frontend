@@ -68,5 +68,14 @@
       ],
       "isUserOwner": true
     }
-  ]
+  ],
+
+  "user-me": {
+	"id": 34,
+	"name": "testName",
+	"phone": "testPhone",
+	"nickname": "testNickname",
+	"image": "testImage",
+	"introduction": "testIntroduction"
+	}
 }
