@@ -28,14 +28,17 @@
 
         <div class="main-content">
           <div class="business-list">
-            <div v-for="business in displayedBusinesses" :key="business.id" class="business-item">
+            <div v-for="business in displayedBusinesses" 
+                 :key="business.id" 
+                 class="business-item"
+                 @click="goToBizDetail(business.id)">
               <img :src="business.image" :alt="business.name" class="business-image">
               <div class="business-info">
                 <h2>{{ business.name }}</h2>
                 <p>{{ business.description }}</p>
                 <div class="rating">★ {{ business.rating.toFixed(1) }}</div>
-                <button @click="createRequest(business.id)">요청서 작성하기</button>
-                <button @click="viewReviews(business.id)">리뷰 상세 보기</button>
+                <button @click.stop="createRequest(business.id)">요청서 작성하기</button>
+                <button @click.stop="viewReviews(business.id)">리뷰 상세 보기</button>
               </div>
             </div>
           </div>
@@ -114,13 +117,17 @@ const fetchBusinesses = async () => {
   }
 };
 
-const createRequest = (businessId) => {
-  // 요청서 작성 페이지로 이동 (아직 구현되지 않음)
-  console.log(`요청서 작성 페이지로 이동 (업체 ID: ${businessId})`);
+const createRequest = (id) => {
+  // 요청서 작성 로직
+  console.log(`요청서 작성 (업체 ID: ${id})`);
 };
 
-const viewReviews = (businessId) => {
-  router.push({ name: 'BizReviews', params: { id: businessId } });
+const viewReviews = (id) => {
+  router.push({ name: 'BizReviews', params: { id: id } });
+};
+
+const goToBizDetail = (id) => {
+  router.push({ name: 'BizDetail', params: { id: id } });
 };
 
 onMounted(() => {
@@ -234,6 +241,12 @@ onMounted(() => {
   border: 1px solid #ddd;
   border-radius: 5px;
   overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.business-item:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 .business-image {
