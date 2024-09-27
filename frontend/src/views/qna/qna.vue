@@ -19,10 +19,10 @@
 </template>
 
 <script setup>
-    import qnaList from './components/qnaList.vue';
-    import qnaForm from './components/qnaForm.vue';
-    import QnaRegisterModal from './components/QnaRegisterModal.vue';
-    import AnswerRegisterModal from './components/AnswerRegisterModal.vue';
+    import qnaList from './QnaList.vue';
+    // import qnaForm from './components/qnaForm.vue';
+    // import QnaRegisterModal from './components/QnaRegisterModal.vue';
+    // import AnswerRegisterModal from './components/AnswerRegisterModal.vue';
     // import { RouterView } from 'vue-router';
 </script>
 

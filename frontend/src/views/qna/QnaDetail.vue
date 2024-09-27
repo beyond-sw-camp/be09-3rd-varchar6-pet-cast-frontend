@@ -1,26 +1,26 @@
 <template>
     <div class="qa-section">
-      <h2>Q&A 상세조회 및 답변</h2>
+      <h2>문의하기</h2>
       <div v-if="qaData" class="qa-content">
         <div class="question-section">
-          <h3>질문내용</h3>
+          <h3>질문</h3>
           <p>{{ qaData.question }}</p>
         </div>
         
-        <div v-if="qaData.answer" class="answer-section">
+        <div v-if="qaData.answer" class="answer-section" >
           <h3>답변</h3>
           <p>{{ qaData.answer }}</p>
         </div>
         
-        <div v-else class="answer-form">
-          <h3>답변 작성</h3>
+        <div v-else-if="!qaData.answer && isCompany" class="answer-form">
+          <h3>답변</h3>
           <textarea v-model="newAnswer" placeholder="답변을 입력하세요."></textarea>
           <button @click="submitAnswer" class="submit-btn">답변 제출</button>
         </div>
         
         <div class="metadata">
           <p>질문 작성일: {{ formatDate(qaData.createdAt) }}</p>
-          <p>질문자: {{ qaData.author }}</p>
+          <p>질문자: {{ qaData.questioner }}</p>
           <p v-if="qaData.answeredAt">답변일: {{ formatDate(qaData.answeredAt) }}</p>
         </div>
       </div>
@@ -36,9 +36,20 @@
   const route = useRoute()
   const router = useRouter()
   
-  const qaData = ref(null)
+  const qaData = ref('')
   const newAnswer = ref('')
-  
+  const isCompany = ref(false)
+
+  const checkRole = () => {
+    const roleString = localStorage.getItem('Roles');   
+    console.log(roleString);
+    if(roleString){
+      const roles = roleString.split(',');
+      isCompany.value = roles.includes('COMPANY');
+    }else{
+      isCompany.value = false;
+    }
+  }  
   const formatDate = (dateString) => {
     if (!dateString) return 'N/A'
     const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }
@@ -54,8 +65,9 @@
         question: "Vue 3 Composition API의 장점은 무엇인가요?",
         answer: null,
         createdAt: "2024-09-26T10:30:00",
-        author: "Vue 초보자",
-        answeredAt: null
+        questioner: "Vue 초보자",
+        answeredAt: null,
+        questionerId: 1
       }
     }, 1000)
   }
@@ -76,6 +88,7 @@
   
   onMounted(() => {
     fetchQAData()
+    checkRole()
   })
   
   </script>

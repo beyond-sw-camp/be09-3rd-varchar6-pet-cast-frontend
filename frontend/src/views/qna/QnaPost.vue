@@ -1,10 +1,10 @@
 <template>
     <!-- 작성 logic이라 보면 될 것 같은데.. modal로 굳이? -->
     <div class="qa-section">
-      <h2>Q&A 상세조회</h2>
+      <h2>문의하기</h2>
       <div class="qa-form">
         <div class="form-group">
-          <label for="question">질문내용</label>
+          <label for="question">질문</label>
           <input type="text" id="question" v-model="question" placeholder="질문 내용을 입력하세요." />
         </div>
         <div class="form-group">
@@ -25,11 +25,11 @@
   
   const router = useRouter()
   
-  const question = ref('죽겠따')
-  const answer = ref('나도')
+  const question = ref('')
+  const answer = ref('')
       
   const goBack = () => {
-    router.push('/qna-list')
+    router.push('/api/v1/qna');
   }
   
   const saveQA = () => {

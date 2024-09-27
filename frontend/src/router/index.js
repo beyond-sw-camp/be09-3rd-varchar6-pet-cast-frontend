@@ -2,11 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/contents/Home.vue';
 import About from '../views/contents/About.vue';
 import qna from '@/views/qna/qna.vue';
-import QnaList from '@/views/qna/components/qnaList.vue';
+import QnaList from '@/views/qna/QnaList.vue';
 import QnaPost from '@/views/qna/QnaPost.vue';
-import QnaRead from '@/views/qna/QnaRead.vue';
-// import QnAList from '../components/QnAList.vue'
-// import QnADetail from '../components/QnADetail.vue'
+import QnaDetail from '@/views/qna/QnaDetail.vue';
 const routes = [
   {
     path: '/',
@@ -18,27 +16,42 @@ const routes = [
     name: 'About',
     component: About,
   },
-  {
-    path: '/qna',
-    redirect: '/qnalist'
-  },
+  // {
+  //   path: '/qna',
+  //   redirect: '/qnalist'
+  // },
   // {
   //   // path: 'api/v1/qna',
   //   path: '/qna',
   //   component: qna,
   //   name: 'Qna',
   // },
+  // {
+  //   path: '/qna-list',
+  //   component: QnaList
+  // },
+  // {
+  //   path: '/qna-post',
+  //   component: QnaPost
+  // },
+  // {
+  //   path: '/qna-list/:id',
+  //   component: QnaDetail
+  // }
   {
-    path: '/qna-list',
+    path:'/api/v1/qna',
+    name:'queryQnaController',
     component: QnaList
   },
   {
-    path: '/qna-post',
-    component: QnaPost
+    path:'/api/v1/qna/:id',
+    name: 'queryQnaDetail',
+    component: QnaDetail
   },
   {
-    path: '/qnaread/:id',
-    component: QnaRead
+    path: '/api/v1/qna/post',
+    name: 'queryQnaPost',
+    component: QnaPost
   }
   
 ];
