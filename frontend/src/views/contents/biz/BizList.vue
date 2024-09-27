@@ -5,7 +5,7 @@
     </div>
     <template v-else>
       <div class="search-section">
-        <input type="text" v-model="searchQuery" placeholder="어떤 파티를 찾고 계세요?">
+        <input type="text" v-model="searchQuery" placeholder="어떤 업체를 찾고 계세요?">
         <div class="search-options">
           <select v-model="searchType">
             <option value="title">제목</option>
