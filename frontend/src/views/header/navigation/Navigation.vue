@@ -56,6 +56,7 @@ const userId = inject('userId');
 const handleLogout = () => {
   localStorage.removeItem('accessToken');
   localStorage.removeItem('refreshToken');
+  localStorage.removeItem('Roles');
   localStorage.removeItem('userId'); // 아이디 정보 제거
 
   setIsLoggedIn(false);
