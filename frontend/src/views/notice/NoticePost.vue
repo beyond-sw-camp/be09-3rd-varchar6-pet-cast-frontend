@@ -41,7 +41,7 @@
   } 
 
   const goBack = () => {
-    router.push('/notice-list')
+    router.push('/api/v1/notice')
   }
   
   const savenotice = () => {

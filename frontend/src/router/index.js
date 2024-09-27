@@ -5,9 +5,9 @@ import BizDetail from '../views/contents/biz_detail/BizDetail.vue';
 import BusinessEvents from '../views/contents/biz_detail/BusinessEvents.vue';
 import BusinessReviews from '../views/contents/biz_detail/BusinessReviews.vue';
 import BusinessQA from '../views/contents/biz_detail/BusinessQA.vue';
-import NoticeList from '@/views/notice/noticeList.vue';
 import NoticePost from '@/views/notice/NoticePost.vue';
 import NoticeDetail from '@/views/notice/NoticeDetail.vue';
+import noticeList from '@/views/notice/NoticeList.vue';
 
 const routes = [
   {
@@ -41,17 +41,17 @@ const routes = [
     component: BusinessQA
   },
   {
-    path: '/notice-list',
+    path: '/api/v1/notice',
     name: 'NoticeList',
-    component: NoticeList
+    component: noticeList
   },
   {
-    path: '/notice-post',
+    path: '/api/v1/notice/post',
     name: 'NoticePost',
     component: NoticePost    
   },
   {
-    path: '/notice-list/:id',
+    path: '/api/v1/notice/:id',
     name: 'NoticeDetail',
     component: NoticeDetail
   }

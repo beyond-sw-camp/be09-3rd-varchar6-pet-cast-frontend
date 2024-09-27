@@ -77,11 +77,11 @@
   // }
   
   const goToCreatenotice = () => {
-    router.push('/notice-post') // notice 작성 페이지로 이동
+    router.push('/api/v1/notice/post') // notice 작성 페이지로 이동
   }
   
   const goTonoticeRead = (id) => {
-    router.push(`/notice-list/${id}`) // notice 상세 읽기 페이지로 이동
+    router.push(`/api/v1/notice/${id}`) // notice 상세 읽기 페이지로 이동
   }
   
   onMounted(() => {
@@ -93,7 +93,7 @@
   <style scoped>
   .notice-list-section {
     font-family: Arial, sans-serif;
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     background-color: #f9f9f9;
@@ -103,6 +103,11 @@
   h2 {
     color: #333;
     margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    /* font-family: Jua; */
+    display: flex;
+    justify-content:flex-start
   }
   
   .notice-list {
@@ -134,7 +139,10 @@
     display: flex;
     justify-content: space-between;
     padding: 10px 0;
-    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+    background-color: #DDF5FF;  /* 목록 항목의 배경색 */
+    border: 1px solid #B0DFF7;  /* 테두리 색상 */  
+    border-radius: 8px; /* 원형 */ 
     cursor: pointer;
     transition: background-color 0.3s;
   }
@@ -144,21 +152,26 @@
   }
   
   .notice-type {
-    background-color: #e0e0e0;
-    padding: 2px 8px;
-    border-radius: 12px;
-    font-size: 0.8em;
-  }
-  
-  .notice-title {
-    flex-grow: 1;
-    margin: 0 15px;
-  }
-  
-  .notice-date {
-    color: #888;
-    font-size: 0.9em;
-  }
+  background-color: #f6e7e7; /* 유형의 배경색 */
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  color: #000000;  /* 텍스트 색상 */
+  margin-left: 5px;
+}
+
+.notice-title {
+  flex-grow: 1;
+  margin: 0 15px;
+  font-weight: bold;
+  color: #333;  /* 제목 텍스트 색상 */
+}
+
+.notice-date {
+  color: #888;
+  font-size: 0.9em;
+  margin-right: 10px;
+}
   
   .pagination {
     display: flex;
@@ -191,5 +204,7 @@
     cursor: pointer;
     border-radius: 4px;
     float: right;
+    display: flex;
+    justify-content: center;
   }
   </style>

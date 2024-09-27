@@ -29,7 +29,7 @@
         </div>
       </div>
       <div v-else class="loading">데이터를 불러오는 중...</div>
-      <button @click="noticeDelete" class="delete-btn" v-if="isAdmin">삭제</button>
+      <button v-once @click="noticeDelete" class="delete-btn" v-if="isAdmin">삭제</button>
 
       <button @click="goBack" class="back-btn">목록으로 돌아가기</button>
       <!-- <button @click="noticeModify" class="modify-btn" v-if="isAdmin">수정</button> -->
@@ -80,14 +80,14 @@
   }
   
   const goBack = () => {
-    router.push('/notice-list')
+    router.push('/api/v1/notice')
   }
   
   const noticeDelete = () => {
     // 실제 구현에서는 API 호출로 대체해야 합니다
     setTimeout(() => {
       alert('공지가 삭제되었습니다.')
-      router.push('/notice-list')
+      router.push('/api/v1/notice')
     }, 1000)
   }
 
@@ -95,7 +95,7 @@
   //   // 실제 구현에서는 API 호출로 대체해야 합니다
   //   setTimeout(() => {
   //     alert('공지가 수정되었습니다.')
-  //     router.push('/notice-list')
+  //     router.push('/api/v1/notice')
   //   }, 1000)
   // }
 
