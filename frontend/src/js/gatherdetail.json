@@ -470,7 +470,7 @@
         },
         {
             "id": 20,
-            "isLeader": false,
+            "isLeader": true,
             "gathername": "반려동물 영양 관리 모임",
             "contents": "반려동물의 건강을 위한 식단과 영양 관리에 대해 연구하는 모임입니다.",
             "gatherImg": "path_to_pet_nutrition_group_image.png",
@@ -480,7 +480,7 @@
             "members": [
                 {
                     "id": 20,
-                    "name": "이민호",
+                    "name": "강형욱",
                     "role": "L",
                     "img": "path_to_이민호_image.jpg"
                 },

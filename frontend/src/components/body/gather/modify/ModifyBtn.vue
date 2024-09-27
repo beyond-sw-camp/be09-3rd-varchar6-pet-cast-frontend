@@ -1,6 +1,6 @@
 <template>
     <div class="btn">
-        <b-button @click="modifyGather" type="submit" variant="primary">수정 완료</b-button>
+        <b-button @click="modifyGather" type="submit" variant="primary">수정 완료</b-button>    
     </div>
 </template>
 

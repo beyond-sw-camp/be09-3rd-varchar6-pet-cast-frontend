@@ -1,28 +1,24 @@
 <template>
     <section class="container">
-        <DetailTitle/>
-        <DetailInfo 
+        <h2>hi</h2>
+        <!-- <DetailTitle/> -->
+        <!-- <DetailInfo 
             :gatherImg="gatherDetail?.gatherImg"
             :gatherName="gatherDetail?.gathername"
-        />
+        /> -->
         
         <article class = "detail-info">
-            <DetailDescription :gatherDetail="gatherDetail"/>
-            <DetailBtn 
+            <!-- <DetailDescription :gatherDetail="gatherDetail"/> -->
+            <!-- <DetailBtn 
                 :gatherId="gatherDetail?.id"
-                :show="show"/>
+                :show="show"/> -->
         </article>
     </section>
 </template>
 
 <script setup>
     import { ref, onMounted, onBeforeMount } from 'vue';
-    import { useRoute } from 'vue-router';
-
-    import DetailTitle from '@/components/body/gather/detail/DetailTitle.vue';
-    import DetailInfo from '@/components/body/gather/detail/DetailInfo.vue';
-    import DetailDescription from '@/components/body/gather/detail/DetailDescription.vue';    
-    import DetailBtn from '@/components/body/gather/detail/DetailBtn.vue';
+    import { useRoute } from 'vue-router'; 
 
     const currentRoute = useRoute();    
     const gatherList = ref([]);
