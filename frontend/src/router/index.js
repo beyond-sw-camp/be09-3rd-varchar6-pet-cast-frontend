@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/contents/Home.vue';
 import About from '../views/contents/About.vue';
+import Login from '../views/contents/Login.vue';
 import BizDetail from '../views/contents/biz_detail/BizDetail.vue';
 import BizEvents from '../views/contents/biz_event/BizEvent.vue';
 import BizReviews from '../views/contents/biz_review/BizReview.vue';
@@ -57,7 +58,7 @@ const routes = [
     component: CreateReview
   },
   {
-    path: '/update-review/:reviewId',
+    path: '/update-review/:eventId',
     name: 'UpdateReview',
     component: UpdateReview
   }
