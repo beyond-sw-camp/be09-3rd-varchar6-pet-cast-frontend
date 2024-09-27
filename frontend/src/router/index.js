@@ -4,6 +4,7 @@ import About from '../views/contents/About.vue';
 import GatherList from '../views/contents/Gather/GatherList.vue';
 import GatherDetail from '../views/contents/Gather/GatherDetail.vue';
 import GatherCreate from '../views/contents/Gather/GatherCreate.vue';
+import GatherModify from '@/views/contents/Gather/GatherModify.vue';
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: '/gathercreate',
     name: 'gathercreate',
     component: GatherCreate
+  },
+  {
+    path: '/gathermodify/:id',
+    name: 'gathermodify',
+    component: GatherModify
   }
 
 ];

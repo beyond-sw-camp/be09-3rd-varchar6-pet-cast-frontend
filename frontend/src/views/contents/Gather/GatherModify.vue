@@ -1,15 +1,14 @@
 <template>
     <section class="container">
-        <DetailTitle/>
-        <DetailInfo 
+        <ModifyTitle/>
+
+        <ModifyInfo
             :gatherImg="gatherDetail?.gatherImg"
             :gatherName="gatherDetail?.gathername"
         />
+        <ModifyDescription :gatherDetail="gatherDetail"/>
         
-        <article class = "detail-info">
-            <DetailDescription :gatherDetail="gatherDetail"/>
-            <DetailBtn :gatherId="gatherDetail?.id"/>
-        </article>
+        <ModifyBtn :gatherId="gatherDetail?.id"/>
     </section>
 </template>
 
@@ -17,15 +16,15 @@
     import { ref, onMounted } from 'vue';
     import { useRoute } from 'vue-router';
 
-    import DetailTitle from '@/components/body/gather/detail/DetailTitle.vue';
-    import DetailInfo from '@/components/body/gather/detail/DetailInfo.vue';
-    import DetailDescription from '@/components/body/gather/detail/DetailDescription.vue';    
-    import DetailBtn from '@/components/body/gather/detail/DetailBtn.vue';
+    import ModifyTitle from '@/components/body/gather/modify/ModifyTitle.vue';
+    import ModifyInfo from '@/components/body/gather/modify/ModifyInfo.vue';
+    import ModifyDescription from '@/components/body/gather/modify/ModifyDescription.vue';
+    import ModifyBtn from '@/components/body/gather/modify/ModifyBtn.vue';
+    
 
     const currentRoute = useRoute();    
     const gatherList = ref([]);
     const gatherDetail = ref(null);
-
 
     const fetchGatherDetail = async () => {
         try{
@@ -51,7 +50,7 @@
 <style scoped>
     .container {
         overflow: auto;
-        height: 100vh;
+        height: 150vh;
     }
     .detail-info {
         padding-bottom: 7rem;

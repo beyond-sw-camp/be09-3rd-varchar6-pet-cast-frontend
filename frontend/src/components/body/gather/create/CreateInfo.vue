@@ -30,7 +30,6 @@
     const defaultImage = '/src/assets/icon/gather/plusmember.png';
     const selectedImage = ref('');
     const fileInput = ref(null);
-    const gatherNameInput = ref('');
 
     const triggerFileInput = () => {
         console.log('Triggering file input');
