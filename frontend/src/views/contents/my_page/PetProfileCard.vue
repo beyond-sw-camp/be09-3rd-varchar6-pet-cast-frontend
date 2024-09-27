@@ -3,8 +3,11 @@
     <div class="pet-info">
       <img src="../../../assets/image/profile/dogi.png" alt="애완동물 이미지" class="pet-image" />
       <div class="pet-details">
-        <div class="age">{{ props.pet.age }}살</div>
-        <div class="gender">( {{ gender }} )</div>
+        <div class="name">{{ props.pet.name }}</div>
+        <div class="properties">
+          <div class="age">{{ props.pet.age }}살</div>
+          <div class="gender">({{ gender }})</div>
+        </div>
       </div>
     </div>
     <div class="pet-introduction">
@@ -51,8 +54,8 @@ if (props.pet.gender) {
   align-items: center;
 }
 .pet-image {
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   margin-right: 20px;
   margin-left: 10px;
@@ -63,8 +66,15 @@ if (props.pet.gender) {
   font-size: 20px;
 }
 .pet-details {
-  margin-top: 40px;
+  margin-top: 50px;
   margin-left: 10px;
+}
+.properties {
+  display: flex;
+  margin-top: 20px;
+}
+.name {
+  font-weight: bolder;
 }
 .age {
   font-weight: bold;
