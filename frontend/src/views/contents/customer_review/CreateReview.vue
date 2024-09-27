@@ -64,7 +64,7 @@ const setRating = (value) => {
 // };
 
 const cancel = () => {
-  router.push({ name: 'CustomerReview' }); 
+  router.push({ name: 'CustomerEvent' }); 
 };
 </script>
 

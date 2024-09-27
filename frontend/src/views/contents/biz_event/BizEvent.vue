@@ -52,7 +52,6 @@ const fetchEvents = async () => {
         console.log(data);
         events.value = data.events;
         totalEvents.value = data.totalCount;
-        isAuth.value = data.isAuth; // JSON에서 isAuth 값을 받아옵니다
     } catch (error) {
         console.error("이벤트 데이터를 가져오는 중 오류 발생:", error);
     }
@@ -72,7 +71,7 @@ const loadMoreEvents = () => {
 
 const editEvent = (event) => {
     if (isUpdated.value) {
-        router.push({ name: 'BusinessEventUpdate', params: { id: event.id } });
+        router.push({ name: 'BizEventUpdate', params: { id: event.id } });
     } else {
         alert('이벤트를 수정할 권한이 없습니다.');
     }
@@ -81,7 +80,7 @@ const editEvent = (event) => {
 const checkUpdatePermission = () => {
     const rolesString = localStorage.getItem('Roles');
     if (rolesString) {
-        const roles = JSON.parse(rolesString);
+        const roles = rolesString.split(',');
         isUpdated.value = roles.includes('COMPANY');
     } else {
         isUpdated.value = false;
