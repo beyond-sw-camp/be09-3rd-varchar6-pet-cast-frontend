@@ -15,9 +15,9 @@
 <script setup>
     import { ref, onMounted, computed } from 'vue';
     import { useRouter } from 'vue-router';
-    import ListTable from '@/components/body/gather/ListTable.vue';
-    import ListPagination from '@/components/body/gather/ListPagination.vue';
-
+    import ListTable from './ListTable.vue';
+    import ListPagination from './ListPagination.vue';
+    
     const router = useRouter();
     const items = ref(null);
 
