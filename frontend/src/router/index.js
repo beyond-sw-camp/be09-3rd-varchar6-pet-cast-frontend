@@ -12,6 +12,7 @@ import CustomerReview from '../views/contents/customer_review/CustomerReview.vue
 import CreateReview from '../views/contents/customer_review/CreateReview.vue';
 import UpdateReview from '../views/contents/customer_review/UpdateReview.vue';
 import BizList from '../views/contents/biz/BizList.vue';
+import BizMypage from '../views/contents/biz/BizMypage.vue';
 
 const routes = [
   {
@@ -50,12 +51,12 @@ const routes = [
     component: BizEventUpdate
   },
   {
-    path: '/customer-events/:id',
+    path: '/customer-events',
     name: 'CustomerEvents',
     component: CustomerEvent
   },
   {
-    path: '/customer-reviews/:id',
+    path: '/customer-reviews',
     name: 'CustomerReview',
     component: CustomerReview
   },
@@ -82,6 +83,11 @@ const routes = [
     path: '/me',
     name: 'MyPage',
     component: MyPage,
+  },
+  {
+    path: '/biz-mypage',
+    name: 'BizMypage',
+    component: BizMypage,
   },
 
   // 요청하지 않은 페이지
