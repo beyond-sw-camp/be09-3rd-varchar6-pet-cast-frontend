@@ -1,33 +1,35 @@
 <template>
-  <div class="review-form-container">
-    <h1>리뷰 작성</h1>
-    <form @submit.prevent="submitReview" class="review-form">
-      <div class="form-group">
-        <div class="title-rating-group">
-          <div class="title-input">
-            <label for="reviewTitle">리뷰 제목</label>
-            <input v-model="reviewTitle" id="reviewTitle" type="text" required>
-          </div>
-          <div class="rating-input">
-            <label>별점</label>
-            <div class="rating-display">
-              <span>{{ rating }}점</span>
+  <div class="review-container">
+    <div class="review-form-container">
+      <h1>리뷰 작성</h1>
+      <form @submit.prevent="submitReview" class="review-form">
+        <div class="form-group">
+          <div class="title-rating-group">
+            <div class="title-input">
+              <label for="reviewTitle">리뷰 제목</label>
+              <input v-model="reviewTitle" id="reviewTitle" type="text" required>
             </div>
-            <div class="star-rating">
-              <span v-for="i in 5" :key="i" @click="setRating(i)" :class="{ 'filled': rating >= i }">★</span>
+            <div class="rating-input">
+              <label>별점</label>
+              <div class="rating-display">
+                <span>{{ rating }}점</span>
+              </div>
+              <div class="star-rating">
+                <span v-for="i in 5" :key="i" @click="setRating(i)" :class="{ 'filled': rating >= i }">★</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="reviewContent">리뷰 내용</label>
-        <textarea v-model="reviewContent" id="reviewContent" rows="5" required></textarea>
-      </div>
-      <div class="button-group">
-        <button type="submit" class="submit-btn">작성하기</button>
-        <button type="button" @click="cancel" class="cancel-btn">취소</button>
-      </div>
-    </form>
+        <div class="form-group">
+          <label for="reviewContent">리뷰 내용</label>
+          <textarea v-model="reviewContent" id="reviewContent" rows="5" required></textarea>
+        </div>
+      </form>
+    </div>
+    <div class="button-group">
+      <button type="submit" class="submit-btn" @click="submitReview">작성하기</button>
+      <button type="button" @click="cancel" class="cancel-btn">취소</button>
+    </div>
   </div>
 </template>
 
@@ -64,16 +66,21 @@ const setRating = (value) => {
 // };
 
 const cancel = () => {
-  router.push({ name: 'CustomerEvent' }); 
+  router.push({ name: 'CustomerEvents', params: { id: eventId.value }}); 
 };
 </script>
 
 <style scoped>
-.review-form-container {
+.review-container {
   max-width: 800px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.review-form-container {
   padding: 20px;
-  padding-bottom: 100px; /* footer를 고려한 여백 */
   background-color: #e6f3ff; /* 하늘색 배경 */
   border-radius: 8px;
 }
@@ -140,7 +147,7 @@ input, textarea {
 .button-group {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  padding: 0 20px;
 }
 
 button {

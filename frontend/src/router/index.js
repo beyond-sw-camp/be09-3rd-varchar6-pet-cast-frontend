@@ -43,6 +43,11 @@ const routes = [
     component: BizEventUpdate
   },
   {
+    path: '/business-event-update/:id',
+    name: 'BizEventUpdate',
+    component: BizEventUpdate
+  },
+  {
     path: '/customer-events/:id',
     name: 'CustomerEvents',
     component: CustomerEvent
