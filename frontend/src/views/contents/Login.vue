@@ -37,7 +37,7 @@
       <span class="divider">|</span>
       <RouterLink to="/register"> 비밀번호 수정 </RouterLink>
       <span class="divider">|</span>
-      <RouterLink to="/register"> 회원 가입 </RouterLink>
+      <RouterLink to="/signup"> 회원 가입 </RouterLink>
     </div>
     <div class="oauth-login-container">
       <div class="oauth-button" @click="handleKakaoLogin">

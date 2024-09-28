@@ -6,6 +6,7 @@ import BizDetail from '../views/contents/biz_detail/BizDetail.vue';
 import BusinessEvents from '../views/contents/biz_detail/BusinessEvents.vue';
 import BusinessReviews from '../views/contents/biz_detail/BusinessReviews.vue';
 import BusinessQA from '../views/contents/biz_detail/BusinessQA.vue';
+import Signup from '@/views/contents/Signup.vue';
 
 const routes = [
   {
@@ -40,7 +41,11 @@ const routes = [
   },
   {
     path: '/login',
-    component: Login,
+    component: Login
+  },
+  {
+    path: '/signup',
+    component: Signup
   },
 
   // 요청하지 않은 페이지
