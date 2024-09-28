@@ -1,41 +1,55 @@
 <template>
+  <h4>작성한 리뷰 목록</h4>
   <div class="section-list">
-    <h4>{{ title }}</h4>
-    <div v-if="items && items.length">
-      <SectionItem v-for="(item, index) in items" :key="index" :item="item" />
-    </div>
-    <div v-else class="empty-section">
-      {{ emptyText }}
+    <div class="container-more"></div>
+    <RouterLink to="/customer-reviews/1">
+      <p class="more"> 더보기 > </p>
+    </RouterLink>
+
+    <div class="item-container">
+      <div v-if="reviews && reviews.length">
+        <ReviewItem v-for="(review, index) in reviews" :key="index" :review="review" />
+      </div>
+      <div v-else class="empty-section">
+        {{ emptyText }}
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import SectionItem from './SectionItem.vue';
+import ReviewItem from './item/ReviewItem.vue';
 import { defineProps } from 'vue';
+import { RouterLink } from 'vue-router';
 
 const props = defineProps({
-  title: {
-    type: String,
-    required: true,
+  reviews: Array,
+  emptyText: String,
   },
-  items: {
-    type: Array,
-    default: () => [],
-  },
-  emptyText: {
-    type: String,
-    default: '',
-  },
-});
+);
 </script>
 
 <style scoped>
 .section-list {
-  padding: 20px;
-  background-color: #d9f7be;
+  padding: 1px;
+  padding-inline: 20px;
+  background-color: #BAEBFF;
   border-radius: 10px;
-  margin-bottom: 20px;
+}
+.item-container {
+  background-color: white;
+  border: 1px solid #ABABAB;
+  border-radius: 10px;
+  padding: 10px;
+  margin-block: 10px;
+}
+.container-more {
+  display: flex;
+}
+.more {
+  display: flex;
+  justify-content: end;
+  margin-right: 10px;
 }
 .empty-section {
   text-align: center;

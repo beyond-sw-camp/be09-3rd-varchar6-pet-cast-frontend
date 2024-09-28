@@ -1,14 +1,14 @@
 <template>
-  <h4>참여한 이벤트 목록</h4>
+  <h4>Q&A 목록</h4>
   <div class="section-list">
     <div class="container-more"></div>
-    <RouterLink to="/customer-events/1">
+    <RouterLink to="/customer-qna/1">
       <p class="more"> 더보기 > </p>
     </RouterLink>
 
     <div class="item-container">
-      <div v-if="events && events.length">
-        <EventItem v-for="(event, index) in events" :key="index" :event="event" />
+      <div v-if="qnas && qnas.length">
+        <QnAItem v-for="(qna, index) in qnas" :key="index" :qna="qna" />
       </div>
       <div v-else class="empty-section">
         {{ emptyText }}
@@ -18,12 +18,12 @@
 </template>
 
 <script setup>
-import EventItem from './item/EventItem.vue';
+import QnAItem from './item/QnAItem.vue';
 import { defineProps } from 'vue';
 import { RouterLink } from 'vue-router';
 
 const props = defineProps({
-  events: Array,
+  qnas: Array,
   emptyText: String,
   },
 );
@@ -35,7 +35,6 @@ const props = defineProps({
   padding-inline: 20px;
   background-color: #BAEBFF;
   border-radius: 10px;
-  margin-bottom: 20px;
 }
 .item-container {
   background-color: white;

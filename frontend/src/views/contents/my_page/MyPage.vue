@@ -6,10 +6,8 @@
     </template>
     <PetProfileCardList :petProfiles="petProfiles" />
     <EventList :events="events" emptyText="참여하시는 이벤트 목록이 없습니다." />
-    <!-- <ReviewList title="작성한 리뷰 목록" :items="reviews" emptyText="작성하신 리뷰가 없습니다." />
-    <QnAList title="작성한 Q&A 목록" :items="qna" emptyText="작성하신 Q&A가 없습니다." />  -->
-
-
+    <ReviewList :reviews="reviews" emptyText="작성하신 리뷰가 없습니다." />
+    <QnAList :qnas="qnas" emptyText="작성하신 Q&A가 없습니다." />
   </div>
 </template>
 
@@ -19,14 +17,14 @@ import axios from 'axios';
 import UserInfo from '../my_page/UserInfo.vue';
 import PetProfileCardList from '../my_page/PetProfileCardList.vue';
 import EventList from './custom_domain/EventList.vue';
-// import ReviewList from './custom_domain/ReviewList.vue';
-// import QnAList from './custom_domain/QnAList.vue';
+import ReviewList from './custom_domain/ReviewList.vue';
+import QnAList from './custom_domain/QnAList.vue';
 
 let userInfo = ref(null);
 let petProfiles = ref(null);
 let events = ref(null);
 let reviews = ref(null);
-let qna = ref(null);
+let qnas = ref(null);
 
 
 onMounted(
@@ -50,31 +48,30 @@ onMounted(
 
     try {
       const customerEventListResponse = await axios.get(`http://localhost:8888/profile-events`);
-      console.log("customerEventListResponse.data: ", customerEventListResponse.data);
       events.value = customerEventListResponse.data;
-      console.log("events.value: ", events.value);
 
     } catch (e) {
       console.log('got error with fetching customerEvents list for profile');
     }
 
-    // try {
-    //   const customerReviewListResponse = await axios.get(`http://localhost:8888/customerReviews`);
-    //   reviews.value = customerReviewList.data;
+    try {
+      const customerReviewListResponse = await axios.get(`http://localhost:8888/profile-reviews`);
+      reviews.value = customerReviewListResponse.data;
     
 
-    // } catch (e) {
-    //   console.log('got error with fetching customerReviews list for profile');
-    // }
+    } catch (e) {
+      console.log('got error with fetching customerReviews list for profile');
+    }
 
-    // try {
-    //   const petProfileListResponse = await axios.get(`http://localhost:8888/pet-profile`);
-    //   petProfiles.value = petProfileListResponse.data;
+    try {
+      const petQnaListResponse = await axios.get(`http://localhost:8888/profile-qna`);
+      console.log("petQnaListResponse.data: ", petQnaListResponse.data);
+      qnas.value = petQnaListResponse.data;
     
 
-    // } catch (e) {
-    //   console.log('got error with fetching customerQnA list for profile');
-    // }
+    } catch (e) {
+      console.log('got error with fetching customerQnA list for profile');
+    }
   }
 )
 
