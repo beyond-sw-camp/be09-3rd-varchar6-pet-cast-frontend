@@ -6,6 +6,7 @@ import GatherDetail from '../views/contents/Gather/GatherDetail.vue';
 import GatherCreate from '../views/contents/Gather/GatherCreate.vue';
 import GatherModify from '../views/contents/Gather/GatherModify.vue';
 import GatherDelete from '../views/contents/Gather/GatherDelete.vue';
+import GatherInvitation from '../views/contents/Gather/GatherInvitation.vue';
 
 const routes = [
   {
@@ -42,8 +43,12 @@ const routes = [
     path: '/gatherdelete/:id',
     name: 'gatherdelete',
     component: GatherDelete
+  },
+  {
+    path: '/gatherinvitation',
+    name: 'gatherinvitation',
+    component: GatherInvitation
   }
-
 ];
 
 const router = createRouter({

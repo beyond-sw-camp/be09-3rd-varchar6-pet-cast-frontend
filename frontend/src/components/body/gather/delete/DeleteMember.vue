@@ -16,7 +16,7 @@
             </b-row>
         </div>
         <b-modal v-model="showModal" title="멤버 삭제 확인" hide-footer>
-            <p>{{ selectedMember ? `${selectedMember.name}님을 삭제하시겠습니까?` : '' }}</p>
+            <p>{{ selectedMember ? `${selectedMember.name}님을 추방시키시겠습니까?` : '' }}</p>
             <div class="d-flex justify-content-end">
                 <b-button variant="secondary" class="mr-2" @click="showModal = false">취소</b-button>
                 <b-button variant="danger" @click="confirmDelete">삭제</b-button>

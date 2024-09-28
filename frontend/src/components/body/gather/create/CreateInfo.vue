@@ -88,6 +88,7 @@
         height: 4rem;
         object-fit: cover;
         border-radius: 50%;
+        border: 1px solid #000000;
     }
 
 </style>

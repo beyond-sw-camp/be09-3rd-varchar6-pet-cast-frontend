@@ -1,14 +1,7 @@
 <template>
     <div class="members-container">
         <div v-for="(member, index) in members" :key="index" class="plus-icon">
-            <input
-                type="file"
-                accept="image/png, image/jpeg"
-                @change="(event) => onFileSelected(event, index)"
-                :ref="el => { if (el) fileInputs[index] = el }"
-                style="display: none"
-            />
-            <div class="avatar" @click="() => triggerFileInput(index)">
+            <div class="avatar" @click="openPopup(index)">
                 <img :src="member.image" :alt="`Member ${index + 1} image`" />
             </div>
         </div>
@@ -26,22 +19,18 @@
         { image: defaultImage },
         { image: defaultImage }
     ]);
-    
-    const fileInputs = ref([]);
-    
-    const triggerFileInput = (index) => {
-        fileInputs.value[index].click();
-    };
-    
-    const onFileSelected = (event, index) => {
-        const file = event.target.files[0];
-        if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            members.value[index].image = e.target.result;
-        };
-        reader.readAsDataURL(file);
-        }
+
+    const openPopup = (index) => {
+        const width = 700;
+        const height = 700;
+        const left = (window.screen.width / 2) - (width / 2);
+        const top = (window.screen.height / 2) - (height / 2);
+
+        window.open(
+            '/gatherinvitation', 
+            `MemberImage${index}`,
+            `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`
+        );
     };
 </script>
 
