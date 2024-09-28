@@ -6,7 +6,7 @@ import BizDetail from '../views/contents/biz_detail/BizDetail.vue';
 import BusinessEvents from '../views/contents/biz_detail/BusinessEvents.vue';
 import BusinessReviews from '../views/contents/biz_detail/BusinessReviews.vue';
 import BusinessQA from '../views/contents/biz_detail/BusinessQA.vue';
-import Signup from '@/views/contents/Signup.vue';
+import Signup from '@/views/contents/signup/Signup.vue';
 
 const routes = [
   {

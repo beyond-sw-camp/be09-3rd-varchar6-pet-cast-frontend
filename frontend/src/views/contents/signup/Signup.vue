@@ -4,7 +4,7 @@
         <!-- 상단 프로필 이미지 -->
         <div class="default-profile" @click="triggerImageUpload">
             <img v-if="profileImage" :src="profileImage" alt="profile-image" class="profile-image" />
-            <img v-else src="../../assets/icon/signup/avatar.png" class="default-icon" alt="default" />
+            <img v-else src="../../../assets/icon/signup/avatar.png" class="default-icon" alt="default" />
             <input 
                 id="profile-image" 
                 type="file" 
@@ -68,21 +68,17 @@
                 <div class="form-group">
                     <div class="label-header">
                         <label for="nickname">닉네임*</label>
-                        <p v-if="isNicknameDuplicate" class="error-message">닉네임이 중복되었습니다.</p>
-                        <p v-else-if="isNicknameAvailable" class="success-message">사용 가능한 닉네임입니다.</p>
+                        <p v-if="isNicknameDuplicate" class="nickname-error-message">닉네임이 중복되었습니다.</p>
+                        <p v-else-if="isNicknameAvailable" class="nickname-success-message">사용 가능한 닉네임입니다.</p>
                     </div>    
-
-                    <div class="input-group">
-                        <input
-                            type="text"
-                            id="nickname"
-                            v-model="nickname"
-                            placeholder="사용할 닉네임을 입력하여 주세요."
-                            required
-                        />
-
-                        <button type="button" class="check-btn" @click="checkNicknameDuplicate">중복체크</button>
-                    </div>
+                    <input
+                        type="text"
+                        id="nickname"
+                        v-model="nickname"
+                        @input="checkNicknameDuplicate"
+                        placeholder="사용할 닉네임을 입력하여 주세요."
+                        required
+                    />
                 </div>
 
                 <div class="form-group">
@@ -122,9 +118,9 @@
 </template>
 
 <script setup>
-    import { ref, inject } from 'vue';
+    import { ref, onMounted } from 'vue';
     import { useRouter } from 'vue-router';
-    import Modal from '../../components/Modal.vue';
+    import Modal from '../../../components/Modal.vue';
 
     const router = useRouter();
 
@@ -146,12 +142,27 @@
     const isModalVisible = ref(false);
     const modalTitle = ref('');
     const modalMessage = ref('');
-    
-    const jsonIdData = ['user'];
-    const jsonNicknameData = ['user01'];
 
     const passwordMismatch = ref(false);
     const passwordMatch = ref(false);
+
+    const jsonIdData = ref(null);
+    const jsonNicknameData = ref(null);
+
+    // JSON 파일에서 ID 및 닉네임 데이터를 불러오기
+    async function loadJsonData() {
+        try {
+            const response = await fetch('http://localhost:8080/signup');
+            if(!response){
+                throw new Error("네트워크 응답이 올바르지 않습니다.");
+            }
+            const data = await response.json();
+            jsonIdData.value = data.map(user => user.loginId);
+            jsonNicknameData.value = data.map(user => user.nickname);
+        } catch (error) {
+            console.error('JSON data 가져오는 중 오류 발생:', error);
+        }
+    }
 
     function triggerImageUpload() {
         const fileInput = document.getElementById('profile-image');
@@ -173,25 +184,22 @@
         isIdDuplicate.value = false;
         isIdAvailable.value = false;
 
-        if(jsonIdData.includes(loginId.value)){
+        if(jsonIdData.value.includes(loginId.value)){
             isIdDuplicate.value = true;
         } else {
             isIdAvailable.value = true;
         }
-
-        console.log("클릭")
     }
 
     function checkNicknameDuplicate() {
         isNicknameDuplicate.value = false;
         isNicknameAvailable.value = false;
 
-        if(jsonNicknameData.includes(nickname.value)){
+        if (jsonNicknameData.value.includes(nickname.value)) {
             isNicknameDuplicate.value = true;
         } else {
             isNicknameAvailable.value = true;
         }
-
     }
 
     function handleSignup() {
@@ -231,6 +239,10 @@
             passwordMatch.value = false;
         }
     }
+
+    onMounted(() => {
+        loadJsonData();
+    });
     
 </script>
 
@@ -354,16 +366,18 @@
         margin-right: 70px;
     }
     
+    .nickname-error-message,
     .password-error-message{
         color: red;
         font-size: 12px;
-        margin-left: auto; /* 오른쪽 정렬을 위해 추가 */
+        margin-left: auto; 
     }
     
+    .nickname-success-message,
     .password-success-message{
         color: blue;
         font-size: 12px;
-        margin-left: auto; /* 오른쪽 정렬을 위해 추가 */
+        margin-left: auto; 
     }
 
     .submit-btn:hover {
