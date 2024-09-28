@@ -742,5 +742,33 @@
         "category": "birthday"
       }
     ]
-  }
+  },
+
+    "bizs": [
+    {
+      "id": 1,
+      "name": "펫파티 플래너",
+      "image": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe",
+      "description": "강아지 용품 전문점"
+    },
+    {
+      "id": 2,
+      "name": "고양이 카페",
+      "image": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe",
+      "description": "고양이와 함께하는 휴식 공간"
+    },
+    {
+      "id": 3,
+      "name": "동물 병원",
+      "image": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe",
+      "description": "24시간 동물 응급 진료"
+    },
+    {
+      "id": 4,
+      "name": "펫 그루밍 살롱",
+      "image": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe",
+      "description": "전문 애완동물 미용 서비스"
+    }
+    ]
+
 }

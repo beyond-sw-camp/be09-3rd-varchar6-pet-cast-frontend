@@ -25,7 +25,15 @@
           <img src="@/assets/icon/navigation/profile_48x48.png" alt="Profile" class="profile-image" />
         </RouterLink>
         <img src="@/assets/icon/navigation/alarm.png" alt="alarm" />
-        <img src="@/assets/icon/navigation/setting.png" alt="settings" />
+
+        <div class="dropdown">
+          <img src="@/assets/icon/navigation/setting.png" alt="settings" @click="toggleDropdown" />
+          <div v-if="isDropdownOpen" class="dropdown-menu">
+            <RouterLink to="/me" @click="closeDropdown">마이페이지</RouterLink>
+            <RouterLink v-if="isCompany" to="/biz-mypage" @click="closeDropdown">업체 선택</RouterLink>
+          </div>
+        </div>
+        
         <button @click="handleLogout">Logout</button>
       </template>
       <template v-else>
@@ -40,7 +48,7 @@
 </template>
 
 <script setup>
-import { ref, inject } from 'vue';
+import { ref, inject, onMounted } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
 import Modal from '../../../components/Modal.vue';
 
@@ -73,6 +81,31 @@ const handleModalClose = () => {
     router.push('/login'); // 로그아웃 후 로그인 페이지로 이동
   }
 };
+
+const isDropdownOpen = ref(false);
+const isCompany = ref(false);
+
+const toggleDropdown = () => {
+  isDropdownOpen.value = !isDropdownOpen.value;
+};
+
+const closeDropdown = () => {
+  isDropdownOpen.value = false;
+};
+
+const checkCompanyRole = () => {
+  const rolesString = localStorage.getItem('Roles');
+  if (rolesString) {
+    const roles = rolesString.split(',');
+    isCompany.value = roles.includes('COMPANY');
+  } else {
+    isCompany.value = false;
+  }
+};
+
+onMounted(() => {
+  checkCompanyRole();
+});
 
 </script>
 
@@ -136,5 +169,31 @@ const handleModalClose = () => {
 .icon {
   cursor: pointer;
   font-size: 20px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 4px;
+}
+
+.dropdown-menu a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f1f1f1;
 }
 </style>
