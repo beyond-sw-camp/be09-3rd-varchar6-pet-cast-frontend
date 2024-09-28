@@ -65,7 +65,6 @@ onMounted(
 
     try {
       const petQnaListResponse = await axios.get(`http://localhost:8888/profile-qna`);
-      console.log("petQnaListResponse.data: ", petQnaListResponse.data);
       qnas.value = petQnaListResponse.data;
     
 
