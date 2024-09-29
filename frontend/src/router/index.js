@@ -14,9 +14,9 @@ import CreateReview from '../views/contents/customer_review/CreateReview.vue';
 import UpdateReview from '../views/contents/customer_review/UpdateReview.vue';
 import BizList from '../views/contents/biz/BizList.vue';
 import BizMypage from '../views/contents/biz/BizMypage.vue';
+import Signup from '../views/contents/signup/Signup.vue';
 import RequestWrite from '../views/request/RequestWrite.vue';
 import RequestList from '../views/request/RequestList.vue';
-
 
 const routes = [
   {
@@ -87,7 +87,11 @@ const routes = [
   },
   {
     path: '/login',
-    component: Login,
+    component: Login
+  },
+  {
+    path: '/signup',
+    component: Signup
   },
   {
     path: '/biz-list',
