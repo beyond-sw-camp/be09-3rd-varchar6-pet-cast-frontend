@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/contents/Home.vue';
 import About from '../views/contents/About.vue';
+
 import Login from '../views/contents/Login.vue';
 import BizDetail from '../views/contents/biz/BizDetail.vue';
 import MyPage from '../views/contents/my_page/MyPage.vue';
@@ -14,17 +15,30 @@ import UpdateReview from '../views/contents/customer_review/UpdateReview.vue';
 import BizList from '../views/contents/biz/BizList.vue';
 import BizMypage from '../views/contents/biz/BizMypage.vue';
 import Signup from '../views/contents/signup/Signup.vue';
+import RequestWrite from '../views/request/RequestWrite.vue';
+import RequestList from '../views/request/RequestList.vue';
 
 const routes = [
   {
     path: '/',
     name: 'Home',
     component: Home
-  },
+  }, 
+
   {
     path: '/about',
     name: 'About',
     component: About
+  },
+  {
+    path: '/request',
+    name: 'request',
+    component: RequestWrite
+  },
+  {
+    path: '/requestlist',
+    name: 'requestlist',
+    component: RequestList
   },
   {
     path: '/biz-detail/:id',

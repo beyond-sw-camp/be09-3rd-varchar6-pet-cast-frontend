@@ -31,7 +31,7 @@ if (localStorage.getItem('accessToken')) {
   <div id="app">
     <header>
       <div class="wrapper">
-        <Header />
+        <Header/>
       </div>
     </header>
     
@@ -39,7 +39,7 @@ if (localStorage.getItem('accessToken')) {
 
     <RouterView />
 
-    <Footer />
+    <Footer/>
   </div>
 </template>
 

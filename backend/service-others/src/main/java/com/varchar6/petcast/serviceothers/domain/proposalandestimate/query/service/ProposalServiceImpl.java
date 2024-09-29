@@ -25,6 +25,13 @@ public class ProposalServiceImpl implements ProposalService {
         List<ProposalResponseDTO> proposals = proposalsMapper.findAllProposalsByMemberId ( memberId );
         return proposals;
     }
+//    // 고객이 보낸 기획서 목록 조회
+//    @Override
+//    public List<ProposalResponseDTO> findAllProposalsByMemberIdAndCateNo ( int memberId, int categoryId ) {
+//        System.out.println ( "memberId: " + memberId );
+//        List<ProposalResponseDTO> proposals = proposalsMapper.findAllProposalsByMemberId ( memberId );
+//        return proposals;
+//    }
 
     // 업체가 받은 기획서 목록 조회
     @Override
