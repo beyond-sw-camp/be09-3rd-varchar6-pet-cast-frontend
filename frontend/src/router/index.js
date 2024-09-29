@@ -23,8 +23,10 @@ import GatherInvitation from '../views/contents/Gather/GatherInvitation.vue';
 import RequestWrite from '../views/contents/request/RequestWrite.vue';
 import RequestList from '../views/contents/request/RequestList.vue';
 import ProposalWrite from '../views/contents/proposal/ProposalWrite.vue';
-import ProposalList from '../views/contents/proposal/proposalList.vue';
+import ProposalList from '@/views/contents/proposal/ProposalList.vue';
 import ProposalAccept from '../views/contents/proposal/proposalAccept.vue';
+import EstimateWrite from '@/views/contents/estimate/EstimateWrite.vue';
+import EstimateList from '@/views/contents/estimate/EstimateList.vue';
 
 // import ReportList from '@/views/report/ReportList.vue';
 import ReportPost from '../views/report/ReportPost.vue';
@@ -171,8 +173,17 @@ const routes = [
     name: 'proposalaccpet',
     component: ProposalAccept
   },
+  {
+    path: '/estimate',
+    name: 'estimatewrite',
+    component: EstimateWrite
   },
-
+  {
+    path: '/estimatelist',
+    name: 'estimatelist',
+    component: EstimateList
+  },
+ 
   // 요청하지 않은 페이지
   {
     path: "/:catchAll(.*)*",
