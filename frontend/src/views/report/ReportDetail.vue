@@ -2,7 +2,6 @@
     <div class="report-section">
       <h2>신고</h2>
       <div v-if="reportData" class="report-content">
-        
         <div class="content-section">
           <p>{{ reportData.reason }}</p>
         </div>
