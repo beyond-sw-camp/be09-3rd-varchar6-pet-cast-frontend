@@ -24,7 +24,6 @@ const routes = [
     path: '/about',
     name: 'About',
     component: About
-    component: About
   },
   {
     path: '/biz-detail/:id',
