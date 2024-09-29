@@ -19,7 +19,7 @@ footer {
   background-color: #FFFED3;
   bottom: 0;
   width: 100%;
-  height: 130px;
+  height: 10%;
   left: 0;
 }
 </style>

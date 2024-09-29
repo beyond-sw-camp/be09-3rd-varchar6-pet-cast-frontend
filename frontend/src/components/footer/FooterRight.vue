@@ -15,6 +15,6 @@
 <style scoped>
 footer-right {
   float: right;
-  font-size: 5px;
+  font-size: 2px;
 }
 </style>

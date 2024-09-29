@@ -11,8 +11,8 @@
 </script>
 <style scoped>
   .footer-left {
-		float: right;
-		font-size: xx-small;
+		float: left;
+		font-size: 5px;
 		font-weight: bold;
 		left: 30px;
 	}
