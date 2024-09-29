@@ -2,9 +2,9 @@
     <div class="register-form-container">
         
         <!-- 상단 프로필 이미지 -->
-        <div class="default-profile" @click="triggerImageUpload">
+        <div class="profile-container" @click="triggerImageUpload">
             <img v-if="profileImage" :src="profileImage" alt="profile-image" class="profile-image" />
-            <img v-else src="../../../assets/icon/signup/avatar.png" class="default-icon" alt="default" />
+            <img v-else src="../../../assets/icon/signup/avatar.png"/>
             <input 
                 id="profile-image" 
                 type="file" 
@@ -124,7 +124,7 @@
 
     const router = useRouter();
 
-    const profileImage = ref(null);
+    const profileImage = ref('');
 
     const loginId = ref('');
     const password = ref('');
@@ -253,7 +253,7 @@
         align-items: center;    
     }
 
-    .default-profile {
+    .profile-container {
         display: flex;
         position: relative;
         width: 150px;
@@ -268,7 +268,6 @@
         border-radius: 50%;
         background-color: #f0f0f0;
         object-fit: cover;
-        margin: 0 auto;
         border-radius: 50%;
     }
 
