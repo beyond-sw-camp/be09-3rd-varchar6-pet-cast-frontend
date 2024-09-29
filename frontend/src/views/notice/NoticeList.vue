@@ -106,7 +106,7 @@
   // }
   
   const goTonoticeRead = (sendItem) => {
-    console.log(sendItem);
+//    console.log(sendItem);
     router.push({path: '/api/v1/notice/${sendItem.id}' ,
      query: { id: sendItem.id, 
               title: sendItem.title,

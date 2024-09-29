@@ -43,7 +43,7 @@
 
   const checkRole = () => {
     const roleString = localStorage.getItem('Roles');   
-    console.log(roleString);
+    // console.log(roleString);
     if(roleString){
       const roles = roleString.split(',');
       isCompany.value = roles.includes('COMPANY');

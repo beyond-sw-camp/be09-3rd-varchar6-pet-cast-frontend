@@ -29,7 +29,7 @@
         </div>
       </div>
       <div v-else class="loading">데이터를 불러오는 중...</div>
-      <button v-once @click="noticeDelete" class="delete-btn" v-if="isAdmin">삭제</button>
+      <button @click="noticeDelete" class="delete-btn" v-if="isAdmin">삭제</button>
 
       <button @click="goBack" class="back-btn">목록으로 돌아가기</button>
       <!-- <button @click="noticeModify" class="modify-btn" v-if="isAdmin">수정</button> -->
@@ -49,7 +49,7 @@
 
   const checkRole = () => {
     const roleString = localStorage.getItem('Roles');   
-    console.log(roleString);
+//    console.log(roleString);
     if(roleString){
       const roles = roleString.split(',');
       isAdmin.value = roles.includes('ADMIN');
