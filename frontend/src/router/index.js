@@ -14,14 +14,18 @@ import UpdateReview from '../views/contents/customer_review/UpdateReview.vue';
 import BizList from '../views/contents/biz/BizList.vue';
 import BizMypage from '../views/contents/biz/BizMypage.vue';
 import Signup from '../views/contents/signup/Signup.vue';
-import RequestWrite from '../views/request/RequestWrite.vue';
-import RequestList from '../views/request/RequestList.vue';
 import GatherList from '../views/contents/Gather/GatherList.vue';
 import GatherDetail from '../views/contents/Gather/GatherDetail.vue';
 import GatherCreate from '../views/contents/Gather/GatherCreate.vue';
 import GatherModify from '../views/contents/Gather/GatherModify.vue';
 import GatherDelete from '../views/contents/Gather/GatherDelete.vue';
 import GatherInvitation from '../views/contents/Gather/GatherInvitation.vue';
+import RequestWrite from '../views/contents/request/RequestWrite.vue';
+import RequestList from '../views/contents/request/RequestList.vue';
+import ProposalWrite from '../views/contents/proposal/ProposalWrite.vue';
+import ProposalList from '../views/contents/proposal/proposalList.vue';
+import ProposalAccept from '../views/contents/proposal/proposalAccept.vue';
+
 // import ReportList from '@/views/report/ReportList.vue';
 import ReportPost from '../views/report/ReportPost.vue';
 import ReportDetail from '../views/report/ReportDetail.vue';
@@ -151,6 +155,22 @@ const routes = [
     path: '/gatherinvitation',
     name: 'gatherinvitation',
     component: GatherInvitation
+  },
+  {
+    path: '/proposal',
+    name: 'proposalwrite',
+    component: ProposalWrite
+  },
+  {
+    path: '/proposallist',
+    name: 'proposallist',
+    component: ProposalList
+  },
+  {
+    path: '/proposalaccept',
+    name: 'proposalaccpet',
+    component: ProposalAccept
+  },
   },
 
   // 요청하지 않은 페이지
