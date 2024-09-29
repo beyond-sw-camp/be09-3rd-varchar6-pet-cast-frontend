@@ -11,7 +11,7 @@
       <!-- 상단 고정 공지사항 테이블 -->
       <ul v-if="fixedItems.length > 0">
         <!-- <h3>상단 고정</h3> -->
-        <li v-for="item in fixedItems" :key="item.id" class="notice-item" @click="goTonoticeRead(item.id)">
+        <li v-for="item in fixedItems" :key="item.id" class="notice-item" @click="goTonoticeRead(item)">
           <span class="notice-type">필독</span>
           <span class="notice-title">{{ item.title }}</span>
           <span class="notice-date">{{ formatDate(item.createdAt) }}</span>
@@ -41,7 +41,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import NoticeDetail from './NoticeDetail.vue';
 
-const sendItem = ref([])
+// const sendItem = ref([])
 const router = useRouter()
 const noticeItems = ref([])
 const currentPage = ref(1)
@@ -107,7 +107,13 @@ const goToCreatenotice = () => {
 
 const goTonoticeRead = (sendItem) => {
   console.log(sendItem);
-  router.push({path: '/api/v1/notice/${sendItem.id}' , query: { id: sendItem.id, title: sendItem.title, content: sendItem.content, createdAt: sendItem.createdAt, memberId: sendItem.memberId, fixed: sendItem.fixed }})
+  router.push({path: '/api/v1/notice/${sendItem.id}' ,
+   query: { id: sendItem.id, 
+            title: sendItem.title,
+            content: sendItem.content,
+            createdAt: sendItem.createdAt,
+            memberId: sendItem.memberId,
+            fixed: sendItem.fixed }})
   // router.push({name: 'NoticeDetail' , query: { id: item.id, title: item.title, content: item.content, createdAt: item.createdAt }})
 }
 
