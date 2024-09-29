@@ -4,7 +4,8 @@
       <div v-if="qaData" class="qa-content">
         <div class="question-section">
           <h3>질문</h3>
-          <p>{{ qaData.question }}</p>
+          <p>{{ qaData.title }}</p>
+          <p>{{ qaData.content }}</p>
         </div>
         
         <div v-if="qaData.answer" class="answer-section" >
@@ -15,12 +16,12 @@
         <div v-else-if="!qaData.answer && isCompany" class="answer-form">
           <h3>답변</h3>
           <textarea v-model="newAnswer" placeholder="답변을 입력하세요."></textarea>
-          <button @click="submitAnswer" class="submit-btn">답변 제출</button>
+          <button @click="submitAnswer" class="submit-btn">답변 등록</button>
         </div>
         
         <div class="metadata">
-          <p>질문 작성일: {{ formatDate(qaData.createdAt) }}</p>
-          <p>질문자: {{ qaData.questioner }}</p>
+          <p>문의일: {{ formatDate(qaData.createdAt) }}</p>
+          <p>질문자: {{ qaData.questionerId }}</p>
           <p v-if="qaData.answeredAt">답변일: {{ formatDate(qaData.answeredAt) }}</p>
         </div>
       </div>
@@ -56,21 +57,21 @@
     return new Date(dateString).toLocaleDateString('ko-KR', options)
   }
   
-  const fetchQAData = async () => {
-    const id = route.params.id
-    // 실제 구현에서는 API 호출로 대체해야 합니다
-    setTimeout(() => {
-      qaData.value = {
-        id: id,
-        question: "Vue 3 Composition API의 장점은 무엇인가요?",
-        answer: null,
-        createdAt: "2024-09-26T10:30:00",
-        questioner: "Vue 초보자",
-        answeredAt: null,
-        questionerId: 1
-      }
-    }, 1000)
-  }
+  // const fetchQAData = async () => {
+  //   const id = route.params.id
+  //   // 실제 구현에서는 API 호출로 대체해야 합니다
+  //   setTimeout(() => {
+  //     qaData.value = {
+  //       id: id,
+  //       question: "Vue 3 Composition API의 장점은 무엇인가요?",
+  //       answer: null,
+  //       createdAt: "2024-09-26T10:30:00",
+  //       questioner: "Vue 초보자",
+  //       answeredAt: null,
+  //       questionerId: 1
+  //     }
+  //   }, 1000)
+  // }
   
   const submitAnswer = async () => {
     if (newAnswer.value.trim()) {
@@ -83,12 +84,23 @@
   }
   
   const goBack = () => {
-    router.push('/qna-list')
+    router.push('/api/v1/qna')
   }
   
   onMounted(() => {
-    fetchQAData()
+    // fetchQAData()
     checkRole()
+    qaData.value = {
+      id: route.query.id,
+      title: route.query.title,
+      content: route.query.content,
+      createdAt: route.query.createdAt,
+      answeredAt: route.query.answeredAt,
+      answer: route.query.answer,
+      companyId: route.query.companyId,
+      questionerId: route.query.questionerId,
+      answeredId: route.query.answererId
+    }
   })
   
   </script>

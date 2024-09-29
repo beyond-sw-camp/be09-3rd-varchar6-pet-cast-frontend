@@ -34,8 +34,9 @@
   
   const saveQA = () => {
     // 여기에 저장 로직을 구현합니다.
-    console.log('저장된 Q&A:', { question: question.value, answer: answer.value })
+    // console.log('저장된 Q&A:', { question: question.value, answer: answer.value })
     // API 호출 또는 상태 관리 로직을 추가할 수 있습니다.
+    alert('문의가 등록되었습니다.');
 
     goBack()
   }

@@ -3,7 +3,7 @@ import { RouterView } from 'vue-router';
 import Header from './views/header/header/Header.vue';
 import Footer from './views/footer/Footer.vue';
 import Navigation from './views/header/navigation/Navigation.vue';
-import qna from './views/qna/qna.vue';
+import qna from './views/qna/QnaList.vue';
 </script>
 
 <template>

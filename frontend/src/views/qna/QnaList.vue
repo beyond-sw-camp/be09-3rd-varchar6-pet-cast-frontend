@@ -8,11 +8,13 @@
           <!-- <input type="text" v-model="searchQuery" placeholder="검색어를 입력하세요" @input="searchQnA" /> -->
         </div>
         <ul>
-          <li v-for="item in paginatedItems" :key="item.id" class="qna-item" @click="goToQnaRead(item.id)">
-            <span class="qna-type" v-if="item.type == '미답변'" style="background-color: #ffffff">{{ item.type }}</span>
-            <span class="qna-type" v-else>{{ item.type }}</span>
+          <li v-for="item in paginatedItems" :key="item.id" class="qna-item" @click="goToQnaRead(item)">
+            <!-- <span class="qna-type" v-if="item.type == '미답변'" style="background-color: #ffffff">{{ item.type }}</span> -->
+            <span class="qna-type" v-if="!item.answered" style="background-color: #ffffff">미답변</span>
+            <!-- <span class="qna-type" v-else>{{ item.type }}</span> -->
+            <span class="qna-type" v-else>답변완료</span>
             <span class="qna-title">{{ item.title }}</span>
-            <span class="qna-date">{{ item.date }}</span>
+            <span class="qna-date">{{ formatDate(item.createdAt) }}</span>
           </li>
         </ul>
         <div class="pagination">
@@ -54,20 +56,34 @@
     return filteredItems.value.slice(start, end)
   })
   
+  const formatDate = (dateString) => {
+    if (!dateString) return 'N/A'
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }
+    return new Date(dateString).toLocaleDateString('ko-KR', options)
+  }
+
   const fetchQnAItems = async () => {
     // 실제 구현에서는 API 호출로 대체해야 합니다
-    qnaItems.value = [
-      { id: 1, type: '미답변', title: '펫케어몰레터의 테마 선택 기준 여부', date: '24.09.01' },
-      { id: 2, type: '미답변', title: '펫베스트와 행사 기획 범위', date: '24.08.13' },
-      { id: 3, type: '답변완료', title: '도그웨딩브레이션 케이터링 서비스', date: '24.08.05' },
-      { id: 1, type: '미답변', title: '펫케어몰레터의 테마 선택 기준 여부', date: '24.09.01' },
-      { id: 2, type: '미답변', title: '펫베스트와 행사 기획 범위', date: '24.08.13' },
-      { id: 3, type: '답변완료', title: '도그웨딩브레이션 케이터링 서비스', date: '24.08.05' },
-      { id: 1, type: '미답변', title: '펫케어몰레터의 테마 선택 기준 여부', date: '24.09.01' },
-      { id: 2, type: '미답변', title: '펫베스트와 행사 기획 범위', date: '24.08.13' },
-      { id: 3, type: '답변완료', title: '도그웨딩브레이션 케이터링 서비스', date: '24.08.05' },
-      // ... 더 많은 아이템 추가
-    ]
+    // qnaItems.value = [
+    //   { id: 1, type: '미답변', title: '펫케어몰레터의 테마 선택 기준 여부', date: '24.09.01' },
+    //   { id: 2, type: '미답변', title: '펫베스트와 행사 기획 범위', date: '24.08.13' },
+    //   { id: 3, type: '답변완료', title: '도그웨딩브레이션 케이터링 서비스', date: '24.08.05' },
+    //   { id: 1, type: '미답변', title: '펫케어몰레터의 테마 선택 기준 여부', date: '24.09.01' },
+    //   { id: 2, type: '미답변', title: '펫베스트와 행사 기획 범위', date: '24.08.13' },
+    //   { id: 3, type: '답변완료', title: '도그웨딩브레이션 케이터링 서비스', date: '24.08.05' },
+    //   { id: 1, type: '미답변', title: '펫케어몰레터의 테마 선택 기준 여부', date: '24.09.01' },
+    //   { id: 2, type: '미답변', title: '펫베스트와 행사 기획 범위', date: '24.08.13' },
+    //   { id: 3, type: '답변완료', title: '도그웨딩브레이션 케이터링 서비스', date: '24.08.05' },
+    //   // ... 더 많은 아이템 추가
+    // ]
+    try {
+      const response = await fetch('http://localhost:8888/qnas')
+      if(!response.ok) throw new Error('에러 발생');
+      const data = await response.json();
+      qnaItems.value = data;
+    } catch(error){
+      console.error(error);
+    }
   }
   
   const prevPage = () => {
@@ -78,17 +94,31 @@
     if (currentPage.value < totalPages.value) currentPage.value++
   }
   
-  const searchQnA = () => {
-    // 실제 구현에서는 서버 측 검색 또는 클라이언트 측 필터링을 수행해야 합니다
-    console.log('Searching for:', searchQuery.value)
-  }
+  // const searchQnA = () => {
+  //   // 실제 구현에서는 서버 측 검색 또는 클라이언트 측 필터링을 수행해야 합니다
+  //   console.log('Searching for:', searchQuery.value)
+  // }
   
   const goToCreateQnA = () => {
     router.push('/api/v1/qna/post') // QnA 작성 페이지로 이동
   }
   
-  const goToQnaRead = (id) => {
-    router.push(`/api/v1/qna/${id}`) // QnA 상세 읽기 페이지로 이동
+  const goToQnaRead = (sendItem) => {
+    router.push({path: '/api/v1/qna/${sendTiem.id}',
+    query: {
+        id : sendItem.id,
+        title: sendItem.title,
+        content: sendItem.content,
+        createdAt: sendItem.createdAt,
+        answeredAt: sendItem.answeredAt,
+        answer: sendItem.answer,
+        answered: sendItem.answered,
+        companyId: sendItem.companyId,
+        questionerId: sendItem.questionerId,
+        answererId: sendItem.answererId
+      }
+    }
+    ) // QnA 상세 읽기 페이지로 이동
   }
   
   onMounted(() => {
