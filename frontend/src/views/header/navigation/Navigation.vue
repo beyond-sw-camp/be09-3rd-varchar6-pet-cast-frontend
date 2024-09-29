@@ -10,10 +10,8 @@
       <ul class="menu-list">
         <li><RouterLink to="/">Home</RouterLink></li>
         <li><RouterLink to="/about">About</RouterLink></li>
+        <li><RouterLink to="/request">요청</RouterLink></li>
         <li><RouterLink to="/biz-list">업체 찾기</RouterLink></li>
-
-        <!-- 업체프로필  상세 조회 페이지 이동 테스트. 현재 업체 상세 페이지 이동 페이지가 만들어지지 않아 테스트용으로 nav에 둠-->
-        <button @click="bizDetail">업체 상세 프로필 test</button>
         <!-- 다른 메뉴 항목 추가 가능 -->
 
       </ul>
