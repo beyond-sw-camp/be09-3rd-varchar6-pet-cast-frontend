@@ -1,0 +1,5 @@
+{
+    "/api/v1/report": "/reports",
+    "/api/v1/notice": "/notices",
+    "/api/v1/qna": "/qnas"
+}

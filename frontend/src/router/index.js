@@ -22,7 +22,16 @@ import GatherCreate from '../views/contents/Gather/GatherCreate.vue';
 import GatherModify from '../views/contents/Gather/GatherModify.vue';
 import GatherDelete from '../views/contents/Gather/GatherDelete.vue';
 import GatherInvitation from '../views/contents/Gather/GatherInvitation.vue';
-
+// import ReportList from '@/views/report/ReportList.vue';
+import ReportPost from '../views/report/ReportPost.vue';
+import ReportDetail from '../views/report/ReportDetail.vue';
+import ReportList from '../views/report/ReportList.vue';
+import NoticePost from '../views/notice/NoticePost.vue';
+import NoticeDetail from '../views/notice/NoticeDetail.vue';
+import NoticeList from '../views/notice/NoticeList.vue';
+import QnaList from '@/views/qna/QnaList.vue';
+import QnaPost from '@/views/qna/QnaPost.vue';
+import QnaDetail from '@/views/qna/QnaDetail.vue';
 const routes = [
   {
     path: '/',
@@ -149,6 +158,51 @@ const routes = [
     path: "/:catchAll(.*)*",
     component: () => import("../views/contents/ErrorNotFound.vue"),
   },
+  {
+    path: "/api/v1/report",
+    name: 'ReportList',
+    component: ReportList
+  },
+  {
+    path: "/api/v1/report/:id",
+    name: 'ReportDetail',
+    component: ReportDetail
+  },
+  {
+    path: "/api/v1/report/post",
+    name: 'ReportPost',
+    component: ReportPost
+  },
+  {
+    path: '/api/v1/notice',
+    name: 'NoticeList',
+    component: NoticeList
+  },
+  {
+    path: '/api/v1/notice/post',
+    name: 'NoticePost',
+    component: NoticePost    
+  },
+  {
+    path: '/api/v1/notice/:id',
+    name: 'NoticeDetail',
+    component: NoticeDetail
+  },
+  {
+    path:'/api/v1/qna',
+    name:'queryQnaController',
+    component: QnaList
+  },
+  {
+    path:'/api/v1/qna/:id',
+    name: 'queryQnaDetail',
+    component: QnaDetail
+  },
+  {
+    path: '/api/v1/qna/post',
+    name: 'queryQnaPost',
+    component: QnaPost
+  }
 ];
 
 const router = createRouter({

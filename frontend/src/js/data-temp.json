@@ -1010,5 +1010,237 @@
             "loginId": "user13",
             "nickname": "지훈"
         }
+      ],
+
+      "reports":
+      [
+        {
+        "id": 1,
+        "reason": "부적절한 광고 게시",
+        "createdAt": "2024-03-01T09:00:00",
+        "reporterId": 1,
+        "respondentId": 2
+        },
+        {
+        "id": 2,
+        "reason": "욕설 및 비방",
+        "createdAt": "2024-03-01T09:15:30",
+        "reporterId": 2,
+        "respondentId": 3
+        }          
+      ],
+    "notices": [
+      {
+        "id": 1,
+        "title": "새로운 펫 이벤트 플랫폼 출시!",
+        "content": "안녕하세요! 반려동물을 위한 새로운 이벤트 플랫폼이 출시되었습니다. 다양한 펫 관련 이벤트에 참여해 보세요.",
+        "createdAt": "2024-09-01T09:00:00",
+        "updatedAt": "2024-09-01T09:00:00",
+        "active": true,
+        "memberId": 1,
+        "fixed": true
+      },
+      {
+        "id": 2,
+        "title": "2024 펫 페스티벌 안내",
+        "content": "2024년 펫 페스티벌이 곧 시작됩니다! 여러분의 반려동물과 함께 다양한 이벤트에 참여해 주세요.",
+        "createdAt": "2024-09-05T10:00:00",
+        "updatedAt": "2024-09-05T10:00:00",
+        "active": true,
+        "memberId": 2,
+        "fixed": false
+      },
+      {
+        "id": 3,
+        "title": "플랫폼 정기 점검 안내",
+        "content": "안정적인 서비스 제공을 위해 2024년 9월 15일에 정기 점검이 있을 예정입니다. 점검 시간 동안 서비스 이용이 제한될 수 있습니다.",
+        "createdAt": "2024-09-10T11:30:00",
+        "updatedAt": "2024-09-10T11:30:00",
+        "active": true,
+        "memberId": 3,
+        "fixed": false
+      },
+      {
+        "id": 4,
+        "title": "새로운 반려동물 입양 섹션 추가",
+        "content": "새롭게 추가된 반려동물 입양 섹션에서 다양한 입양 가능한 반려동물을 찾아보세요. 여러분의 소중한 반려동물을 위한 새로운 가족을 찾을 수 있습니다.",
+        "createdAt": "2024-09-12T14:45:00",
+        "updatedAt": "2024-09-12T14:45:00",
+        "active": true,
+        "memberId": 4,
+        "fixed": false
+      },
+      {
+        "id": 5,
+        "title": "반려동물 사진 콘테스트",
+        "content": "반려동물 사진 콘테스트가 진행 중입니다! 귀여운 반려동물의 사진을 올리고, 다른 사용자들과 공유해보세요!",
+        "createdAt": "2024-09-15T09:20:00",
+        "updatedAt": "2024-09-15T09:20:00",
+        "active": true,
+        "memberId": 5,
+        "fixed": true
+      },
+      {
+        "id": 6,
+        "title": "특별 할인 이벤트 안내",
+        "content": "펫 관련 제품을 위한 특별 할인 이벤트가 진행됩니다! 놓치지 마세요.",
+        "createdAt": "2024-09-18T08:30:00",
+        "updatedAt": "2024-09-18T08:30:00",
+        "active": true,
+        "memberId": 6,
+        "fixed": false
+      },
+      {
+        "id": 7,
+        "title": "반려동물 건강 관리 세미나",
+        "content": "반려동물 건강 관리에 대한 세미나가 열립니다. 건강한 생활을 위한 유용한 정보를 확인해보세요.",
+        "createdAt": "2024-09-20T11:00:00",
+        "updatedAt": "2024-09-20T11:00:00",
+        "active": true,
+        "memberId": 7,
+        "fixed": false
+      },
+      {
+        "id": 8,
+        "title": "펫 베스트 공모전 개최",
+        "content": "반려동물 관련 다양한 아이디어를 공모하는 펫 베스트 공모전이 개최됩니다. 참가해보세요!",
+        "createdAt": "2024-09-22T10:45:00",
+        "updatedAt": "2024-09-22T10:45:00",
+        "active": true,
+        "memberId": 8,
+        "fixed": false
+      }
+    ],
+    "qnas" : [
+        {
+          "id": 10,
+          "title": "물고기 어항 크기",
+          "content": "구피를 키울 때 적절한 어항 크기는 어느 정도인가요?",
+          "createdAt": "2024-09-26T18:00:00Z",
+          "answeredAt": null,
+          "answer": null,
+          "answered": false,
+          "active": true,
+          "companyId": 3,
+          "questionerId": 10,
+          "answererId": null
+        },
+        {
+          "id": 8,
+          "title": "고양이 털 관리 방법",
+          "content": "장모종 고양이의 털 관리는 어떻게 해야 하나요?",
+          "createdAt": "2024-09-26T16:00:00Z",
+          "answeredAt": null,
+          "answer": null,
+          "answered": false,
+          "active": true,
+          "companyId": 1,
+          "questionerId": 8,
+          "answererId": null
+        },
+        {
+          "id": 4,
+          "title": "애완견 목욕 빈도",
+          "content": "강아지를 얼마나 자주 목욕시켜야 할까요?",
+          "createdAt": "2024-09-26T12:00:00Z",
+          "answeredAt": null,
+          "answer": null,
+          "answered": false,
+          "active": true,
+          "companyId": 3,
+          "questionerId": 4,
+          "answererId": null
+        },
+        {
+          "id": 2,
+          "title": "고양이 사료 추천 부탁드립니다.",
+          "content": "1살 된 고양이에게 좋은 사료 추천 부탁드립니다.",
+          "createdAt": "2024-09-26T10:00:00Z",
+          "answeredAt": null,
+          "answer": null,
+          "answered": false,
+          "active": true,
+          "companyId": 2,
+          "questionerId": 2,
+          "answererId": null
+        },
+        {
+          "id": 6,
+          "title": "고양이 스크래처 필요성",
+          "content": "고양이에게 스크래처가 꼭 필요한가요?",
+          "createdAt": "2024-09-26T14:00:00Z",
+          "answeredAt": null,
+          "answer": null,
+          "answered": false,
+          "active": true,
+          "companyId": 1,
+          "questionerId": 6,
+          "answererId": null
+        },
+        {
+          "id": 5,
+          "title": "토끼 간식 추천",
+          "content": "토끼에게 줄 수 있는 건강한 간식을 추천해주세요.",
+          "createdAt": "2024-09-26T13:00:00Z",
+          "answeredAt": "2024-09-26T16:00:00Z",
+          "answer": "당근이나 사과 조각을 소량으로 주면 좋아요. 단, 과도한 당분은 피해야 합니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 2,
+          "questionerId": 5,
+          "answererId": 3
+        },
+        {
+          "id": 7,
+          "title": "새장 청소 빈도",
+          "content": "새장을 얼마나 자주 청소해야 할까요?",
+          "createdAt": "2024-09-26T15:00:00Z",
+          "answeredAt": "2024-09-26T18:00:00Z",
+          "answer": "새장의 위생을 위해 일주일에 최소 두 번은 청소해주시는 것이 좋습니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 3,
+          "questionerId": 7,
+          "answererId": 4
+        },
+        {
+          "id": 9,
+          "title": "강아지 산책 시간",
+          "content": "강아지를 하루에 얼마나 산책시켜야 할까요?",
+          "createdAt": "2024-09-26T17:00:00Z",
+          "answeredAt": "2024-09-26T19:00:00Z",
+          "answer": "강아지의 나이와 건강 상태에 따라 다르지만, 일반적으로 하루에 30분에서 1시간 정도가 적당합니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 2,
+          "questionerId": 9,
+          "answererId": 5
+        },
+        {
+          "id": 1,
+          "title": "애완견 훈련 관련 질문",
+          "content": "강아지의 배변 훈련에 관한 질문이 있습니다. 처음 어떻게 시작해야 할까요?",
+          "createdAt": "2024-09-26T09:00:00Z",
+          "answeredAt": "2024-09-26T14:00:00Z",
+          "answer": "처음에는 일정한 시간과 장소를 정해 강아지가 자연스럽게 배변할 수 있도록 유도해야 합니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 1,
+          "questionerId": 1,
+          "answererId": 1
+        },
+        {
+          "id": 3,
+          "title": "햄스터 집 추천",
+          "content": "햄스터에게 적합한 집 추천 부탁드립니다.",
+          "createdAt": "2024-09-26T11:00:00Z",
+          "answeredAt": "2024-09-26T15:30:00Z",
+          "answer": "햄스터는 공간이 넓고 통풍이 잘되는 집이 좋습니다. 다양한 숨을 곳이 있는 집을 추천드립니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 1,
+          "questionerId": 3,
+          "answererId": 2
+        }
       ]
 }
