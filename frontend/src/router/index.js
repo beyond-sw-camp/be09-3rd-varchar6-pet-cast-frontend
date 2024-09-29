@@ -142,7 +142,7 @@ const routes = [
     path: '/gatherinvitation',
     name: 'gatherinvitation',
     component: GatherInvitation
-  }
+  },
 
   // 요청하지 않은 페이지
   {
