@@ -12,7 +12,7 @@
 <style scoped>
   .footer-left {
 	display: flex;
-		float: left;
+		/* float: left; */
 		font-size: 5px;
 		font-weight: bold;
 		/* left: 30px; */
