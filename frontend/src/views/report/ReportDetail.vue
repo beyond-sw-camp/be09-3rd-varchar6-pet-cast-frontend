@@ -4,7 +4,6 @@
       <div v-if="reportData" class="report-content">
         
         <div class="content-section">
-          <h3>신고</h3>
           <p>{{ reportData.reason }}</p>
         </div>
         
