@@ -29,7 +29,7 @@ public class ProposalController {
         this.proposalService = proposalService;
     }
 
-    // 고객 견적서 목록 조회
+    // 고객 기획서 목록 조회
     @GetMapping("/list/customer/{memberId}")
     public ResponseEntity<ResponseMessage> findAllProposalsByMemberId ( @PathVariable int memberId ) {
         List<ProposalResponseDTO> proposals
@@ -41,6 +41,18 @@ public class ProposalController {
                         .result ( proposals )
                         .build () );
     }
+    // 고객 기획서 목록 카테고리별 조회
+//    @GetMapping("/list/customer/{memberId}/{categoryId}")
+//    public ResponseEntity<ResponseMessage> findAllProposalsByMemberId ( @PathVariable int memberId, int categoryId ) {
+//        List<ProposalResponseDTO> proposals
+//                = proposalService.findAllProposalsByMemberId ( memberId );
+//        return ResponseEntity.ok ()
+//                .body ( ResponseMessage.builder ()
+//                        .httpStatus ( HttpStatus.OK.value () )
+//                        .message ( "고객가 작성한 기획서 목록 조회 성공" )
+//                        .result ( proposals )
+//                        .build () );
+//    }
 
     // 업체 기획서 목록 조회
     @GetMapping("/list/company/{companyId}")

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.varchar6.petcast.serviceothers.domain.proposalandestimate.query.mapper.ProposalMapper">
+<mapper namespace="com.varchar6.petcast.serviceothers.domain.proposalandestimate.query.mapper.EstimatesMapper">
 
     <!-- 고객 기획서 목록 조회 -->
     <select id="findAllProposalsByMemberId" resultType="com.varchar6.petcast.serviceothers.domain.proposalandestimate.query.mapper.ProposalMapper">
@@ -25,29 +25,24 @@
     </select>
 
     <!-- 고객 특정 기획서 조회 -->
-    <select id="findProposalById" parameterType="int" resultType="com.varchar6.petcast.domain.proposalandestimate.query.mapper.ProposalMapper">
+    <select id="findEstimateById" parameterType="_int" resultType="com.varchar6.petcast.domain.proposalandestimate.query.mapper.ProposalMapper">
         SELECT
+            e.id AS estimate_id,
+            e.cost,
+            e.status,
+            e.created_at,
+            e.updated_at,
+            e.active_yn,
+            c.name AS company_name,
             p.id AS proposal_id,
-            m.name AS member_name,
-            p.content AS proposal_content,
-            p.location AS proposal_location,
-            p.time AS proposal_time,
-            p.created_at AS proposal_created_at,
-            p.updated_at AS proposal_updated_at,
-            p.status AS proposal_status,
-            p.cost AS proposal_cost,
-            p.active AS proposal_active,
-            GROUP_CONCAT(c.name SEPARATOR ', ') AS categories,
-            COUNT(e.id) AS estimate_id
+            p.location,
+            p.time,
+            p.content
         FROM
-            tbl_proposal p
-                INNER JOIN tbl_member m ON p.member_proposal_id = m.id
-                INNER JOIN tbl_proposal_category pc ON p.id = pc.proposal_id
-                INNER JOIN tbl_category c ON pc.category_id = c.id
-                LEFT JOIN tbl_estimate e ON p.id = e.proposal_estimate_id
+            tbl_estimate e
+                INNER JOIN tbl_company_info c ON e.company_info_estimate_id = c.id
+                INNER JOIN tbl_proposal p ON e.proposal_estimate_id = p.id
         WHERE
-            p.member_proposal_id = #{회원아이디}
-        GROUP BY
-            p.id;
+            e.id = #{견적서_id}
     </select>
 </mapper>
