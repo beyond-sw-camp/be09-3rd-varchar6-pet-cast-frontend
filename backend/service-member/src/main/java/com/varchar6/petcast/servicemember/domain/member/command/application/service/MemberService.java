@@ -1,21 +1,19 @@
 package com.varchar6.petcast.servicemember.domain.member.command.application.service;
 
-import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.MemberRequestDTO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.MemberUpdateRequestDTO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.ProfileRequestDTO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.ProfileUpdateRequestDTO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.dto.response.MemberResponseDTO;
-import com.varchar6.petcast.servicemember.domain.member.command.application.dto.response.MemberUpdateResponseDTO;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import com.varchar6.petcast.servicemember.domain.member.command.application.dto.request.*;
+import com.varchar6.petcast.servicemember.domain.member.command.application.dto.response.*;
 
 public interface MemberService {
+
     MemberResponseDTO registerMember(MemberRequestDTO memberRequestDTO);
 
-    MemberUpdateResponseDTO updateMemberStatus(MemberUpdateRequestDTO memberUpdateRequestDTO);
+    MemberRespDTO updateStatus(MemberReqDTO memberReqDTO);
 
-    MemberUpdateResponseDTO updateMemberPwd(MemberUpdateRequestDTO memberUpdateRequestDTO);
+    MemberRespDTO updatePassword(MemberReqDTO memberReqDTO);
 
-    Boolean registMemberProfile(ProfileRequestDTO profileRequestDTO);
+    ProfileRespDTO registProfile(ProfileReqDTO profileReqDTO);
 
-    Boolean updateMemberProfile(ProfileUpdateRequestDTO profileUpdateRequestDTO);
+    ProfileRespDTO updateProfile(ProfileReqDTO profileReqDTO);
+
+    PetRespDTO registPet(PetReqDTO petReqDTO);
 }

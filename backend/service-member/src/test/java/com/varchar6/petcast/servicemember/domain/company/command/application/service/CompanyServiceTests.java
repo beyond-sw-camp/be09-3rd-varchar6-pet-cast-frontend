@@ -1,7 +1,8 @@
-package com.varchar6.petcast.domain.company.command.application.service;
+package com.varchar6.petcast.servicemember.domain.company.command.application.service;
 
-import com.varchar6.petcast.domain.company.command.application.dto.request.CompanyEnrollRequestDTO;
-import com.varchar6.petcast.domain.company.command.application.dto.response.CompanyResponseDTO;
+import com.varchar6.petcast.servicemember.domain.company.command.application.dto.request.CompanyEnrollRequestDTO;
+import com.varchar6.petcast.servicemember.domain.company.command.application.dto.response.CompanyResponseDTO;
+import com.varchar6.petcast.servicemember.domain.company.command.application.service.CompanyService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

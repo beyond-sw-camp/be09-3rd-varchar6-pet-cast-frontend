@@ -1,5 +1,5 @@
 server:
-  port: 0
+  port: 8080
 
 spring:
   application:
@@ -7,12 +7,13 @@ spring:
 
   datasource:
 
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/pet_cast
-#    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-#    url: jdbc:log4jdbc:mariadb://localhost
-    username: swcamp
-    password: swcamp
+
+    #    driver-class-name: org.mariadb.jdbc.Driver
+    #    url: jdbc:mariadb://localhost:3306/pet_cast
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mariadb://localhost:3306/pet_cast
+    username: pet
+    password: pet
 
   jpa:
     generate-ddl: false
@@ -33,3 +34,10 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+
+coolsms:
+  api:
+    key: "NCS5PVNCUAEJ68F2"
+    secret: "A0F5DAVNVQIIDWXM7PSJ7MUSEJNQPJUK"
+    number: 01046022234

@@ -26,6 +26,7 @@ public class FeignClientConfig {
                             .getHeader(HttpHeaders.AUTHORIZATION);
 
                     if(authorizationHeader != null){
+
                         requestTemplate.header(HttpHeaders.AUTHORIZATION, authorizationHeader);
                     }
                 }
