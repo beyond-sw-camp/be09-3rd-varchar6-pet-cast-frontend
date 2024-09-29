@@ -4,8 +4,8 @@
       <div v-if="reportData" class="report-content">
         
         <div class="content-section">
-          <h3>내용</h3>
-          <p>{{ reportData.content }}</p>
+          <h3>신고</h3>
+          <p>{{ reportData.reason }}</p>
         </div>
         
         <div class="metadata">
@@ -34,26 +34,33 @@
     return new Date(dateString).toLocaleDateString('ko-KR', options)
   }
   
-  const fetchreportData = async () => {
-    const id = route.params.id
-    // 실제 구현에서는 API 호출로 대체해야 합니다
-    setTimeout(() => {
-      reportData.value = {
-        id: id,
-        content: "너무 최신기술이다.",
-        reporterId: "Vue 신고자",
-        respondentId: "Vue 피신고자",
-        createdAt: "2024-09-26T10:30:00"
-      }
-    }, 1000)
-  }
+  // const fetchreportData = async () => {
+    // const id = route.params.id
+    // // 실제 구현에서는 API 호출로 대체해야 합니다
+    // setTimeout(() => {
+    //   reportData.value = {
+    //     id: id,
+    //     content: "너무 최신기술이다.",
+    //     reporterId: "Vue 신고자",
+    //     respondentId: "Vue 피신고자",
+    //     createdAt: "2024-09-26T10:30:00"
+    //   }
+    // }, 1000)
+  // }
   
   const goBack = () => {
     router.push('/api/v1/report')
   }
   
   onMounted(() => {
-    fetchreportData()
+    // fetchreportData()
+    reportData.value = {
+      id: route.query.id,
+      reason: route.query.reason,
+      createdAt: route.query.createdAt,
+      reporterId: route.query.reporterId,
+      respondentId: route.query.respondentId
+    }
   })
   
   </script>

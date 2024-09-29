@@ -7,7 +7,7 @@
         <input type="text" v-model="searchQuery" placeholder="ID로 검색하세요" />
       </div>
       <ul>
-        <li v-for="item in paginatedItems" :key="item.id" class="report-item" @click="goToReportRead(item.id)">
+        <li v-for="item in paginatedItems" :key="item.id" class="report-item" @click="goToReportRead(item)">
           <!-- <span class="report-type">{{ item.type }}</span> -->
           <span class="report-reason">{{ item.reason }}</span>
           <span class="report-date">{{ formatDate(item.createdAt) }}</span>
@@ -67,16 +67,16 @@ const fetchreportItems = async () => {
   //   // 더 많은 데이터 추가 가능
   // ]
   try{
-    const response = await fetch('http://localhost:8888/report');
+    const response = await fetch('http://localhost:8888/reports');
     if(!response.ok){
       throw new Error('이상해여');
     }
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     reportItems.value = data;
 
   }catch(error){
-    console.error(error);
+    // console.error(error);
   }
 
 }
@@ -93,8 +93,17 @@ const nextPage = () => {
 //   router.push('/api/v1/report/post') // report 작성 페이지로 이동
 // }
 
-const goToReportRead = (id) => {
-  router.push(`/api/v1/report/${id}`) // report 상세 읽기 페이지로 이동
+const goToReportRead = (item) => {
+  router.push({path: '/api/v1/report/${item.id}',
+    query: {
+      id: item.id,
+      reason: item.reason,
+      createdAt: item.createdAt,
+      reporterId: item.reporterId,
+      respondentId: item.respondentId
+    }
+  }
+  ) // report 상세 읽기 페이지로 이동
 }
 
 onMounted(() => {

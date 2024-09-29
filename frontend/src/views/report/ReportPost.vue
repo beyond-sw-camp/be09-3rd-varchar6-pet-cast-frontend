@@ -1,12 +1,11 @@
 <template>
-    <!-- 작성 logic이라 보면 될 것 같은데.. modal로 굳이? -->
     <div class="report-section">
       <h2>신고 작성</h2>
       <div class="report-form">
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="title">신고제목</label>
           <input type="text" id="title" v-model="title" placeholder="신고 제목을 입력하세요." />
-        </div>
+        </div> -->
         <div class="form-group">
           <label for="content">신고내용</label>
           <textarea id="content" v-model="content" placeholder="신고 내용을 입력하세요."></textarea>
@@ -36,7 +35,7 @@
     // 여기에 저장 로직을 구현합니다.
     // console.log('저장된 Q&A:', { question: question.value, answer: answer.value })
     // API 호출 또는 상태 관리 로직을 추가할 수 있습니다.
-
+    alert('신고가 완료되었습니다.');
     goBack()
   }
   

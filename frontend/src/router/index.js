@@ -5,9 +5,10 @@ import BizDetail from '../views/contents/biz_detail/BizDetail.vue';
 import BusinessEvents from '../views/contents/biz_detail/BusinessEvents.vue';
 import BusinessReviews from '../views/contents/biz_detail/BusinessReviews.vue';
 import BusinessQA from '../views/contents/biz_detail/BusinessQA.vue';
-import ReportList from '@/views/report/ReportList.vue';
-import ReportPost from '@/views/report/ReportPost.vue';
-import ReportDetail from '@/views/report/ReportDetail.vue';
+// import ReportList from '@/views/report/ReportList.vue';
+import ReportPost from '../views/report/ReportPost.vue';
+import ReportDetail from '../views/report/ReportDetail.vue';
+import ReportList from '../views/report/ReportList.vue';
 
 const routes = [
   {
