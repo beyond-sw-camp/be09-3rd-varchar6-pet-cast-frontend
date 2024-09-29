@@ -79,7 +79,7 @@
         showModal.value = false;
         resolve();
     }).then(() => {
-        router.push('/estimate');
+        router.push('/estimatewrite');
     })};
 
   const deleteProposal = () => {
