@@ -673,7 +673,7 @@
       }
     ]
   },
-
+  
     "bizs": [
     {
       "id": 1,
@@ -699,8 +699,8 @@
       "image": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe",
       "description": "전문 애완동물 미용 서비스"
     }
-    ]
-    ,
+
+    ],
       "request": [
             {
                 "content": "서울에서 반려동물 생일 파티를 기획하려고 합니다. 귀사의 생일 패키지에 대해 더 알고 싶습니다.",
@@ -942,7 +942,73 @@
               "company_id": 20,
               "member_id": 17
             }
-        ]
-      
+        ],
 
+    "signup": [
+        {
+            "id": 1,
+            "loginId": "user01",
+            "nickname": "철수"
+        },
+        {
+            "id": 2,
+            "loginId": "user02",
+            "nickname": "영희"
+        },
+        {
+            "id": 3,
+            "loginId": "user03",
+            "nickname": "민수"
+        },
+        {
+            "id": 4,
+            "loginId": "user04",
+            "nickname": "지우"
+        },
+        {
+            "id": 5,
+            "loginId": "user05",
+            "nickname": "현우"
+        },
+        {
+            "id": 6,
+            "loginId": "user06",
+            "nickname": "지수"
+        },
+        {
+            "id": 7,
+            "loginId": "user07",
+            "nickname": "하은"
+        },
+        {
+            "id": 8,
+            "loginId": "user08",
+            "nickname": "지민"
+        },
+        {
+            "id": 9,
+            "loginId": "user09",
+            "nickname": "서준"
+        },
+        {
+            "id": 10,
+            "loginId": "user10",
+            "nickname": "수현"
+        },
+        {
+            "id": 11,
+            "loginId": "user11",
+            "nickname": "하늘"
+        },
+        {
+            "id": 12,
+            "loginId": "user12",
+            "nickname": "서윤"
+        },
+        {
+            "id": 13,
+            "loginId": "user13",
+            "nickname": "지훈"
+        }
+      ]
 }
