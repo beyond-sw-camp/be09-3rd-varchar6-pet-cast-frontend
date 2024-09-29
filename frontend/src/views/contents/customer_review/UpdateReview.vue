@@ -1,0 +1,174 @@
+<template>
+    <div class="review-container">
+      <div class="review-form-container">
+        <h1>리뷰 수정/삭제하기</h1>
+        <form @submit.prevent="submitReview" class="review-form">
+          <div class="form-group">
+            <div class="title-rating-group">
+              <div class="title-input">
+                <label for="reviewTitle">리뷰 제목</label>
+                <input v-model="reviewTitle" id="reviewTitle" type="text" required>
+              </div>
+              <div class="rating-input">
+                <label>별점</label>
+                <div class="rating-display">
+                  <span>{{ rating }}점</span>
+                </div>
+                <div class="star-rating">
+                  <span v-for="i in 5" :key="i" @click="setRating(i)" :class="{ 'filled': rating >= i }">★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="reviewContent">리뷰 내용</label>
+            <textarea v-model="reviewContent" id="reviewContent" rows="5" required></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="button-group">
+        <button @click="submitReview" class="submit-btn">수정하기</button>
+        <button @click="deleteReview" class="cancel-btn">삭제하기</button>
+      </div>
+    </div>
+  </template>
+  
+  <script setup>
+  import { ref } from 'vue';
+  import { useRoute, useRouter } from 'vue-router';
+  // import axios from 'axios';
+  
+  const route = useRoute();
+  const router = useRouter();
+  const reviewId = ref(route.params.reviewId);
+  
+  const reviewTitle = ref('');
+  const reviewContent = ref('');
+  const rating = ref(0);
+  
+  const setRating = (value) => {
+    rating.value = value;
+  };
+  
+  // const submitReview = async () => {
+  //   try {
+  //     await axios.post('/api/reviews', {
+  //       eventId: eventId.value,
+  //       title: reviewTitle.value,
+  //       content: reviewContent.value,
+  //       rating: rating.value
+  //     });
+  //     router.push({ name: 'CustomerReview' }); // 여기를 수정
+  //   } catch (error) {
+  //     console.error('리뷰 작성 실패:', error);
+  //     alert('리뷰 작성에 실패했습니다. 다시 시도해 주세요.');
+  //   }
+  // };
+  
+  const deleteReview = () => {
+    if (confirm('정말로 리뷰를 삭제하시겠습니까?')) {
+        //   여기에 계정 삭제 API 호출 로직 구현
+        alert('리뷰가 삭제되었습니다.');
+        router.push({ name: 'CustomerReview' });
+    }
+  };
+  </script>
+  
+  <style scoped>
+  .review-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .review-form-container {
+    padding: 20px;
+    background-color: #e6f3ff; /* 하늘색 배경 */
+    border-radius: 8px;
+  }
+
+  .review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .title-rating-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .title-input {
+    flex: 1;
+    margin-right: 20px;
+  }
+
+  .rating-input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .rating-display {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .star-rating {
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .star-rating span {
+    color: #ddd;
+  }
+
+  .star-rating span.filled {
+    color: gold;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+
+  button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .submit-btn {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  .cancel-btn {
+    background-color: #f44336;
+    color: white;
+  }
+  </style>

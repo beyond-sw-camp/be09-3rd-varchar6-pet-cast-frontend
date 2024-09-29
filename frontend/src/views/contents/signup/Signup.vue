@@ -152,7 +152,7 @@
     // JSON 파일에서 ID 및 닉네임 데이터를 불러오기
     async function loadJsonData() {
         try {
-            const response = await fetch('http://localhost:8080/signup');
+            const response = await fetch('http://localhost:8888/signup');
             if(!response){
                 throw new Error("네트워크 응답이 올바르지 않습니다.");
             }
