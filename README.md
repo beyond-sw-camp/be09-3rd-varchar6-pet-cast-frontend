@@ -164,9 +164,38 @@
 
 
 
-## 🗿시스템 아키텍쳐
+## 🏛️시스템 아키텍쳐
 <img width="950" alt="스크린샷 2024-09-05 오전 5 20 43" src="https://github.com/user-attachments/assets/20507f4c-5a90-440e-a678-cb21de913caa">
 
+
+## 🖇️ 와이어 프레임
+<details>
+<summary>고객 </summary>
+<div markdown="1">
+	🔗[회원가입과 로그인]<img width="1321" alt="1" src="https://github.com/user-attachments/assets/b8e41c08-f06f-4d10-8a9f-37cdeb742f2e">
+	🔗[모임]<img width="1422" alt="스크린샷 2024-09-30 오후 3 10 57" src="https://github.com/user-attachments/assets/a354c534-504d-472c-8f93-4a8fefd8bd7c">
+ 	🔗[프로필 등록]<img width="1418" alt="스크린샷 2024-09-30 오후 3 12 24" src="https://github.com/user-attachments/assets/044f5c1a-ce3f-474a-ae82-636709e249b4">
+  	🔗[프로필 정보 조회]<img width="1225" alt="스크린샷 2024-09-30 오후 3 13 25" src="https://github.com/user-attachments/assets/bd04cdc6-ad12-45b5-9b37-fd0eca1e8af4">
+	🔗[요청서 작성 & 업체 페이지 조회]<img width="1225" alt="스크린샷 2024-09-30 오후 3 13 25" src="https://github.com/user-attachments/assets/504364c7-6ac5-4b4f-8c30-66463bd98271">
+ 	🔗[요청서 조회 & 기획서 작성]<img width="1225" alt="스크린샷 2024-09-30 오후 3 13 25" src="https://github.com/user-attachments/assets/00047c85-c74d-4198-8761-bb47337c5056">
+
+
+</div>
+</details>
+
+<details>
+<summary>업체 </summary>
+<div markdown="2">
+	🔗[업체 전체 페이지]<img width="1225" alt="스크린샷 2024-09-30 오후 3 13 25" src="https://github.com/user-attachments/assets/f257689c-c90e-4287-8c65-85ebfa1a44e6">
+</div>
+</details>
+
+<details>
+<summary>관리자 </summary>
+<div markdown="3">
+	🔗[관리자 기능 & 신고 페이지]<img width="1321" alt="1" src="https://github.com/user-attachments/assets/d3535eca-2e86-4d36-a0ee-2a3ea899f215">
+</div>
+</details>
 
 
 ## 🗿API TEST
@@ -190,6 +219,7 @@
 </div>
 </details>
 
+## 📽️테스트 결과 영상
 
 ## ⏱️회고
 
