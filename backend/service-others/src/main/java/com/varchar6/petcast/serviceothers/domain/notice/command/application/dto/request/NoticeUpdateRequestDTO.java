@@ -12,4 +12,6 @@ import lombok.Setter;
 public class NoticeUpdateRequestDTO {
     private int id;
     private boolean fixed;
+//    private String memberId;
+    private Integer memberId;
 }

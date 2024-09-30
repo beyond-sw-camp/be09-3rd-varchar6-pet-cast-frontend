@@ -1,6 +1,6 @@
 <template>
   <div id="footer-right">
-    <p style="text-align: right">
+    <p>
       대표이사 이효진 사업자 등록 번호 120-89-69321<br />
       통신 판매업 신고번호 제2024-서울신대방-8631호<br />
       주소 서울특별시 동작구 보라매로 87 호스팅사업자 (주)varchar6<br />
@@ -13,8 +13,11 @@
 <script setup></script>
 
 <style scoped>
-footer-right {
-  float: right;
-  font-size: 2px;
+.footer-right {
+  text-align: right;
+  font-size: 1px;
+}
+.footer-right p {
+  margin: 0;
 }
 </style>

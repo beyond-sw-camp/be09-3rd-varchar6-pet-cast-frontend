@@ -3,7 +3,6 @@ package com.varchar6.petcast.serviceothers.domain.notice.command.application.con
 import com.varchar6.petcast.serviceothers.common.response.ResponseMessage;
 import com.varchar6.petcast.serviceothers.domain.notice.command.application.dto.request.NoticeUpdateRequestDTO;
 import com.varchar6.petcast.serviceothers.domain.notice.command.application.dto.request.NoticeWriteRequestDTO;
-import com.varchar6.petcast.serviceothers.domain.notice.command.application.dto.response.NoticeResponseDTO;
 import com.varchar6.petcast.serviceothers.domain.notice.command.application.service.NoticeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -26,9 +26,12 @@ public class NoticeController {
 
     @PostMapping("")
     private ResponseEntity<ResponseMessage> createNotice(@RequestBody NoticeWriteRequestDTO noticeWriteRequestDTO,
-                                                         @RequestAttribute("memberId") int memberId){
+                                                         @RequestAttribute("memberId") int memberId,
+                                                         @RequestAttribute("authorities") List<String> roles
+//                                                         @RequestHeader("X-Member-Id") String memberId
+    ) throws IllegalAccessException {
         noticeWriteRequestDTO.setMemberId(memberId);
-        int result = noticeService.insertNotice(noticeWriteRequestDTO);
+        int result = noticeService.insertNotice(noticeWriteRequestDTO, roles);
 
         return ResponseEntity
                 .ok()
@@ -42,9 +45,14 @@ public class NoticeController {
     }
 
     @PutMapping("")
-    private ResponseEntity<ResponseMessage> updateNotice(@RequestBody NoticeUpdateRequestDTO noticeUpdateRequestDTO){
+    private ResponseEntity<ResponseMessage> updateNotice(@RequestBody NoticeUpdateRequestDTO noticeUpdateRequestDTO,
+                                                         @RequestAttribute("memberId") int memberId,
+                                                         @RequestAttribute("authorities") List<String> roles
+//                                                         @RequestHeader("X-Member-Id") String memberId
+    ) throws IllegalAccessException {
 
-        NoticeResponseDTO noticeResponseDTO = noticeService.updateNotice(noticeUpdateRequestDTO);
+        noticeUpdateRequestDTO.setMemberId(memberId);
+        int result = noticeService.updateNotice(noticeUpdateRequestDTO, roles);
 
         return ResponseEntity
                 .ok()
@@ -58,9 +66,13 @@ public class NoticeController {
     }
 
     @DeleteMapping("")
-    private ResponseEntity<ResponseMessage> deleteNotice(@RequestBody Map<String, Integer> request){
+    private ResponseEntity<ResponseMessage> deleteNotice(@RequestBody Map<String, Integer> request,
+                                                         @RequestAttribute("memberId") int memberId,
+                                                         @RequestAttribute("authorities") List<String> roles
+//                                                         @RequestHeader("X-Member-Id") String memberId
+    ) throws IllegalAccessException {
         int id = request.get("id");
-        int result = noticeService.deleteNotice(id);
+        int result = noticeService.deleteNotice(id, memberId, roles);
 
         return ResponseEntity
                 .ok()

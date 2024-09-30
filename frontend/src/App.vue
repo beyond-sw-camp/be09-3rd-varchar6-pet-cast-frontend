@@ -36,10 +36,13 @@ if (localStorage.getItem('accessToken')) {
     </header>
     
     <Navigation />
+    <div class="content-wrapper">
+      <router-view></router-view>
+    </div>
+      <footer>
+        <Footer/>
 
-    <RouterView />
-
-    <Footer/>
+      </footer>
   </div>
 </template>
 
@@ -51,5 +54,13 @@ header {
 .logo {
   display: block;
   margin: 0 auto 2rem;
+}
+.content-wrapper {
+  flex: 1;
+  padding: 20px;
+  padding-bottom: calc(8vh + 20px); 
+}
+body {
+  padding: 20px;
 }
 </style>

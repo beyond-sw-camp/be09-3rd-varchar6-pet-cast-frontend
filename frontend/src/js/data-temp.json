@@ -1027,6 +1027,146 @@
         "createdAt": "2024-03-01T09:15:30",
         "reporterId": 2,
         "respondentId": 3
+        },
+        {
+          "id": 3,
+          "reason": "스팸 메시지 전송",
+          "createdAt": "2024-03-02T10:00:00",
+          "reporterId": 3,
+          "respondentId": 4
+        },
+        {
+          "id": 4,
+          "reason": "허위 정보 게시",
+          "createdAt": "2024-03-02T11:30:00",
+          "reporterId": 4,
+          "respondentId": 5
+        },
+        {
+          "id": 5,
+          "reason": "저작권 침해",
+          "createdAt": "2024-03-03T09:15:00",
+          "reporterId": 5,
+          "respondentId": 6
+        },
+        {
+          "id": 6,
+          "reason": "사기 행위",
+          "createdAt": "2024-03-03T10:45:00",
+          "reporterId": 6,
+          "respondentId": 7
+        },
+        {
+          "id": 7,
+          "reason": "불쾌한 콘텐츠",
+          "createdAt": "2024-03-04T08:20:00",
+          "reporterId": 7,
+          "respondentId": 8
+        },
+        {
+          "id": 8,
+          "reason": "도배 행위",
+          "createdAt": "2024-03-04T09:50:00",
+          "reporterId": 8,
+          "respondentId": 9
+        },
+        {
+          "id": 9,
+          "reason": "개인정보 유출",
+          "createdAt": "2024-03-05T12:00:00",
+          "reporterId": 9,
+          "respondentId": 10
+        },
+        {
+          "id": 10,
+          "reason": "비속어 사용",
+          "createdAt": "2024-03-05T14:30:00",
+          "reporterId": 10,
+          "respondentId": 11
+        },
+        {
+          "id": 11,
+          "reason": "혐오 표현",
+          "createdAt": "2024-03-06T10:00:00",
+          "reporterId": 11,
+          "respondentId": 12
+        },
+        {
+          "id": 12,
+          "reason": "거래 사기",
+          "createdAt": "2024-03-06T11:45:00",
+          "reporterId": 12,
+          "respondentId": 13
+        },
+        {
+          "id": 13,
+          "reason": "불법 콘텐츠 게시",
+          "createdAt": "2024-03-07T09:30:00",
+          "reporterId": 13,
+          "respondentId": 14
+        },
+        {
+          "id": 14,
+          "reason": "정치적 선전",
+          "createdAt": "2024-03-07T12:00:00",
+          "reporterId": 14,
+          "respondentId": 15
+        },
+        {
+          "id": 15,
+          "reason": "기만적 행동",
+          "createdAt": "2024-03-08T13:15:00",
+          "reporterId": 15,
+          "respondentId": 16
+        },
+        {
+          "id": 16,
+          "reason": "사기성 이벤트",
+          "createdAt": "2024-03-08T15:30:00",
+          "reporterId": 16,
+          "respondentId": 17
+        },
+        {
+          "id": 17,
+          "reason": "무단 홍보 게시물",
+          "createdAt": "2024-03-09T09:45:00",
+          "reporterId": 17,
+          "respondentId": 18
+        },
+        {
+          "id": 18,
+          "reason": "개인 정보 무단 수집",
+          "createdAt": "2024-03-09T11:30:00",
+          "reporterId": 18,
+          "respondentId": 19
+        },
+        {
+          "id": 19,
+          "reason": "중복 게시물",
+          "createdAt": "2024-03-10T08:20:00",
+          "reporterId": 19,
+          "respondentId": 20
+        },
+        {
+          "id": 20,
+          "reason": "상업적 광고 게시",
+          "createdAt": "2024-03-10T10:50:00",
+          "reporterId": 20,
+          "respondentId": 21
+        },
+        {
+          "id": 21,
+          "reason": "허위 사실 유포",
+          "createdAt": "2024-03-11T12:15:00",
+          "reporterId": 21,
+          "respondentId": 22
+        },
+        {
+          "id": 22,
+          "reason": "부적절한 이미지 게시",
+          "createdAt": "2024-03-11T13:40:00",
+          "reporterId": 22,
+          "respondentId": 23
         }          
       ],
     "notices": [
@@ -1108,6 +1248,206 @@
         "updatedAt": "2024-09-22T10:45:00",
         "active": true,
         "memberId": 8,
+        "fixed": false
+      },
+      {
+        "id": 9,
+        "title": "2024 반려동물 패션쇼 개최",
+        "content": "2024년 반려동물 패션쇼가 개최됩니다. 멋진 의상을 입은 반려동물들을 만나보세요!",
+        "createdAt": "2024-09-23T09:00:00",
+        "updatedAt": "2024-09-23T09:00:00",
+        "active": true,
+        "memberId": 9,
+        "fixed": false
+      },
+      {
+        "id": 10,
+        "title": "새로운 펫 케어 서비스 런칭",
+        "content": "반려동물을 위한 새로운 케어 서비스가 출시되었습니다. 지금 신청해보세요!",
+        "createdAt": "2024-09-23T10:00:00",
+        "updatedAt": "2024-09-23T10:00:00",
+        "active": true,
+        "memberId": 10,
+        "fixed": false
+      },
+      {
+        "id": 11,
+        "title": "반려동물 유기 방지 캠페인",
+        "content": "반려동물 유기를 방지하기 위한 캠페인이 시작되었습니다. 여러분의 반려동물을 책임감 있게 키워주세요.",
+        "createdAt": "2024-09-24T11:00:00",
+        "updatedAt": "2024-09-24T11:00:00",
+        "active": true,
+        "memberId": 11,
+        "fixed": false
+      },
+      {
+        "id": 12,
+        "title": "펫 관련 상품 리뷰 모집",
+        "content": "펫 관련 제품에 대한 사용자 리뷰를 모집합니다. 참여해주신 분들께 소정의 선물을 드립니다.",
+        "createdAt": "2024-09-24T12:00:00",
+        "updatedAt": "2024-09-24T12:00:00",
+        "active": true,
+        "memberId": 12,
+        "fixed": false
+      },
+      {
+        "id": 13,
+        "title": "반려동물 무료 건강 검진 이벤트",
+        "content": "반려동물 무료 건강 검진 이벤트가 진행됩니다. 지금 예약하세요!",
+        "createdAt": "2024-09-24T14:00:00",
+        "updatedAt": "2024-09-24T14:00:00",
+        "active": true,
+        "memberId": 13,
+        "fixed": false
+      },
+      {
+        "id": 14,
+        "title": "반려동물 친화 카페 오픈",
+        "content": "새로운 반려동물 친화 카페가 오픈했습니다. 반려동물과 함께 편안한 시간을 보내세요.",
+        "createdAt": "2024-09-25T09:00:00",
+        "updatedAt": "2024-09-25T09:00:00",
+        "active": true,
+        "memberId": 14,
+        "fixed": false
+      },
+      {
+        "id": 15,
+        "title": "반려동물 기초 훈련 세션",
+        "content": "반려동물 기초 훈련을 위한 무료 세션이 열립니다. 지금 신청하세요!",
+        "createdAt": "2024-09-25T10:30:00",
+        "updatedAt": "2024-09-25T10:30:00",
+        "active": true,
+        "memberId": 15,
+        "fixed": false
+      },
+      {
+        "id": 16,
+        "title": "2024 반려동물 아트 전시회",
+        "content": "2024년 반려동물 아트 전시회가 열립니다. 반려동물과 함께 특별한 예술 작품을 감상해보세요.",
+        "createdAt": "2024-09-25T12:00:00",
+        "updatedAt": "2024-09-25T12:00:00",
+        "active": true,
+        "memberId": 16,
+        "fixed": false
+      },
+      {
+        "id": 17,
+        "title": "반려동물 전용 여행 서비스 출시",
+        "content": "반려동물을 위한 전용 여행 서비스가 출시되었습니다. 이제 반려동물과 함께 여행을 즐기세요!",
+        "createdAt": "2024-09-26T09:00:00",
+        "updatedAt": "2024-09-26T09:00:00",
+        "active": true,
+        "memberId": 17,
+        "fixed": false
+      },
+      {
+        "id": 18,
+        "title": "반려동물 전문 미용 세미나",
+        "content": "반려동물 미용에 대한 전문 세미나가 열립니다. 지금 등록하세요!",
+        "createdAt": "2024-09-26T10:30:00",
+        "updatedAt": "2024-09-26T10:30:00",
+        "active": true,
+        "memberId": 18,
+        "fixed": false
+      },
+      {
+        "id": 19,
+        "title": "펫 케어 제품 할인전",
+        "content": "반려동물 케어 제품의 특별 할인전이 시작되었습니다. 좋은 기회를 놓치지 마세요!",
+        "createdAt": "2024-09-26T12:00:00",
+        "updatedAt": "2024-09-26T12:00:00",
+        "active": true,
+        "memberId": 19,
+        "fixed": false
+      },
+      {
+        "id": 20,
+        "title": "반려동물 놀이기구 출시 안내",
+        "content": "새로운 반려동물 놀이기구가 출시되었습니다. 지금 바로 확인하세요!",
+        "createdAt": "2024-09-26T13:00:00",
+        "updatedAt": "2024-09-26T13:00:00",
+        "active": true,
+        "memberId": 20,
+        "fixed": false
+      },
+      {
+        "id": 21,
+        "title": "2024년 펫 챌린지 대회",
+        "content": "2024년 펫 챌린지 대회가 곧 시작됩니다. 반려동물과 함께 도전해보세요!",
+        "createdAt": "2024-09-27T09:00:00",
+        "updatedAt": "2024-09-27T09:00:00",
+        "active": true,
+        "memberId": 21,
+        "fixed": false
+      },
+      {
+        "id": 22,
+        "title": "펫 헬스케어 워크숍",
+        "content": "반려동물 헬스케어 워크숍이 열립니다. 여러분의 반려동물의 건강을 지키는 방법을 배워보세요.",
+        "createdAt": "2024-09-27T10:30:00",
+        "updatedAt": "2024-09-27T10:30:00",
+        "active": true,
+        "memberId": 22,
+        "fixed": false
+      },
+      {
+        "id": 23,
+        "title": "펫 전용 호텔 서비스",
+        "content": "반려동물 전용 호텔 서비스가 새롭게 런칭되었습니다. 반려동물에게 특별한 휴가를 선물하세요!",
+        "createdAt": "2024-09-27T11:45:00",
+        "updatedAt": "2024-09-27T11:45:00",
+        "active": true,
+        "memberId": 23,
+        "fixed": false
+      },
+      {
+        "id": 24,
+        "title": "반려동물 영양 세미나",
+        "content": "반려동물 영양 관리에 대한 세미나가 열립니다. 반려동물의 건강을 위해 꼭 참여하세요!",
+        "createdAt": "2024-09-27T13:00:00",
+        "updatedAt": "2024-09-27T13:00:00",
+        "active": true,
+        "memberId": 24,
+        "fixed": false
+      },
+      {
+        "id": 25,
+        "title": "반려동물 도구 DIY 워크숍",
+        "content": "반려동물 도구를 직접 만들어보는 DIY 워크숍이 개최됩니다. 지금 신청하세요!",
+        "createdAt": "2024-09-28T09:00:00",
+        "updatedAt": "2024-09-28T09:00:00",
+        "active": true,
+        "memberId": 25,
+        "fixed": false
+      },
+      {
+        "id": 26,
+        "title": "2024 펫 케어 제품 어워즈",
+        "content": "2024 펫 케어 제품 어워즈가 곧 개최됩니다. 최고의 반려동물 제품을 만나보세요!",
+        "createdAt": "2024-09-28T10:30:00",
+        "updatedAt": "2024-09-28T10:30:00",
+        "active": true,
+        "memberId": 26,
+        "fixed": false
+      },
+      {
+        "id": 27,
+        "title": "반려동물 체험 학습 이벤트",
+        "content": "반려동물과 함께 다양한 체험 학습을 할 수 있는 이벤트가 준비되었습니다. 지금 참가해보세요!",
+        "createdAt": "2024-09-28T12:00:00",
+        "updatedAt": "2024-09-28T12:00:00",
+        "active": true,
+        "memberId": 27,
+        "fixed": false
+      },
+      {
+        "id": 28,
+        "title": "반려동물 관련 자격증 안내",
+        "content": "반려동물 관련 자격증 과정이 개설되었습니다. 자세한 내용은 홈페이지를 확인하세요.",
+        "createdAt": "2024-09-28T14:00:00",
+        "updatedAt": "2024-09-28T14:00:00",
+        "active": true,
+        "memberId": 28,
         "fixed": false
       }
     ],
@@ -1241,6 +1581,279 @@
           "companyId": 1,
           "questionerId": 3,
           "answererId": 2
+        },
+        {
+          "id": 11,
+          "title": "애완견 발톱 관리 방법",
+          "content": "강아지의 발톱은 얼마나 자주 잘라줘야 하나요?",
+          "createdAt": "2024-09-27T09:00:00Z",
+          "answeredAt": "2024-09-27T11:00:00Z",
+          "answer": "강아지의 발톱은 한 달에 한 번 정도 자르는 것이 좋습니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 3,
+          "questionerId": 11,
+          "answererId": 1
+        },
+        {
+          "id": 12,
+          "title": "앵무새 훈련 방법",
+          "content": "앵무새를 훈련시킬 때 어떻게 해야 하나요?",
+          "createdAt": "2024-09-27T10:00:00Z",
+          "answeredAt": "2024-09-27T12:30:00Z",
+          "answer": "앵무새를 훈련할 때는 긍정적인 보상을 통해 반복적인 훈련을 하는 것이 좋습니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 1,
+          "questionerId": 12,
+          "answererId": 2
+        },
+        {
+          "id": 13,
+          "title": "애완견 사회화 훈련 시기",
+          "content": "강아지의 사회화 훈련은 언제 시작하는 것이 좋을까요?",
+          "createdAt": "2024-09-27T11:00:00Z",
+          "answeredAt": "2024-09-27T14:00:00Z",
+          "answer": "강아지의 사회화 훈련은 생후 3개월에서 4개월 사이에 시작하는 것이 좋습니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 2,
+          "questionerId": 13,
+          "answererId": 3
+        },
+        {
+          "id": 14,
+          "title": "고양이 발톱 관리 방법",
+          "content": "고양이의 발톱은 어떻게 관리해줘야 하나요?",
+          "createdAt": "2024-09-27T12:00:00Z",
+          "answeredAt": "2024-09-27T13:30:00Z",
+          "answer": "고양이의 발톱은 2주에 한 번씩 다듬어 주는 것이 좋으며, 스크래처도 유용합니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 3,
+          "questionerId": 14,
+          "answererId": 4
+        },
+        {
+          "id": 15,
+          "title": "거북이 먹이 추천",
+          "content": "거북이에게 어떤 먹이가 좋은가요?",
+          "createdAt": "2024-09-27T13:00:00Z",
+          "answeredAt": "2024-09-27T15:00:00Z",
+          "answer": "거북이에게는 신선한 채소와 함께 영양소가 풍부한 펠릿을 주는 것이 좋습니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 1,
+          "questionerId": 15,
+          "answererId": 5
+        },
+        {
+          "id": 16,
+          "title": "애완견 사료 교체 시기",
+          "content": "강아지의 사료를 언제 교체하는 것이 좋을까요?",
+          "createdAt": "2024-09-27T14:00:00Z",
+          "answeredAt": "2024-09-27T17:00:00Z",
+          "answer": "강아지가 성견이 되면 성견용 사료로 교체하는 것이 좋습니다. 일반적으로 생후 1년이 지나면 바꾸는 것이 좋습니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 2,
+          "questionerId": 16,
+          "answererId": 6
+        },
+        {
+          "id": 17,
+          "title": "햄스터 간식 추천",
+          "content": "햄스터에게 좋은 간식을 추천해주세요.",
+          "createdAt": "2024-09-27T15:00:00Z",
+          "answeredAt": "2024-09-27T16:30:00Z",
+          "answer": "햄스터에게는 해바라기 씨와 같은 견과류를 소량으로 주는 것이 좋습니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 3,
+          "questionerId": 17,
+          "answererId": 7
+        },
+        {
+          "id": 18,
+          "title": "고양이 밥그릇 위치",
+          "content": "고양이의 밥그릇은 어디에 두는 것이 좋을까요?",
+          "createdAt": "2024-09-27T16:00:00Z",
+          "answeredAt": "2024-09-27T18:00:00Z",
+          "answer": "고양이의 밥그릇은 조용하고 스트레스를 받지 않는 곳에 두는 것이 좋습니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 1,
+          "questionerId": 18,
+          "answererId": 8
+        },
+        {
+          "id": 19,
+          "title": "애완견 간식 주는 빈도",
+          "content": "강아지에게 간식을 얼마나 자주 주는 것이 좋을까요?",
+          "createdAt": "2024-09-27T17:00:00Z",
+          "answeredAt": "2024-09-27T19:00:00Z",
+          "answer": "간식은 하루에 1~2번, 소량씩 주는 것이 적당하며, 너무 많이 주면 건강에 좋지 않습니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 2,
+          "questionerId": 19,
+          "answererId": 9
+        },
+        {
+          "id": 20,
+          "title": "앵무새 장난감 필요성",
+          "content": "앵무새에게 장난감이 꼭 필요한가요?",
+          "createdAt": "2024-09-27T18:00:00Z",
+          "answeredAt": "2024-09-27T20:00:00Z",
+          "answer": "앵무새는 지능이 높기 때문에 장난감이 꼭 필요하며, 다양한 장난감을 주어야 스트레스를 해소할 수 있습니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 3,
+          "questionerId": 20,
+          "answererId": 10
+        },
+        {
+          "id": 21,
+          "title": "토끼 집 크기",
+          "content": "토끼를 키울 때 적절한 집 크기는 어느 정도인가요?",
+          "createdAt": "2024-09-28T09:00:00Z",
+          "answeredAt": "2024-09-28T11:00:00Z",
+          "answer": "토끼는 넓은 공간이 필요하며, 최소 4평방미터 이상의 공간을 제공하는 것이 좋습니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 1,
+          "questionerId": 21,
+          "answererId": 1
+        },
+        {
+          "id": 22,
+          "title": "고양이 장난감 추천",
+          "content": "고양이에게 어떤 장난감이 좋을까요?",
+          "createdAt": "2024-09-28T10:00:00Z",
+          "answeredAt": "2024-09-28T12:30:00Z",
+          "answer": "고양이에게는 깃털 달린 장난감이나 레이저 포인터가 좋으며, 다양한 장난감을 주는 것이 좋습니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 2,
+          "questionerId": 22,
+          "answererId": 2
+        },
+        {
+          "id": 23,
+          "title": "강아지 훈련 방법",
+          "content": "강아지를 훈련시킬 때 가장 중요한 점은 무엇인가요?",
+          "createdAt": "2024-09-28T11:00:00Z",
+          "answeredAt": "2024-09-28T13:00:00Z",
+          "answer": "강아지 훈련 시 일관성과 긍정적인 강화 방법이 가장 중요합니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 3,
+          "questionerId": 23,
+          "answererId": 3
+        },
+        {
+          "id": 24,
+          "title": "햄스터 목욕 방법",
+          "content": "햄스터를 어떻게 목욕시켜야 하나요?",
+          "createdAt": "2024-09-28T12:00:00Z",
+          "answeredAt": "2024-09-28T14:00:00Z",
+          "answer": "햄스터는 물 목욕이 필요하지 않으며, 모래 목욕을 통해 몸을 깨끗이 합니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 2,
+          "questionerId": 24,
+          "answererId": 4
+        },
+        {
+          "id": 25,
+          "title": "고양이 먹이 주는 시간",
+          "content": "고양이에게 하루에 몇 번 먹이를 주는 것이 좋을까요?",
+          "createdAt": "2024-09-28T13:00:00Z",
+          "answeredAt": "2024-09-28T15:00:00Z",
+          "answer": "고양이는 하루에 두 번, 아침과 저녁에 먹이를 주는 것이 적당합니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 1,
+          "questionerId": 25,
+          "answererId": 5
+        },
+        {
+          "id": 26,
+          "title": "새의 먹이 종류",
+          "content": "새에게 어떤 먹이가 좋을까요?",
+          "createdAt": "2024-09-28T14:00:00Z",
+          "answeredAt": "2024-09-28T16:00:00Z",
+          "answer": "새에게는 씨앗, 과일, 그리고 채소가 포함된 균형 잡힌 식단이 필요합니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 3,
+          "questionerId": 26,
+          "answererId": 6
+        },
+        {
+          "id": 27,
+          "title": "토끼 발톱 관리",
+          "content": "토끼 발톱은 어떻게 관리해야 하나요?",
+          "createdAt": "2024-09-28T15:00:00Z",
+          "answeredAt": "2024-09-28T17:00:00Z",
+          "answer": "토끼의 발톱은 6주마다 한 번씩 다듬어 주는 것이 좋습니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 1,
+          "questionerId": 27,
+          "answererId": 7
+        },
+        {
+          "id": 28,
+          "title": "강아지 산책 시간대",
+          "content": "강아지를 언제 산책시키는 것이 좋을까요?",
+          "createdAt": "2024-09-28T16:00:00Z",
+          "answeredAt": "2024-09-28T18:00:00Z",
+          "answer": "강아지는 아침과 저녁, 더운 시간대를 피해서 산책시키는 것이 좋습니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 2,
+          "questionerId": 28,
+          "answererId": 8
+        },
+        {
+          "id": 29,
+          "title": "고양이 간식 주는 방법",
+          "content": "고양이에게 간식을 어떻게 주는 것이 좋나요?",
+          "createdAt": "2024-09-28T17:00:00Z",
+          "answeredAt": "2024-09-28T19:00:00Z",
+          "answer": "간식은 정해진 시간에 적당량을 주고, 주식이 아니므로 과도하게 주지 않는 것이 좋습니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 3,
+          "questionerId": 29,
+          "answererId": 9
+        },
+        {
+          "id": 30,
+          "title": "햄스터의 수면 환경",
+          "content": "햄스터에게 좋은 수면 환경은 어떤가요?",
+          "createdAt": "2024-09-28T18:00:00Z",
+          "answeredAt": "2024-09-28T20:00:00Z",
+          "answer": "햄스터는 어둡고 조용한 곳에서 자는 것을 좋아하며, 부드러운 침구를 제공하는 것이 좋습니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 1,
+          "questionerId": 30,
+          "answererId": 10
+        },
+        {
+          "id": 31,
+          "title": "앵무새 목욕 방법",
+          "content": "앵무새를 어떻게 목욕시켜야 하나요?",
+          "createdAt": "2024-09-28T19:00:00Z",
+          "answeredAt": "2024-09-28T21:00:00Z",
+          "answer": "앵무새는 미지근한 물을 이용한 샤워나 작은 물그릇을 통해 스스로 목욕할 수 있습니다.",
+          "answered": true,
+          "active": true,
+          "companyId": 2,
+          "questionerId": 31,
+          "answererId": 11
         }
       ],
       
