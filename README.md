@@ -118,6 +118,31 @@
 <br>
 <img width="950" alt="스크린샷 2024-09-05 오전 5 26 43" src="https://github.com/user-attachments/assets/fc0c2e2e-8e0f-483d-867f-2af18756a5fa">
 
+<details>
+  <summary><strong>Front End 기능 명세서</strong></summary>
+
+  ![image](https://github.com/user-attachments/assets/d60a8eba-4b10-41c5-8e45-f04f30211a49)
+  <br>
+  ![image](https://github.com/user-attachments/assets/a81c5ccf-b94e-4f68-bbd1-0dc4c72676a8)
+  <br>
+  ![image](https://github.com/user-attachments/assets/895d9ef6-1f64-4d44-8dbe-bfcdf9486259)
+  <br>
+  ![image](https://github.com/user-attachments/assets/f13e04c5-5442-4e7b-8081-f45aaada5d9c)
+  <br>
+  ![image](https://github.com/user-attachments/assets/ffa3b47f-7958-4639-bdd7-6dde5651ffcd)
+  <br>
+  ![image](https://github.com/user-attachments/assets/0497283b-05aa-4613-9b3f-2f2c2b7d1654)
+  <br>
+  ![image](https://github.com/user-attachments/assets/0102d799-7b1a-450f-badb-c199de36af7c)
+  <br>
+  ![image](https://github.com/user-attachments/assets/1dbf9978-3c44-4599-8606-90cb436138de)
+  <br>
+  ![image](https://github.com/user-attachments/assets/cc08c31e-167e-413f-828e-1af991e00a27)
+  <br>
+  ![image](https://github.com/user-attachments/assets/76a05d9c-3e18-4cb8-82a1-74aed7ce195f)
+
+</details>
+
 ## 📋 DDD
 ### Bounded Context
 <img width="950" alt="스크린샷 2024-09-05 오전 8 52 31" src="https://github.com/user-attachments/assets/de97d439-e60a-45f9-8fb1-d91bce653bef">
