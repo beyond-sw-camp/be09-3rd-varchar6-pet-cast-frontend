@@ -1,7 +1,7 @@
 {
   "businesses": {
     "id": 1,
-    "imageUrl" : "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe",
+    "imageUrl": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe",
     "name": "펫파티 플래너",
     "location": "서울특별시 강남구",
     "description": "강아지를 너무 사랑해서 우리 아가들에게 이벤트 해주기 위해 업체 차렸습니다",
@@ -68,13 +68,13 @@
   },
 
   "user-me": {
-	  "id": 34,
+    "id": 34,
     "name": "도기 아버님",
     "phone": "016-123-5678",
     "nickname": "도기 집사",
     "image": "testImage",
     "introduction": "안녕하세요 도기 애비되는 사람입니다."
-	},
+  },
 
   "business-event1": {
     "id": 1,
@@ -86,9 +86,9 @@
   },
 
   "business-events": {
-  "totalCount": 12,
-  "isAuth" : true,
-  "events": [
+    "totalCount": 12,
+    "isAuth": true,
+    "events": [
       {
         "id": 1,
         "title": "강아지 사진전",
@@ -673,8 +673,8 @@
       }
     ]
   },
-  
-    "bizs": [
+
+  "bizs": [
     {
       "id": 1,
       "name": "펫파티 플래너",
@@ -699,250 +699,249 @@
       "image": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe",
       "description": "전문 애완동물 미용 서비스"
     }
-
-    ],
-      "request": [
-            {
-                "content": "서울에서 반려동물 생일 파티를 기획하려고 합니다. 귀사의 생일 패키지에 대해 더 알고 싶습니다.",
-                "hope_cost": 500000,
-                "hope_location": "서울",
-                "hope_time": "2024-10-01T10:00:00",
-                "status": "SENT",
-                "updated_at": "2024-08-27T12:00:00",
-                "created_at": "2024-08-27T12:00:00",
-                "active": true,
-                "company_id": 1,
-                "member_id": 2
-            },
-            {
-                "content": "부산에서 반려동물 돌잔치 기획을 검토 중입니다. 귀사의 돌잔치 패키지를 자세히 알고 싶습니다.",
-                "hope_cost": 450000,
-                "hope_location": "부산",
-                "hope_time": "2024-10-02T11:00:00",
-                "status": "SENT",
-                "updated_at": "2024-08-27T12:00:00",
-                "created_at": "2024-08-27T12:00:00",
-                "active": true,
-                "company_id": 2,
-                "member_id": 4
-            },
-            {
-                "content": "대구에서 풀파티를 개최하고 싶습니다. 귀사의 풀파티 패키지와 제공 서비스에 대해 문의드립니다.",
-                "hope_cost": 550000,
-                "hope_location": "대구",
-                "hope_time": "2024-10-03T12:00:00",
-                "status": "SENT",
-                "updated_at": "2024-08-27T12:00:00",
-                "created_at": "2024-08-27T12:00:00",
-                "active": true,
-                "company_id": 3,
-                "member_id": 6
-            },
-            {
-                "content": "광주에서 크리스마스 파티를 기획하고 싶습니다. 귀사의 크리스마스 패키지에 대해 알고 싶습니다.",
-                "hope_cost": 600000,
-                "hope_location": "광주",
-                "hope_time": "2024-10-04T13:00:00",
-                "status": "SENT",
-                "updated_at": "2024-08-27T12:00:00",
-                "created_at": "2024-08-27T12:00:00",
-                "active": true,
-                "company_id": 4,
-                "member_id": 8
-            },
-            {
-                "content": "대전에서 생일 파티를 계획하고 있습니다. 귀사의 생일 패키지와 옵션에 대해 문의드립니다.",
-                "hope_cost": 520000,
-                "hope_location": "대전",
-                "hope_time": "2024-10-05T14:00:00",
-                "status": "SENT",
-                "updated_at": "2024-08-27T12:00:00",
-                "created_at": "2024-08-27T12:00:00",
-                "active": true,
-                "company_id": 5,
-                "member_id": 10
-            },
-            {
-                "content": "울산에서 여름 풀파티를 검토 중입니다. 귀사의 여름 패키지와 서비스에 대해 알고 싶습니다.",
-                "hope_cost": 580000,
-                "hope_location": "울산",
-                "hope_time": "2024-10-06T15:00:00",
-                "status": "SENT",
-                "updated_at": "2024-08-27T12:00:00",
-                "created_at": "2024-08-27T12:00:00",
-                "active": true,
-                "company_id": 6,
-                "member_id": 12
-            },
-            {
-                "content": "제주도에서 테마 파티를 열고 싶습니다. 귀사의 제주도 특화 패키지에 대해 문의드립니다.",
-                "hope_cost": 650000,
-                "hope_location": "제주",
-                "hope_time": "2024-10-07T16:00:00",
-                "status": "SENT",
-                "updated_at": "2024-08-27T12:00:00",
-                "created_at": "2024-08-27T12:00:00",
-                "active": true,
-                "company_id": 7,
-                "member_id": 14
-            },
-            {
-                "content": "인천에서 할로윈 파티를 계획하고 있습니다. 귀사의 할로윈 패키지에 대해 알고 싶습니다.",
-                "hope_cost": 470000,
-                "hope_location": "인천",
-                "hope_time": "2024-10-08T17:00:00",
-                "status": "SENT",
-                "updated_at": "2024-08-27T12:00:00",
-                "created_at": "2024-08-27T12:00:00",
-                "active": true,
-                "company_id": 8,
-                "member_id": 16
-            },
-            {
-                "content": "성남에서 연말 파티를 열고 싶습니다. 귀사의 연말 패키지와 서비스에 대해 문의드립니다.",
-                "hope_cost": 500000,
-                "hope_location": "성남",
-                "hope_time": "2024-10-09T18:00:00",
-                "status": "SENT",
-                "updated_at": "2024-08-27T12:00:00",
-                "created_at": "2024-08-27T12:00:00",
-                "active": true,
-                "company_id": 9,
-                "member_id": 17
-            },
-            {
-                "content": "용인에서 발렌타인데이 파티를 기획하고 있습니다. 귀사의 발렌타인 패키지에 대해 알고 싶습니다.",
-                "hope_cost": 520000,
-                "hope_location": "용인",
-                "hope_time": "2024-10-10T19:00:00",
-                "status": "SENT",
-                "updated_at": "2024-08-27T12:00:00",
-                "created_at": "2024-08-27T12:00:00",
-                "active": true,
-                "company_id": 10,
-                "member_id": 19
-            },
-            {
-                "content": "고양에서 명절 파티를 개최하고 싶습니다. 귀사의 명절 패키지와 옵션에 대해 문의드립니다.",
-                "hope_cost": 550000,
-                "hope_location": "고양",
-                "hope_time": "2024-10-11T20:00:00",
-                "status": "SENT",
-                "updated_at": "2024-08-27T12:00:00",
-                "created_at": "2024-08-27T12:00:00",
-                "active": true,
-                "company_id": 11,
-                "member_id": 20
-            },
-            {
-                "content": "화성에서 봄맞이 파티를 열고 싶습니다. 귀사의 봄맞이 패키지에 대해 문의드립니다.",
-                "hope_cost": 480000,
-                "hope_location": "화성",
-                "hope_time": "2024-10-12T21:00:00",
-                "status": "SENT",
-                "updated_at": "2024-08-27T12:00:00",
-                "created_at": "2024-08-27T12:00:00",
-                "active": true,
-                "company_id": 12,
-                "member_id": 1
-            },
-            {
-                "content": "남양주에서 가을 파티를 기획하고 있습니다. 귀사의 가을 패키지와 서비스에 대해 알고 싶습니다.",
-                "hope_cost": 490000,
-                "hope_location": "남양주",
-                "hope_time": "2024-10-13T22:00:00",
-                "status": "SENT",
-                "updated_at": "2024-08-27T12:00:00",
-                "created_at": "2024-08-27T12:00:00",
-                "active": true,
-                "company_id": 13,
-                "member_id": 3
-            },
-            {
-                "content": "천안에서 개막식 파티를 열고 싶습니다. 귀사의 개막식 패키지와 제공 서비스에 대해 문의드립니다.",
-                "hope_cost": 520000,
-                "hope_location": "천안",
-                "hope_time": "2024-10-14T23:00:00",
-                "status": "SENT",
-                "updated_at": "2024-08-27T12:00:00",
-                "created_at": "2024-08-27T12:00:00",
-                "active": true,
-                "company_id": 14,
-                "member_id": 5
-            },
-            {
-              "content": "전주에서 건강 캠페인을 기획하고 있습니다. 귀사의 건강 검진 패키지와 서비스에 대해 알고 싶습니다.",
-              "hope_cost": 530000,
-              "hope_location": "전주",
-              "hope_time": "2024-10-15T09:00:00",
-              "status": "SENT",
-              "updated_at": "2024-08-27T12:00:00",
-              "created_at": "2024-08-27T12:00:00",
-              "active": true,
-              "company_id": 15,
-              "member_id": 7
-            },
-            {
-              "content": "여수에서 애견 운동회를 열고 싶습니다. 귀사의 애견 운동회 패키지에 대해 문의드립니다.",
-              "hope_cost": 540000,
-              "hope_location": "여수",
-              "hope_time": "2024-10-16T10:00:00",
-              "status": "SENT",
-              "updated_at": "2024-08-27T12:00:00",
-              "created_at": "2024-08-27T12:00:00",
-              "active": true,
-              "company_id": 16,
-              "member_id": 9
-            },
-            {
-              "content": "군산에서 반려동물 사진 전시회를 기획하고 있습니다. 귀사의 사진 전시 패키지에 대해 문의드립니다.",
-              "hope_cost": 500000,
-              "hope_location": "군산",
-              "hope_time": "2024-10-17T11:00:00",
-              "status": "SENT",
-              "updated_at": "2024-08-27T12:00:00",
-              "created_at": "2024-08-27T12:00:00",
-              "active": true,
-              "company_id": 17,
-              "member_id": 11
-            },
-            {
-              "content": "목포에서 요리 대회를 열고 싶습니다. 귀사의 요리 대회 패키지와 제공 서비스에 대해 알고 싶습니다.",
-              "hope_cost": 470000,
-              "hope_location": "목포",
-              "hope_time": "2024-10-18T12:00:00",
-              "status": "SENT",
-              "updated_at": "2024-08-27T12:00:00",
-              "created_at": "2024-08-27T12:00:00",
-              "active": true,
-              "company_id": 18,
-              "member_id": 13
-            },
-            {
-              "content": "포항에서 반려동물 축제를 개최하고 싶습니다. 귀사의 축제 패키지와 옵션에 대해 알고 싶습니다.",
-              "hope_cost": 550000,
-              "hope_location": "포항",
-              "hope_time": "2024-10-19T13:00:00",
-              "status": "SENT",
-              "updated_at": "2024-08-27T12:00:00",
-              "created_at": "2024-08-27T12:00:00",
-              "active": true,
-              "company_id": 19,
-              "member_id": 15
-            },
-            {
-              "content": "경주에서 반려동물 워크숍을 기획하고 있습니다. 귀사의 워크숍 패키지와 제공 서비스에 대해 문의드립니다.",
-              "hope_cost": 490000,
-              "hope_location": "경주",
-              "hope_time": "2024-10-20T14:00:00",
-              "status": "SENT",
-              "updated_at": "2024-08-27T12:00:00",
-              "created_at": "2024-08-27T12:00:00",
-              "active": true,
-              "company_id": 20,
-              "member_id": 17
-            }
-        ],
+  ],
+  "request": [
+    {
+      "content": "서울에서 반려동물 생일 파티를 기획하려고 합니다. 귀사의 생일 패키지에 대해 더 알고 싶습니다.",
+      "hope_cost": 500000,
+      "hope_location": "서울",
+      "hope_time": "2024-10-01T10:00:00",
+      "status": "SENT",
+      "updated_at": "2024-08-27T12:00:00",
+      "created_at": "2024-08-27T12:00:00",
+      "active": true,
+      "company_id": 1,
+      "member_id": 2
+    },
+    {
+      "content": "부산에서 반려동물 돌잔치 기획을 검토 중입니다. 귀사의 돌잔치 패키지를 자세히 알고 싶습니다.",
+      "hope_cost": 450000,
+      "hope_location": "부산",
+      "hope_time": "2024-10-02T11:00:00",
+      "status": "SENT",
+      "updated_at": "2024-08-27T12:00:00",
+      "created_at": "2024-08-27T12:00:00",
+      "active": true,
+      "company_id": 2,
+      "member_id": 4
+    },
+    {
+      "content": "대구에서 풀파티를 개최하고 싶습니다. 귀사의 풀파티 패키지와 제공 서비스에 대해 문의드립니다.",
+      "hope_cost": 550000,
+      "hope_location": "대구",
+      "hope_time": "2024-10-03T12:00:00",
+      "status": "SENT",
+      "updated_at": "2024-08-27T12:00:00",
+      "created_at": "2024-08-27T12:00:00",
+      "active": true,
+      "company_id": 3,
+      "member_id": 6
+    },
+    {
+      "content": "광주에서 크리스마스 파티를 기획하고 싶습니다. 귀사의 크리스마스 패키지에 대해 알고 싶습니다.",
+      "hope_cost": 600000,
+      "hope_location": "광주",
+      "hope_time": "2024-10-04T13:00:00",
+      "status": "SENT",
+      "updated_at": "2024-08-27T12:00:00",
+      "created_at": "2024-08-27T12:00:00",
+      "active": true,
+      "company_id": 4,
+      "member_id": 8
+    },
+    {
+      "content": "대전에서 생일 파티를 계획하고 있습니다. 귀사의 생일 패키지와 옵션에 대해 문의드립니다.",
+      "hope_cost": 520000,
+      "hope_location": "대전",
+      "hope_time": "2024-10-05T14:00:00",
+      "status": "SENT",
+      "updated_at": "2024-08-27T12:00:00",
+      "created_at": "2024-08-27T12:00:00",
+      "active": true,
+      "company_id": 5,
+      "member_id": 10
+    },
+    {
+      "content": "울산에서 여름 풀파티를 검토 중입니다. 귀사의 여름 패키지와 서비스에 대해 알고 싶습니다.",
+      "hope_cost": 580000,
+      "hope_location": "울산",
+      "hope_time": "2024-10-06T15:00:00",
+      "status": "SENT",
+      "updated_at": "2024-08-27T12:00:00",
+      "created_at": "2024-08-27T12:00:00",
+      "active": true,
+      "company_id": 6,
+      "member_id": 12
+    },
+    {
+      "content": "제주도에서 테마 파티를 열고 싶습니다. 귀사의 제주도 특화 패키지에 대해 문의드립니다.",
+      "hope_cost": 650000,
+      "hope_location": "제주",
+      "hope_time": "2024-10-07T16:00:00",
+      "status": "SENT",
+      "updated_at": "2024-08-27T12:00:00",
+      "created_at": "2024-08-27T12:00:00",
+      "active": true,
+      "company_id": 7,
+      "member_id": 14
+    },
+    {
+      "content": "인천에서 할로윈 파티를 계획하고 있습니다. 귀사의 할로윈 패키지에 대해 알고 싶습니다.",
+      "hope_cost": 470000,
+      "hope_location": "인천",
+      "hope_time": "2024-10-08T17:00:00",
+      "status": "SENT",
+      "updated_at": "2024-08-27T12:00:00",
+      "created_at": "2024-08-27T12:00:00",
+      "active": true,
+      "company_id": 8,
+      "member_id": 16
+    },
+    {
+      "content": "성남에서 연말 파티를 열고 싶습니다. 귀사의 연말 패키지와 서비스에 대해 문의드립니다.",
+      "hope_cost": 500000,
+      "hope_location": "성남",
+      "hope_time": "2024-10-09T18:00:00",
+      "status": "SENT",
+      "updated_at": "2024-08-27T12:00:00",
+      "created_at": "2024-08-27T12:00:00",
+      "active": true,
+      "company_id": 9,
+      "member_id": 17
+    },
+    {
+      "content": "용인에서 발렌타인데이 파티를 기획하고 있습니다. 귀사의 발렌타인 패키지에 대해 알고 싶습니다.",
+      "hope_cost": 520000,
+      "hope_location": "용인",
+      "hope_time": "2024-10-10T19:00:00",
+      "status": "SENT",
+      "updated_at": "2024-08-27T12:00:00",
+      "created_at": "2024-08-27T12:00:00",
+      "active": true,
+      "company_id": 10,
+      "member_id": 19
+    },
+    {
+      "content": "고양에서 명절 파티를 개최하고 싶습니다. 귀사의 명절 패키지와 옵션에 대해 문의드립니다.",
+      "hope_cost": 550000,
+      "hope_location": "고양",
+      "hope_time": "2024-10-11T20:00:00",
+      "status": "SENT",
+      "updated_at": "2024-08-27T12:00:00",
+      "created_at": "2024-08-27T12:00:00",
+      "active": true,
+      "company_id": 11,
+      "member_id": 20
+    },
+    {
+      "content": "화성에서 봄맞이 파티를 열고 싶습니다. 귀사의 봄맞이 패키지에 대해 문의드립니다.",
+      "hope_cost": 480000,
+      "hope_location": "화성",
+      "hope_time": "2024-10-12T21:00:00",
+      "status": "SENT",
+      "updated_at": "2024-08-27T12:00:00",
+      "created_at": "2024-08-27T12:00:00",
+      "active": true,
+      "company_id": 12,
+      "member_id": 1
+    },
+    {
+      "content": "남양주에서 가을 파티를 기획하고 있습니다. 귀사의 가을 패키지와 서비스에 대해 알고 싶습니다.",
+      "hope_cost": 490000,
+      "hope_location": "남양주",
+      "hope_time": "2024-10-13T22:00:00",
+      "status": "SENT",
+      "updated_at": "2024-08-27T12:00:00",
+      "created_at": "2024-08-27T12:00:00",
+      "active": true,
+      "company_id": 13,
+      "member_id": 3
+    },
+    {
+      "content": "천안에서 개막식 파티를 열고 싶습니다. 귀사의 개막식 패키지와 제공 서비스에 대해 문의드립니다.",
+      "hope_cost": 520000,
+      "hope_location": "천안",
+      "hope_time": "2024-10-14T23:00:00",
+      "status": "SENT",
+      "updated_at": "2024-08-27T12:00:00",
+      "created_at": "2024-08-27T12:00:00",
+      "active": true,
+      "company_id": 14,
+      "member_id": 5
+    },
+    {
+      "content": "전주에서 건강 캠페인을 기획하고 있습니다. 귀사의 건강 검진 패키지와 서비스에 대해 알고 싶습니다.",
+      "hope_cost": 530000,
+      "hope_location": "전주",
+      "hope_time": "2024-10-15T09:00:00",
+      "status": "SENT",
+      "updated_at": "2024-08-27T12:00:00",
+      "created_at": "2024-08-27T12:00:00",
+      "active": true,
+      "company_id": 15,
+      "member_id": 7
+    },
+    {
+      "content": "여수에서 애견 운동회를 열고 싶습니다. 귀사의 애견 운동회 패키지에 대해 문의드립니다.",
+      "hope_cost": 540000,
+      "hope_location": "여수",
+      "hope_time": "2024-10-16T10:00:00",
+      "status": "SENT",
+      "updated_at": "2024-08-27T12:00:00",
+      "created_at": "2024-08-27T12:00:00",
+      "active": true,
+      "company_id": 16,
+      "member_id": 9
+    },
+    {
+      "content": "군산에서 반려동물 사진 전시회를 기획하고 있습니다. 귀사의 사진 전시 패키지에 대해 문의드립니다.",
+      "hope_cost": 500000,
+      "hope_location": "군산",
+      "hope_time": "2024-10-17T11:00:00",
+      "status": "SENT",
+      "updated_at": "2024-08-27T12:00:00",
+      "created_at": "2024-08-27T12:00:00",
+      "active": true,
+      "company_id": 17,
+      "member_id": 11
+    },
+    {
+      "content": "목포에서 요리 대회를 열고 싶습니다. 귀사의 요리 대회 패키지와 제공 서비스에 대해 알고 싶습니다.",
+      "hope_cost": 470000,
+      "hope_location": "목포",
+      "hope_time": "2024-10-18T12:00:00",
+      "status": "SENT",
+      "updated_at": "2024-08-27T12:00:00",
+      "created_at": "2024-08-27T12:00:00",
+      "active": true,
+      "company_id": 18,
+      "member_id": 13
+    },
+    {
+      "content": "포항에서 반려동물 축제를 개최하고 싶습니다. 귀사의 축제 패키지와 옵션에 대해 알고 싶습니다.",
+      "hope_cost": 550000,
+      "hope_location": "포항",
+      "hope_time": "2024-10-19T13:00:00",
+      "status": "SENT",
+      "updated_at": "2024-08-27T12:00:00",
+      "created_at": "2024-08-27T12:00:00",
+      "active": true,
+      "company_id": 19,
+      "member_id": 15
+    },
+    {
+      "content": "경주에서 반려동물 워크숍을 기획하고 있습니다. 귀사의 워크숍 패키지와 제공 서비스에 대해 문의드립니다.",
+      "hope_cost": 490000,
+      "hope_location": "경주",
+      "hope_time": "2024-10-20T14:00:00",
+      "status": "SENT",
+      "updated_at": "2024-08-27T12:00:00",
+      "created_at": "2024-08-27T12:00:00",
+      "active": true,
+      "company_id": 20,
+      "member_id": 17
+    }
+  ],
 
   "signup": [
     {
@@ -1387,606 +1386,537 @@
       "member_id": 14
     }
   ],
-    "signup": [
-        {
-            "id": 1,
-            "loginId": "user01",
-            "nickname": "철수"
-        },
-        {
-            "id": 2,
-            "loginId": "user02",
-            "nickname": "영희"
-        },
-        {
-            "id": 3,
-            "loginId": "user03",
-            "nickname": "민수"
-        },
-        {
-            "id": 4,
-            "loginId": "user04",
-            "nickname": "지우"
-        },
-        {
-            "id": 5,
-            "loginId": "user05",
-            "nickname": "현우"
-        },
-        {
-            "id": 6,
-            "loginId": "user06",
-            "nickname": "지수"
-        },
-        {
-            "id": 7,
-            "loginId": "user07",
-            "nickname": "하은"
-        },
-        {
-            "id": 8,
-            "loginId": "user08",
-            "nickname": "지민"
-        },
-        {
-            "id": 9,
-            "loginId": "user09",
-            "nickname": "서준"
-        },
-        {
-            "id": 10,
-            "loginId": "user10",
-            "nickname": "수현"
-        },
-        {
-            "id": 11,
-            "loginId": "user11",
-            "nickname": "하늘"
-        },
-        {
-            "id": 12,
-            "loginId": "user12",
-            "nickname": "서윤"
-        },
-        {
-            "id": 13,
-            "loginId": "user13",
-            "nickname": "지훈"
-        }
-      ],
 
-      "reports":
-      [
-        {
-        "id": 1,
-        "reason": "부적절한 광고 게시",
-        "createdAt": "2024-03-01T09:00:00",
-        "reporterId": 1,
-        "respondentId": 2
-        },
-        {
-        "id": 2,
-        "reason": "욕설 및 비방",
-        "createdAt": "2024-03-01T09:15:30",
-        "reporterId": 2,
-        "respondentId": 3
-        }          
-      ],
-    "notices": [
-      {
-        "id": 1,
-        "title": "새로운 펫 이벤트 플랫폼 출시!",
-        "content": "안녕하세요! 반려동물을 위한 새로운 이벤트 플랫폼이 출시되었습니다. 다양한 펫 관련 이벤트에 참여해 보세요.",
-        "createdAt": "2024-09-01T09:00:00",
-        "updatedAt": "2024-09-01T09:00:00",
-        "active": true,
-        "memberId": 1,
-        "fixed": true
-      },
-      {
-        "id": 2,
-        "title": "2024 펫 페스티벌 안내",
-        "content": "2024년 펫 페스티벌이 곧 시작됩니다! 여러분의 반려동물과 함께 다양한 이벤트에 참여해 주세요.",
-        "createdAt": "2024-09-05T10:00:00",
-        "updatedAt": "2024-09-05T10:00:00",
-        "active": true,
-        "memberId": 2,
-        "fixed": false
-      },
-      {
-        "id": 3,
-        "title": "플랫폼 정기 점검 안내",
-        "content": "안정적인 서비스 제공을 위해 2024년 9월 15일에 정기 점검이 있을 예정입니다. 점검 시간 동안 서비스 이용이 제한될 수 있습니다.",
-        "createdAt": "2024-09-10T11:30:00",
-        "updatedAt": "2024-09-10T11:30:00",
-        "active": true,
-        "memberId": 3,
-        "fixed": false
-      },
-      {
-        "id": 4,
-        "title": "새로운 반려동물 입양 섹션 추가",
-        "content": "새롭게 추가된 반려동물 입양 섹션에서 다양한 입양 가능한 반려동물을 찾아보세요. 여러분의 소중한 반려동물을 위한 새로운 가족을 찾을 수 있습니다.",
-        "createdAt": "2024-09-12T14:45:00",
-        "updatedAt": "2024-09-12T14:45:00",
-        "active": true,
-        "memberId": 4,
-        "fixed": false
-      },
-      {
-        "id": 5,
-        "title": "반려동물 사진 콘테스트",
-        "content": "반려동물 사진 콘테스트가 진행 중입니다! 귀여운 반려동물의 사진을 올리고, 다른 사용자들과 공유해보세요!",
-        "createdAt": "2024-09-15T09:20:00",
-        "updatedAt": "2024-09-15T09:20:00",
-        "active": true,
-        "memberId": 5,
-        "fixed": true
-      },
-      {
-        "id": 6,
-        "title": "특별 할인 이벤트 안내",
-        "content": "펫 관련 제품을 위한 특별 할인 이벤트가 진행됩니다! 놓치지 마세요.",
-        "createdAt": "2024-09-18T08:30:00",
-        "updatedAt": "2024-09-18T08:30:00",
-        "active": true,
-        "memberId": 6,
-        "fixed": false
-      },
-      {
-        "id": 7,
-        "title": "반려동물 건강 관리 세미나",
-        "content": "반려동물 건강 관리에 대한 세미나가 열립니다. 건강한 생활을 위한 유용한 정보를 확인해보세요.",
-        "createdAt": "2024-09-20T11:00:00",
-        "updatedAt": "2024-09-20T11:00:00",
-        "active": true,
-        "memberId": 7,
-        "fixed": false
-      },
-      {
-        "id": 8,
-        "title": "펫 베스트 공모전 개최",
-        "content": "반려동물 관련 다양한 아이디어를 공모하는 펫 베스트 공모전이 개최됩니다. 참가해보세요!",
-        "createdAt": "2024-09-22T10:45:00",
-        "updatedAt": "2024-09-22T10:45:00",
-        "active": true,
-        "memberId": 8,
-        "fixed": false
-      }
-    ],
-    "qnas" : [
-        {
-          "id": 10,
-          "title": "물고기 어항 크기",
-          "content": "구피를 키울 때 적절한 어항 크기는 어느 정도인가요?",
-          "createdAt": "2024-09-26T18:00:00Z",
-          "answeredAt": null,
-          "answer": null,
-          "answered": false,
-          "active": true,
-          "companyId": 3,
-          "questionerId": 10,
-          "answererId": null
-        },
-        {
-          "id": 8,
-          "title": "고양이 털 관리 방법",
-          "content": "장모종 고양이의 털 관리는 어떻게 해야 하나요?",
-          "createdAt": "2024-09-26T16:00:00Z",
-          "answeredAt": null,
-          "answer": null,
-          "answered": false,
-          "active": true,
-          "companyId": 1,
-          "questionerId": 8,
-          "answererId": null
-        },
-        {
-          "id": 4,
-          "title": "애완견 목욕 빈도",
-          "content": "강아지를 얼마나 자주 목욕시켜야 할까요?",
-          "createdAt": "2024-09-26T12:00:00Z",
-          "answeredAt": null,
-          "answer": null,
-          "answered": false,
-          "active": true,
-          "companyId": 3,
-          "questionerId": 4,
-          "answererId": null
-        },
-        {
-          "id": 2,
-          "title": "고양이 사료 추천 부탁드립니다.",
-          "content": "1살 된 고양이에게 좋은 사료 추천 부탁드립니다.",
-          "createdAt": "2024-09-26T10:00:00Z",
-          "answeredAt": null,
-          "answer": null,
-          "answered": false,
-          "active": true,
-          "companyId": 2,
-          "questionerId": 2,
-          "answererId": null
-        },
-        {
-          "id": 6,
-          "title": "고양이 스크래처 필요성",
-          "content": "고양이에게 스크래처가 꼭 필요한가요?",
-          "createdAt": "2024-09-26T14:00:00Z",
-          "answeredAt": null,
-          "answer": null,
-          "answered": false,
-          "active": true,
-          "companyId": 1,
-          "questionerId": 6,
-          "answererId": null
-        },
-        {
-          "id": 5,
-          "title": "토끼 간식 추천",
-          "content": "토끼에게 줄 수 있는 건강한 간식을 추천해주세요.",
-          "createdAt": "2024-09-26T13:00:00Z",
-          "answeredAt": "2024-09-26T16:00:00Z",
-          "answer": "당근이나 사과 조각을 소량으로 주면 좋아요. 단, 과도한 당분은 피해야 합니다.",
-          "answered": true,
-          "active": true,
-          "companyId": 2,
-          "questionerId": 5,
-          "answererId": 3
-        },
-        {
-          "id": 7,
-          "title": "새장 청소 빈도",
-          "content": "새장을 얼마나 자주 청소해야 할까요?",
-          "createdAt": "2024-09-26T15:00:00Z",
-          "answeredAt": "2024-09-26T18:00:00Z",
-          "answer": "새장의 위생을 위해 일주일에 최소 두 번은 청소해주시는 것이 좋습니다.",
-          "answered": true,
-          "active": true,
-          "companyId": 3,
-          "questionerId": 7,
-          "answererId": 4
-        },
-        {
-          "id": 9,
-          "title": "강아지 산책 시간",
-          "content": "강아지를 하루에 얼마나 산책시켜야 할까요?",
-          "createdAt": "2024-09-26T17:00:00Z",
-          "answeredAt": "2024-09-26T19:00:00Z",
-          "answer": "강아지의 나이와 건강 상태에 따라 다르지만, 일반적으로 하루에 30분에서 1시간 정도가 적당합니다.",
-          "answered": true,
-          "active": true,
-          "companyId": 2,
-          "questionerId": 9,
-          "answererId": 5
-        },
-        {
-          "id": 1,
-          "title": "애완견 훈련 관련 질문",
-          "content": "강아지의 배변 훈련에 관한 질문이 있습니다. 처음 어떻게 시작해야 할까요?",
-          "createdAt": "2024-09-26T09:00:00Z",
-          "answeredAt": "2024-09-26T14:00:00Z",
-          "answer": "처음에는 일정한 시간과 장소를 정해 강아지가 자연스럽게 배변할 수 있도록 유도해야 합니다.",
-          "answered": true,
-          "active": true,
-          "companyId": 1,
-          "questionerId": 1,
-          "answererId": 1
-        },
-        {
-          "id": 3,
-          "title": "햄스터 집 추천",
-          "content": "햄스터에게 적합한 집 추천 부탁드립니다.",
-          "createdAt": "2024-09-26T11:00:00Z",
-          "answeredAt": "2024-09-26T15:30:00Z",
-          "answer": "햄스터는 공간이 넓고 통풍이 잘되는 집이 좋습니다. 다양한 숨을 곳이 있는 집을 추천드립니다.",
-          "answered": true,
-          "active": true,
-          "companyId": 1,
-          "questionerId": 3,
-          "answererId": 2
-        }
-      ],
-      "estimate" : [
-        {
-          "id": 1,
-          "expected_cost": 15000,
-          "status": "SENT",
-          "created_at": "2023-09-14T12:34:56",
-          "updated_at": "2023-09-14T12:34:56",
-          "active": true,
-          "company_id": 7,
-          "proposal_id": 12
-        },
-        {
-          "id": 2,
-          "expected_cost": 20000,
-          "status": "CONFIRMED",
-          "created_at": "2023-05-22T09:21:43",
-          "updated_at": "2023-05-22T09:21:43",
-          "active": true,
-          "company_id": 18,
-          "proposal_id": 5
-        },
-        {
-          "id": 3,
-          "expected_cost": 17500,
-          "status": "REJECTED",
-          "created_at": "2024-01-11T16:44:32",
-          "updated_at": "2024-01-11T16:44:32",
-          "active": true,
-          "company_id": 3,
-          "proposal_id": 14
-        },
-        {
-          "id": 4,
-          "expected_cost": 22000,
-          "status": "SENT",
-          "created_at": "2023-08-09T14:11:29",
-          "updated_at": "2023-08-09T14:11:29",
-          "active": true,
-          "company_id": 25,
-          "proposal_id": 9
-        },
-        {
-          "id": 5,
-          "expected_cost": 13000,
-          "status": "CONFIRMED",
-          "created_at": "2024-02-07T08:59:18",
-          "updated_at": "2024-02-07T08:59:18",
-          "active": true,
-          "company_id": 10,
-          "proposal_id": 16
-        },
-        {
-          "id": 6,
-          "expected_cost": 19000,
-          "status": "REJECTED",
-          "created_at": "2023-11-15T18:27:45",
-          "updated_at": "2023-11-15T18:27:45",
-          "active": true,
-          "company_id": 22,
-          "proposal_id": 3
-        },
-        {
-          "id": 7,
-          "expected_cost": 25000,
-          "status": "SENT",
-          "created_at": "2024-03-20T15:45:32",
-          "updated_at": "2024-03-20T15:45:32",
-          "active": true,
-          "company_id": 5,
-          "proposal_id": 22
-        },
-        {
-          "id": 8,
-          "expected_cost": 16000,
-          "status": "CONFIRMED",
-          "created_at": "2024-07-04T10:30:10",
-          "updated_at": "2024-07-04T10:30:10",
-          "active": true,
-          "company_id": 8,
-          "proposal_id": 17
-        },
-        {
-          "id": 9,
-          "expected_cost": 21000,
-          "status": "REJECTED",
-          "created_at": "2023-12-21T13:09:56",
-          "updated_at": "2023-12-21T13:09:56",
-          "active": true,
-          "company_id": 14,
-          "proposal_id": 20
-        },
-        {
-          "id": 10,
-          "expected_cost": 14000,
-          "status": "SENT",
-          "created_at": "2024-04-18T07:42:55",
-          "updated_at": "2024-04-18T07:42:55",
-          "active": true,
-          "company_id": 12,
-          "proposal_id": 8
-        },
-        {
-          "id": 11,
-          "expected_cost": 38000,
-          "status": "CONFIRMED",
-          "created_at": "2024-06-15T11:58:12",
-          "updated_at": "2024-06-15T11:58:12",
-          "active": true,
-          "company_id": 27,
-          "proposal_id": 11
-        },
-        {
-          "id": 12,
-          "expected_cost": 20000,
-          "status": "REJECTED",
-          "created_at": "2024-01-09T15:20:35",
-          "updated_at": "2024-01-09T15:20:35",
-          "active": true,
-          "company_id": 6,
-          "proposal_id": 23
-        },
-        {
-          "id": 13,
-          "expected_cost": 17000,
-          "status": "SENT",
-          "created_at": "2023-10-30T17:38:22",
-          "updated_at": "2023-10-30T17:38:22",
-          "active": true,
-          "company_id": 9,
-          "proposal_id": 15
-        },
-        {
-          "id": 14,
-          "expected_cost": 22000,
-          "status": "CONFIRMED",
-          "created_at": "2024-03-14T13:22:50",
-          "updated_at": "2024-03-14T13:22:50",
-          "active": true,
-          "company_id": 4,
-          "proposal_id": 21
-        },
-        {
-          "id": 15,
-          "expected_cost": 15000,
-          "status": "REJECTED",
-          "created_at": "2024-05-17T08:12:45",
-          "updated_at": "2024-05-17T08:12:45",
-          "active": true,
-          "company_id": 13,
-          "proposal_id": 7
-        },
-        {
-          "id": 16,
-          "expected_cost": 30000,
-          "status": "SENT",
-          "created_at": "2023-12-02T19:30:38",
-          "updated_at": "2023-12-02T19:30:38",
-          "active": true,
-          "company_id": 19,
-          "proposal_id": 12
-        },
-        {
-          "id": 17,
-          "expected_cost": 17000,
-          "status": "CONFIRMED",
-          "created_at": "2024-02-25T10:15:29",
-          "updated_at": "2024-02-25T10:15:29",
-          "active": true,
-          "company_id": 1,
-          "proposal_id": 23
-        },
-        {
-          "id": 18,
-          "expected_cost": 22000,
-          "status": "REJECTED",
-          "created_at": "2023-11-29T14:55:42",
-          "updated_at": "2023-11-29T14:55:42",
-          "active": true,
-          "company_id": 21,
-          "proposal_id": 10
-        },
-        {
-          "id": 19,
-          "expected_cost": 14000,
-          "status": "SENT",
-          "created_at": "2024-04-07T11:23:30",
-          "updated_at": "2024-04-07T11:23:30",
-          "active": true,
-          "company_id": 2,
-          "proposal_id": 24
-        },
-        {
-          "id": 20,
-          "expected_cost": 19000,
-          "status": "CONFIRMED",
-          "created_at": "2024-01-23T08:44:17",
-          "updated_at": "2024-01-23T08:44:17",
-          "active": true,
-          "company_id": 15,
-          "proposal_id": 19
-        },
-        {
-          "id": 21,
-          "expected_cost": 43000,
-          "status": "REJECTED",
-          "created_at": "2024-06-01T16:29:56",
-          "updated_at": "2024-06-01T16:29:56",
-          "active": true,
-          "company_id": 26,
-          "proposal_id": 4
-        },
-        {
-          "id": 22,
-          "expected_cost": 16000,
-          "status": "SENT",
-          "created_at": "2023-07-19T10:58:23",
-          "updated_at": "2023-07-19T10:58:23",
-          "active": true,
-          "company_id": 11,
-          "proposal_id": 27
-        },
-        {
-          "id": 23,
-          "expected_cost": 21000,
-          "status": "CONFIRMED",
-          "created_at": "2023-09-28T12:35:40",
-          "updated_at": "2023-09-28T12:35:40",
-          "active": true,
-          "company_id": 13,
-          "proposal_id": 13
-        },
-        {
-          "id": 24,
-          "expected_cost": 58000,
-          "status": "REJECTED",
-          "created_at": "2024-08-10T17:45:12",
-          "updated_at": "2024-08-10T17:45:12",
-          "active": true,
-          "company_id": 4,
-          "proposal_id": 2
-        },
-        {
-          "id": 25,
-          "expected_cost": 64000,
-          "status": "SENT",
-          "created_at": "2023-06-20T14:15:29",
-          "updated_at": "2023-06-20T14:15:29",
-          "active": true,
-          "company_id": 30,
-          "proposal_id": 9
-        },
-        {
-          "id": 26,
-          "expected_cost": 20000,
-          "status": "CONFIRMED",
-          "created_at": "2024-07-29T16:20:45",
-          "updated_at": "2024-07-29T16:20:45",
-          "active": true,
-          "company_id": 23,
-          "proposal_id": 5
-        },
-        {
-          "id": 27,
-          "expected_cost": 19000,
-          "status": "REJECTED",
-          "created_at": "2023-10-07T11:42:18",
-          "updated_at": "2023-10-07T11:42:18",
-          "active": true,
-          "company_id": 8,
-          "proposal_id": 21
-        },
-        {
-          "id": 28,
-          "expected_cost": 22000,
-          "status": "SENT",
-          "created_at": "2024-05-12T09:37:24",
-          "updated_at": "2024-05-12T09:37:24",
-          "active": true,
-          "company_id": 20,
-          "proposal_id": 10
-        },
-        {
-          "id": 29,
-          "expected_cost": 15000,
-          "status": "CONFIRMED",
-          "created_at": "2023-08-18T15:50:11",
-          "updated_at": "2023-08-18T15:50:11",
-          "active": true,
-          "company_id": 12,
-          "proposal_id": 22
-        },
-        {
-          "id": 30,
-          "expected_cost": 17000,
-          "status": "REJECTED",
-          "created_at": "2024-02-28T20:05:30",
-          "updated_at": "2024-02-28T20:05:30",
-          "active": true,
-          "company_id": 17,
-          "proposal_id": 3
-        }
-      ]
-      
+  "reports": [
+    {
+      "id": 1,
+      "reason": "부적절한 광고 게시",
+      "createdAt": "2024-03-01T09:00:00",
+      "reporterId": 1,
+      "respondentId": 2
+    },
+    {
+      "id": 2,
+      "reason": "욕설 및 비방",
+      "createdAt": "2024-03-01T09:15:30",
+      "reporterId": 2,
+      "respondentId": 3
+    }
+  ],
+  "notices": [
+    {
+      "id": 1,
+      "title": "새로운 펫 이벤트 플랫폼 출시!",
+      "content": "안녕하세요! 반려동물을 위한 새로운 이벤트 플랫폼이 출시되었습니다. 다양한 펫 관련 이벤트에 참여해 보세요.",
+      "createdAt": "2024-09-01T09:00:00",
+      "updatedAt": "2024-09-01T09:00:00",
+      "active": true,
+      "memberId": 1,
+      "fixed": true
+    },
+    {
+      "id": 2,
+      "title": "2024 펫 페스티벌 안내",
+      "content": "2024년 펫 페스티벌이 곧 시작됩니다! 여러분의 반려동물과 함께 다양한 이벤트에 참여해 주세요.",
+      "createdAt": "2024-09-05T10:00:00",
+      "updatedAt": "2024-09-05T10:00:00",
+      "active": true,
+      "memberId": 2,
+      "fixed": false
+    },
+    {
+      "id": 3,
+      "title": "플랫폼 정기 점검 안내",
+      "content": "안정적인 서비스 제공을 위해 2024년 9월 15일에 정기 점검이 있을 예정입니다. 점검 시간 동안 서비스 이용이 제한될 수 있습니다.",
+      "createdAt": "2024-09-10T11:30:00",
+      "updatedAt": "2024-09-10T11:30:00",
+      "active": true,
+      "memberId": 3,
+      "fixed": false
+    },
+    {
+      "id": 4,
+      "title": "새로운 반려동물 입양 섹션 추가",
+      "content": "새롭게 추가된 반려동물 입양 섹션에서 다양한 입양 가능한 반려동물을 찾아보세요. 여러분의 소중한 반려동물을 위한 새로운 가족을 찾을 수 있습니다.",
+      "createdAt": "2024-09-12T14:45:00",
+      "updatedAt": "2024-09-12T14:45:00",
+      "active": true,
+      "memberId": 4,
+      "fixed": false
+    },
+    {
+      "id": 5,
+      "title": "반려동물 사진 콘테스트",
+      "content": "반려동물 사진 콘테스트가 진행 중입니다! 귀여운 반려동물의 사진을 올리고, 다른 사용자들과 공유해보세요!",
+      "createdAt": "2024-09-15T09:20:00",
+      "updatedAt": "2024-09-15T09:20:00",
+      "active": true,
+      "memberId": 5,
+      "fixed": true
+    },
+    {
+      "id": 6,
+      "title": "특별 할인 이벤트 안내",
+      "content": "펫 관련 제품을 위한 특별 할인 이벤트가 진행됩니다! 놓치지 마세요.",
+      "createdAt": "2024-09-18T08:30:00",
+      "updatedAt": "2024-09-18T08:30:00",
+      "active": true,
+      "memberId": 6,
+      "fixed": false
+    },
+    {
+      "id": 7,
+      "title": "반려동물 건강 관리 세미나",
+      "content": "반려동물 건강 관리에 대한 세미나가 열립니다. 건강한 생활을 위한 유용한 정보를 확인해보세요.",
+      "createdAt": "2024-09-20T11:00:00",
+      "updatedAt": "2024-09-20T11:00:00",
+      "active": true,
+      "memberId": 7,
+      "fixed": false
+    },
+    {
+      "id": 8,
+      "title": "펫 베스트 공모전 개최",
+      "content": "반려동물 관련 다양한 아이디어를 공모하는 펫 베스트 공모전이 개최됩니다. 참가해보세요!",
+      "createdAt": "2024-09-22T10:45:00",
+      "updatedAt": "2024-09-22T10:45:00",
+      "active": true,
+      "memberId": 8,
+      "fixed": false
+    }
+  ],
+  "qnas": [
+    {
+      "id": 10,
+      "title": "물고기 어항 크기",
+      "content": "구피를 키울 때 적절한 어항 크기는 어느 정도인가요?",
+      "createdAt": "2024-09-26T18:00:00Z",
+      "answeredAt": null,
+      "answer": null,
+      "answered": false,
+      "active": true,
+      "companyId": 3,
+      "questionerId": 10,
+      "answererId": null
+    },
+    {
+      "id": 8,
+      "title": "고양이 털 관리 방법",
+      "content": "장모종 고양이의 털 관리는 어떻게 해야 하나요?",
+      "createdAt": "2024-09-26T16:00:00Z",
+      "answeredAt": null,
+      "answer": null,
+      "answered": false,
+      "active": true,
+      "companyId": 1,
+      "questionerId": 8,
+      "answererId": null
+    },
+    {
+      "id": 4,
+      "title": "애완견 목욕 빈도",
+      "content": "강아지를 얼마나 자주 목욕시켜야 할까요?",
+      "createdAt": "2024-09-26T12:00:00Z",
+      "answeredAt": null,
+      "answer": null,
+      "answered": false,
+      "active": true,
+      "companyId": 3,
+      "questionerId": 4,
+      "answererId": null
+    },
+    {
+      "id": 2,
+      "title": "고양이 사료 추천 부탁드립니다.",
+      "content": "1살 된 고양이에게 좋은 사료 추천 부탁드립니다.",
+      "createdAt": "2024-09-26T10:00:00Z",
+      "answeredAt": null,
+      "answer": null,
+      "answered": false,
+      "active": true,
+      "companyId": 2,
+      "questionerId": 2,
+      "answererId": null
+    },
+    {
+      "id": 6,
+      "title": "고양이 스크래처 필요성",
+      "content": "고양이에게 스크래처가 꼭 필요한가요?",
+      "createdAt": "2024-09-26T14:00:00Z",
+      "answeredAt": null,
+      "answer": null,
+      "answered": false,
+      "active": true,
+      "companyId": 1,
+      "questionerId": 6,
+      "answererId": null
+    },
+    {
+      "id": 5,
+      "title": "토끼 간식 추천",
+      "content": "토끼에게 줄 수 있는 건강한 간식을 추천해주세요.",
+      "createdAt": "2024-09-26T13:00:00Z",
+      "answeredAt": "2024-09-26T16:00:00Z",
+      "answer": "당근이나 사과 조각을 소량으로 주면 좋아요. 단, 과도한 당분은 피해야 합니다.",
+      "answered": true,
+      "active": true,
+      "companyId": 2,
+      "questionerId": 5,
+      "answererId": 3
+    },
+    {
+      "id": 7,
+      "title": "새장 청소 빈도",
+      "content": "새장을 얼마나 자주 청소해야 할까요?",
+      "createdAt": "2024-09-26T15:00:00Z",
+      "answeredAt": "2024-09-26T18:00:00Z",
+      "answer": "새장의 위생을 위해 일주일에 최소 두 번은 청소해주시는 것이 좋습니다.",
+      "answered": true,
+      "active": true,
+      "companyId": 3,
+      "questionerId": 7,
+      "answererId": 4
+    },
+    {
+      "id": 9,
+      "title": "강아지 산책 시간",
+      "content": "강아지를 하루에 얼마나 산책시켜야 할까요?",
+      "createdAt": "2024-09-26T17:00:00Z",
+      "answeredAt": "2024-09-26T19:00:00Z",
+      "answer": "강아지의 나이와 건강 상태에 따라 다르지만, 일반적으로 하루에 30분에서 1시간 정도가 적당합니다.",
+      "answered": true,
+      "active": true,
+      "companyId": 2,
+      "questionerId": 9,
+      "answererId": 5
+    },
+    {
+      "id": 1,
+      "title": "애완견 훈련 관련 질문",
+      "content": "강아지의 배변 훈련에 관한 질문이 있습니다. 처음 어떻게 시작해야 할까요?",
+      "createdAt": "2024-09-26T09:00:00Z",
+      "answeredAt": "2024-09-26T14:00:00Z",
+      "answer": "처음에는 일정한 시간과 장소를 정해 강아지가 자연스럽게 배변할 수 있도록 유도해야 합니다.",
+      "answered": true,
+      "active": true,
+      "companyId": 1,
+      "questionerId": 1,
+      "answererId": 1
+    },
+    {
+      "id": 3,
+      "title": "햄스터 집 추천",
+      "content": "햄스터에게 적합한 집 추천 부탁드립니다.",
+      "createdAt": "2024-09-26T11:00:00Z",
+      "answeredAt": "2024-09-26T15:30:00Z",
+      "answer": "햄스터는 공간이 넓고 통풍이 잘되는 집이 좋습니다. 다양한 숨을 곳이 있는 집을 추천드립니다.",
+      "answered": true,
+      "active": true,
+      "companyId": 1,
+      "questionerId": 3,
+      "answererId": 2
+    }
+  ],
+  "estimate": [
+    {
+      "id": 1,
+      "expected_cost": 15000,
+      "status": "SENT",
+      "created_at": "2023-09-14T12:34:56",
+      "updated_at": "2023-09-14T12:34:56",
+      "active": true,
+      "company_id": 7,
+      "proposal_id": 12
+    },
+    {
+      "id": 2,
+      "expected_cost": 20000,
+      "status": "CONFIRMED",
+      "created_at": "2023-05-22T09:21:43",
+      "updated_at": "2023-05-22T09:21:43",
+      "active": true,
+      "company_id": 18,
+      "proposal_id": 5
+    },
+    {
+      "id": 3,
+      "expected_cost": 17500,
+      "status": "REJECTED",
+      "created_at": "2024-01-11T16:44:32",
+      "updated_at": "2024-01-11T16:44:32",
+      "active": true,
+      "company_id": 3,
+      "proposal_id": 14
+    },
+    {
+      "id": 4,
+      "expected_cost": 22000,
+      "status": "SENT",
+      "created_at": "2023-08-09T14:11:29",
+      "updated_at": "2023-08-09T14:11:29",
+      "active": true,
+      "company_id": 25,
+      "proposal_id": 9
+    },
+    {
+      "id": 5,
+      "expected_cost": 13000,
+      "status": "CONFIRMED",
+      "created_at": "2024-02-07T08:59:18",
+      "updated_at": "2024-02-07T08:59:18",
+      "active": true,
+      "company_id": 10,
+      "proposal_id": 16
+    },
+    {
+      "id": 6,
+      "expected_cost": 19000,
+      "status": "REJECTED",
+      "created_at": "2023-11-15T18:27:45",
+      "updated_at": "2023-11-15T18:27:45",
+      "active": true,
+      "company_id": 22,
+      "proposal_id": 3
+    },
+    {
+      "id": 7,
+      "expected_cost": 25000,
+      "status": "SENT",
+      "created_at": "2024-03-20T15:45:32",
+      "updated_at": "2024-03-20T15:45:32",
+      "active": true,
+      "company_id": 5,
+      "proposal_id": 22
+    },
+    {
+      "id": 8,
+      "expected_cost": 16000,
+      "status": "CONFIRMED",
+      "created_at": "2024-07-04T10:30:10",
+      "updated_at": "2024-07-04T10:30:10",
+      "active": true,
+      "company_id": 8,
+      "proposal_id": 17
+    },
+    {
+      "id": 9,
+      "expected_cost": 21000,
+      "status": "REJECTED",
+      "created_at": "2023-12-21T13:09:56",
+      "updated_at": "2023-12-21T13:09:56",
+      "active": true,
+      "company_id": 14,
+      "proposal_id": 20
+    },
+    {
+      "id": 10,
+      "expected_cost": 14000,
+      "status": "SENT",
+      "created_at": "2024-04-18T07:42:55",
+      "updated_at": "2024-04-18T07:42:55",
+      "active": true,
+      "company_id": 12,
+      "proposal_id": 8
+    },
+    {
+      "id": 11,
+      "expected_cost": 38000,
+      "status": "CONFIRMED",
+      "created_at": "2024-06-15T11:58:12",
+      "updated_at": "2024-06-15T11:58:12",
+      "active": true,
+      "company_id": 27,
+      "proposal_id": 11
+    },
+    {
+      "id": 12,
+      "expected_cost": 20000,
+      "status": "REJECTED",
+      "created_at": "2024-01-09T15:20:35",
+      "updated_at": "2024-01-09T15:20:35",
+      "active": true,
+      "company_id": 6,
+      "proposal_id": 23
+    },
+    {
+      "id": 13,
+      "expected_cost": 17000,
+      "status": "SENT",
+      "created_at": "2023-10-30T17:38:22",
+      "updated_at": "2023-10-30T17:38:22",
+      "active": true,
+      "company_id": 9,
+      "proposal_id": 15
+    },
+    {
+      "id": 14,
+      "expected_cost": 22000,
+      "status": "CONFIRMED",
+      "created_at": "2024-03-14T13:22:50",
+      "updated_at": "2024-03-14T13:22:50",
+      "active": true,
+      "company_id": 4,
+      "proposal_id": 21
+    },
+    {
+      "id": 15,
+      "expected_cost": 15000,
+      "status": "REJECTED",
+      "created_at": "2024-05-17T08:12:45",
+      "updated_at": "2024-05-17T08:12:45",
+      "active": true,
+      "company_id": 13,
+      "proposal_id": 7
+    },
+    {
+      "id": 16,
+      "expected_cost": 30000,
+      "status": "SENT",
+      "created_at": "2023-12-02T19:30:38",
+      "updated_at": "2023-12-02T19:30:38",
+      "active": true,
+      "company_id": 19,
+      "proposal_id": 12
+    },
+    {
+      "id": 17,
+      "expected_cost": 17000,
+      "status": "CONFIRMED",
+      "created_at": "2024-02-25T10:15:29",
+      "updated_at": "2024-02-25T10:15:29",
+      "active": true,
+      "company_id": 1,
+      "proposal_id": 23
+    },
+    {
+      "id": 18,
+      "expected_cost": 22000,
+      "status": "REJECTED",
+      "created_at": "2023-11-29T14:55:42",
+      "updated_at": "2023-11-29T14:55:42",
+      "active": true,
+      "company_id": 21,
+      "proposal_id": 10
+    },
+    {
+      "id": 19,
+      "expected_cost": 14000,
+      "status": "SENT",
+      "created_at": "2024-04-07T11:23:30",
+      "updated_at": "2024-04-07T11:23:30",
+      "active": true,
+      "company_id": 2,
+      "proposal_id": 24
+    },
+    {
+      "id": 20,
+      "expected_cost": 19000,
+      "status": "CONFIRMED",
+      "created_at": "2024-01-23T08:44:17",
+      "updated_at": "2024-01-23T08:44:17",
+      "active": true,
+      "company_id": 15,
+      "proposal_id": 19
+    },
+    {
+      "id": 21,
+      "expected_cost": 43000,
+      "status": "REJECTED",
+      "created_at": "2024-06-01T16:29:56",
+      "updated_at": "2024-06-01T16:29:56",
+      "active": true,
+      "company_id": 26,
+      "proposal_id": 4
+    },
+    {
+      "id": 22,
+      "expected_cost": 16000,
+      "status": "SENT",
+      "created_at": "2023-07-19T10:58:23",
+      "updated_at": "2023-07-19T10:58:23",
+      "active": true,
+      "company_id": 11,
+      "proposal_id": 27
+    },
+    {
+      "id": 23,
+      "expected_cost": 21000,
+      "status": "CONFIRMED",
+      "created_at": "2023-09-28T12:35:40",
+      "updated_at": "2023-09-28T12:35:40",
+      "active": true,
+      "company_id": 13,
+      "proposal_id": 13
+    },
+    {
+      "id": 24,
+      "expected_cost": 58000,
+      "status": "REJECTED",
+      "created_at": "2024-08-10T17:45:12",
+      "updated_at": "2024-08-10T17:45:12",
+      "active": true,
+      "company_id": 4,
+      "proposal_id": 2
+    },
+    {
+      "id": 25,
+      "expected_cost": 64000,
+      "status": "SENT",
+      "created_at": "2023-06-20T14:15:29",
+      "updated_at": "2023-06-20T14:15:29",
+      "active": true,
+      "company_id": 30,
+      "proposal_id": 9
+    },
+    {
+      "id": 26,
+      "expected_cost": 20000,
+      "status": "CONFIRMED",
+      "created_at": "2024-07-29T16:20:45",
+      "updated_at": "2024-07-29T16:20:45",
+      "active": true,
+      "company_id": 23,
+      "proposal_id": 5
+    },
+    {
+      "id": 27,
+      "expected_cost": 19000,
+      "status": "REJECTED",
+      "created_at": "2023-10-07T11:42:18",
+      "updated_at": "2023-10-07T11:42:18",
+      "active": true,
+      "company_id": 8,
+      "proposal_id": 21
+    },
+    {
+      "id": 28,
+      "expected_cost": 22000,
+      "status": "SENT",
+      "created_at": "2024-05-12T09:37:24",
+      "updated_at": "2024-05-12T09:37:24",
+      "active": true,
+      "company_id": 20,
+      "proposal_id": 10
+    },
+    {
+      "id": 29,
+      "expected_cost": 15000,
+      "status": "CONFIRMED",
+      "created_at": "2023-08-18T15:50:11",
+      "updated_at": "2023-08-18T15:50:11",
+      "active": true,
+      "company_id": 12,
+      "proposal_id": 22
+    },
+    {
+      "id": 30,
+      "expected_cost": 17000,
+      "status": "REJECTED",
+      "created_at": "2024-02-28T20:05:30",
+      "updated_at": "2024-02-28T20:05:30",
+      "active": true,
+      "company_id": 17,
+      "proposal_id": 3
+    }
+  ]
 }
