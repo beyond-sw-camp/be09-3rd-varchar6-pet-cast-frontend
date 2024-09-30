@@ -11,7 +11,6 @@
         <li><RouterLink to="/">Home</RouterLink></li>
         <li><RouterLink to="/about">About</RouterLink></li>
         <li><RouterLink to="/proposal">견적 요청</RouterLink></li>
-        <li><RouterLink to="/request">요청</RouterLink></li>
         <li><RouterLink to="/biz-list">업체 찾기</RouterLink></li>
         <li><RouterLink to="/gatherlist">모임</RouterLink></li>
 

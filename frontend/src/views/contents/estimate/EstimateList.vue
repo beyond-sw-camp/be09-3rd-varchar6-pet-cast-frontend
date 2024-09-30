@@ -7,7 +7,7 @@
         <b-table striped hover :items="items" :fields="fields">
           <template #cell(actions)="row">
             <b-button
-              variant="success"
+              variant="primary"
               @click="approveEstimate(row.item.id)"
               :disabled="row.item.status !== 'SENT'"
               >승인</b-button
