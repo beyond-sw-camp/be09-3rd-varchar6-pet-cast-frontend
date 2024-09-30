@@ -122,16 +122,25 @@
   <summary>
 	  <strong>Front End 기능 명세서</strong>
   </summary>
-  ![image](https://github.com/user-attachments/assets/d60a8eba-4b10-41c5-8e45-f04f30211a49)
-  ![image](https://github.com/user-attachments/assets/a81c5ccf-b94e-4f68-bbd1-0dc4c72676a8)
-  ![image](https://github.com/user-attachments/assets/895d9ef6-1f64-4d44-8dbe-bfcdf9486259)
-  ![image](https://github.com/user-attachments/assets/f13e04c5-5442-4e7b-8081-f45aaada5d9c)
-  ![image](https://github.com/user-attachments/assets/ffa3b47f-7958-4639-bdd7-6dde5651ffcd)
-  ![image](https://github.com/user-attachments/assets/0497283b-05aa-4613-9b3f-2f2c2b7d1654)
-  ![image](https://github.com/user-attachments/assets/0102d799-7b1a-450f-badb-c199de36af7c)
-  ![image](https://github.com/user-attachments/assets/1dbf9978-3c44-4599-8606-90cb436138de)
-  ![image](https://github.com/user-attachments/assets/cc08c31e-167e-413f-828e-1af991e00a27)
-  ![image](https://github.com/user-attachments/assets/76a05d9c-3e18-4cb8-82a1-74aed7ce195f)
+  	![image](https://github.com/user-attachments/assets/d60a8eba-4b10-41c5-8e45-f04f30211a49)
+	<br>
+  	![image](https://github.com/user-attachments/assets/a81c5ccf-b94e-4f68-bbd1-0dc4c72676a8)
+	<br>
+ 	 ![image](https://github.com/user-attachments/assets/895d9ef6-1f64-4d44-8dbe-bfcdf9486259)
+	<br>
+ 	 ![image](https://github.com/user-attachments/assets/f13e04c5-5442-4e7b-8081-f45aaada5d9c)
+	<br>
+ 	 ![image](https://github.com/user-attachments/assets/ffa3b47f-7958-4639-bdd7-6dde5651ffcd)
+	<br>
+  	![image](https://github.com/user-attachments/assets/0497283b-05aa-4613-9b3f-2f2c2b7d1654)
+	<br>
+  	![image](https://github.com/user-attachments/assets/0102d799-7b1a-450f-badb-c199de36af7c)
+	<br>
+ 	 ![image](https://github.com/user-attachments/assets/1dbf9978-3c44-4599-8606-90cb436138de)
+	<br>
+  	![image](https://github.com/user-attachments/assets/cc08c31e-167e-413f-828e-1af991e00a27)
+	<br>
+  	![image](https://github.com/user-attachments/assets/76a05d9c-3e18-4cb8-82a1-74aed7ce195f)
 
 </details>
 
