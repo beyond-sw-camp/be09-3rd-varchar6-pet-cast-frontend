@@ -9,11 +9,11 @@
       <!-- 메뉴 리스트 -->
       <ul class="menu-list">
         <li><RouterLink to="/">Home</RouterLink></li>
-        <li><RouterLink to="/about">About</RouterLink></li>
+        <!-- <li><RouterLink to="/about">About</RouterLink></li> -->
         <li><RouterLink to="/request">요청</RouterLink></li>
         <li><RouterLink to="/biz-list">업체 찾기</RouterLink></li>
         <li><RouterLink to="/gatherlist">모임</RouterLink></li>
-        
+        <li><RouterLink to="/api/v1/notice">공지</RouterLink></li>
         <!-- 다른 메뉴 항목 추가 가능 -->
 
       </ul>
