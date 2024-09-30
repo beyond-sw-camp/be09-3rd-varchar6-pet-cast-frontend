@@ -138,8 +138,8 @@ spring SpringBoot SpringSecurity SpringJPA MyBatis Hibernate vue
 
 
 
-## 🗿네트워크 아키텍쳐
-<img width="950" alt="스크린샷 2024-09-05 오전 5 20 43" src="https://github.com/user-attachments/assets/f00aaff0-b6b1-44d5-9e51-a22c88a90202">
+## 🗿시스템 아키텍쳐
+<img width="950" alt="스크린샷 2024-09-05 오전 5 20 43" src="https://github.com/user-attachments/assets/20507f4c-5a90-440e-a678-cb21de913caa">
 
 
 
