@@ -16,12 +16,11 @@ footer {
   display: flex;
   position: fixed;
   justify-content: space-between;
-  padding: 10px;
+  padding: 20px;
   background-color: #FFFED3;
   bottom: 0;
   width: 100%;
-  height: 10%;
-  /* min-height: 30px; */
+  height: 10vh;
   left: 0;
 }
 </style>

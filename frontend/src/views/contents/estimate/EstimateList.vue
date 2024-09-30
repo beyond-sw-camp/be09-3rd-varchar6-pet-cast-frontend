@@ -7,7 +7,7 @@
         <b-table striped hover :items="items" :fields="fields">
           <template #cell(actions)="row">
             <b-button
-              variant="primary"
+              variant="outline-primary"
               @click="approveEstimate(row.item.id)"
               :disabled="row.item.status !== 'SENT'"
               >승인</b-button
@@ -38,7 +38,7 @@
     { key: "expected_cost", label: "예상 비용" },
     { key: "created_at", label: "작성 날짜" },
     { key: "status", label: "상태" },
-    { key: "actions", label: "승인" }
+    { key: "actions", label: "승인" },
   ];
 
 
@@ -60,20 +60,31 @@
   });
 
 // 견적서 승인
-  const approveEstimate = async (item) => {
+  const approveEstimate = async (id) => {
   try {
-    const response = await fetch(`http://localhost:8888/estimate/${item.id}/approve`, {
+    const response = await fetch(`http://localhost:8888/estimate/${id}/approve`, {
       method: 'PUT'
     });
+    console.log(row.item.id);
     if (!response.ok) {
       throw new Error("견적서 승인 중 오류가 발생했습니다.");
     }
-    item.status = "CONFIRMED";  // 상태 변함
-    await fetchEstimate();
+    items.value = items.value.map(item => {
+      if (item.id === id) {
+        return { ...item, status: "CONFIRMED" };
+      }
+      return item;
+    });
   } catch (error) {
     console.error("견적서 승인 중 오류 발생:", error);
   }
 };
+//     // item.status = "CONFIRMED";  // 상태 변함
+//     await fetchEstimate();
+//   } catch (error) {
+//     console.error("견적서 승인 중 오류 발생:", error);
+//   }
+// };
 
 // 견적서 거절
 const rejectEstimate = async (id) => {

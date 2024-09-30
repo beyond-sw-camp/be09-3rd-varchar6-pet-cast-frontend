@@ -57,7 +57,7 @@ function submitEvent() {
     console.log("기획서 제출이 완료되었습니다!");
     resolve();
   }).then(() => {
-    router.push('/');
+    router.push('/proposallist');
   })};
   </script>
   

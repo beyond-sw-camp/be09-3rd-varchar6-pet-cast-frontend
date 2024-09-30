@@ -42,7 +42,6 @@ const options = [
 ];
 
 const types = [
-  { id: 'company', label: '요청한 업체', type: 'text' },
   { id: 'event', label: '요청 이벤트', type: 'text' },
   { id: 'cost', label: '희망 비용', type: 'number' },
   { id: 'location', label: '희망 장소', type: 'text' },
