@@ -6,7 +6,6 @@ import com.varchar6.petcast.serviceothers.domain.report.command.domain.repositor
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,18 +30,15 @@ public class ReportServiceImpl implements ReportService{
     @Override
     @Transactional
     public int insertReport(ReportCreateRequestDTO reportCreateRequestDTO) {
-        int result = 0;
 
         Report report = modelMapper.map(reportCreateRequestDTO, Report.class);
         report.setCreatedAt(LocalDateTime.now().format(FORMATTER));
 
         try {
             reportRepository.save(report);
-            result++;
+            return 1;
         }catch(Exception e){
             throw new RuntimeException("신고 입력 실패");
         }
-
-        return result;
     }
 }
