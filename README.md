@@ -1,4 +1,4 @@
-![공지(고객)](https://github.com/user-attachments/assets/d4228535-0531-4f16-a5a2-9823f4c72e9f)![모임 조회](https://github.com/user-attachments/assets/116ce585-b104-4560-abcd-abe8cca89f4d)<h1> :feet: 반려동물 이벤트 업체 매칭 서비스_PET CAST :feet: </h1> <br> 
+<h1> :feet: 반려동물 이벤트 업체 매칭 서비스_PET CAST :feet: </h1> <br> 
 
 ![제목을-입력해주세요_-001 (2)](https://github.com/user-attachments/assets/1f8491a3-89b5-43a3-8a50-3e769303c46f)
 	
