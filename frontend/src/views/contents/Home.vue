@@ -42,19 +42,19 @@
     <div class="bottom-section">
       <div class="notice">
         <h3>공지사항</h3>
-        <ul>
+        <ul class="list-with-underline">
           <li v-for="notice in mainData.notices" :key="notice.id">{{ notice.title }}</li>
         </ul>
       </div>
       <div class="recent-reviews">
         <h3>최근 후기</h3>
-        <ul>
+        <ul class="list-with-underline">
           <li v-for="review in mainData.recentReviews" :key="review.id">{{ review.content }}</li>
         </ul>
       </div>
       <div class="popular-meetings">
         <h3>인기 모임</h3>
-        <ul>
+        <ul class="list-with-underline">
           <li v-for="meeting in mainData.popularMeetings" :key="meeting.id">{{ meeting.title }}</li>
         </ul>
       </div>
@@ -97,7 +97,7 @@ const goToEstimates = () => {
 };
 
 const goToMyMeetings = () => {
-  router.push('/my-meetings');
+  router.push('/gatherlist');
 };
 </script>
 
@@ -148,7 +148,7 @@ const goToMyMeetings = () => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f0f0f0;
+  background-color: #FFFED3;
   padding: 15px;
   border-radius: 10px;
 }
@@ -265,5 +265,19 @@ const goToMyMeetings = () => {
 
 .banner-content p {
   font-size: 16px;
+}
+
+.list-with-underline {
+  list-style-type: none;
+  padding: 0;
+}
+
+.list-with-underline li {
+  padding: 10px 0;
+  border-bottom: 1px solid #b0b0b0; /* 더 진한 색상으로 변경 */
+}
+
+.list-with-underline li:last-child {
+  border-bottom: none;
 }
 </style>

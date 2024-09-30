@@ -14,6 +14,7 @@
         <li><RouterLink to="/biz-list">업체 찾기</RouterLink></li>
         <li><RouterLink to="/gatherlist">모임</RouterLink></li>
         <li><RouterLink to="/api/v1/notice">공지</RouterLink></li>
+        
         <!-- 다른 메뉴 항목 추가 가능 -->
 
       </ul>
