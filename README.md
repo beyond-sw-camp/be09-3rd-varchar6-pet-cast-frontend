@@ -49,60 +49,65 @@
 
 
 
-## 🔧 기술 스택 
+## 🛠 기술 스택
 
 ### 도구
-npm nodejs vite Gradle
-intellij vsc
+- 에디터
+    - ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=plastic&logo=visual-studio-code&logoColor=white)
+    ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJ-000000?style=plastic&logo=intellij-idea&logoColor=white)
+- 빌드
+    - ![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=plastic&logo=Gradle&logoColor=white)
+    ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=plastic&logo=vite&logoColor=white)
+    ![Gradle](https://img.shields.io/badge/Gradle-02303A?style=plastic&logo=gradle&logoColor=white)
 
 ### 언어
-java17 js html3 css5 markdown yaml
+![Java](https://img.shields.io/badge/Java-007396?style=plastic&logo=java&logoColor=white)
+![YAML](https://img.shields.io/badge/yaml-%23ffffff.svg?style=plastic&logo=yaml&logoColor=151515)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=plastic&logo=javascript&logoColor=%23F7DF1E)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=plastic&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=plastic&logo=css3&logoColor=white)
+![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=plastic&logo=markdown&logoColor=white)
 
 ### 프레임워크
-spring SpringBoot SpringSecurity SpringJPA MyBatis Hibernate vue
+![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=plastic&logo=spring&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=plastic&logo=spring-boot&logoColor=white)
+![Spring JPA](https://img.shields.io/badge/JPA-6DB33F?style=plastic&logo=spring&logoColor=white)
+![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=plastic&logo=hibernate&logoColor=white)
+![MyBatis](https://img.shields.io/badge/MyBatis-B5E7A0?style=plastic&logoColor=white)
+![Spring Security](https://img.shields.io/badge/Spring_Security-6DB33F?style=plastic&logo=spring-security&logoColor=white)
+![Vue.js](https://img.shields.io/badge/vuejs-%2335495e.svg?style=plastic&logo=vuedotjs&logoColor=%234FC08D)
 
 ### 라이브러리
-- Bootstrap JWT/JSONWebToken
+- ![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=plastic&logo=bootstrap&logoColor=white)
+- ![JWT](https://img.shields.io/badge/JWT-000000?style=plastic&logo=json-web-tokens&logoColor=white)
 
 ### 데이터베이스
-- Mariadb, redis
+- ![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=plastic&logo=mariadb&logoColor=white)
+- ![DA#](https://img.shields.io/badge/DA%23-007ACC?style=plastic&logo=data&logoColor=white)
+
+### 명세
+- ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=plastic&logo=postman&logoColor=white)
+![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=plastic&logo=swagger&logoColor=white)
+
+### ETC
+- ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=plastic&logo=npm&logoColor=white)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=plastic&logo=node.js&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=plastic&logo=json-web-tokens&logoColor=white)
 
 ### 디자인
-- Figma
+- ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=plastic&logo=figma&logoColor=white)
 
 ### 소통
-- Notion
-
-### specification
-- Postman Swagger
+- ![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=plastic&logo=notion&logoColor=white)
 
 ### 버전 관리
-- Git GitHub
-
-### 백엔드 기술
-![Java](https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
-![Spring JPA](https://img.shields.io/badge/JPA-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
-![MyBatis](https://img.shields.io/badge/MyBatis-B5E7A0?style=for-the-badge&logo=java&logoColor=white)
-![Spring Security](https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=spring-security&logoColor=white)
-![Gradle](https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white)
-![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=hibernate&logoColor=white)
-![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=json-web-tokens&logoColor=white)
-
-### 데이터베이스(DB)
-![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)
-
-## 🛠 사용 Tools
-
-![DA#](https://img.shields.io/badge/DA%23-007ACC?style=for-the-badge&logo=data&logoColor=white)
-![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
-![IntelliJ IDEA](https://img.shields.io/badge/IntelliJ-000000?style=for-the-badge&logo=intellij-idea&logoColor=white)
+- ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=plastic&logo=git&logoColor=white)
+- ![GitHub](https://img.shields.io/badge/GitHub-181717?style=plastic&logo=github&logoColor=white)
 <br>
 
 ## 🗓️ 프로젝트 계획 (WBS) <br>
 [[🔗 WBS Link]](https://docs.google.com/spreadsheets/d/1QcbQHmhLQ76bXKGVnVfurkTbIlVpPk1o3f3c-3LNoeU/edit?gid=1249384987#gid=1249384987/)
 <img width="950" alt="스크린샷 2024-09-05 오후 1 43 13" src="https://github.com/user-attachments/assets/e920db77-a20f-4425-a47d-2dcddd156865">
-
 
 
 ## 📙 요구사항 명세서
