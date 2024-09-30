@@ -4,7 +4,6 @@ import com.varchar6.petcast.serviceothers.common.response.ResponseMessage;
 import com.varchar6.petcast.serviceothers.domain.qna.command.application.dto.request.QnaCreateRequestDTO;
 import com.varchar6.petcast.serviceothers.domain.qna.command.application.dto.request.QnaDeleteAnswerRequestDTO;
 import com.varchar6.petcast.serviceothers.domain.qna.command.application.dto.request.QnaUpdateRequestDTO;
-import com.varchar6.petcast.serviceothers.domain.qna.command.application.dto.response.QnaResponseDTO;
 import com.varchar6.petcast.serviceothers.domain.qna.command.application.service.QnaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +30,13 @@ public class QnaController {
                                                       @RequestAttribute("memberId") int memberId){
 
         qnaCreateRequestDTO.setQuestionerId(memberId);
-        int result = qnaService.insertQna(qnaCreateRequestDTO);
+        qnaService.insertQna(qnaCreateRequestDTO);
 
         return ResponseEntity
                 .ok()
                 .body(
                         ResponseMessage.builder()
-                                .httpStatus(HttpStatus.CREATED.value())
+                                .httpStatus(HttpStatus.OK.value())
                                 .message("Q&A 생성 성공")
                                 .result(true)
                                 .build()
@@ -49,13 +48,13 @@ public class QnaController {
                                                          @RequestAttribute("memberId") int memberId){
 
         qnaUpdateRequestDTO.setAnswererId(memberId);
-        QnaResponseDTO qnaResponseDTO = qnaService.updateQna(qnaUpdateRequestDTO);
+        qnaService.updateQna(qnaUpdateRequestDTO);
 
         return ResponseEntity
                 .ok()
                 .body(
                         ResponseMessage.builder()
-                                .httpStatus(HttpStatus.CREATED.value())
+                                .httpStatus(HttpStatus.OK.value())
                                 .message("Q&A 수정 성공")
                                 .result(true)
                                 .build()
@@ -63,15 +62,18 @@ public class QnaController {
     }
 
     @DeleteMapping("")
-    private ResponseEntity<ResponseMessage> setQnaActive(@RequestBody Map<String, Integer> request){
+    private ResponseEntity<ResponseMessage> setQnaActive(@RequestBody Map<String, Integer> request,
+                                                         @RequestAttribute("memberId") int memberId){
         int id = request.get("id");
-        int result = qnaService.setQnaActive(id);
+        qnaService.setQnaActive(id, memberId);
+
+
 
         return ResponseEntity
                 .ok()
                 .body(
                         ResponseMessage.builder()
-                                .httpStatus(HttpStatus.CREATED.value())
+                                .httpStatus(HttpStatus.OK.value())
                                 .message("Q&A 삭제 성공")
                                 .result(true)
                                 .build()
@@ -82,13 +84,13 @@ public class QnaController {
                                                             @RequestAttribute("memberId") int memberId){
 
         qnaDeleteAnswerRequestDTO.setAnswererId(memberId);
-        QnaResponseDTO qnaResponseDTO = qnaService.deleteQnaAnswer(qnaDeleteAnswerRequestDTO);
+        qnaService.deleteQnaAnswer(qnaDeleteAnswerRequestDTO);
 
         return ResponseEntity
                 .ok()
                 .body(
                         ResponseMessage.builder()
-                                .httpStatus(HttpStatus.CREATED.value())
+                                .httpStatus(HttpStatus.OK.value())
                                 .message("Q&A 수정 성공")
                                 .result(true)
                                 .build()
