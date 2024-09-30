@@ -13,13 +13,11 @@ import FooterRight from "../../components/footer/FooterRight.vue";
 <style scoped>
 footer {
   display: flex;
-  position: fixed;
   justify-content: space-between;
   padding: 20px;
   background-color: #fffed3;
   bottom: 0;
   width: 100%;
-  height: 10vh;
   left: 0;
 }
 </style>
