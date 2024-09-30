@@ -9,7 +9,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 public class FeignClientConfig {
 
-    /* 설명. 그냥 가지말고 토큰 챙겨가~!!*/
     @Bean
     public RequestInterceptor requestInterceptor(){
         return new RequestInterceptor(){
@@ -26,10 +25,8 @@ public class FeignClientConfig {
                             .getRequest() //request 객체 추출
                             .getHeader(HttpHeaders.AUTHORIZATION);
 
-                    /* 설명. 토큰을 들고 왔다면 */
                     if(authorizationHeader != null){
 
-                        /* 설명. Feign client 요청에 "Authorization" 헤더 추가 */
                         requestTemplate.header(HttpHeaders.AUTHORIZATION, authorizationHeader);
                     }
                 }
