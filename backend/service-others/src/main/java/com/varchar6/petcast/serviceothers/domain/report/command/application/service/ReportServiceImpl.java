@@ -31,18 +31,15 @@ public class ReportServiceImpl implements ReportService{
     @Override
     @Transactional
     public int insertReport(ReportCreateRequestDTO reportCreateRequestDTO) {
-        int result = 0;
 
         Report report = modelMapper.map(reportCreateRequestDTO, Report.class);
         report.setCreatedAt(LocalDateTime.now().format(FORMATTER));
 
         try {
             reportRepository.save(report);
-            result++;
+            return 1;
         }catch(Exception e){
             throw new RuntimeException("신고 입력 실패");
         }
-
-        return result;
     }
 }
