@@ -6,7 +6,10 @@
     "location": "서울특별시 강남구",
     "description": "강아지를 너무 사랑해서 우리 아가들에게 이벤트 해주기 위해 업체 차렸습니다",
     "registrationStatus": "Y",
-    "categories": ["생일파티", "장소대관"],
+    "categories": [
+      "생일파티",
+      "장소대관"
+    ],
     "rating": 4.8,
     "reviewCount": 25,
     "experience": "10",
@@ -17,7 +20,10 @@
         "id": 1,
         "title": "강아지 사진전",
         "status": "진행 중",
-        "category": ["장소대관", "사진"],
+        "category": [
+          "장소대관",
+          "사진"
+        ],
         "imageUrl": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe",
         "description": "강아지 2마리와 고양이 2마리가 사진을 찍고 있습니다. 참 귀엽죠? 당신의 반려동물도 가능합니다"
       },
@@ -25,7 +31,9 @@
         "id": 2,
         "title": "쿠킹 클래스",
         "status": "완료",
-        "category": ["펫푸드"],
+        "category": [
+          "펫푸드"
+        ],
         "imageUrl": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe",
         "description": "직접 만든 간식이 최고입니다. 요알못도 최대한 자세히 알려주는 값비싼 클래스"
       }
@@ -66,7 +74,6 @@
     ],
     "isUserOwner": true
   },
-
   "user-me": {
     "id": 34,
     "name": "도기 아버님",
@@ -75,16 +82,17 @@
     "image": "testImage",
     "introduction": "안녕하세요 도기 애비되는 사람입니다."
   },
-
   "business-event1": {
     "id": 1,
     "title": "강아지 사진전",
     "status": "진행 중",
-    "category": ["사진", "전시회"],
+    "category": [
+      "사진",
+      "전시회"
+    ],
     "description": "강아지 20마리가 2주리기 사진을 찍고 있습니다. 참 귀엽고 재미있는 사진전이 될 것 같습니다.",
     "imageUrl": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe"
   },
-
   "business-events": {
     "totalCount": 12,
     "isAuth": true,
@@ -93,7 +101,10 @@
         "id": 1,
         "title": "강아지 사진전",
         "status": "진행 중",
-        "category": ["사진", "전시회"],
+        "category": [
+          "사진",
+          "전시회"
+        ],
         "description": "강아지 20마리가 2주리기 사진을 찍고 있습니다. 참 귀엽고 재미있는 사진전이 될 것 같습니다.",
         "imageUrl": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe"
       },
@@ -101,7 +112,10 @@
         "id": 2,
         "title": "쿠킹 클래스",
         "status": "진행 예정",
-        "category": ["요리", "교육"],
+        "category": [
+          "요리",
+          "교육"
+        ],
         "description": "유기농 재료로 만드는 건강한 반려동물 간식 만들기 클래스입니다.",
         "imageUrl": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe"
       },
@@ -109,7 +123,10 @@
         "id": 3,
         "title": "펫 마사지 워크샵",
         "status": "종료",
-        "category": ["건강", "교육"],
+        "category": [
+          "건강",
+          "교육"
+        ],
         "description": "반려동물을 위한 마사지 기법을 배우는 워크샵입니다.",
         "imageUrl": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe"
       },
@@ -117,7 +134,10 @@
         "id": 4,
         "title": "고양이 용품 할인전",
         "status": "진행 중",
-        "category": ["세일", "용품"],
+        "category": [
+          "세일",
+          "용품"
+        ],
         "description": "모든 고양이 용품 30% 할인 행사를 진행합니다.",
         "imageUrl": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe"
       },
@@ -125,7 +145,10 @@
         "id": 5,
         "title": "반려동물 건강검진 이벤트",
         "status": "진행 예정",
-        "category": ["건강", "검진"],
+        "category": [
+          "건강",
+          "검진"
+        ],
         "description": "무료 건강검진을 실시합니다. 예약 필수!",
         "imageUrl": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe"
       },
@@ -133,7 +156,10 @@
         "id": 6,
         "title": "강아지 훈련 세미나",
         "status": "진행 중",
-        "category": ["교육", "세미나"],
+        "category": [
+          "교육",
+          "세미나"
+        ],
         "description": "전문 훈련사와 함께하는 강아지 훈련 세미나입니다.",
         "imageUrl": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe"
       },
@@ -141,7 +167,10 @@
         "id": 7,
         "title": "고양이 카페 오픈 기념 이벤트",
         "status": "종료",
-        "category": ["카페", "오픈"],
+        "category": [
+          "카페",
+          "오픈"
+        ],
         "description": "새로 오픈한 고양이 카페에서 음료 1+1 이벤트를 진행합니다.",
         "imageUrl": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe"
       },
@@ -149,7 +178,10 @@
         "id": 8,
         "title": "반려동물 옷 패션쇼",
         "status": "진행 예정",
-        "category": ["패션", "쇼"],
+        "category": [
+          "패션",
+          "쇼"
+        ],
         "description": "귀여운 반려동물들의 패션쇼가 열립니다. 참가 신청 중!",
         "imageUrl": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe"
       },
@@ -157,7 +189,10 @@
         "id": 9,
         "title": "동물병원 무료 상담의 날",
         "status": "진행 중",
-        "category": ["의료", "상담"],
+        "category": [
+          "의료",
+          "상담"
+        ],
         "description": "전문 수의사와 무료로 상담받을 수 있는 기회입니다.",
         "imageUrl": "https://example.com/vet_free_consultation.jpg"
       },
@@ -165,7 +200,10 @@
         "id": 10,
         "title": "반려동물 용품 박람회",
         "status": "진행 예정",
-        "category": ["박람회", "용품"],
+        "category": [
+          "박람회",
+          "용품"
+        ],
         "description": "다양한 반려동물 용품을 한자리에서 만나보세요.",
         "imageUrl": "https://example.com/pet_products_expo.jpg"
       },
@@ -173,7 +211,10 @@
         "id": 11,
         "title": "강아지 수영 대회",
         "status": "진행 중",
-        "category": ["스포츠", "대회"],
+        "category": [
+          "스포츠",
+          "대회"
+        ],
         "description": "강아지들의 수영 실력을 뽐내는 대회입니다.",
         "imageUrl": "https://example.com/dog_swimming_competition.jpg"
       },
@@ -181,13 +222,15 @@
         "id": 12,
         "title": "고양이 장난감 만들기 워크샵",
         "status": "진행 예정",
-        "category": ["DIY", "워크샵"],
+        "category": [
+          "DIY",
+          "워크샵"
+        ],
         "description": "재활용 재료로 고양이 장난감을 만드는 워크샵입니다.",
         "imageUrl": "https://example.com/cat_toy_workshop.jpg"
       }
     ]
   },
-
   "businessReviews": {
     "averageRating": 4.2,
     "totalReviews": 12,
@@ -278,7 +321,6 @@
       }
     ]
   },
-
   "customerEvents": {
     "totalCount": 11,
     "events": [
@@ -287,7 +329,10 @@
         "title": "봄맞이 반려동물 사진 콘테스트",
         "imageUrl": "https://example.com/event1.jpg",
         "status": "진행중",
-        "category": ["사진", "콘테스트"],
+        "category": [
+          "사진",
+          "콘테스트"
+        ],
         "description": "봄을 맞아 반려동물과 함께 찍은 사진을 공유해주세요. 우승자에게는 특별한 선물이 준비되어 있습니다!",
         "canReview": false
       },
@@ -296,7 +341,10 @@
         "title": "강아지 건강검진 무료 이벤트",
         "imageUrl": "https://example.com/event2.jpg",
         "status": "마감임박",
-        "category": ["건강", "무료검진"],
+        "category": [
+          "건강",
+          "무료검진"
+        ],
         "description": "반려견의 건강을 체크해보세요. 기본 건강검진을 무료로 제공합니다.",
         "canReview": false
       },
@@ -305,7 +353,10 @@
         "title": "고양이 장난감 할인전",
         "imageUrl": "https://example.com/event3.jpg",
         "status": "진행중",
-        "category": ["할인", "용품"],
+        "category": [
+          "할인",
+          "용품"
+        ],
         "description": "다양한 고양이 장난감을 최대 50% 할인된 가격에 만나보세요.",
         "canReview": false
       },
@@ -314,7 +365,10 @@
         "title": "반려동물 입양 캠페인",
         "imageUrl": "https://example.com/event4.jpg",
         "status": "진행완료",
-        "category": ["입양", "캠페인"],
+        "category": [
+          "입양",
+          "캠페인"
+        ],
         "description": "사랑스러운 반려동물들에게 새로운 가족을 찾아주세요. 입양 시 필요한 용품을 무료로 제공합니다.",
         "canReview": true
       },
@@ -323,7 +377,10 @@
         "title": "여름 특별 미용 패키지",
         "imageUrl": "https://example.com/event5.jpg",
         "status": "진행완료",
-        "category": ["미용", "할인"],
+        "category": [
+          "미용",
+          "할인"
+        ],
         "description": "더운 여름, 반려동물을 시원하게 해줄 특별 미용 패키지를 만나보세요.",
         "canReview": true
       },
@@ -332,7 +389,10 @@
         "title": "반려동물 행동교정 강좌",
         "imageUrl": "https://example.com/event6.jpg",
         "status": "진행완료",
-        "category": ["교육", "강좌"],
+        "category": [
+          "교육",
+          "강좌"
+        ],
         "description": "전문 트레이너와 함께하는 반려동물 행동교정 강좌에 참여해보세요.",
         "canReview": false
       },
@@ -341,7 +401,10 @@
         "title": "수제간식 만들기 클래스",
         "imageUrl": "https://example.com/event7.jpg",
         "status": "진행완료",
-        "category": ["클래스", "간식"],
+        "category": [
+          "클래스",
+          "간식"
+        ],
         "description": "우리 아이를 위한 건강한 수제간식 만들기 클래스에 참여하세요.",
         "canReview": false
       },
@@ -350,7 +413,10 @@
         "title": "가을 산책 포토존 이벤트",
         "imageUrl": "https://example.com/event8.jpg",
         "status": "진행완료",
-        "category": ["사진", "이벤트"],
+        "category": [
+          "사진",
+          "이벤트"
+        ],
         "description": "아름다운 가을 배경과 함께 반려동물과의 특별한 추억을 남겨보세요.",
         "canReview": false
       },
@@ -359,7 +425,10 @@
         "title": "겨울철 반려동물 건강관리 세미나",
         "imageUrl": "https://example.com/event9.jpg",
         "status": "진행완료",
-        "category": ["세미나", "건강"],
+        "category": [
+          "세미나",
+          "건강"
+        ],
         "description": "추운 겨울, 반려동물의 건강을 지키는 방법을 알아보는 세미나입니다.",
         "canReview": false
       },
@@ -368,7 +437,10 @@
         "title": "신년맞이 반려동물 용품 대전",
         "imageUrl": "https://example.com/event10.jpg",
         "status": "진행완료",
-        "category": ["할인", "용품"],
+        "category": [
+          "할인",
+          "용품"
+        ],
         "description": "새해를 맞아 다양한 반려동물 용품을 특별가에 만나보세요.",
         "canReview": false
       },
@@ -377,13 +449,15 @@
         "title": "반려동물 스트레스 해소 요가 클래스",
         "imageUrl": "https://example.com/event11.jpg",
         "status": "진행완료",
-        "category": ["클래스", "건강"],
+        "category": [
+          "클래스",
+          "건강"
+        ],
         "description": "반려동물과 함께하는 스트레스 해소 요가 클래스에 참여해보세요.",
         "canReview": false
       }
     ]
   },
-
   "customerReviews": {
     "totalReviews": 11,
     "averageRating": 4.2,
@@ -467,7 +541,6 @@
       }
     ]
   },
-
   "biz-list": {
     "total": 25,
     "biz": [
@@ -673,28 +746,27 @@
       }
     ]
   },
-
   "bizs": [
     {
-      "id": 1,
+      "id": "1",
       "name": "펫파티 플래너",
       "image": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe",
       "description": "강아지 용품 전문점"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "고양이 카페",
       "image": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe",
       "description": "고양이와 함께하는 휴식 공간"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "동물 병원",
       "image": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe",
       "description": "24시간 동물 응급 진료"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "펫 그루밍 살롱",
       "image": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe",
       "description": "전문 애완동물 미용 서비스"
@@ -711,7 +783,8 @@
       "created_at": "2024-08-27T12:00:00",
       "active": true,
       "company_id": 1,
-      "member_id": 2
+      "member_id": 2,
+      "id": "2d28"
     },
     {
       "content": "부산에서 반려동물 돌잔치 기획을 검토 중입니다. 귀사의 돌잔치 패키지를 자세히 알고 싶습니다.",
@@ -723,7 +796,8 @@
       "created_at": "2024-08-27T12:00:00",
       "active": true,
       "company_id": 2,
-      "member_id": 4
+      "member_id": 4,
+      "id": "e5df"
     },
     {
       "content": "대구에서 풀파티를 개최하고 싶습니다. 귀사의 풀파티 패키지와 제공 서비스에 대해 문의드립니다.",
@@ -735,7 +809,8 @@
       "created_at": "2024-08-27T12:00:00",
       "active": true,
       "company_id": 3,
-      "member_id": 6
+      "member_id": 6,
+      "id": "f0b7"
     },
     {
       "content": "광주에서 크리스마스 파티를 기획하고 싶습니다. 귀사의 크리스마스 패키지에 대해 알고 싶습니다.",
@@ -747,7 +822,8 @@
       "created_at": "2024-08-27T12:00:00",
       "active": true,
       "company_id": 4,
-      "member_id": 8
+      "member_id": 8,
+      "id": "1352"
     },
     {
       "content": "대전에서 생일 파티를 계획하고 있습니다. 귀사의 생일 패키지와 옵션에 대해 문의드립니다.",
@@ -759,7 +835,8 @@
       "created_at": "2024-08-27T12:00:00",
       "active": true,
       "company_id": 5,
-      "member_id": 10
+      "member_id": 10,
+      "id": "7d38"
     },
     {
       "content": "울산에서 여름 풀파티를 검토 중입니다. 귀사의 여름 패키지와 서비스에 대해 알고 싶습니다.",
@@ -771,7 +848,8 @@
       "created_at": "2024-08-27T12:00:00",
       "active": true,
       "company_id": 6,
-      "member_id": 12
+      "member_id": 12,
+      "id": "4c57"
     },
     {
       "content": "제주도에서 테마 파티를 열고 싶습니다. 귀사의 제주도 특화 패키지에 대해 문의드립니다.",
@@ -783,7 +861,8 @@
       "created_at": "2024-08-27T12:00:00",
       "active": true,
       "company_id": 7,
-      "member_id": 14
+      "member_id": 14,
+      "id": "7195"
     },
     {
       "content": "인천에서 할로윈 파티를 계획하고 있습니다. 귀사의 할로윈 패키지에 대해 알고 싶습니다.",
@@ -795,7 +874,8 @@
       "created_at": "2024-08-27T12:00:00",
       "active": true,
       "company_id": 8,
-      "member_id": 16
+      "member_id": 16,
+      "id": "09f5"
     },
     {
       "content": "성남에서 연말 파티를 열고 싶습니다. 귀사의 연말 패키지와 서비스에 대해 문의드립니다.",
@@ -807,7 +887,8 @@
       "created_at": "2024-08-27T12:00:00",
       "active": true,
       "company_id": 9,
-      "member_id": 17
+      "member_id": 17,
+      "id": "7c58"
     },
     {
       "content": "용인에서 발렌타인데이 파티를 기획하고 있습니다. 귀사의 발렌타인 패키지에 대해 알고 싶습니다.",
@@ -819,7 +900,8 @@
       "created_at": "2024-08-27T12:00:00",
       "active": true,
       "company_id": 10,
-      "member_id": 19
+      "member_id": 19,
+      "id": "a219"
     },
     {
       "content": "고양에서 명절 파티를 개최하고 싶습니다. 귀사의 명절 패키지와 옵션에 대해 문의드립니다.",
@@ -831,7 +913,8 @@
       "created_at": "2024-08-27T12:00:00",
       "active": true,
       "company_id": 11,
-      "member_id": 20
+      "member_id": 20,
+      "id": "d477"
     },
     {
       "content": "화성에서 봄맞이 파티를 열고 싶습니다. 귀사의 봄맞이 패키지에 대해 문의드립니다.",
@@ -843,7 +926,8 @@
       "created_at": "2024-08-27T12:00:00",
       "active": true,
       "company_id": 12,
-      "member_id": 1
+      "member_id": 1,
+      "id": "c69a"
     },
     {
       "content": "남양주에서 가을 파티를 기획하고 있습니다. 귀사의 가을 패키지와 서비스에 대해 알고 싶습니다.",
@@ -855,7 +939,8 @@
       "created_at": "2024-08-27T12:00:00",
       "active": true,
       "company_id": 13,
-      "member_id": 3
+      "member_id": 3,
+      "id": "8a9a"
     },
     {
       "content": "천안에서 개막식 파티를 열고 싶습니다. 귀사의 개막식 패키지와 제공 서비스에 대해 문의드립니다.",
@@ -867,7 +952,8 @@
       "created_at": "2024-08-27T12:00:00",
       "active": true,
       "company_id": 14,
-      "member_id": 5
+      "member_id": 5,
+      "id": "349c"
     },
     {
       "content": "전주에서 건강 캠페인을 기획하고 있습니다. 귀사의 건강 검진 패키지와 서비스에 대해 알고 싶습니다.",
@@ -879,7 +965,8 @@
       "created_at": "2024-08-27T12:00:00",
       "active": true,
       "company_id": 15,
-      "member_id": 7
+      "member_id": 7,
+      "id": "be45"
     },
     {
       "content": "여수에서 애견 운동회를 열고 싶습니다. 귀사의 애견 운동회 패키지에 대해 문의드립니다.",
@@ -891,7 +978,8 @@
       "created_at": "2024-08-27T12:00:00",
       "active": true,
       "company_id": 16,
-      "member_id": 9
+      "member_id": 9,
+      "id": "6841"
     },
     {
       "content": "군산에서 반려동물 사진 전시회를 기획하고 있습니다. 귀사의 사진 전시 패키지에 대해 문의드립니다.",
@@ -903,7 +991,8 @@
       "created_at": "2024-08-27T12:00:00",
       "active": true,
       "company_id": 17,
-      "member_id": 11
+      "member_id": 11,
+      "id": "1487"
     },
     {
       "content": "목포에서 요리 대회를 열고 싶습니다. 귀사의 요리 대회 패키지와 제공 서비스에 대해 알고 싶습니다.",
@@ -915,7 +1004,8 @@
       "created_at": "2024-08-27T12:00:00",
       "active": true,
       "company_id": 18,
-      "member_id": 13
+      "member_id": 13,
+      "id": "7ae5"
     },
     {
       "content": "포항에서 반려동물 축제를 개최하고 싶습니다. 귀사의 축제 패키지와 옵션에 대해 알고 싶습니다.",
@@ -927,7 +1017,8 @@
       "created_at": "2024-08-27T12:00:00",
       "active": true,
       "company_id": 19,
-      "member_id": 15
+      "member_id": 15,
+      "id": "16d5"
     },
     {
       "content": "경주에서 반려동물 워크숍을 기획하고 있습니다. 귀사의 워크숍 패키지와 제공 서비스에 대해 문의드립니다.",
@@ -939,73 +1030,73 @@
       "created_at": "2024-08-27T12:00:00",
       "active": true,
       "company_id": 20,
-      "member_id": 17
+      "member_id": 17,
+      "id": "430b"
     }
   ],
-
   "signup": [
     {
-      "id": 1,
+      "id": "1",
       "loginId": "user01",
       "nickname": "철수"
     },
     {
-      "id": 2,
+      "id": "2",
       "loginId": "user02",
       "nickname": "영희"
     },
     {
-      "id": 3,
+      "id": "3",
       "loginId": "user03",
       "nickname": "민수"
     },
     {
-      "id": 4,
+      "id": "4",
       "loginId": "user04",
       "nickname": "지우"
     },
     {
-      "id": 5,
+      "id": "5",
       "loginId": "user05",
       "nickname": "현우"
     },
     {
-      "id": 6,
+      "id": "6",
       "loginId": "user06",
       "nickname": "지수"
     },
     {
-      "id": 7,
+      "id": "7",
       "loginId": "user07",
       "nickname": "하은"
     },
     {
-      "id": 8,
+      "id": "8",
       "loginId": "user08",
       "nickname": "지민"
     },
     {
-      "id": 9,
+      "id": "9",
       "loginId": "user09",
       "nickname": "서준"
     },
     {
-      "id": 10,
+      "id": "10",
       "loginId": "user10",
       "nickname": "수현"
     },
     {
-      "id": 11,
+      "id": "11",
       "loginId": "user11",
       "nickname": "하늘"
     },
     {
-      "id": 12,
+      "id": "12",
       "loginId": "user12",
       "nickname": "서윤"
     },
     {
-      "id": 13,
+      "id": "13",
       "loginId": "user13",
       "nickname": "지훈"
     }
@@ -1020,7 +1111,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "SENT",
       "active": true,
-      "member_id": 1
+      "member_id": 1,
+      "id": "532a"
     },
     {
       "content": "부산 지역의 반려동물 돌잔치를 위한 기획서입니다. 돌잔치 전용 장식과 특별 이벤트가 필요합니다.",
@@ -1031,7 +1123,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "SENT",
       "active": true,
-      "member_id": 2
+      "member_id": 2,
+      "id": "0418"
     },
     {
       "content": "대구에서 반려동물 풀파티를 위한 기획서입니다. 수영장과 놀이기구 준비가 필요합니다.",
@@ -1042,7 +1135,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "SENT",
       "active": true,
-      "member_id": 3
+      "member_id": 3,
+      "id": "5954"
     },
     {
       "content": "광주 지역의 반려동물 크리스마스 파티를 위한 기획서입니다. 크리스마스 테마의 장식과 선물이 필요합니다.",
@@ -1053,7 +1147,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "CONFIRMED",
       "active": true,
-      "member_id": 4
+      "member_id": 4,
+      "id": "9e4e"
     },
     {
       "content": "대전에서 반려동물 생일 파티를 위한 기획서입니다. 특별한 음식과 장식이 필요합니다.",
@@ -1064,7 +1159,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "SENT",
       "active": true,
-      "member_id": 5
+      "member_id": 5,
+      "id": "fdeb"
     },
     {
       "content": "울산 지역의 반려동물 여름 풀파티를 위한 기획서입니다. 수영장, 음료, 장난감 등이 필요합니다.",
@@ -1075,7 +1171,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "SENT",
       "active": true,
-      "member_id": 6
+      "member_id": 6,
+      "id": "c4e4"
     },
     {
       "content": "제주도에서 반려동물 테마 파티를 위한 기획서입니다. 제주도의 특색을 살린 이벤트와 장식이 필요합니다.",
@@ -1086,7 +1183,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "CONFIRMED",
       "active": true,
-      "member_id": 7
+      "member_id": 7,
+      "id": "9ab9"
     },
     {
       "content": "인천 지역의 반려동물 할로윈 파티를 위한 기획서입니다. 할로윈 테마의 장식과 간식이 필요합니다.",
@@ -1097,7 +1195,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "SENT",
       "active": true,
-      "member_id": 8
+      "member_id": 8,
+      "id": "f05d"
     },
     {
       "content": "성남에서 반려동물 연말 파티를 위한 기획서입니다. 연말 분위기의 장식과 음료가 필요합니다.",
@@ -1108,7 +1207,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "SENT",
       "active": true,
-      "member_id": 9
+      "member_id": 9,
+      "id": "a5db"
     },
     {
       "content": "용인 지역의 반려동물 발렌타인데이 파티를 위한 기획서입니다. 발렌타인 테마의 장식과 선물이 필요합니다.",
@@ -1119,7 +1219,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "CONFIRMED",
       "active": true,
-      "member_id": 10
+      "member_id": 10,
+      "id": "67de"
     },
     {
       "content": "고양에서 반려동물 명절 파티를 위한 기획서입니다. 명절 테마의 음식과 장식이 필요합니다.",
@@ -1130,7 +1231,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "SENT",
       "active": true,
-      "member_id": 11
+      "member_id": 11,
+      "id": "0605"
     },
     {
       "content": "화성 지역의 반려동물 봄맞이 파티를 위한 기획서입니다. 봄 테마의 장식과 꽃이 필요합니다.",
@@ -1141,7 +1243,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "SENT",
       "active": true,
-      "member_id": 12
+      "member_id": 12,
+      "id": "c93e"
     },
     {
       "content": "남양주에서 반려동물 가을 파티를 위한 기획서입니다. 가을 테마의 장식과 간식이 필요합니다.",
@@ -1152,7 +1255,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "CONFIRMED",
       "active": true,
-      "member_id": 13
+      "member_id": 13,
+      "id": "1e33"
     },
     {
       "content": "천안 지역의 반려동물 개막식 파티를 위한 기획서입니다. 새로 오픈하는 공간에서의 개막식.",
@@ -1163,7 +1267,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "SENT",
       "active": true,
-      "member_id": 14
+      "member_id": 14,
+      "id": "33ee"
     },
     {
       "content": "전주에서 반려동물 건강 캠페인을 위한 기획서입니다. 반려동물 건강 검진과 상담 제공.",
@@ -1174,7 +1279,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "CONFIRMED",
       "active": true,
-      "member_id": 15
+      "member_id": 15,
+      "id": "8305"
     },
     {
       "content": "여수 지역의 반려동물 애견 운동회 기획서입니다. 애견 운동과 게임을 포함한 이벤트.",
@@ -1185,7 +1291,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "SENT",
       "active": true,
-      "member_id": 16
+      "member_id": 16,
+      "id": "8451"
     },
     {
       "content": "군산에서 반려동물 사진 전시회를 위한 기획서입니다. 반려동물 사진 작품을 전시하는 행사.",
@@ -1196,7 +1303,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "CONFIRMED",
       "active": true,
-      "member_id": 17
+      "member_id": 17,
+      "id": "6867"
     },
     {
       "content": "목포 지역의 반려동물 요리 대회 기획서입니다. 반려동물 음식 레시피와 요리 시연.",
@@ -1207,7 +1315,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "CONFIRMED",
       "active": true,
-      "member_id": 18
+      "member_id": 18,
+      "id": "cb6a"
     },
     {
       "content": "포항에서의 반려동물 축제 기획서입니다. 다양한 활동과 공연이 포함된 축제.",
@@ -1218,7 +1327,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "SENT",
       "active": true,
-      "member_id": 19
+      "member_id": 19,
+      "id": "a444"
     },
     {
       "content": "경주 지역의 반려동물 테마 워크숍 기획서입니다. 반려동물 관련 다양한 주제로 워크숍 진행.",
@@ -1229,7 +1339,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "CONFIRMED",
       "active": true,
-      "member_id": 20
+      "member_id": 20,
+      "id": "dfd3"
     },
     {
       "content": "양산에서 반려동물 애견 체험 행사 기획서입니다. 다양한 애견 체험과 활동을 포함.",
@@ -1240,7 +1351,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "SENT",
       "active": true,
-      "member_id": 21
+      "member_id": 21,
+      "id": "28fb"
     },
     {
       "content": "진주 지역의 반려동물 패션쇼 기획서입니다. 반려동물 패션과 관련된 다양한 행사.",
@@ -1251,7 +1363,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "SENT",
       "active": true,
-      "member_id": 22
+      "member_id": 22,
+      "id": "6070"
     },
     {
       "content": "사천에서의 반려동물 친화적 지역 탐방 기획서입니다. 지역 사회와의 교류를 포함한 탐방.",
@@ -1262,7 +1375,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "CONFIRMED",
       "active": true,
-      "member_id": 23
+      "member_id": 23,
+      "id": "46b1"
     },
     {
       "content": "서울 지역에서 반려동물 생일 파티를 계획하고 있습니다. 생일 케이크와 장식, 재미있는 활동이 포함된 패키지를 원합니다.",
@@ -1273,7 +1387,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "SENT",
       "active": true,
-      "member_id": 4
+      "member_id": 4,
+      "id": "1de3"
     },
     {
       "content": "부산에서 반려동물 돌잔치 기획을 원합니다. 돌잔치 장식과 특별한 이벤트가 포함된 패키지를 제공해 주세요.",
@@ -1284,7 +1399,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "CONFIRMED",
       "active": true,
-      "member_id": 5
+      "member_id": 5,
+      "id": "15f4"
     },
     {
       "content": "대구에서 풀파티를 기획하고 있습니다. 수영장과 장난감, 물놀이 활동이 포함된 패키지를 요청합니다.",
@@ -1295,7 +1411,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "SENT",
       "active": true,
-      "member_id": 6
+      "member_id": 6,
+      "id": "8cff"
     },
     {
       "content": "광주에서 반려동물 크리스마스 파티를 열고 싶습니다. 크리스마스 테마 장식과 선물을 포함한 패키지.",
@@ -1306,7 +1423,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "SENT",
       "active": true,
-      "member_id": 7
+      "member_id": 7,
+      "id": "8b3e"
     },
     {
       "content": "대전에서 반려동물 생일 파티를 계획합니다. 특별한 음식과 장식이 포함된 패키지를 원합니다.",
@@ -1317,7 +1435,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "CONFIRMED",
       "active": true,
-      "member_id": 8
+      "member_id": 8,
+      "id": "c24c"
     },
     {
       "content": "울산에서 여름 풀파티를 열고 싶습니다. 수영장과 음료, 장난감이 포함된 패키지.",
@@ -1328,7 +1447,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "SENT",
       "active": true,
-      "member_id": 9
+      "member_id": 9,
+      "id": "a071"
     },
     {
       "content": "제주도에서 반려동물 테마 파티를 기획하고 있습니다. 제주도 특색을 살린 장식과 활동이 포함된 패키지.",
@@ -1339,7 +1459,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "SENT",
       "active": true,
-      "member_id": 10
+      "member_id": 10,
+      "id": "98ad"
     },
     {
       "content": "인천에서 반려동물 할로윈 파티를 열고 싶습니다. 할로윈 테마의 장식과 간식이 포함된 패키지.",
@@ -1350,7 +1471,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "CONFIRMED",
       "active": true,
-      "member_id": 11
+      "member_id": 11,
+      "id": "1306"
     },
     {
       "content": "성남에서 연말 파티를 기획하고 있습니다. 연말 분위기의 장식과 음료가 포함된 패키지.",
@@ -1361,7 +1483,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "SENT",
       "active": true,
-      "member_id": 12
+      "member_id": 12,
+      "id": "e165"
     },
     {
       "content": "용인에서 발렌타인데이 파티를 열고 싶습니다. 발렌타인 테마의 장식과 선물이 포함된 패키지.",
@@ -1372,7 +1495,8 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "CONFIRMED",
       "active": true,
-      "member_id": 13
+      "member_id": 13,
+      "id": "611a"
     },
     {
       "content": "고양에서 명절 파티를 기획하고 싶습니다. 명절 테마의 음식과 장식이 포함된 패키지.",
@@ -1383,20 +1507,20 @@
       "updated_at": "2024-08-27T12:00:00",
       "status": "SENT",
       "active": true,
-      "member_id": 14
+      "member_id": 14,
+      "id": "1bbe"
     }
   ],
-
   "reports": [
     {
-      "id": 1,
+      "id": "1",
       "reason": "부적절한 광고 게시",
       "createdAt": "2024-03-01T09:00:00",
       "reporterId": 1,
       "respondentId": 2
     },
     {
-      "id": 2,
+      "id": "2",
       "reason": "욕설 및 비방",
       "createdAt": "2024-03-01T09:15:30",
       "reporterId": 2,
@@ -1405,7 +1529,7 @@
   ],
   "notices": [
     {
-      "id": 1,
+      "id": "1",
       "title": "새로운 펫 이벤트 플랫폼 출시!",
       "content": "안녕하세요! 반려동물을 위한 새로운 이벤트 플랫폼이 출시되었습니다. 다양한 펫 관련 이벤트에 참여해 보세요.",
       "createdAt": "2024-09-01T09:00:00",
@@ -1415,7 +1539,7 @@
       "fixed": true
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "2024 펫 페스티벌 안내",
       "content": "2024년 펫 페스티벌이 곧 시작됩니다! 여러분의 반려동물과 함께 다양한 이벤트에 참여해 주세요.",
       "createdAt": "2024-09-05T10:00:00",
@@ -1425,7 +1549,7 @@
       "fixed": false
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "플랫폼 정기 점검 안내",
       "content": "안정적인 서비스 제공을 위해 2024년 9월 15일에 정기 점검이 있을 예정입니다. 점검 시간 동안 서비스 이용이 제한될 수 있습니다.",
       "createdAt": "2024-09-10T11:30:00",
@@ -1435,7 +1559,7 @@
       "fixed": false
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "새로운 반려동물 입양 섹션 추가",
       "content": "새롭게 추가된 반려동물 입양 섹션에서 다양한 입양 가능한 반려동물을 찾아보세요. 여러분의 소중한 반려동물을 위한 새로운 가족을 찾을 수 있습니다.",
       "createdAt": "2024-09-12T14:45:00",
@@ -1445,7 +1569,7 @@
       "fixed": false
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "반려동물 사진 콘테스트",
       "content": "반려동물 사진 콘테스트가 진행 중입니다! 귀여운 반려동물의 사진을 올리고, 다른 사용자들과 공유해보세요!",
       "createdAt": "2024-09-15T09:20:00",
@@ -1455,7 +1579,7 @@
       "fixed": true
     },
     {
-      "id": 6,
+      "id": "6",
       "title": "특별 할인 이벤트 안내",
       "content": "펫 관련 제품을 위한 특별 할인 이벤트가 진행됩니다! 놓치지 마세요.",
       "createdAt": "2024-09-18T08:30:00",
@@ -1465,7 +1589,7 @@
       "fixed": false
     },
     {
-      "id": 7,
+      "id": "7",
       "title": "반려동물 건강 관리 세미나",
       "content": "반려동물 건강 관리에 대한 세미나가 열립니다. 건강한 생활을 위한 유용한 정보를 확인해보세요.",
       "createdAt": "2024-09-20T11:00:00",
@@ -1475,7 +1599,7 @@
       "fixed": false
     },
     {
-      "id": 8,
+      "id": "8",
       "title": "펫 베스트 공모전 개최",
       "content": "반려동물 관련 다양한 아이디어를 공모하는 펫 베스트 공모전이 개최됩니다. 참가해보세요!",
       "createdAt": "2024-09-22T10:45:00",
@@ -1487,7 +1611,7 @@
   ],
   "qnas": [
     {
-      "id": 10,
+      "id": "10",
       "title": "물고기 어항 크기",
       "content": "구피를 키울 때 적절한 어항 크기는 어느 정도인가요?",
       "createdAt": "2024-09-26T18:00:00Z",
@@ -1500,7 +1624,7 @@
       "answererId": null
     },
     {
-      "id": 8,
+      "id": "8",
       "title": "고양이 털 관리 방법",
       "content": "장모종 고양이의 털 관리는 어떻게 해야 하나요?",
       "createdAt": "2024-09-26T16:00:00Z",
@@ -1513,7 +1637,7 @@
       "answererId": null
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "애완견 목욕 빈도",
       "content": "강아지를 얼마나 자주 목욕시켜야 할까요?",
       "createdAt": "2024-09-26T12:00:00Z",
@@ -1526,7 +1650,7 @@
       "answererId": null
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "고양이 사료 추천 부탁드립니다.",
       "content": "1살 된 고양이에게 좋은 사료 추천 부탁드립니다.",
       "createdAt": "2024-09-26T10:00:00Z",
@@ -1539,7 +1663,7 @@
       "answererId": null
     },
     {
-      "id": 6,
+      "id": "6",
       "title": "고양이 스크래처 필요성",
       "content": "고양이에게 스크래처가 꼭 필요한가요?",
       "createdAt": "2024-09-26T14:00:00Z",
@@ -1552,7 +1676,7 @@
       "answererId": null
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "토끼 간식 추천",
       "content": "토끼에게 줄 수 있는 건강한 간식을 추천해주세요.",
       "createdAt": "2024-09-26T13:00:00Z",
@@ -1565,7 +1689,7 @@
       "answererId": 3
     },
     {
-      "id": 7,
+      "id": "7",
       "title": "새장 청소 빈도",
       "content": "새장을 얼마나 자주 청소해야 할까요?",
       "createdAt": "2024-09-26T15:00:00Z",
@@ -1578,7 +1702,7 @@
       "answererId": 4
     },
     {
-      "id": 9,
+      "id": "9",
       "title": "강아지 산책 시간",
       "content": "강아지를 하루에 얼마나 산책시켜야 할까요?",
       "createdAt": "2024-09-26T17:00:00Z",
@@ -1591,7 +1715,7 @@
       "answererId": 5
     },
     {
-      "id": 1,
+      "id": "1",
       "title": "애완견 훈련 관련 질문",
       "content": "강아지의 배변 훈련에 관한 질문이 있습니다. 처음 어떻게 시작해야 할까요?",
       "createdAt": "2024-09-26T09:00:00Z",
@@ -1604,7 +1728,7 @@
       "answererId": 1
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "햄스터 집 추천",
       "content": "햄스터에게 적합한 집 추천 부탁드립니다.",
       "createdAt": "2024-09-26T11:00:00Z",
@@ -1619,17 +1743,10 @@
   ],
   "estimate": [
     {
-      "id": 1,
-      "expected_cost": 15000,
-      "status": "SENT",
-      "created_at": "2023-09-14T12:34:56",
-      "updated_at": "2023-09-14T12:34:56",
-      "active": true,
-      "company_id": 7,
-      "proposal_id": 12
+      "id": "1"
     },
     {
-      "id": 2,
+      "id": "2",
       "expected_cost": 20000,
       "status": "CONFIRMED",
       "created_at": "2023-05-22T09:21:43",
@@ -1639,7 +1756,7 @@
       "proposal_id": 5
     },
     {
-      "id": 3,
+      "id": "3",
       "expected_cost": 17500,
       "status": "REJECTED",
       "created_at": "2024-01-11T16:44:32",
@@ -1649,9 +1766,9 @@
       "proposal_id": 14
     },
     {
-      "id": 4,
+      "id": "4",
       "expected_cost": 22000,
-      "status": "SENT",
+      "status": "CONFIRMED",
       "created_at": "2023-08-09T14:11:29",
       "updated_at": "2023-08-09T14:11:29",
       "active": true,
@@ -1659,7 +1776,7 @@
       "proposal_id": 9
     },
     {
-      "id": 5,
+      "id": "5",
       "expected_cost": 13000,
       "status": "CONFIRMED",
       "created_at": "2024-02-07T08:59:18",
@@ -1669,7 +1786,7 @@
       "proposal_id": 16
     },
     {
-      "id": 6,
+      "id": "6",
       "expected_cost": 19000,
       "status": "REJECTED",
       "created_at": "2023-11-15T18:27:45",
@@ -1679,9 +1796,9 @@
       "proposal_id": 3
     },
     {
-      "id": 7,
+      "id": "7",
       "expected_cost": 25000,
-      "status": "SENT",
+      "status": "REJECTED",
       "created_at": "2024-03-20T15:45:32",
       "updated_at": "2024-03-20T15:45:32",
       "active": true,
@@ -1689,7 +1806,7 @@
       "proposal_id": 22
     },
     {
-      "id": 8,
+      "id": "8",
       "expected_cost": 16000,
       "status": "CONFIRMED",
       "created_at": "2024-07-04T10:30:10",
@@ -1699,7 +1816,7 @@
       "proposal_id": 17
     },
     {
-      "id": 9,
+      "id": "9",
       "expected_cost": 21000,
       "status": "REJECTED",
       "created_at": "2023-12-21T13:09:56",
@@ -1709,9 +1826,9 @@
       "proposal_id": 20
     },
     {
-      "id": 10,
+      "id": "10",
       "expected_cost": 14000,
-      "status": "SENT",
+      "status": "CONFIRMED",
       "created_at": "2024-04-18T07:42:55",
       "updated_at": "2024-04-18T07:42:55",
       "active": true,
@@ -1719,7 +1836,7 @@
       "proposal_id": 8
     },
     {
-      "id": 11,
+      "id": "11",
       "expected_cost": 38000,
       "status": "CONFIRMED",
       "created_at": "2024-06-15T11:58:12",
@@ -1729,7 +1846,7 @@
       "proposal_id": 11
     },
     {
-      "id": 12,
+      "id": "12",
       "expected_cost": 20000,
       "status": "REJECTED",
       "created_at": "2024-01-09T15:20:35",
@@ -1739,9 +1856,9 @@
       "proposal_id": 23
     },
     {
-      "id": 13,
+      "id": "13",
       "expected_cost": 17000,
-      "status": "SENT",
+      "status": "REJECTED",
       "created_at": "2023-10-30T17:38:22",
       "updated_at": "2023-10-30T17:38:22",
       "active": true,
@@ -1749,7 +1866,7 @@
       "proposal_id": 15
     },
     {
-      "id": 14,
+      "id": "14",
       "expected_cost": 22000,
       "status": "CONFIRMED",
       "created_at": "2024-03-14T13:22:50",
@@ -1759,7 +1876,7 @@
       "proposal_id": 21
     },
     {
-      "id": 15,
+      "id": "15",
       "expected_cost": 15000,
       "status": "REJECTED",
       "created_at": "2024-05-17T08:12:45",
@@ -1769,7 +1886,7 @@
       "proposal_id": 7
     },
     {
-      "id": 16,
+      "id": "16",
       "expected_cost": 30000,
       "status": "SENT",
       "created_at": "2023-12-02T19:30:38",
@@ -1779,7 +1896,7 @@
       "proposal_id": 12
     },
     {
-      "id": 17,
+      "id": "17",
       "expected_cost": 17000,
       "status": "CONFIRMED",
       "created_at": "2024-02-25T10:15:29",
@@ -1789,7 +1906,7 @@
       "proposal_id": 23
     },
     {
-      "id": 18,
+      "id": "18",
       "expected_cost": 22000,
       "status": "REJECTED",
       "created_at": "2023-11-29T14:55:42",
@@ -1799,7 +1916,7 @@
       "proposal_id": 10
     },
     {
-      "id": 19,
+      "id": "19",
       "expected_cost": 14000,
       "status": "SENT",
       "created_at": "2024-04-07T11:23:30",
@@ -1809,7 +1926,7 @@
       "proposal_id": 24
     },
     {
-      "id": 20,
+      "id": "20",
       "expected_cost": 19000,
       "status": "CONFIRMED",
       "created_at": "2024-01-23T08:44:17",
@@ -1819,7 +1936,7 @@
       "proposal_id": 19
     },
     {
-      "id": 21,
+      "id": "21",
       "expected_cost": 43000,
       "status": "REJECTED",
       "created_at": "2024-06-01T16:29:56",
@@ -1829,7 +1946,7 @@
       "proposal_id": 4
     },
     {
-      "id": 22,
+      "id": "22",
       "expected_cost": 16000,
       "status": "SENT",
       "created_at": "2023-07-19T10:58:23",
@@ -1839,7 +1956,7 @@
       "proposal_id": 27
     },
     {
-      "id": 23,
+      "id": "23",
       "expected_cost": 21000,
       "status": "CONFIRMED",
       "created_at": "2023-09-28T12:35:40",
@@ -1849,7 +1966,7 @@
       "proposal_id": 13
     },
     {
-      "id": 24,
+      "id": "24",
       "expected_cost": 58000,
       "status": "REJECTED",
       "created_at": "2024-08-10T17:45:12",
@@ -1859,7 +1976,7 @@
       "proposal_id": 2
     },
     {
-      "id": 25,
+      "id": "25",
       "expected_cost": 64000,
       "status": "SENT",
       "created_at": "2023-06-20T14:15:29",
@@ -1869,7 +1986,7 @@
       "proposal_id": 9
     },
     {
-      "id": 26,
+      "id": "26",
       "expected_cost": 20000,
       "status": "CONFIRMED",
       "created_at": "2024-07-29T16:20:45",
@@ -1879,7 +1996,7 @@
       "proposal_id": 5
     },
     {
-      "id": 27,
+      "id": "27",
       "expected_cost": 19000,
       "status": "REJECTED",
       "created_at": "2023-10-07T11:42:18",
@@ -1889,7 +2006,7 @@
       "proposal_id": 21
     },
     {
-      "id": 28,
+      "id": "28",
       "expected_cost": 22000,
       "status": "SENT",
       "created_at": "2024-05-12T09:37:24",
@@ -1899,7 +2016,7 @@
       "proposal_id": 10
     },
     {
-      "id": 29,
+      "id": "29",
       "expected_cost": 15000,
       "status": "CONFIRMED",
       "created_at": "2023-08-18T15:50:11",
@@ -1909,7 +2026,7 @@
       "proposal_id": 22
     },
     {
-      "id": 30,
+      "id": "30",
       "expected_cost": 17000,
       "status": "REJECTED",
       "created_at": "2024-02-28T20:05:30",
