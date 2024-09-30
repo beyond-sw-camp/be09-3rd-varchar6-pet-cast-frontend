@@ -158,7 +158,7 @@
   };
   
   const goToQA = () => {
-  // router.push({ name: 'BusinessQA', params: { id: business.value[0].id } });
+    router.push(`/api/v1/qna/`);
   };
   
   onMounted(() => {

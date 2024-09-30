@@ -1855,5 +1855,106 @@
           "questionerId": 31,
           "answererId": 11
         }
-      ]
+      ],
+      
+      "main": {
+        "categories": [
+          {
+            "id": 1,
+            "name": "생일파티",
+            "icon": "https://drive.google.com/thumbnail?id=1ACVbRKSO9ZRU12EsLPbKzG74aqTBe_md"
+          },
+          {
+            "id": 2,
+            "name": "단체파티",
+            "icon": "https://drive.google.com/thumbnail?id=1pLr7aTDF4SWv1SRL7Tx7hxUwWourAY9w"
+          },
+          {
+            "id": 3,
+            "name": "장례 서비스", 
+            "icon": "https://drive.google.com/thumbnail?id=1Oq2ke62AHd8T0xzJJ79hR0zKII0CazYC"
+          },
+          {
+            "id": 4,
+            "name": "초대장",
+            "icon": "https://drive.google.com/thumbnail?id=1neWkxVgCibP8-CSB90oKQsFTxg9opSlT"
+          },
+          {
+            "id": 5,
+            "name": "파티 모임",
+            "icon": "https://drive.google.com/thumbnail?id=1qqmtApONP63w_UnDPu04uxZKwi6bfg5M"
+          },
+          {
+            "id": 6,
+            "name": "장소대관",
+            "icon": "https://drive.google.com/thumbnail?id=1jkutyd3Gm5r4Hg6X82NJjwS0p6pHeE2X"
+          }
+        ],
+        "banners": [
+          {
+            "id": 1,
+            "title": "여름 특별 이벤트", 
+            "description": "시원한 여름 파티를 위한 특별 할인!",
+            "image": "https://drive.google.com/thumbnail?id=1Lg0kWL0nReXnqfqWw-WYEhJDRetlbPa2"
+          },
+          {
+            "id": 2,
+            "title": "신규 회원 혜택",
+            "description": "가입 즉시 5,000원 할인 쿠폰 지급",
+            "image": "https://drive.google.com/thumbnail?id=1Lg0kWL0nReXnqfqWw-WYEhJDRetlbPa2"
+          },
+          {
+            "id": 3,
+            "title": "반려동물 생일 파티",
+            "description": "우리 아이의 특별한 날을 함께 축하해요",
+            "image": "https://drive.google.com/thumbnail?id=1Lg0kWL0nReXnqfqWw-WYEhJDRetlbPa2"
+          }
+        ],
+        "user": {
+          "nickname": "홍길동",
+          "profileImage": "https://drive.google.com/thumbnail?id=14M4Cx3wiae4GWyR3hFPL8diCOIdbtrhe"
+        },
+        "notices": [
+          {
+            "id": 1,
+            "title": "서비스 이용 안내"
+          },
+          {
+            "id": 2,
+            "title": "7월 이벤트 안내"
+          },
+          {
+            "id": 3,
+            "title": "개인정보 처리방침 개정 안내"
+          }
+        ],
+        "recentReviews": [
+          {
+            "id": 1,
+            "content": "정말 좋은 모임이었어요! 다음에 또 참여하고 싶습니다."
+          },
+          {
+            "id": 2,
+            "content": "처음 참여해봤는데 너무 재미있었습니다."
+          },
+          {
+            "id": 3,
+            "content": "모임 주최자분이 너무 친절하셨어요."
+          }
+        ],
+        "popularMeetings": [
+          {
+            "id": 1,
+            "title": "주말 등산 모임"
+          },
+          {
+            "id": 2,
+            "title": "프랑스 요리 배우기"
+          },
+          {
+            "id": 3,
+            "title": "영화 감상 및 토론"
+          }
+        ]
+  }   
 }

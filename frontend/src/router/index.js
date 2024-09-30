@@ -23,8 +23,8 @@ import GatherInvitation from '../views/contents/Gather/GatherInvitation.vue';
 import RequestWrite from '../views/contents/request/RequestWrite.vue';
 import RequestList from '../views/contents/request/RequestList.vue';
 import ProposalWrite from '../views/contents/proposal/ProposalWrite.vue';
-import ProposalList from '@/views/contents/proposal/ProposalList.vue';
-import ProposalAccept from '../views/contents/proposal/ProposalAccept.vue';
+import ProposalList from '@/views/contents/proposal/proposalList.vue';
+import ProposalAccept from '../views/contents/proposal/proposalAccept.vue';
 import EstimateWrite from '@/views/contents/estimate/EstimateWrite.vue';
 import EstimateList from '@/views/contents/estimate/EstimateList.vue';
 
