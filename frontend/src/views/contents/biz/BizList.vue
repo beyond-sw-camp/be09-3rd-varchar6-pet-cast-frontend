@@ -120,8 +120,17 @@ const fetchBusinesses = async () => {
 };
 
 const createRequest = (id) => {
+  return new Promise((resolve) => {
   // 요청서 작성 로직
   console.log(`요청서 작성 (업체 ID: ${id})`);
+  alert("요청서 작성으로 넘어갑니다!");
+    console.log("요청서 작성으로 넘어갑니다!");
+
+    resolve();
+  })
+  .then(() => {
+    router.push('/request');
+  });
 };
 
 const viewReviews = (id) => {
