@@ -1,10 +1,14 @@
 package com.varchar6.petcast.serviceothers.domain.notice.query.controller;
 
 import com.varchar6.petcast.serviceothers.common.response.ResponseMessage;
+import com.varchar6.petcast.serviceothers.common.util.RequestList;
 import com.varchar6.petcast.serviceothers.domain.notice.query.dto.NoticeDTO;
 import com.varchar6.petcast.serviceothers.domain.notice.query.service.NoticeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController(value = "queryNoticeController")
@@ -27,8 +32,9 @@ public class NoticeController {
     }
 
     @GetMapping("/post")
-    private ResponseEntity<ResponseMessage> getAllNotices(){
-        List<NoticeDTO> responseNotices = noticeService.getAllNotices();
+    private ResponseEntity<ResponseMessage> getAllNotices(NoticeDTO noticeDTO,@PageableDefault(size = 20) Pageable pageable){
+//        List<NoticeDTO> responseNotices = noticeService.getAllNotices();
+        Page<Map<String, Object>> responseNotices = noticeService.getAllNotices(noticeDTO, pageable);
 
         return ResponseEntity
                 .ok()

@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-public class FeignClientConfig {
+public class FeignClientConfiguration {
 
     @Bean
     public RequestInterceptor requestInterceptor(){
@@ -26,7 +26,6 @@ public class FeignClientConfig {
                             .getHeader(HttpHeaders.AUTHORIZATION);
 
                     if(authorizationHeader != null){
-
                         requestTemplate.header(HttpHeaders.AUTHORIZATION, authorizationHeader);
                     }
                 }

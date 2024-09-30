@@ -32,9 +32,9 @@ public class ReportController {
                 .ok()
                 .body(
                         ResponseMessage.builder()
-                                .httpStatus(HttpStatus.CREATED.value())
+                                .httpStatus(HttpStatus.OK.value())
                                 .message("신고 생성 성공")
-                                .result(null)
+                                .result(true)
                                 .build()
                 );
     }
