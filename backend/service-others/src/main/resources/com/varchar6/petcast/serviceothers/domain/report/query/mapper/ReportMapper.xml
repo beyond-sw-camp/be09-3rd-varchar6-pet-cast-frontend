@@ -19,6 +19,7 @@
              , R.RESPONDENT_ID
           FROM TBL_REPORT R
          ORDER BY CREATED_AT DESC
+        OFFSET #{pageable.offset} ROWS FETCH NEXT #{pageable.pageSize} ROWS ONLY
     </select>
     <select id = "selectReportByReporterId" resultMap="reportResultMap" parameterType="_int">
         SELECT
@@ -41,5 +42,10 @@
           FROM TBL_REPORT R
          WHERE RESPONDENT_ID = #{ respondentId }
          ORDER BY CREATED_AT DESC
+    </select>
+    <select id="selectAllReportCount" resultType="int">
+        SELECT
+        COUNT(*) AS CNT
+        FROM TBL_REPORT R
     </select>
 </mapper>
