@@ -17,7 +17,7 @@ public class MemberServiceImpl implements MemberService {
     @Autowired
     public MemberServiceImpl(MemberServiceClient memberServiceClient) {
         this.memberServiceClient = memberServiceClient;
-    }
+   }
 
     @Override
     public List<String> checkMemberRole(Map<String, String> map) throws IllegalAccessException {

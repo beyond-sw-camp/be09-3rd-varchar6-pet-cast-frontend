@@ -5,11 +5,15 @@ import com.varchar6.petcast.serviceothers.domain.report.query.dto.ReportDTO;
 import com.varchar6.petcast.serviceothers.domain.report.query.service.ReportService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController(value = "queryReportController")
@@ -24,9 +28,13 @@ public class ReportController {
     }
 
     @GetMapping("/post")
-    private ResponseEntity<ResponseMessage> getAllReports(@RequestAttribute("memberId") int memberId){
-        List<ReportDTO> responseReports = reportService.getAllReports(memberId);
-
+    private ResponseEntity<ResponseMessage> getAllReports(
+//            @RequestHeader("X-Member-Id") String memberId
+            @RequestAttribute("memberId") int memberId,
+            @RequestAttribute("authorities") List<String> roles
+            , @PageableDefault(size = 20) Pageable pageable) throws IllegalAccessException {
+//        List<ReportDTO> responseReports = reportService.getAllReports(memberId);
+        Page<Map<String, Object>> responseReports = reportService.getAllReports(memberId, roles, pageable);
         return ResponseEntity
                 .ok()
                 .body(
@@ -40,8 +48,12 @@ public class ReportController {
 
 
     @GetMapping("/reporter/{reporterId}")
-    private ResponseEntity<ResponseMessage> getReportByReporterId(@PathVariable Integer reporterId, @RequestAttribute("memberId") int memberId){
-        List<ReportDTO> responseReports = reportService.getReportByReporterId(reporterId, memberId);
+    private ResponseEntity<ResponseMessage> getReportByReporterId(@PathVariable Integer reporterId,
+                                                                  @RequestAttribute("authorities") List<String> roles,
+                                                                  @RequestAttribute("memberId") int memberId
+//                                                                  @RequestHeader("X-Member-Id") String memberId
+    ) throws IllegalAccessException {
+        List<ReportDTO> responseReports = reportService.getReportByReporterId(reporterId, roles, memberId);
 
         return ResponseEntity
                 .ok()
@@ -56,8 +68,12 @@ public class ReportController {
     }
 
     @GetMapping("/respondent/{respondentId}")
-    private ResponseEntity<ResponseMessage> getReportByRespondentId(@PathVariable Integer respondentId, @RequestAttribute("memberId") int memberId){
-        List<ReportDTO> responseReports = reportService.getReportByRespondentId(respondentId, memberId);
+    private ResponseEntity<ResponseMessage> getReportByRespondentId(@PathVariable Integer respondentId,
+//                                                                    @RequestHeader("X-Member-Id") String memberId
+                                                                    @RequestAttribute("memberId") int memberId,
+                                                                    @RequestAttribute("authorities") List<String> roles
+    ) throws IllegalAccessException {
+        List<ReportDTO> responseReports = reportService.getReportByRespondentId(respondentId, roles, memberId);
 
         return ResponseEntity
                 .ok()
