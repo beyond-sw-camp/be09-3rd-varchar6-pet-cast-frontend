@@ -27,49 +27,51 @@
 </template>
 
 <script setup>
-  import { ref, onMounted } from "vue";
+import { ref, onMounted } from "vue";
 //   import { useRouter } from "vue-router";
 
-  const items = ref([]);
-  const totalEstimate = ref(0);
+const items = ref([]);
+const totalEstimate = ref(0);
 
-  const fields = [
-    { key: "company_id", label: "해당 업체" },
-    { key: "expected_cost", label: "예상 비용" },
-    { key: "created_at", label: "작성 날짜" },
-    { key: "status", label: "상태" },
-    { key: "actions", label: "승인" },
-  ];
+const fields = [
+  { key: "company_id", label: "해당 업체" },
+  { key: "expected_cost", label: "예상 비용" },
+  { key: "created_at", label: "작성 날짜" },
+  { key: "status", label: "상태" },
+  { key: "actions", label: "승인" },
+];
 
-
-  const fetchEstimate = async () => {
-    try {
-      const estimate = await fetch("http://localhost:8888/estimate");
-      if (!estimate.ok) {
-        throw new Error("네트워크 응답이 올바르지 않습니다.");
-      }
-      const data = await estimate.json();
-      items.value = data;
-      totalEstimate.value = items.value.length;
-    } catch (error) {
-      console.error("견적서 데이터를 가져오는 중 오류 발생:", error);
+const fetchEstimate = async () => {
+  try {
+    const estimate = await fetch("http://localhost:8888/estimate");
+    if (!estimate.ok) {
+      throw new Error("네트워크 응답이 올바르지 않습니다.");
     }
-  };
-  onMounted(() => {
-    fetchEstimate();
-  });
+    const data = await estimate.json();
+    items.value = data;
+    totalEstimate.value = items.value.length;
+  } catch (error) {
+    console.error("견적서 데이터를 가져오는 중 오류 발생:", error);
+  }
+};
+onMounted(() => {
+  fetchEstimate();
+});
 
 // 견적서 승인
-  const approveEstimate = async (id) => {
+const approveEstimate = async (id) => {
   try {
-    const response = await fetch(`http://localhost:8888/estimate/${id}/approve`, {
-      method: 'PUT'
-    });
+    const response = await fetch(
+      `http://localhost:8888/estimate/${id}/approve`,
+      {
+        method: "PUT",
+      }
+    );
     console.log(row.item.id);
     if (!response.ok) {
       throw new Error("견적서 승인 중 오류가 발생했습니다.");
     }
-    items.value = items.value.map(item => {
+    items.value = items.value.map((item) => {
       if (item.id === id) {
         return { ...item, status: "CONFIRMED" };
       }
@@ -89,14 +91,17 @@
 // 견적서 거절
 const rejectEstimate = async (id) => {
   try {
-    const response = await fetch(`http://localhost:8888/estimate/${id}/reject`, {
-      method: 'DELETE'
-    });
+    const response = await fetch(
+      `http://localhost:8888/estimate/${id}/reject`,
+      {
+        method: "DELETE",
+      }
+    );
     if (!response.ok) {
       throw new Error("견적서 거절 중 오류가 발생했습니다.");
     }
     // 목록에서 해당 견적서 삭제
-    items.value = items.value.filter(item => item.id !== id);
+    items.value = items.value.filter((item) => item.id !== id);
     totalEstimate.value = items.value.length;
   } catch (error) {
     console.error("견적서 거절 중 오류 발생:", error);
@@ -138,5 +143,4 @@ main {
 .button-container .custom-btn.list-after {
   font-weight: bold;
 }
-
 </style>
