@@ -15,7 +15,7 @@
 <style scoped>
 .footer-right {
   text-align: right;
-  font-size: 3px;
+  font-size: 1px;
 }
 .footer-right p {
   margin: 0;
