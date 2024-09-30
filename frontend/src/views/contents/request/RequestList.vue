@@ -1,57 +1,58 @@
 <template>
   <h1>내 요청서</h1>
-    <main>
-      <div class="request-read">
-        <p :style="{ textAlign: 'right' }">개수: {{ totalRequest }}개</p>
-        <div v-if="items.length">
-          <b-table
-            striped
-            hover
-            :items="items"
-            :fields="fields"
-            @row-clicked="showDetails"
-          >
-          </b-table>
-        </div>
-        <div v-else>데이터를 불러오는 중...</div>
+  <main>
+    <div class="request-read">
+      <p :style="{ textAlign: 'right' }">개수: {{ totalRequest }}개</p>
+      <div v-if="items.length">
+        <b-table
+          striped
+          hover
+          :items="items"
+          :fields="fields"
+          @row-clicked="showDetails"
+        >
+        </b-table>
       </div>
-      <b-modal
-        v-model="showModal"
-        title="요청서 상세 정보"
-        size="lg"
-        class="custom-modal"
-        ok-title="삭제"
-        cancel-title="닫기"
-        ok-variant="danger"
-        cancel-variant="primary"
-        @ok="deleteRequest"
-        @cancel="closeModal">
-        <template v-if="selectedItem">
-          <div class="detail-item">
-            <strong>요청 업체</strong> {{ selectedItem.company_id }}
-          </div>
-          <div class="detail-item">
-            <strong>요청 이벤트</strong> {{ selectedItem.content }}
-          </div>
-          <div class="detail-item">
-            <strong>희망 날짜</strong> {{ selectedItem.hope_time }}
-          </div>
-          <div class="detail-item">
-            <strong>희망 비용</strong> {{ selectedItem.hope_cost }}
-          </div>
-          <div class="detail-item">
-            <strong>희망 장소</strong> {{ selectedItem.hope_location }}
-          </div>
-          <div class="detail-item">
-            <strong>진행 상황</strong> {{ selectedItem.status }}
-          </div>
-        </template>
-        <template #modal-footer>
-          <!-- <b-button size="lg" variant="primary" @click="closeModal"></b-button>
+      <div v-else>데이터를 불러오는 중...</div>
+    </div>
+    <b-modal
+      v-model="showModal"
+      title="요청서 상세 정보"
+      size="lg"
+      class="custom-modal"
+      ok-title="삭제"
+      cancel-title="닫기"
+      ok-variant="danger"
+      cancel-variant="primary"
+      @ok="deleteRequest"
+      @cancel="closeModal"
+    >
+      <template v-if="selectedItem">
+        <div class="detail-item">
+          <strong>요청 업체</strong> {{ selectedItem.company_id }}
+        </div>
+        <div class="detail-item">
+          <strong>요청 이벤트</strong> {{ selectedItem.content }}
+        </div>
+        <div class="detail-item">
+          <strong>희망 날짜</strong> {{ selectedItem.hope_time }}
+        </div>
+        <div class="detail-item">
+          <strong>희망 비용</strong> {{ selectedItem.hope_cost }}
+        </div>
+        <div class="detail-item">
+          <strong>희망 장소</strong> {{ selectedItem.hope_location }}
+        </div>
+        <div class="detail-item">
+          <strong>진행 상황</strong> {{ selectedItem.status }}
+        </div>
+      </template>
+      <template #modal-footer>
+        <!-- <b-button size="lg" variant="primary" @click="closeModal"></b-button>
           <b-button variant="danger" @click="deleteRequest"></b-button> -->
-        </template>
-      </b-modal>
-    </main>
+      </template>
+    </b-modal>
+  </main>
 </template>
 
 <script setup>
@@ -69,17 +70,15 @@ const fields = [
   { key: "status", label: "진행 상황" },
 ];
 
-
 const showModal = ref(false);
 const selectedItem = ref(null);
-
 
 const showDetails = (item) => {
   selectedItem.value = item;
   showModal.value = true;
 };
 const closeModal = () => {
-  console.log('close 버튼 확인!');
+  console.log("close 버튼 확인!");
   showModal.value = false;
 };
 

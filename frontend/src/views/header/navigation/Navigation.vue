@@ -3,7 +3,11 @@
     <div class="nav-left">
       <!-- 프로젝트 대표이미지 -->
       <RouterLink to="/">
-        <img src="../../../assets/image/profile/logo.png" alt="Project Logo" class="project-logo"/>
+        <img
+          src="../../../assets/image/profile/logo.png"
+          alt="Project Logo"
+          class="project-logo"
+        />
       </RouterLink>
 
       <!-- 메뉴 리스트 -->
@@ -15,9 +19,7 @@
         <li><RouterLink to="/gatherlist">모임</RouterLink></li>
         <li><RouterLink to="/api/v1/notice">공지</RouterLink></li>
 
-        
         <!-- 다른 메뉴 항목 추가 가능 -->
-
       </ul>
     </div>
 
@@ -27,18 +29,28 @@
         <!-- 로그인된 사용자 정보 및 아이콘 -->
         <span class="user-id">{{ userId }}님 안녕하세요</span>
         <RouterLink to="/me">
-          <img src="@/assets/icon/navigation/profile_48x48.png" alt="Profile" class="profile-image" />
+          <img
+            src="@/assets/icon/navigation/profile_48x48.png"
+            alt="Profile"
+            class="profile-image"
+          />
         </RouterLink>
         <img src="@/assets/icon/navigation/alarm.png" alt="alarm" />
 
         <div class="dropdown">
-          <img src="@/assets/icon/navigation/setting.png" alt="settings" @click="toggleDropdown" />
+          <img
+            src="@/assets/icon/navigation/setting.png"
+            alt="settings"
+            @click="toggleDropdown"
+          />
           <div v-if="isDropdownOpen" class="dropdown-menu">
             <RouterLink to="/me" @click="closeDropdown">마이페이지</RouterLink>
-            <RouterLink v-if="isCompany" to="/biz-mypage" @click="closeDropdown">업체 선택</RouterLink>
+            <RouterLink v-if="isCompany" to="/biz-mypage" @click="closeDropdown"
+              >업체 선택</RouterLink
+            >
           </div>
         </div>
-        
+
         <button @click="handleLogout">Logout</button>
       </template>
       <template v-else>
@@ -48,42 +60,47 @@
         </RouterLink>
       </template>
     </div>
-    <Modal :isVisible="isModalVisible" :title="modalTitle" :message="modalMessage" @update:isVisible="handleModalClose" />
+    <Modal
+      :isVisible="isModalVisible"
+      :title="modalTitle"
+      :message="modalMessage"
+      @update:isVisible="handleModalClose"
+    />
   </nav>
 </template>
 
 <script setup>
-import { ref, inject, onMounted } from 'vue';
-import { RouterLink, useRouter } from 'vue-router';
-import Modal from '../../../components/Modal.vue';
+import { ref, inject, onMounted } from "vue";
+import { RouterLink, useRouter } from "vue-router";
+import Modal from "../../../components/Modal.vue";
 
 const router = useRouter();
-const modalTitle = ref('');
-const modalMessage = ref('');
+const modalTitle = ref("");
+const modalMessage = ref("");
 const isModalVisible = ref(false);
-const isLoggedIn = inject('isLoggedIn');
-const setIsLoggedIn = inject('setIsLoggedIn');
-const userId = inject('userId');
+const isLoggedIn = inject("isLoggedIn");
+const setIsLoggedIn = inject("setIsLoggedIn");
+const userId = inject("userId");
 
 // 로그아웃 처리
 const handleLogout = () => {
-  localStorage.removeItem('accessToken');
-  localStorage.removeItem('refreshToken');
-  localStorage.removeItem('Roles');
-  localStorage.removeItem('userId'); // 아이디 정보 제거
+  localStorage.removeItem("accessToken");
+  localStorage.removeItem("refreshToken");
+  localStorage.removeItem("Roles");
+  localStorage.removeItem("userId"); // 아이디 정보 제거
 
   setIsLoggedIn(false);
-  userId.value = '';
+  userId.value = "";
 
-  modalTitle.value = '로그아웃 완료';
-  modalMessage.value = '성공적으로 로그아웃 되었습니다.';
+  modalTitle.value = "로그아웃 완료";
+  modalMessage.value = "성공적으로 로그아웃 되었습니다.";
   isModalVisible.value = true;
 };
 
 const handleModalClose = () => {
   isModalVisible.value = false;
-  if (modalTitle.value === '로그아웃 완료') {
-    router.push('/login'); // 로그아웃 후 로그인 페이지로 이동
+  if (modalTitle.value === "로그아웃 완료") {
+    router.push("/login"); // 로그아웃 후 로그인 페이지로 이동
   }
 };
 
@@ -99,10 +116,10 @@ const closeDropdown = () => {
 };
 
 const checkCompanyRole = () => {
-  const rolesString = localStorage.getItem('Roles');
+  const rolesString = localStorage.getItem("Roles");
   if (rolesString) {
-    const roles = rolesString.split(',');
-    isCompany.value = roles.includes('COMPANY');
+    const roles = rolesString.split(",");
+    isCompany.value = roles.includes("COMPANY");
   } else {
     isCompany.value = false;
   }
@@ -111,7 +128,6 @@ const checkCompanyRole = () => {
 onMounted(() => {
   checkCompanyRole();
 });
-
 </script>
 
 <style scoped>
@@ -186,7 +202,7 @@ onMounted(() => {
   right: 0;
   background-color: #f9f9f9;
   min-width: 120px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   border-radius: 4px;
 }

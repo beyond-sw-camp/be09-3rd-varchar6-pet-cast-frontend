@@ -1,11 +1,13 @@
 <template>
   <div class="biz-list-container">
-    <div v-if="isLoading" class="loading-message">
-      페이지가 로딩중입니다...
-    </div>
+    <div v-if="isLoading" class="loading-message">페이지가 로딩중입니다...</div>
     <template v-else>
       <div class="search-section">
-        <input type="text" v-model="searchQuery" placeholder="어떤 업체를 찾고 계세요?">
+        <input
+          type="text"
+          v-model="searchQuery"
+          placeholder="어떤 업체를 찾고 계세요?"
+        />
         <div class="search-options">
           <select v-model="searchType">
             <option value="title">제목</option>
@@ -19,33 +21,53 @@
       <div class="content-wrapper">
         <div class="filter-section">
           <h3>필터</h3>
-          <div v-for="(filter, index) in filters" :key="index" class="filter-item">
-            <input type="checkbox" :id="filter.id" v-model="filter.checked">
+          <div
+            v-for="(filter, index) in filters"
+            :key="index"
+            class="filter-item"
+          >
+            <input type="checkbox" :id="filter.id" v-model="filter.checked" />
             <label :for="filter.id">{{ filter.label }}</label>
           </div>
-          <button @click="applyFilters" class="apply-filters-button">필터 적용</button>
+          <button @click="applyFilters" class="apply-filters-button">
+            필터 적용
+          </button>
         </div>
 
         <div class="main-content">
           <div class="business-list">
-            <div v-for="business in displayedBusinesses" 
-                 :key="business.id" 
-                 class="business-item"
-                 @click="goToBizDetail(business.id)">
-              <img :src="business.image" :alt="business.name" class="business-image">
+            <div
+              v-for="business in displayedBusinesses"
+              :key="business.id"
+              class="business-item"
+              @click="goToBizDetail(business.id)"
+            >
+              <img
+                :src="business.image"
+                :alt="business.name"
+                class="business-image"
+              />
               <div class="business-info">
                 <h2>{{ business.name }}</h2>
                 <p>{{ business.description }}</p>
                 <div class="rating">★ {{ business.rating.toFixed(1) }}</div>
                 <div class="business-buttons">
-                  <button @click.stop="createRequest(business.id)">요청서 작성하기</button>
-                  <button @click.stop="viewReviews(business.id)">리뷰 상세 보기</button>
+                  <button @click.stop="createRequest(business.id)">
+                    요청서 작성하기
+                  </button>
+                  <button @click.stop="viewReviews(business.id)">
+                    리뷰 상세 보기
+                  </button>
                 </div>
               </div>
             </div>
           </div>
 
-          <button v-if="hasMoreBusinesses" @click="loadMore" class="load-more-btn">
+          <button
+            v-if="hasMoreBusinesses"
+            @click="loadMore"
+            class="load-more-btn"
+          >
             업체 더보기
           </button>
         </div>
@@ -55,28 +77,32 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, computed, onMounted } from "vue";
+import { useRouter } from "vue-router";
 
 const router = useRouter();
 
 const filters = ref([
-  { id: 'birthday', label: '생일파티', checked: false },
-  { id: 'group', label: '단체파티', checked: false },
-  { id: 'funeral', label: '장례 서비스', checked: false },
-  { id: 'invitation', label: '초대장', checked: false },
-  { id: 'party', label: '파티 모임', checked: false },
-  { id: 'venue', label: '장소 대관', checked: false },
+  { id: "birthday", label: "생일파티", checked: false },
+  { id: "group", label: "단체파티", checked: false },
+  { id: "funeral", label: "장례 서비스", checked: false },
+  { id: "invitation", label: "초대장", checked: false },
+  { id: "party", label: "파티 모임", checked: false },
+  { id: "venue", label: "장소 대관", checked: false },
 ]);
 
-const searchType = ref('title');
-const searchQuery = ref('');
+const searchType = ref("title");
+const searchQuery = ref("");
 const businesses = ref([]);
 const displayCount = ref(10);
 const isLoading = ref(true);
 
-const displayedBusinesses = computed(() => businesses.value.slice(0, displayCount.value));
-const hasMoreBusinesses = computed(() => displayCount.value < businesses.value.length);
+const displayedBusinesses = computed(() =>
+  businesses.value.slice(0, displayCount.value)
+);
+const hasMoreBusinesses = computed(
+  () => displayCount.value < businesses.value.length
+);
 
 const applyFilters = () => {
   fetchBusinesses();
@@ -93,27 +119,27 @@ const loadMore = () => {
 const fetchBusinesses = async () => {
   isLoading.value = true;
   const queryParams = new URLSearchParams();
-  
-  filters.value.forEach(filter => {
+
+  filters.value.forEach((filter) => {
     if (filter.checked) {
-      queryParams.append('filter', filter.id);
+      queryParams.append("filter", filter.id);
     }
   });
 
   if (searchQuery.value) {
-    queryParams.append('searchType', searchType.value);
-    queryParams.append('query', searchQuery.value);
+    queryParams.append("searchType", searchType.value);
+    queryParams.append("query", searchQuery.value);
   }
 
   try {
     const url = `http://localhost:8888/biz-list?${queryParams.toString()}`;
-    console.log('요청 URL:', url);
+    console.log("요청 URL:", url);
     const response = await fetch(url);
     const data = await response.json();
     businesses.value = data.biz || [];
     displayCount.value = 10;
   } catch (error) {
-    console.error('업체 목록을 불러오는 중 오류가 발생했습니다:', error);
+    console.error("업체 목록을 불러오는 중 오류가 발생했습니다:", error);
   } finally {
     isLoading.value = false;
   }
@@ -121,24 +147,23 @@ const fetchBusinesses = async () => {
 
 const createRequest = (id) => {
   return new Promise((resolve) => {
-  // 요청서 작성 로직
-  console.log(`요청서 작성 (업체 ID: ${id})`);
-  alert("요청서 작성으로 넘어갑니다!");
+    // 요청서 작성 로직
+    console.log(`요청서 작성 (업체 ID: ${id})`);
+    alert("요청서 작성으로 넘어갑니다!");
     console.log("요청서 작성으로 넘어갑니다!");
 
     resolve();
-  })
-  .then(() => {
-    router.push('/request');
+  }).then(() => {
+    router.push("/request");
   });
 };
 
 const viewReviews = (id) => {
-  router.push({ name: 'BizReviews', params: { id: id } });
+  router.push({ name: "BizReviews", params: { id: id } });
 };
 
 const goToBizDetail = (id) => {
-  router.push({ name: 'BizDetail', params: { id: id } });
+  router.push({ name: "BizDetail", params: { id: id } });
 };
 
 onMounted(() => {
@@ -182,7 +207,7 @@ onMounted(() => {
 .search-button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 0 5px 5px 0;
@@ -259,7 +284,7 @@ onMounted(() => {
 }
 
 .business-item:hover {
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .business-image {
@@ -291,7 +316,7 @@ onMounted(() => {
 }
 
 .business-info button {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   padding: 8px 15px;
@@ -340,7 +365,7 @@ onMounted(() => {
 .apply-filters-button {
   margin-top: 15px;
   padding: 8px 15px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 5px;

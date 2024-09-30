@@ -2,50 +2,59 @@
   <h1 class="title">요청서 작성</h1>
   <section class="container">
     <form>
-      <b-form-group label="희망 이벤트" label-sr-only v-slot="{ ariaDescribedby }">
-    <b-form-radio-group
-      id="radio-slots"
-      v-model="selected"
-      :options="options"
-      :aria-describedby="ariaDescribedby"
-      name="category-options-slots"
-    ></b-form-radio-group>
-  </b-form-group>
+      <b-form-group
+        label="희망 이벤트"
+        label-sr-only
+        v-slot="{ ariaDescribedby }"
+      >
+        <b-form-radio-group
+          id="radio-slots"
+          v-model="selected"
+          :options="options"
+          :aria-describedby="ariaDescribedby"
+          name="category-options-slots"
+        ></b-form-radio-group>
+      </b-form-group>
 
       <b-container fluid>
-      <b-row class="my-1 input-row" v-for="item in types" :key="item.id">
-        <b-col sm="4">
-          <label :for="`${item.id}`">{{ item.label }}</label>
-        </b-col>
-        <b-col sm="7">
-          <b-form-input :id="`${item,id}`" :type="item.type"></b-form-input>
-        </b-col>
-      </b-row>
-    </b-container>
+        <b-row class="my-1 input-row" v-for="item in types" :key="item.id">
+          <b-col sm="4">
+            <label :for="`${item.id}`">{{ item.label }}</label>
+          </b-col>
+          <b-col sm="7">
+            <b-form-input
+              :id="`${(item, id)}`"
+              :type="item.type"
+            ></b-form-input>
+          </b-col>
+        </b-row>
+      </b-container>
     </form>
     <div id="button">
-    <button @click="submitEvent('요청서 제출이 완료되었습니다!')">작성 완료</button>
+      <button @click="submitEvent('요청서 제출이 완료되었습니다!')">
+        작성 완료
+      </button>
     </div>
-</section>
+  </section>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 
-const selected = ref('');
+const selected = ref("");
 const options = [
   { text: "생일 이벤트", value: "생일 이벤트" },
   { text: "단체 파티", value: "단체 파티" },
   { text: "장소 대관", value: "장소 대관" },
-  { text: "장례 서비스", value: "장례 서비스" }
+  { text: "장례 서비스", value: "장례 서비스" },
 ];
 
 const types = [
-  { id: 'event', label: '요청 이벤트', type: 'text' },
-  { id: 'cost', label: '희망 비용', type: 'number' },
-  { id: 'location', label: '희망 장소', type: 'text' },
-  { id: 'date', label: '희망 날짜', type: 'date' }
+  { id: "event", label: "요청 이벤트", type: "text" },
+  { id: "cost", label: "희망 비용", type: "number" },
+  { id: "location", label: "희망 장소", type: "text" },
+  { id: "date", label: "희망 날짜", type: "date" },
 ];
 
 const router = useRouter();
@@ -57,17 +66,18 @@ function submitEvent() {
     console.log("요청서 제출이 완료되었습니다!");
     resolve();
   }).then(() => {
-    router.push('/requestlist');
-  })};
+    router.push("/requestlist");
+  });
+}
 </script>
 
 <style scoped>
-.container{
+.container {
   overflow: auto;
   height: 100vh;
 }
 h1 {
-  color: #49D5FF;
+  color: #49d5ff;
   font-family: Jua;
   margin: 60px;
 }
