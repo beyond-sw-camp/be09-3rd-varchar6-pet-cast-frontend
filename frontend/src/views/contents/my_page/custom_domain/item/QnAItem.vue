@@ -43,6 +43,7 @@ if (props.qna.answered != null) {
   align-items: center;
   justify-content: space-between;
   padding: 10px;
+  font-size: 15px;
   /* padding-block: 15px; */
   border-radius: 10px;
   border: 1px solid #e0e0e0;
@@ -55,6 +56,7 @@ if (props.qna.answered != null) {
   align-items: center;
   border-radius: 15px;
   border: 1px solid black;
+  font-size: 10px;
   padding: 10px;
   width: 60px;
   height: 20px;
@@ -78,11 +80,11 @@ if (props.qna.answered != null) {
   border-radius: 15px;
   border: 1px solid black;
   padding: 10px;
-  width: 60px;
+  width: 90px;
   height: 20px;
   background-color: white;
 }
 .created {
-  font-size: 11px;
+  font-size: 10px;
 }
 </style>
