@@ -1,4 +1,4 @@
-<h1> :feet: 반려동물 이벤트 업체 매칭 서비스_PET CAST :feet: </h1> <br> 
+![공지(고객)](https://github.com/user-attachments/assets/d4228535-0531-4f16-a5a2-9823f4c72e9f)![모임 조회](https://github.com/user-attachments/assets/116ce585-b104-4560-abcd-abe8cca89f4d)<h1> :feet: 반려동물 이벤트 업체 매칭 서비스_PET CAST :feet: </h1> <br> 
 
 ![제목을-입력해주세요_-001 (2)](https://github.com/user-attachments/assets/1f8491a3-89b5-43a3-8a50-3e769303c46f)
 	
@@ -233,18 +233,120 @@
 <details>
 <summary>고객 </summary>
 <div markdown="1">
-	📽️[견적서 승민 및 거절]<img width="1121" alt="업체기획서 조회 및 승인후 견적서 작성" src="https://github.com/user-attachments/assets/c8b74522-8da3-47ca-8fa9-da50a532ae50">	
-</div>
+	📽️[견적서 승민 및 거절]<img width="1121" alt="견적서 승민 및 거절" src="https://github.com/user-attachments/assets/c8b74522-8da3-47ca-8fa9-da50a532ae50">	
+</div> 
+
+<summary>회원가입 </summary>
+<div markdown="1">
+	📽️[회원가입(고객)]<img width="1121" alt="회원가입" src="">	
+</div> 
+
+ <summary>로그인 </summary>
+<div markdown="1">
+	📽️[로그인(고객)]<img width="1121" alt="로그인(고객)" src="https://github.com/user-attachments/assets/8b5e7c41-fdaa-47b5-bbf9-091abe05f0b2">	
+</div> 
+
+<summary>공지 </summary>
+<div markdown="1">
+	📽️[공지(고객)]<img width="1121" alt="공지(고객)" src="https://github.com/user-attachments/assets/4bd35f05-c196-4035-a130-1e5b8ef2955d">	
+</div> 
+
+<summary>신고 </summary>
+<div markdown="1">
+	📽️[신고(고객)]<img width="1121" alt="신고(고객)" src="https://github.com/user-attachments/assets/57ee0d1d-a767-4804-bc4e-49dca66ad7b3">	
+</div> 
+
+<summary>Q&A </summary>
+<div markdown="1">
+	📽️[Q&A(고객)]<img width="1121" alt="Q&A(고객)" src="">	
+</div> 
+
+<summary>모임 조회 </summary>
+<div markdown="1">
+	📽️[모임 조회]<img width="1121" alt="모임 조회" src="https://github.com/user-attachments/assets/1f7f4e37-213a-42e5-ac60-7c3653f71e74">	
+</div> 
+
+<summary>모임 생성 </summary>
+<div markdown="1">
+	📽️[모임 생성]<img width="1121" alt="모임 생성" src="https://github.com/user-attachments/assets/2f40128e-7a5d-41ba-a7b5-1b908ce1165c">	
+</div> 
+
+<summary>모임 정보 수정 </summary>
+<div markdown="1">
+	📽️[모임 정보 수정]<img width="1121" alt="모임 정보 수정" src="">	
+</div> 
+
+<summary>모임원 추방 </summary>
+<div markdown="1">
+	📽️[모임 추방]<img width="1121" alt="모임 추방" src="https://github.com/user-attachments/assets/54d60ba6-3b73-44bd-8cee-02433aba27f2">	
+</div> 
+
+<summary>모임원 권한에 따른 버튼 </summary>
+<div markdown="1">
+	📽️[모임원 권한에 따른 버튼]<img width="1121" alt="모임원 권한에 따른 버튼" src="https://github.com/user-attachments/assets/2d9fa413-f803-437b-a713-af4ebf829288">	
+</div> 
+
+<summary>요청서 </summary>
+<div markdown="1">
+	📽️[요청서]<img width="1121" alt="요청서" src="https://github.com/user-attachments/assets/483d7cc3-ddee-47e8-9bfd-f3d63606fe7d">	
+</div> 
+
+<summary>업체 찾기 및 검색 </summary>
+<div markdown="1">
+	📽️[업체 찾기 및 검색]<img width="1121" alt="업체 찾기 및 검색" src="">
+</div> 
+
+<summary>업체 리뷰 </summary>
+<div markdown="1">
+	📽️[업체 리뷰]<img width="1121" alt="업체 리뷰" src="">
+</div> 
+
+<summary>업체 리뷰 </summary>
+<div markdown="1">
+	📽️[업체 리뷰]<img width="1121" alt="업체 리뷰" src="">
+</div>  
+
 </details>
+
+
 
 ### 업체
 <details>
 <summary>업체 </summary>
 <div markdown="1">
 	📽️[업체기획서 조회 및 승인후 견적서 작성]<img width="1121" alt="업체기획서 조회 및 승인후 견적서 작성" src="https://github.com/user-attachments/assets/27db00ca-1118-4e96-9536-af2568c385fa">	
-	
 </div>
+
+<summary>로그인 </summary>
+<div markdown="1">
+	📽️[로그인(업체)]<img width="1121" alt="로그인(업체)" src="https://github.com/user-attachments/assets/78cb11df-3b11-4c2a-8798-95eb53d5bbe7">		
+</div>
+
+<summary>Q&A </summary>
+<div markdown="1">
+	📽️[Q&A(업체)]<img width="1121" alt="Q&A(업체)" src="">		
+</div>
+
 </details>
+
+
+### 업체
+<details>
+<summary>로그인 </summary>
+<div markdown="1">
+	📽️[로그인(관리자)]<img width="1121" alt="로그인(관리자)" src="https://github.com/user-attachments/assets/d90bbb21-dfd7-423e-a061-685404655ce7">	
+</div>
+
+<summary>공지 </summary>
+<div markdown="1">
+	📽️[공지(관리자)]<img width="1121" alt="공지(관리자)" src="https://github.com/user-attachments/assets/e2dbf63a-d01e-4971-8cb1-931d7bac2361">	
+</div>
+
+<summary>신고 </summary>
+<div markdown="1">
+	📽️[신고(관리자)]<img width="1121" alt="신고(관리자)" src="">	
+</div>
+
 
 ## ⏱️회고
 
